@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA21B0BB28EDCD4B00E59539 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BA28EDCD4B00E59539 /* Models.swift */; };
+		CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BC28EDCD8400E59539 /* Controller.swift */; };
+		CA21B0C028EDCDB700E59539 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* Components.swift */; };
 		FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C028EBCF44001203F5 /* AppDelegate.swift */; };
 		FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C228EBCF44001203F5 /* SceneDelegate.swift */; };
 		FA9B12C528EBCF44001203F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C428EBCF44001203F5 /* ViewController.swift */; };
@@ -17,6 +20,7 @@
 		FA9B12DB28EBCF46001203F5 /* ReeachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12DA28EBCF46001203F5 /* ReeachTests.swift */; };
 		FA9B12E528EBCF46001203F5 /* ReeachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */; };
 		FA9B12E728EBCF46001203F5 /* ReeachUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */; };
+		FA9B12F528EBD4DD001203F5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12F428EBD4DD001203F5 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA21B0BA28EDCD4B00E59539 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CA21B0BC28EDCD8400E59539 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		CA21B0BF28EDCDB700E59539 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		FA9B12BD28EBCF44001203F5 /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9B12C028EBCF44001203F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA9B12C228EBCF44001203F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +58,7 @@
 		FA9B12E028EBCF46001203F5 /* ReeachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITests.swift; sourceTree = "<group>"; };
 		FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FA9B12F428EBD4DD001203F5 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA21B0B728EDCD2C00E59539 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA9B12C428EBCF44001203F5 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA21B0B828EDCD3600E59539 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA21B0BC28EDCD8400E59539 /* Controller.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA21B0B928EDCD3D00E59539 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA21B0BA28EDCD4B00E59539 /* Models.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA21B0BE28EDCDA600E59539 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				CA21B0BF28EDCDB700E59539 /* Components.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		FA9B12B428EBCF44001203F5 = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +141,13 @@
 		FA9B12BF28EBCF44001203F5 /* Reeach */ = {
 			isa = PBXGroup;
 			children = (
+				CA21B0BE28EDCDA600E59539 /* Component */,
+				CA21B0B928EDCD3D00E59539 /* Model */,
+				CA21B0B828EDCD3600E59539 /* Controller */,
+				CA21B0B728EDCD2C00E59539 /* View */,
+				FA9B12F328EBD4DD001203F5 /* Helper */,
 				FA9B12C028EBCF44001203F5 /* AppDelegate.swift */,
 				FA9B12C228EBCF44001203F5 /* SceneDelegate.swift */,
-				FA9B12C428EBCF44001203F5 /* ViewController.swift */,
 				FA9B12C628EBCF44001203F5 /* Main.storyboard */,
 				FA9B12CC28EBCF46001203F5 /* Assets.xcassets */,
 				FA9B12CE28EBCF46001203F5 /* LaunchScreen.storyboard */,
@@ -128,6 +172,14 @@
 				FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */,
 			);
 			path = ReeachUITests;
+			sourceTree = "<group>";
+		};
+		FA9B12F328EBD4DD001203F5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FA9B12F428EBD4DD001203F5 /* Helper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +314,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9B12C528EBCF44001203F5 /* ViewController.swift in Sources */,
+				CA21B0C028EDCDB700E59539 /* Components.swift in Sources */,
 				FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */,
+				FA9B12F528EBD4DD001203F5 /* Helper.swift in Sources */,
+				CA21B0BB28EDCD4B00E59539 /* Models.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
+				CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
