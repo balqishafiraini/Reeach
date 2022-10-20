@@ -20,13 +20,13 @@ class NetworkManager: NSObject {
         components.host = endPoint.baseUrl
         components.path = endPoint.path
         
-        guard let url = components.url else {
+        guard let url = components.url?.formatted() else {
             networkDelegate?.onResponse(from: nil, result: .failure(.missingUrl))
             return
         }
         
         // Create the request to url
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = endPoint.method.rawValue
         
         // Set the headers to request
@@ -41,7 +41,6 @@ class NetworkManager: NSObject {
         
         // Run the task
         task.resume()
-        
     }
 }
 
