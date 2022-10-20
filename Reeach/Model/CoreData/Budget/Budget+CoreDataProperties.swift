@@ -9,17 +9,17 @@
 import Foundation
 import CoreData
 
+
 extension Budget {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Budget> {
         return NSFetchRequest<Budget>(entityName: "Budget")
     }
 
-    @NSManaged public var category: String?
-    @NSManaged public var icon: String?
     @NSManaged public var monthlyAllocation: Double
-    @NSManaged public var name: String?
+    @NSManaged public var period: Date?
     @NSManaged public var transactions: NSSet?
+    @NSManaged public var category: Category?
 
 }
 

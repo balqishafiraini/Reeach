@@ -21,6 +21,6 @@ extension Transaction {
     @NSManaged public var id: Int64
     @NSManaged public var notes: String?
     @NSManaged public var transactionName: String?
-    @NSManaged public var category: Budget?
+    @NSManaged public var budget: Budget?
 
 }

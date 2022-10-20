@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 @objc(Goal)
-public class Goal: Budget {
+public class Goal: Category {
 
 }
