@@ -8,7 +8,7 @@
 import Foundation
 
 class InflationNetworkModel: Decodable {
-    var inflationData:  InflationDetail
+    var inflationData: InflationDetail
     
     required init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
@@ -17,7 +17,7 @@ class InflationNetworkModel: Decodable {
     }
 }
 
-class InflationDetail: Codable {
+class InflationDetail: Decodable {
     var indicator: InflationIndicator
     var country: Country
     var countryiso3code: String
@@ -28,12 +28,12 @@ class InflationDetail: Codable {
     var decimal: Int
 }
 
-class InflationIndicator: Codable{
+class InflationIndicator: Decodable{
     var id: String
     var value: String
 }
 
-class Country: Codable {
+class Country: Decodable {
     var id: String
     var value: String
 }
