@@ -18,4 +18,6 @@ extension UIColor {
     static let caribbeanGreen = UIColor(named: "caribbeanGreen")
     static let darkSlateGrey = UIColor(named: "darkSlateGrey")
     static let ghostWhite = UIColor(named: "ghostWhite")
+    static let whiteSmoke = UIColor(named: "whiteSmoke")
+    static let crimson = UIColor(named: "crimson")
 }
