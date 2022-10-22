@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Budget" representedClassName="Budget" syncable="YES">
+        <attribute name="monthlyAllocation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="period" attributeType="Date" defaultDateTimeInterval="687848940" usesScalarValueType="NO"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="budgets" inverseEntity="Category"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Transaction" inverseName="budget" inverseEntity="Transaction"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES">
+        <attribute name="icon" attributeType="String" defaultValueString=""/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="type" attributeType="String" defaultValueString=""/>
+        <relationship name="budgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Budget" inverseName="category" inverseEntity="Budget"/>
+    </entity>
+    <entity name="Goal" representedClassName="Goal" parentEntity="Category" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="687407940" usesScalarValueType="NO"/>
+        <attribute name="dueDate" attributeType="Date" defaultDateTimeInterval="687407760" usesScalarValueType="NO"/>
+        <attribute name="isAchievable" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isActive" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="targetAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO"/>
+        <attribute name="timeTerm" attributeType="String" defaultValueString=""/>
+        <attribute name="updatedAt" attributeType="Date" defaultDateTimeInterval="687407940" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Transaction" representedClassName="Transaction" syncable="YES">
+        <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="687408180" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="notes" attributeType="String" defaultValueString=""/>
+        <attribute name="transactionName" attributeType="String" defaultValueString=""/>
+        <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="transactions" inverseEntity="Budget"/>
+    </entity>
 </model>
