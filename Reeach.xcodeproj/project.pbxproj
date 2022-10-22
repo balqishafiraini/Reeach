@@ -365,7 +365,7 @@
 			);
 			name = ReeachUITests;
 			productName = ReeachUITests;
-			productReference = FA84163928FF993700AA973C /* Reea
+			productReference = FA84163928FF993700AA973C;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
