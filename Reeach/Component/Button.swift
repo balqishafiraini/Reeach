@@ -17,6 +17,7 @@ class Button: UIButton {
     enum Foreground {
         case primary
         case secondary
+        case destructive
     }
     
     enum Background {
@@ -85,6 +86,9 @@ class Button: UIButton {
         case .secondary:
             UIFont.headline
             setTitleColor(UIColor(named: "primary7"), for: .normal)
+        case .destructive:
+            UIFont.headline
+            setTitleColor(UIColor.ghostWhite, for: .normal)
         }
     }
     
