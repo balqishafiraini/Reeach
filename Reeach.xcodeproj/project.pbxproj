@@ -33,6 +33,8 @@
 		FA9B12DB28EBCF46001203F5 /* ReeachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12DA28EBCF46001203F5 /* ReeachTests.swift */; };
 		FA9B12E528EBCF46001203F5 /* ReeachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */; };
 		FA9B12E728EBCF46001203F5 /* ReeachUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */; };
+		FAC0D89629029268008C3CF4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0D89529029268008C3CF4 /* Button.swift */; };
+		FAC0D898290292B8008C3CF4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0D897290292B8008C3CF4 /* TextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		FA9B12DA28EBCF46001203F5 /* ReeachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachTests.swift; sourceTree = "<group>"; };
 		FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITests.swift; sourceTree = "<group>"; };
 		FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FAC0D89529029268008C3CF4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		FAC0D897290292B8008C3CF4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				CA21B0BF28EDCDB700E59539 /* Components.swift */,
+				FAC0D89529029268008C3CF4 /* Button.swift */,
+				FAC0D897290292B8008C3CF4 /* TextField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
+				FAC0D898290292B8008C3CF4 /* TextField.swift in Sources */,
 				FA9B12C528EBCF44001203F5 /* ViewController.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
 				CA21B0C028EDCDB700E59539 /* Components.swift in Sources */,
@@ -461,6 +468,8 @@
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
 				FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */,
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
+				FAC0D89629029268008C3CF4 /* Button.swift in Sources */,
+				3B26F7F428F7C93300FAC837 /* TransactionPlaceholder.swift in Sources */,
 				CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */,
 				3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */,
 			);
