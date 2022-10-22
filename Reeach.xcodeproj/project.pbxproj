@@ -13,9 +13,6 @@
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
 		3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */; };
 		3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */; };
-		3B26F7F028F7BFA100FAC837 /* BudgetPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7EF28F7BFA100FAC837 /* BudgetPlaceholder.swift */; };
-		3B26F7F228F7C91B00FAC837 /* GoalPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7F128F7C91B00FAC837 /* GoalPlaceholder.swift */; };
-		3B26F7F428F7C93300FAC837 /* TransactionPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7F328F7C93300FAC837 /* TransactionPlaceholder.swift */; };
 		3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */; };
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
 		CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BC28EDCD8400E59539 /* Controller.swift */; };
@@ -62,11 +59,19 @@
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
 		3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Goal.swift"; sourceTree = "<group>"; };
 		3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Transaction.swift"; sourceTree = "<group>"; };
-		3B26F7EF28F7BFA100FAC837 /* BudgetPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetPlaceholder.swift; sourceTree = "<group>"; };
-		3B26F7F128F7C91B00FAC837 /* GoalPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPlaceholder.swift; sourceTree = "<group>"; };
-		3B26F7F328F7C93300FAC837 /* TransactionPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPlaceholder.swift; sourceTree = "<group>"; };
+		3B26F7FB28F7CBE700FAC837 /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B26F7FC28F7CBE700FAC837 /* ReeachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B26F7FD28F7CBE700FAC837 /* ReeachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleToStringHelper.swift; sourceTree = "<group>"; };
 		3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyHelper.swift; sourceTree = "<group>"; };
+		3BF624AC28FFC0BB00923D57 /* Budget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BF624AD28FFC0BC00923D57 /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BF624AE28FFC0BC00923D57 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BF624AF28FFC0BC00923D57 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BF624B028FFC0BC00923D57 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CA21B0BC28EDCD8400E59539 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		CA21B0BF28EDCDB700E59539 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		CA2AB4B928F85F28002663AE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -120,8 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				FA9B12C928EBCF44001203F5 /* Reeach.xcdatamodeld */,
-				3B26F7EC28F7BF1600FAC837 /* Budget */,
 				3B26F7ED28F7BF2800FAC837 /* Goal */,
+				3BF624B428FFC0DA00923D57 /* Category */,
+				3B26F7EC28F7BF1600FAC837 /* Budget */,
 				3B26F7EE28F7BF3D00FAC837 /* Transaction */,
 			);
 			path = CoreData;
@@ -142,7 +148,8 @@
 		3B26F7EC28F7BF1600FAC837 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				3B26F7EF28F7BFA100FAC837 /* BudgetPlaceholder.swift */,
+				3BF624AC28FFC0BB00923D57 /* Budget+CoreDataClass.swift */,
+				3BF624AD28FFC0BC00923D57 /* Budget+CoreDataProperties.swift */,
 			);
 			path = Budget;
 			sourceTree = "<group>";
@@ -150,7 +157,8 @@
 		3B26F7ED28F7BF2800FAC837 /* Goal */ = {
 			isa = PBXGroup;
 			children = (
-				3B26F7F128F7C91B00FAC837 /* GoalPlaceholder.swift */,
+				3BF624B028FFC0BC00923D57 /* Goal+CoreDataClass.swift */,
+				3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
@@ -158,9 +166,19 @@
 		3B26F7EE28F7BF3D00FAC837 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
-				3B26F7F328F7C93300FAC837 /* TransactionPlaceholder.swift */,
+				3BF624AE28FFC0BC00923D57 /* Transaction+CoreDataClass.swift */,
+				3BF624AF28FFC0BC00923D57 /* Transaction+CoreDataProperties.swift */,
 			);
 			path = Transaction;
+			sourceTree = "<group>";
+		};
+		3BF624B428FFC0DA00923D57 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */,
+				3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		CA21B0B728EDCD2C00E59539 /* View */ = {
@@ -236,9 +254,6 @@
 				FA9B12BF28EBCF44001203F5 /* Reeach */,
 				FA9B12D928EBCF46001203F5 /* ReeachTests */,
 				FA9B12E328EBCF46001203F5 /* ReeachUITests */,
-				CA634A6A28FD053A001A08D2 /* Reeach.app */,
-				CA634A6B28FD053A001A08D2 /* ReeachTests.xctest */,
-				CA634A6C28FD053A001A08D2 /* ReeachUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -308,7 +323,7 @@
 			);
 			name = Reeach;
 			productName = Reeach;
-			productReference = CA634A6A28FD053A001A08D2 /* Reeach.app */;
+			productReference = 3B26F7FB28F7CBE700FAC837 /* Reeach.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FA9B12D528EBCF46001203F5 /* ReeachTests */ = {
@@ -326,7 +341,7 @@
 			);
 			name = ReeachTests;
 			productName = ReeachTests;
-			productReference = CA634A6B28FD053A001A08D2 /* ReeachTests.xctest */;
+			productReference = 3B26F7FC28F7CBE700FAC837 /* ReeachTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		FA9B12DF28EBCF46001203F5 /* ReeachUITests */ = {
@@ -344,7 +359,7 @@
 			);
 			name = ReeachUITests;
 			productName = ReeachUITests;
-			productReference = CA634A6C28FD053A001A08D2 /* ReeachUITests.xctest */;
+			productReference = 3B26F7FD28F7CBE700FAC837 /* ReeachUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -421,7 +436,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B26F7F028F7BFA100FAC837 /* BudgetPlaceholder.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
@@ -441,10 +455,8 @@
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
 				FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */,
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
-				3B26F7F428F7C93300FAC837 /* TransactionPlaceholder.swift in Sources */,
 				CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */,
 				3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */,
-				3B26F7F228F7C91B00FAC837 /* GoalPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
