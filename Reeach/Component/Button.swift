@@ -50,6 +50,8 @@ class Button: UIButton {
     private func setup() {
         buttonSetup()
         handleStyleButton()
+        handleForegroundButton()
+        handleBackgroundButton()
     }
     
     private func buttonSetup() {
