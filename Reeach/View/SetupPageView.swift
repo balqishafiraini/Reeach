@@ -27,13 +27,37 @@ class SetupPageView: UIViewController {
     }
     
     func setupContentView() {
+        print(#function)
+        
+        let progressHeader: UIView = {
+            let view = SetupProgressHeader(frame: CGRectZero)
+            
+            return view
+            
+        }()
+        
         let contentView: UIView = {
             let view = AddGoal(frame: CGRectZero)
+//            view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200)
             
             return view
         }()
         
-        view.addSubview(contentView)
+        let bottomView: UIView = {
+            let view = SetupBottomView(frame: CGRectZero)
+            
+            return view
+        }()
+        
+        view.addSubview(progressHeader)
+        view.addSubview(contentView) // Ini yg berubah tiap dia next
+        view.addSubview(bottomView)
+        
+        progressHeader.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: contentView.topAnchor, right: view.rightAnchor)
+        
+        contentView.anchor(top: progressHeader.bottomAnchor, left: view.leftAnchor, bottom: bottomView.topAnchor, right: view.rightAnchor)
+        
+        bottomView.anchor(top: contentView.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
     }
     
 

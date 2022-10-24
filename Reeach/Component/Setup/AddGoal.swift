@@ -8,7 +8,6 @@
 import UIKit
 
 class AddGoal: UIView {
-    let view:UIView = UIView()
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -29,7 +28,7 @@ class AddGoal: UIView {
     }
 
     func setupView() {
-        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+//        self.setDimensions(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.maxY)
         
         let topTitle: UILabel = {
             let label = UILabel()
@@ -110,6 +109,7 @@ class AddGoal: UIView {
             
             view.addSubview(emptyImage)
             view.addSubview(emptyDescription)
+            view.backgroundColor = .blue
             
             emptyImage.center(inView: view)
             emptyDescription.anchor(top: emptyImage.bottomAnchor, paddingTop: 12)
@@ -118,13 +118,13 @@ class AddGoal: UIView {
             return view
         }()
         
-        view.addSubview(headerStack)
-        view.addSubview(emptyView)
+        self.addSubview(headerStack)
+        self.addSubview(emptyView)
         
-        headerStack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 16, paddingRight: 16)
+        headerStack.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
         
         topStack.anchor(top: headerStack.topAnchor, left: headerStack.leftAnchor, right: headerStack.rightAnchor)
         
-        emptyView.anchor(top: headerStack.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+        emptyView.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
     }
 }
