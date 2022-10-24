@@ -2,23 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-          <key>NSAllowsArbitraryLoads</key>
-          <true/>
-            <key>NSExceptionDomains</key>
-            <dict>
-                <key>api.worldbank.org</key>
-                <dict>
-                    <key>NSIncludesSubdomains</key>
-                    <true/>
-                    <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-                    <true/>
-                    <key>NSTemporaryExceptionMinimumTLSVersion</key>
-                    <string>TLSv1.1</string>
-                </dict>
-            </dict>
-    </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>api.worldbank.org</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>GeneralSans-Italic.otf</string>
+		<string>GeneralSans-BoldItalic.otf</string>
+		<string>GeneralSans-Light.otf</string>
+		<string>GeneralSans-MediumItalic.otf</string>
+		<string>GeneralSans-Semibold.otf</string>
+		<string>GeneralSans-Extralight.otf</string>
+		<string>GeneralSans-LightItalic.otf</string>
+		<string>GeneralSans-Medium.otf</string>
+		<string>GeneralSans-Regular.otf</string>
+		<string>GeneralSans-SemiboldItalic.otf</string>
+		<string>GeneralSans-Bold.otf</string>
+		<string>GeneralSans-ExtralightItalic.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

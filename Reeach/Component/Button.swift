@@ -15,8 +15,9 @@ class Button: UIButton {
     }
     
     enum Foreground {
-        case black
-        case white
+        case primary
+        case secondary
+        case destructive
     }
     
     enum Background {
@@ -79,10 +80,15 @@ class Button: UIButton {
     // background-foreground
     private func handleForegroundButton() {
         switch foreground {
-        case .black:
-            setTitleColor(.black, for: .normal)
-        case .white:
-            setTitleColor(.white, for: .normal)
+        case .primary:
+            UIFont.headline
+            setTitleColor(UIColor.darkSlateGrey, for: .normal)
+        case .secondary:
+            UIFont.headline
+            setTitleColor(UIColor(named: "primary7"), for: .normal)
+        case .destructive:
+            UIFont.headline
+            setTitleColor(UIColor.ghostWhite, for: .normal)
         }
     }
     

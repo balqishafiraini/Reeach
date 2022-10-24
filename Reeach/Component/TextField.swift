@@ -54,7 +54,7 @@ class TextField: UIView {
     
     private func styleTF() {
         textField.backgroundColor = UIColor(named: "neutral4")
-        textField.textColor = UIColor(named: "neutral13")
+        textField.textColor = UIColor.darkSlateGrey
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
     }
@@ -64,6 +64,7 @@ class TextField: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .left
+        label.font = .bodyBold
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
