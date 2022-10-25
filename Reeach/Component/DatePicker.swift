@@ -21,15 +21,7 @@ class DatePicker: UIView {
         }
 //        tf.inputView = datePicker
         
-        
-        datePicker.addTarget(self, action: #selector(self.valuechanged), for: .valueChanged)
-        
         return tf
     }()
-    
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        datePicker.hidden = false
-        return false // <--- this is not letting the textField become editable
-    }
     
 }
