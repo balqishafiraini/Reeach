@@ -23,8 +23,8 @@
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" defaultDateTimeInterval="687408180" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
-        <attribute name="transactionName" attributeType="String" defaultValueString=""/>
         <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="transactions" inverseEntity="Budget"/>
     </entity>
 </model>

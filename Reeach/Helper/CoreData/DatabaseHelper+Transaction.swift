@@ -59,4 +59,15 @@ extension DatabaseHelper {
         }
         
     }
+    
+    func createTransaction(name: String, date: Date, budget: Budget, amount: Double, notes: String) -> Transaction {
+        let transaction = Transaction(context: context)
+        transaction.name = name
+        transaction.date = date
+        transaction.budget = budget
+        transaction.amount = amount
+        transaction.notes = notes
+        
+        return insert(transaction)
+    }
 }
