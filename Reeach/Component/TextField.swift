@@ -76,5 +76,15 @@ class TextField: UIView {
     private func configure() {
         addSubview(textField)
         addSubview(titleLabel)
+        
+        NSLayoutConstraint.activate([
+                    titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+                    titleLabel.topAnchor.constraint(equalTo: topAnchor),
+                    titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+                    textField.leadingAnchor.constraint(equalTo: leadingAnchor),
+                    textField.bottomAnchor.constraint(equalTo: bottomAnchor),
+                    textField.trailingAnchor.constraint(equalTo: trailingAnchor),
+                    titleLabel.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -5)
+                ])
     }
 }
