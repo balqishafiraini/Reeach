@@ -11,11 +11,28 @@ import CoreData
 
 
 extension Category {
+    static let sortDescriptors = [NSSortDescriptor(keyPath: \Category.name, ascending: true)]
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
-        return NSFetchRequest<Category>(entityName: "Category")
+        let fetchRequest = NSFetchRequest<Category>(entityName: "Category")
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
+    }
+    
+    @nonobjc public class func fetchRequest(name: String) -> NSFetchRequest<Category> {
+        let fetchRequest = NSFetchRequest<Category>(entityName: "Category")
+        fetchRequest.predicate = NSPredicate(format: "name like [c] %@", name)
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
     }
 
+    @nonobjc public class func fetchRequest(type: String) -> NSFetchRequest<Category> {
+        let fetchRequest = NSFetchRequest<Category>(entityName: "Category")
+        fetchRequest.predicate = NSPredicate(format: "type like [c] %@", type)
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
+    }
+    
     @NSManaged public var icon: String?
     @NSManaged public var type: String?
     @NSManaged public var name: String?
@@ -38,4 +55,8 @@ extension Category {
     @objc(removeBudgets:)
     @NSManaged public func removeFromBudgets(_ values: NSSet)
 
+}
+
+extension Category: Identifiable {
+    
 }

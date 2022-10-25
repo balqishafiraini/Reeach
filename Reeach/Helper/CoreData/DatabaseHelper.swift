@@ -14,7 +14,7 @@ class DatabaseHelper {
     init() {
     }
     
-    func insert<T: Identifiable>(_ object: T) where T: NSManagedObject {
+    func insert<T: Identifiable>(_ object: T) -> T where T: NSManagedObject {
         if var object = object as? AutoIncrementInt64Id {
             let keyLastId = type(of: object).keyLastId
             object.id = Int64(UserDefaults.standard.integer(forKey: keyLastId) + 1)
@@ -24,11 +24,14 @@ class DatabaseHelper {
         context.refresh(object, mergeChanges: true)
         context.insert(object)
         saveContext()
+        
+        return object
     }
     
-    func delete<T: Identifiable>(_ object: T) where T: NSManagedObject {
+    func delete<T: Identifiable>(_ object: T) -> T where T: NSManagedObject {
         context.delete(object)
         saveContext()
+        return object
     }
     
     func saveContext() {
