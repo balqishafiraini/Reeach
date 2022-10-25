@@ -14,6 +14,14 @@
 		3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */; };
 		3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */; };
 		3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */; };
+		3BAA29CF2907790E008D3C5B /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B028FFC0BC00923D57 /* Goal+CoreDataClass.swift */; };
+		3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */; };
+		3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */; };
+		3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */; };
+		3BAA29D32907790E008D3C5B /* Budget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624AC28FFC0BB00923D57 /* Budget+CoreDataClass.swift */; };
+		3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624AD28FFC0BC00923D57 /* Budget+CoreDataProperties.swift */; };
+		3BAA29D52907790E008D3C5B /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624AE28FFC0BC00923D57 /* Transaction+CoreDataClass.swift */; };
+		3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624AF28FFC0BC00923D57 /* Transaction+CoreDataProperties.swift */; };
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
 		CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BC28EDCD8400E59539 /* Controller.swift */; };
 		CA21B0C028EDCDB700E59539 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* Components.swift */; };
@@ -511,6 +519,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BAA29CF2907790E008D3C5B /* Goal+CoreDataClass.swift in Sources */,
+				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
+				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
+				3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */,
+				3BAA29D32907790E008D3C5B /* Budget+CoreDataClass.swift in Sources */,
+				3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */,
+				3BAA29D52907790E008D3C5B /* Transaction+CoreDataClass.swift in Sources */,
+				3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
