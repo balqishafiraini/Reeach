@@ -11,6 +11,8 @@ import UIKit
 class Checkbox: UIView {
     
     var isChecked = false
+    var desc: String?
+    var title: String
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -30,8 +32,36 @@ class Checkbox: UIView {
         return box
     }()
     
-    override init (frame: CGRect) {
-        super.init(frame: frame)
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.font = .bodyBold
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    func setTitle(title: String) {
+        titleLabel.text = title
+    }
+    
+    let descLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.font = .bodyMedium
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    func setDesc(desc: String) {
+        descLabel.text = desc
+    }
+    
+    init (title: String, desc: String) {
+        self.title = title
+        self.desc = desc
+        super.init(frame: .zero)
         addSubview(boxView)
         addSubview(imageView)
     }
