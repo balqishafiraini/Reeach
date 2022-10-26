@@ -9,8 +9,8 @@ import UIKit
 
 class DatePicker: UIView {
     
-    lazy var tfPlaceholder: TextField = {
-        let tf = TextField(title: "", style: .template)
+    var datePicker: TextField = {
+        let tf = TextField(frame: .zero, title: "Date Picker", style: .active)
         
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -19,9 +19,46 @@ class DatePicker: UIView {
             datePicker.preferredDatePickerStyle = .wheels
             datePicker.sizeToFit()
         }
-//        tf.inputView = datePicker
+        
+        tf.textField.inputView = datePicker
+
+        datePicker.addTarget(self, action: #selector(DatePicker.openDatePicker), for: .valueChanged)
         
         return tf
     }()
+    
+    /*
+     taro ini di view controller yg manggil dia
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.endEditing(true)
+        }
+     */
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupView() {
+        addSubview(datePicker)
+        
+        datePicker.centerX(inView: self)
+        datePicker.anchor(width: UIScreen.main.bounds.width - 32)
+    }
+    
+    @objc func openDatePicker(sender: UIDatePicker) {
+        let dateFormat = DateFormatter()
+        dateFormat.dateStyle = .long
+        dateFormat.timeStyle = .none
+        
+        print(dateFormat.string(from: sender.date))
+        
+        datePicker.textField.text = dateFormat.string(from: sender.date)
+    }
     
 }
