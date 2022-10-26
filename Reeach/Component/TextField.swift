@@ -23,11 +23,12 @@ class TextField: UIView {
     }
     
     public private(set) var style: BorderStyle
+
     
-    init(frame: CGRect, title: String, style: BorderStyle) {
+    init(frame: CGRect, title: String? = nil, style: BorderStyle) {
         self.style = style
         super.init(frame: frame)
-        setTitle(title: title)
+        setTitle(title: title ?? "")
         textFieldSetup()
         configure()
     }
@@ -37,13 +38,11 @@ class TextField: UIView {
     }
     
     private func textFieldSetup() {
-        print(#function)
         translatesAutoresizingMaskIntoConstraints = false
         handleStyleTextField()
     }
     
     private func handleStyleTextField() {
-        print("\(#function) \(style)")
         styleTF()
         switch style {
         case .template:
@@ -58,7 +57,6 @@ class TextField: UIView {
     }
     
     private func styleTF() {
-        print(#function)
         textField.font = .bodyMedium
         textField.layer.cornerRadius = 8
         textField.backgroundColor = UIColor(named: "neutral4")
@@ -78,12 +76,10 @@ class TextField: UIView {
     }()
     
     func setTitle(title: String) {
-        print(#function)
-        titleLabel.text = title.uppercased()
+        titleLabel.text = title
     }
     
     private func configure() {
-        print(#function)
         addSubview(titleLabel)
         addSubview(textField)
         
@@ -93,26 +89,15 @@ class TextField: UIView {
         
         let height = textField.font!.pointSize * 2.3
         textField.anchor(height: height)
-        
-        
-//        NSLayoutConstraint.activate([
-//            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            titleLabel.topAnchor.constraint(equalTo: topAnchor),
-//            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            textField.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
-//            textField.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            titleLabel.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -5)
-//        ])
     }
     
     private class InputTextField: UITextField {
         override func editingRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.insetBy(dx: 50, dy: 0)
+            return bounds.insetBy(dx: 20, dy: 0)
         }
         
         override func textRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.insetBy(dx: 50, dy: 0)
+            return bounds.insetBy(dx: 20, dy: 0)
         }
     }
 }
