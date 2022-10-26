@@ -1,16 +1,16 @@
 //
-//  DatabaseHelper+Goal.swift
+//  DatabaseHelper+Category.swift
 //  Reeach
 //
-//  Created by William Chrisandy on 13/10/22.
+//  Created by William Chrisandy on 25/10/22.
 //
 
 import CoreData
 
 extension DatabaseHelper {
-    func getGoals() -> [Goal] {
+    func getCategories() -> [Category] {
         do {
-            let fetchRequest: NSFetchRequest<Goal> = Goal.fetchRequest()
+            let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
             return try context.fetch(fetchRequest)
         }
         catch let error {
@@ -20,9 +20,9 @@ extension DatabaseHelper {
         }
     }
     
-    func getGoal(name: String) -> Goal? {
+    func getCategory(name: String) -> Category? {
         do {
-            let fetchRequest: NSFetchRequest<Goal> = Goal.fetchRequest(name: name)
+            let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest(name: name)
             let result = try context.fetch(fetchRequest)
             return result.isEmpty == true ? nil : result[0]
         }
@@ -33,9 +33,9 @@ extension DatabaseHelper {
         }
     }
     
-    func getGoals(timeTerm: String) -> [Goal] {
+    func getCategories(type: String) -> [Category] {
         do {
-            let fetchRequest: NSFetchRequest<Goal> = Goal.fetchRequest(timeTerm: timeTerm)
+            let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest(type: type)
             return try context.fetch(fetchRequest)
         }
         catch let error {
@@ -45,21 +45,17 @@ extension DatabaseHelper {
         }
     }
     
-    func createGoals(name: String, icon: String, dueDate: Date, targetAmount: Double, timeTerm: String) -> Goal {
-        if let goal = getGoal(name: name) {
-            return goal
+    func createCategory(name: String, type: String, icon: String) -> Category {
+        if let category = getCategory(name: name) {
+            return category
         }
         else {
-            let goal = Goal(context: context)
-            goal.name = name
-            goal.type = "Goal"
-            goal.icon = icon
-            goal.dueDate = dueDate
-            goal.targetAmount = targetAmount
-            goal.timeTerm = timeTerm
-            goal.createdAt = Date()
-            goal.updatedAt = goal.createdAt
-            return insert(goal)
+            let category = Category(context: context)
+            category.name = name
+            category.type = type
+            category.icon = icon
+            
+            return insert(category)
         }
     }
 }

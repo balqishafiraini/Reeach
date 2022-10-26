@@ -118,6 +118,19 @@ class DateFormatHelper {
         return calendar.startOfDay(for: date)
     }
     
+    static func getStartDateOfMonth(of date: Date) -> Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.month, .year], from: date)
+        components.day = 1
+        return getStartDate(of: calendar.date(from: components) ?? Date())
+    }
+    
+    static func getStartDateOfNextMonth(of date: Date) -> Date {
+        let calendar = Calendar.current
+        let startDateOfMonth = getStartDateOfMonth(of: date)
+        return calendar.date(byAdding: .month, value: 1, to: startDateOfMonth) ?? Date()
+    }
+    
     static func dateDifferences(between olderDate: Date, and newerDate: Date) -> Int {
         let calendar = Calendar.current
 
