@@ -28,7 +28,7 @@ class TextField: UIView {
     init(frame: CGRect, title: String? = nil, style: BorderStyle) {
         self.style = style
         super.init(frame: frame)
-        setTitle(title: title)
+        setTitle(title: title ?? "")
         textFieldSetup()
         configure()
     }
