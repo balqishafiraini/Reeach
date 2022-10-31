@@ -61,7 +61,7 @@ class AddIncome: UIView {
     }()
     
     let incomeTextField: TextField = {
-        let textField = TextField(title: "Ada init yg ga pake title dong", style: .active)
+        let textField = TextField(frame: .zero, title: "Ada init yg ga pake title dong", style: .active)
         
         return textField
     }()
