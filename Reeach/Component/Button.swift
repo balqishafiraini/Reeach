@@ -32,13 +32,15 @@ class Button: UIButton {
     public private(set) var style: Style
     public private(set) var foreground: Foreground
     public private(set) var background: Background
-    public private(set) var title: String
+    public private(set) var title: String?
+    public private(set) var image: UIImage?
     
-    init(style: Style, foreground: Foreground, background: Background, title: String) {
+    init(style: Style, foreground: Foreground, background: Background, title: String? = nil, image: UIImage? = nil) {
         self.style = style
         self.foreground = foreground
         self.background = background
         self.title = title
+        self.image = image
         super.init(frame: .zero)
         setup()
     }
@@ -57,6 +59,7 @@ class Button: UIButton {
     private func buttonSetup() {
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(title, for: .normal)
+        setImage(image, for: .normal)
     }
     
     //style
@@ -71,7 +74,7 @@ class Button: UIButton {
     private func handleStyleButton() {
         switch style {
         case .circle:
-            layer.cornerRadius = 24
+            layer.cornerRadius = frame.width/2
             contentEdgeInsets = circleContentEdgeInsets
         case .rounded:
             layer.cornerRadius = 16
@@ -83,14 +86,14 @@ class Button: UIButton {
     private func handleForegroundButton() {
         switch foreground {
         case .primary:
-            UIFont.headline
             setTitleColor(UIColor.darkSlateGrey, for: .normal)
+            titleLabel?.font = .headline
         case .secondary:
-            UIFont.headline
             setTitleColor(UIColor(named: "primary7"), for: .normal)
+            titleLabel?.font = .headline
         case .destructive:
-            UIFont.headline
             setTitleColor(UIColor.ghostWhite, for: .normal)
+            titleLabel?.font = .headline
         }
     }
     
