@@ -66,3 +66,7 @@ extension Budget {
     @NSManaged public func removeFromTransactions(_ values: NSSet)
 
 }
+
+extension Budget: Identifiable {
+    
+}

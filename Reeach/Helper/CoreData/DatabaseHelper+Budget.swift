@@ -58,4 +58,20 @@ extension DatabaseHelper {
             return nil
         }
     }
+    
+    func createBudget(monthlyAllocation: Double, period: Date, category: Category) -> Budget {
+        let month = DateFormatHelper.getStartDateOfMonth(of: period)
+        
+        if let budget = getBudget(on: month, of: category) {
+            return budget
+        }
+        else {
+            let budget = Budget(context: context)
+            budget.monthlyAllocation = monthlyAllocation
+            budget.period = month
+            budget.category = category
+            
+            return insert(budget)
+        }
+    }
 }
