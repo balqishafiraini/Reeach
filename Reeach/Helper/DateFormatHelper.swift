@@ -131,6 +131,12 @@ class DateFormatHelper {
         return calendar.date(byAdding: .month, value: 1, to: startDateOfMonth) ?? Date()
     }
     
+    static func getMonthDifferences(between olderDate: Date, and newerDate: Date) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.month], from: olderDate, to: newerDate)
+        return components.month ?? 0
+    }
+    
     static func dateDifferences(between olderDate: Date, and newerDate: Date) -> Int {
         let calendar = Calendar.current
 
