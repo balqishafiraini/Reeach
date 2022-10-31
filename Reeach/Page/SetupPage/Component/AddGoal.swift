@@ -17,6 +17,8 @@ class AddGoal: UIView {
     }
     */
     
+    var delegate: SetupDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,23 +30,20 @@ class AddGoal: UIView {
     }
 
     func setupView() {
-//        self.setDimensions(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.maxY)
-        
         let topTitle: UILabel = {
             let label = UILabel()
             label.text = "Goal"
-            label.font = label.font.withSize(32)
+            label.font = .largeTitle
+            label.anchor(height: 40)
             
             return label
         }()
         
         let addButton: UIButton = {
-            let button = UIButton()
-            button.setImage(UIImage(systemName: "plus"), for: .normal)
-            button.tintColor = .white
-            button.backgroundColor = .black
+            // TODO: Init title Button bisa terima UIImage
+            let button = Button(style: .circle, foreground: .primary, background: .tangerineYellow, title: "A")
             
-            button.titleLabel?.font.withSize(32)
+            button.addTarget(self, action: #selector(openGoalSheet), for: .touchUpInside)
             
             return button
         }()
@@ -59,6 +58,8 @@ class AddGoal: UIView {
             stack.addArrangedSubview(topTitle)
             stack.addArrangedSubview(addButton)
             
+            stack.anchor(height: 40)
+            
             return stack
         }()
         
@@ -66,7 +67,7 @@ class AddGoal: UIView {
             let label = UILabel()
             
             label.text = "Yuk tambah tujuan finansial mu sekarang, tujuan finansialmu harus SMART, yaitu  Lorem ipsum dolor sit amet sit ."
-            label.font = label.font.withSize(12)
+            label.font = .bodyMedium
             label.numberOfLines = 5
             
             return label
@@ -74,7 +75,6 @@ class AddGoal: UIView {
         
         let headerStack: UIStackView = {
             let stack = UIStackView()
-            stack.backgroundColor = .red
             
             stack.axis = .vertical
             stack.spacing = 32
@@ -109,7 +109,6 @@ class AddGoal: UIView {
             
             view.addSubview(emptyImage)
             view.addSubview(emptyDescription)
-            view.backgroundColor = .blue
             
             emptyImage.center(inView: view)
             emptyDescription.anchor(top: emptyImage.bottomAnchor, paddingTop: 12)
@@ -127,4 +126,11 @@ class AddGoal: UIView {
         
         emptyView.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
     }
+    
+    // TODO: Open sheet here
+    @objc func openGoalSheet() {
+        print("Opening Goal Sheet")
+    }
 }
+
+
