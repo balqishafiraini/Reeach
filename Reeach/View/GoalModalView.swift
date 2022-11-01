@@ -1,13 +1,14 @@
 //
-//  GoalModalViewController.swift
+//  GoalModalView.swift
 //  Reeach
 //
-//  Created by Balqis on 26/10/22.
+//  Created by Balqis on 01/11/22.
 //
 
+import Foundation
 import UIKit
 
-class GoalModalViewController: UIViewController {
+class GoalModalView: UIView {
     
     func configureStackView() {
         
@@ -35,32 +36,6 @@ class GoalModalViewController: UIViewController {
             button.contentHorizontalAlignment = .right
             return button
         }()
-        
-        let icon: UIButton = {
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.frame.size = CGSize(width: 200, height: 200)
-            button.backgroundColor = UIColor(named: "secondary2")
-            button.setTitle("Tambah Icon", for: .normal)
-            button.setTitleColor(.royalHunterBlue, for: .normal)
-            button.layer.cornerRadius = button.frame.height/2
-            button.layer.masksToBounds = true
-            return button
-        }()
-        
-        let editIcon: UIButton = {
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.frame.size = CGSize(width: 200, height: 200)
-            button.backgroundColor = UIColor(named: "secondary2")
-            button.setTitle("Tambah Icon", for: .normal)
-            button.setTitleColor(.royalHunterBlue, for: .normal)
-            button.layer.cornerRadius = button.frame.height/2
-            button.layer.masksToBounds = true
-            return button
-        }()
-        
-        //        let editIcon = Button(style: .circle, foreground: .secondary, background: .tangelo, image: UIImage(named: "pencil"))
         
         let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
         
@@ -93,33 +68,42 @@ class GoalModalViewController: UIViewController {
         
         let total = TextField(frame: .zero, title: "Jumlah", style: .template)
         
-        let savingAmount = Toggle()
+        let goalType = TextField(frame: .zero, title: "Tipe Goal", style: .template)
         
+        let iconView = IconView()
+        iconView.setUp()
         let hstack = UIStackView(arrangedSubviews: [cancelButton, addGoal, saveButton])
-        hstack.frame = view.bounds
+        hstack.frame = self.bounds
         hstack.axis = .horizontal
         hstack.distribution = .fillEqually
-        hstack.spacing = 20
+        hstack.spacing = 10
         hstack.translatesAutoresizingMaskIntoConstraints = false
         
-        let vstack = UIStackView(arrangedSubviews: [hstack, icon, goalName, recommendButton, dueDate, total, inflationButton, savingAmount])
-        vstack.frame = view.bounds
+        let vstack = UIStackView(arrangedSubviews: [hstack,
+                                                    iconView,
+                                                    goalName,
+                                                    recommendButton,
+                                                    dueDate,
+                                                    total,
+                                                    inflationButton,
+                                                    goalType])
+        vstack.frame = self.bounds
         vstack.axis = .vertical
         vstack.distribution = .fill
         vstack.spacing = 20
         vstack.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(vstack)
+        self.addSubview(vstack)
         
         vstack.backgroundColor = .white
         
-        hstack.anchor(top:view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12,paddingLeft: 20, paddingRight: 20)
+        hstack.anchor(top:self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 12,paddingLeft: 20, paddingRight: 20)
         
-        vstack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        vstack.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
         
-        icon.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 95, paddingRight: 95, width: 200, height: 200)
+        //        iconView.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor)
         
-        goalName.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingTop: 200, paddingLeft: 20, paddingRight: 20)
+        goalName.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
         
         recommendButton.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
         
@@ -128,28 +112,51 @@ class GoalModalViewController: UIViewController {
         total.anchor(top: dueDate.topAnchor, left: vstack.leftAnchor, right: vstack.rightAnchor, paddingTop: 80, paddingLeft: 20, paddingRight: 20)
         
         inflationButton.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
-    }
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        configureStackView()
+        goalType.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
     }
 }
 
-
-
-public extension UIImage {
-  convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-    let rect = CGRect(origin: .zero, size: size)
-    UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-    color.setFill()
-    UIRectFill(rect)
-    let image = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
+class IconView: UIView {
+    let iconLabel: UILabel = {
+        
+        let label = UILabel()
+//        label.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        label.text = "Tambah icon"
+        label.textAlignment = .center
+        label.textColor = .royalHunterBlue
+        label.font = .bodyMedium
+        label.backgroundColor = UIColor(named: "secondary2")
+        label.layer.cornerRadius = 75
+        label.layer.masksToBounds = true
+        return label
+    }()
     
-    guard let cgImage = image?.cgImage else { return nil }
-    self.init(cgImage: cgImage)
-  }
+    let iconButton: UIButton = {
+
+        let button = UIButton()
+        button.backgroundColor = .tangerineYellow
+//        button.setImage(UIImage(systemName: "pencil"), for: .normal)
+        button.frame.size = CGSize(width: 10, height: 10)
+        button.layer.cornerRadius = button.frame.height/2
+        
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .black)
+        let symbol = UIImage(systemName: "pencil", withConfiguration: config)
+        button.setImage(symbol, for: .normal)
+        return button
+    }()
+
+    func setUp() {
+        //auto-layout
+        
+        addSubview(iconButton)
+        addSubview(iconLabel)
+        self.bringSubviewToFront(iconButton)
+        
+        iconButton.anchor(bottom: iconLabel.bottomAnchor, right: iconLabel.rightAnchor, paddingRight: 20)
+        
+        iconLabel.centerX(inView: self)
+        
+        iconLabel.anchor(width: 150, height: 150)
+    }
 }
