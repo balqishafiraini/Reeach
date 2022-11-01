@@ -48,6 +48,8 @@ class DatePicker: UIView {
         addSubview(titleLabel)
         addSubview(datePicker)
         
+        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: datePicker.topAnchor, right: self.rightAnchor)
+        
         datePicker.centerX(inView: self)
         datePicker.anchor(width: UIScreen.main.bounds.width - 32)
     }
