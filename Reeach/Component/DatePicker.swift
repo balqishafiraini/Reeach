@@ -9,6 +9,8 @@ import UIKit
 
 class DatePicker: UIView {
     
+    var title: String
+    
     var datePicker: TextField = {
         let tf = TextField(frame: .zero, style: .active)
         
@@ -34,9 +36,9 @@ class DatePicker: UIView {
         }
      */
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, title: String) {
+        self.title = title
         super.init(frame: frame)
-        
         setupView()
     }
     
