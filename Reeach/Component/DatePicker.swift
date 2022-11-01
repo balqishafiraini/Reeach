@@ -9,8 +9,6 @@ import UIKit
 
 class DatePicker: UIView {
     
-    var title: String
-    
     var datePicker: TextField = {
         let tf = TextField(frame: .zero, style: .active)
         
@@ -37,8 +35,8 @@ class DatePicker: UIView {
      */
     
     init(frame: CGRect, title: String) {
-        self.title = title
         super.init(frame: frame)
+        setTitle(title: title)
         setupView()
     }
     
@@ -47,10 +45,24 @@ class DatePicker: UIView {
     }
     
     func setupView() {
+        addSubview(titleLabel)
         addSubview(datePicker)
         
         datePicker.centerX(inView: self)
         datePicker.anchor(width: UIScreen.main.bounds.width - 32)
+    }
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.font = .bodyBold
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    func setTitle(title: String) {
+        titleLabel.text = title
     }
     
     @objc func openDatePicker(sender: UIDatePicker) {
