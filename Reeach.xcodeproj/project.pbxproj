@@ -54,6 +54,8 @@
 		FA9B12E528EBCF46001203F5 /* ReeachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */; };
 		FA9B12E728EBCF46001203F5 /* ReeachUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */; };
 		FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E7F2910E45A008EA682 /* GoalModalView.swift */; };
+		FABD7E822911A186008EA682 /* NeedsModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E812911A186008EA682 /* NeedsModalView.swift */; };
+		FABD7E842911A190008EA682 /* NeedsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E832911A190008EA682 /* NeedsModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,8 @@
 		FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITests.swift; sourceTree = "<group>"; };
 		FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FABD7E7F2910E45A008EA682 /* GoalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalView.swift; sourceTree = "<group>"; };
+		FABD7E812911A186008EA682 /* NeedsModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedsModalView.swift; sourceTree = "<group>"; };
+		FABD7E832911A190008EA682 /* NeedsModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedsModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +230,7 @@
 			children = (
 				FA9B12C428EBCF44001203F5 /* ViewController.swift */,
 				FABD7E7F2910E45A008EA682 /* GoalModalView.swift */,
+				FABD7E812911A186008EA682 /* NeedsModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			children = (
 				FA428C7E2909993D0053153F /* GoalModalViewController.swift */,
 				CA21B0BC28EDCD8400E59539 /* Controller.swift */,
+				FABD7E832911A190008EA682 /* NeedsModalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
+				FABD7E822911A186008EA682 /* NeedsModalView.swift in Sources */,
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
 				FA9B12C528EBCF44001203F5 /* ViewController.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
@@ -548,6 +555,7 @@
 				FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */,
 				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
 				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
+				FABD7E842911A190008EA682 /* NeedsModalViewController.swift in Sources */,
 				CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */,
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
