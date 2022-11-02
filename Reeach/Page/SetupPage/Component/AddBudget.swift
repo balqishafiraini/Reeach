@@ -8,21 +8,13 @@
 import UIKit
 
 class AddBudget: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
-    var delegate: SetupDelegate?
-    var viewDelegate: SetupDelegate?
-    var controller: SetupController?
+    var progressDelegate: SetupDelegate!
+    var bottomDelegate: SetupDelegate!
+    var viewDelegate: SetupDelegate!
+    var controller: SetupPageViewController?
     
     init(frame: CGRect, viewDelegate: SetupPageView) {
-        self.delegate = SetupProgressHeader()
         self.viewDelegate = viewDelegate
         
         super.init(frame: frame)
@@ -31,8 +23,6 @@ class AddBudget: UIView {
     }
     
     override init(frame: CGRect) {
-        self.delegate = SetupProgressHeader()
-        
         super.init(frame: frame)
         
         setupView()
@@ -133,11 +123,8 @@ class AddBudget: UIView {
     let contentStack: UIStackView = {
         let stack = UIStackView()
         
-//        stack.backgroundColor = .yellow
-        
         stack.axis = .vertical
         stack.distribution = .equalSpacing
-        
         
         return stack
     }()
@@ -163,7 +150,8 @@ class AddBudget: UIView {
         let progress = controller?.previousProgress() ?? 0.0
         let progressIndex = controller?.currentProgressIndex ?? 0.0
         
-        viewDelegate?.previousProgress(progress: progress, progressIndex: progressIndex)
-        delegate?.previousProgress(progress: progress, progressIndex: progressIndex)
+        progressDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
+        bottomDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
+        viewDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
     }
 }

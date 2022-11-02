@@ -9,29 +9,17 @@ import UIKit
 
 class SetupBottomView: UIView {
     
-    
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
-    var delegate: SetupDelegate?
+    var progressDelegate: SetupDelegate!
     var viewDelegate: SetupDelegate?
-    var controller: SetupController?
+    var controller: SetupPageViewController?
     
     let nextButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Lanjut ke Pemasukan")
-        
+        let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Looking good? Lanjut, yuk!")
         
         return button
     }()
     
     init(frame: CGRect, viewDelegate: SetupPageView) {
-        self.delegate = SetupProgressHeader()
         self.viewDelegate = viewDelegate
         
         super.init(frame: frame)
@@ -40,8 +28,6 @@ class SetupBottomView: UIView {
     }
     
     override init(frame: CGRect) {
-        self.delegate = SetupProgressHeader()
-        
         super.init(frame: frame)
         
         setupView()
@@ -66,13 +52,28 @@ class SetupBottomView: UIView {
         let progress = controller?.updateProgress() ?? 0.0
         let progressIndex = controller?.currentProgressIndex ?? 0.0
         
-        if progressIndex >= 2 {
-            nextButton.setTitle("Yey, Selesai!", for: .normal)
-        } else {
-            nextButton.setTitle("Next", for: .normal)
-        }
+        setButtonTitle(progressIndex: progressIndex)
         
+        progressDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
         viewDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
-        delegate?.updateProgress(progress: progress, progressIndex: progressIndex)
+    }
+    
+    func setButtonTitle(progressIndex: Float){
+        switch progressIndex {
+        case 0:
+            nextButton.setTitle("Looking good? Lanjut, yuk!", for: .normal)
+        case 1:
+            nextButton.setTitle("Skuy ke Budgeting!", for: .normal)
+        case 2:
+            nextButton.setTitle("Yuhuuu, beres!", for: .normal)
+        default:
+            nextButton.setTitle("Hmm I'm not supposed to be here", for: .normal)
+        }
+    }
+}
+
+extension SetupBottomView: SetupDelegate {
+    func updateProgress(progress: Float, progressIndex: Float) {
+        setButtonTitle(progressIndex: progressIndex)
     }
 }

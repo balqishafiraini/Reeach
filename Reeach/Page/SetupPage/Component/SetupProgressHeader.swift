@@ -9,39 +9,21 @@ import UIKit
 
 class SetupProgressHeader: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
     var delegate: SetupDelegate!
-    var controller: SetupController?
+    var controller: SetupPageViewController?
     
     var progressBar: UIProgressView = {
         var view = UIProgressView(progressViewStyle: .bar)
         
-        // TODO: Update progress setiap next ke tempat selanjutnya
         view.trackTintColor = UIColor(named: "neutral5")
         view.tintColor = UIColor(named: "secondary6")
-//        view.progressTintColor = UIColor(named: "secondary6")
         
         return view
     }()
     
-    var progressValue: Float = 0.0 {
-        didSet{
-//            print("\(#function) \(oldValue) to \(progressValue)")
-            DispatchQueue.main.async {
-                self.progressBar.setProgress(self.progressValue, animated: true)
-            }
-        }
-    }
+    var progressValue: Float = 0.0
     
-    
-    init(frame: CGRect, controller: SetupController) {
+    init(frame: CGRect, controller: SetupPageViewController) {
         self.controller = controller
         
         super.init(frame: frame)
@@ -62,13 +44,11 @@ class SetupProgressHeader: UIView {
     }
     
     func setupView() {
-        self.setDimensions(width: UIScreen.main.bounds.width, height: 50)
+        self.setDimensions(width: UIScreen.main.bounds.width - 32, height: 50)
         
         self.addSubview(progressBar)
         
         progressBar.setProgress(progressValue, animated: true)
-        progressBar.center = self.center
-        
         progressBar.center(inView: self)
         progressBar.anchor(width: UIScreen.main.bounds.width - 32)
     }
@@ -76,17 +56,6 @@ class SetupProgressHeader: UIView {
 
 extension SetupProgressHeader: SetupDelegate {
     func updateProgress(progress: Float, progressIndex: Float) {
-        progressValue += 0.1
-        
-//        self.progressBar.setProgress(progress, animated: true)
-//        DispatchQueue.main.async {
-//            self.progressBar.setProgress(self.progressValue, animated: true)
-//        }
-
+        self.progressBar.setProgress(progress, animated: true)
     }
-    
-    func previousProgress(progress: Float, progressIndex: Float) {
-//        print("previous in progress")
-    }
-    
 }

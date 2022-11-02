@@ -8,21 +8,13 @@
 import UIKit
 
 class AddIncome: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
-    var delegate: SetupDelegate?
-    var viewDelegate: SetupDelegate?
-    var controller: SetupController?
+    var progressDelegate: SetupDelegate!
+    var bottomDelegate: SetupDelegate!
+    var viewDelegate: SetupDelegate!
+    var controller: SetupPageViewController?
     
     init(frame: CGRect, viewDelegate: SetupPageView) {
-        self.delegate = SetupProgressHeader()
         self.viewDelegate = viewDelegate
         
         super.init(frame: frame)
@@ -61,7 +53,7 @@ class AddIncome: UIView {
     }()
     
     let incomeTextField: TextField = {
-        let textField = TextField(frame: .zero, title: "Ada init yg ga pake title dong", style: .active)
+        let textField = TextField(frame: .zero, style: .active)
         
         return textField
     }()
@@ -71,13 +63,13 @@ class AddIncome: UIView {
         
         stack.axis = .vertical
         stack.spacing = 32
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         
         return stack
     }()
     
     let backButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Kembali ke goals")
+        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Balik ke Goal-Setting")
         
         return button
     }()
@@ -85,11 +77,8 @@ class AddIncome: UIView {
     let contentStack: UIStackView = {
         let stack = UIStackView()
         
-//        stack.backgroundColor = .yellow
-        
         stack.axis = .vertical
         stack.distribution = .equalSpacing
-        
         
         return stack
     }()
@@ -114,11 +103,10 @@ class AddIncome: UIView {
     
     
     func setupView() {
-        print("Add Income \(#function)")
-        
         headerStack.addArrangedSubview(topTitle)
         headerStack.addArrangedSubview(viewDescription)
         // TODO: Add text field
+        headerStack.addArrangedSubview(incomeTextField)
         
         contentStack.addArrangedSubview(headerStack)
         contentStack.addArrangedSubview(backButton)
@@ -136,9 +124,8 @@ class AddIncome: UIView {
         let progress = controller?.previousProgress() ?? 0.0
         let progressIndex = controller?.currentProgressIndex ?? 0.0
         
-        viewDelegate?.previousProgress(progress: progress, progressIndex: progressIndex)
-        delegate?.previousProgress(progress: progress, progressIndex: progressIndex)
-//        viewDelegate?.previousProgress()
-//        delegate?.previousProgress()
+        progressDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
+        bottomDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
+        viewDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
     }
 }
