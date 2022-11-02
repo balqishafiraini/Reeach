@@ -2,42 +2,23 @@
 //  SetupPageView.swift
 //  Reeach
 //
-//  Created by James Christian Wira on 21/10/22.
+//  Created by James Christian Wira on 03/11/22.
 //
 
 import UIKit
 
-class SetupPageView: UIViewController {
-        
-    let setupController = SetupController()
-    var delegate: SetupDelegate!
+class SetupPageView: UIView {
+    
+    var viewController: SetupPageViewController? = nil
     
     var content = UIView()
-//    {
-//        didSet {
-//            print("didSet")
-//            UIView.animate(withDuration: 0.5, animations: {
-//                oldValue.alpha = 0
-//            }) { _ in
-//                oldValue.removeFromSuperview()
-//                self.view.addSubview(self.content)
-//            }
-//        }
-//    }
-//
-    let progressHeader: UIProgressView = {
-        let view = UIProgressView(frame: CGRectZero)
+    
+    let progressHeader: SetupProgressHeader = {
+        let view = SetupProgressHeader(frame: CGRectZero)
 
         return view
 
     }()
-    
-//    let progressHeader: SetupProgressHeader = {
-//        let view = SetupProgressHeader(frame: CGRectZero)
-//
-//        return view
-//
-//    }()
     
     let goalView: AddGoal = {
         let view = AddGoal(frame: CGRectZero)
@@ -63,36 +44,34 @@ class SetupPageView: UIViewController {
         return view
     }()
     
-    override func loadView() {
-        super.loadView()
-        view.backgroundColor = .white
+    func configureView(viewController: SetupPageViewController){
+        self.viewController = viewController
+        
+        bottomView.controller = viewController
+        bottomView.viewDelegate = self
+        bottomView.progressDelegate = progressHeader
+
+        incomeView.controller = viewController
+        incomeView.viewDelegate = self
+        incomeView.progressDelegate = progressHeader
+        incomeView.bottomDelegate = bottomView
+
+        budgetView.controller = viewController
+        budgetView.viewDelegate = self
+        budgetView.progressDelegate = progressHeader
+        budgetView.bottomDelegate = bottomView
         
         setupContentView()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        bottomView.controller = setupController
-        bottomView.viewDelegate = self
-        
-        incomeView.controller = setupController
-        incomeView.viewDelegate = self
-        
-        budgetView.controller = setupController
-        budgetView.viewDelegate = self
-    }
-    
     func setupContent() -> UIView {
-        print("setupController.currentProgressIndex \(setupController.currentProgressIndex)")
-        
         content.removeFromSuperview()
         
-        if setupController.currentProgressIndex == 0.0 {
+        if viewController!.currentProgressIndex == 0.0 {
             return goalView
-        } else if setupController.currentProgressIndex == 1.0 {
+        } else if viewController!.currentProgressIndex == 1.0 {
             return incomeView
-        } else if setupController.currentProgressIndex == 2.0 {
+        } else if viewController!.currentProgressIndex == 2.0 {
             return budgetView
         }
         
@@ -100,50 +79,29 @@ class SetupPageView: UIViewController {
     }
     
     func setupContentView() {
-        print(#function)
+        self.backgroundColor = .white
+        
         content = setupContent()
         
-        view.addSubview(progressHeader)
+        self.addSubview(progressHeader)
+        self.addSubview(content)
+        self.addSubview(bottomView)
         
-        // TODO: Ubah subview ini tiap lanjut ke tahap selanjutnya
-        // Ini yg berubah tiap dia next, but how?
-        view.addSubview(content)
+        progressHeader.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, bottom: content.topAnchor, right: self.rightAnchor,paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
-        view.addSubview(bottomView)
+        content.anchor(top: progressHeader.bottomAnchor, left: self.leftAnchor, bottom: bottomView.topAnchor, right: self.rightAnchor, paddingTop: 16)
         
-        progressHeader.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: content.topAnchor, right: view.rightAnchor,paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
-        
-        content.anchor(top: progressHeader.bottomAnchor, left: view.leftAnchor, bottom: bottomView.topAnchor, right: view.rightAnchor, paddingTop: 16)
-        
-        bottomView.anchor(top: content.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+        bottomView.anchor(top: content.bottomAnchor, left: self.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.rightAnchor)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension SetupPageView: SetupDelegate {
     func updateProgress(progress: Float, progressIndex: Float) {
         setupContentView()
-        
-        progressHeader.setProgress(progress, animated: true)
-        print("update in setup \(progress)")
     }
     
-    func previousProgress(progress: Float, progressIndex: Float) {
-        setupContentView()
-        progressHeader.setProgress(progress, animated: true)
-        print("previous in setup")
-    }
-    
-    
+//    func previousProgress(progress: Float, progressIndex: Float) {
+//        setupContentView()
+//    }
 }
