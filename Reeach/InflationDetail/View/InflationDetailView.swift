@@ -12,20 +12,25 @@ class InflationDetailView: UIView {
     weak var viewController: InflationDetailViewController?
     weak var navigationBarDelegate: NavigationBarDelegate?
     
-    lazy var scrollView = {
+    private lazy var scrollView = {
         let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return UIScrollView()
     }()
     
-    lazy var stackView = {
+    private lazy var stackView = {
         var stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         return stackView
     }()
         
     lazy var imageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "IllustrationInflasi")
         return imageView
     }()
     
@@ -33,6 +38,7 @@ class InflationDetailView: UIView {
         let label = UILabel()
         label.text = "Apa itu inflasi?"
         label.font = UIFont.bodyBold
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,6 +53,7 @@ class InflationDetailView: UIView {
             """
         label.numberOfLines = 0
         label.font = UIFont.bodyMedium
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,6 +62,7 @@ class InflationDetailView: UIView {
         let label = UILabel()
         label.text = "Kenapa penting tahu soal inflasi?"
         label.font = UIFont.bodyBold
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,6 +75,7 @@ class InflationDetailView: UIView {
             """
         label.numberOfLines = 0
         label.font = UIFont.bodyMedium
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -75,6 +84,7 @@ class InflationDetailView: UIView {
         let label = UILabel()
         label.text = "Dari mana angka 4%?"
         label.font = UIFont.bodyBold
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -87,6 +97,7 @@ class InflationDetailView: UIView {
             """
         label.numberOfLines = 0
         label.font = UIFont.bodyMedium
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -95,6 +106,7 @@ class InflationDetailView: UIView {
         let label = UILabel()
         label.text = "Terus, apa implikasinya?"
         label.font = UIFont.bodyBold
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -107,6 +119,7 @@ class InflationDetailView: UIView {
             """
         label.numberOfLines = 0
         label.font = UIFont.bodyMedium
+        label.textColor = .darkSlateGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -127,7 +140,6 @@ class InflationDetailView: UIView {
     func configureView(viewController: InflationDetailViewController) {
         self.viewController = viewController
         backgroundColor = .ghostWhite
-        imageView.image = UIImage(named: "IllustrationInflasi")
         
         configureNavigationControllerView()
         configureAutoLayout()
@@ -138,17 +150,15 @@ class InflationDetailView: UIView {
         viewController?.navigationItem.leftBarButtonItem = backButton
     }
     
-    func configureAutoLayout() {
-        let viewMargins = layoutMarginsGuide
+    private func configureAutoLayout() {
         addSubview(scrollView)
-        scrollView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor)
+        scrollView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         
         scrollView.addSubview(stackView)
-        stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor)
-        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, paddingLeft: 20)
+        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40).isActive = true
         
         stackView.addArrangedSubview(imageView)
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         stackView.addArrangedSubview(whatLabel)
         stackView.addArrangedSubview(whatDetailLabel)
         stackView.addArrangedSubview(howLabel)
