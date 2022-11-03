@@ -10,75 +10,90 @@ import UIKit
 
 class GoalModalView: UIView {
     
+    let cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Batal", for: .normal)
+        button.setTitleColor(UIColor.crimson, for: .normal)
+        button.backgroundColor = .clear
+        button.contentHorizontalAlignment = .left
+        return button
+    }()
+    
+    let addGoal: UILabel = {
+        let label = UILabel()
+        label.text = "Tambah Goal"
+        label.font = .bodyBold
+        label.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        return label
+    }()
+    
+    let saveButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Simpan", for: .normal)
+        button.setTitleColor(UIColor.royalHunterBlue, for: .normal)
+        button.backgroundColor = .clear
+        button.contentHorizontalAlignment = .right
+        return button
+    }()
+    
+    let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
+    
+    
+    let recommendButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Bingung, guys? Lihat rekomendasinya di sini, kuy!", for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.backgroundColor = .clear
+        button.setTitleColor(.royalHunterBlue, for: .normal)
+        button.titleLabel?.font = .caption1Bold
+        button.titleLabel?.textAlignment = .left
+        button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        return button
+    }()
+
+    
+    let dueDate = DatePicker(frame: .zero, title: "Deadline")
+    
+    let inflationButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
+        button.setTitle("WATCH OUT! Nilai setelah inflasi: ", for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.backgroundColor = .clear
+        button.setTitleColor(.royalHunterBlue, for: .normal)
+        button.titleLabel?.font = .caption1Bold
+        button.titleLabel?.textAlignment = .left
+        button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        return button
+    }()
+    
+    let total = TextField(frame: .zero, title: "Jumlah", style: .template)
+    
+    let goalType = TextField(frame: .zero, title: "Tipe Goal", style: .template)
+    
+    let iconView = IconView()
+    
+    //scrollView
+    
+    lazy var scrollView = {
+            let scrollView = UIScrollView()
+            return UIScrollView()
+        }()
+   
+    
     func configureStackView() {
         
-        let cancelButton: UIButton = {
-            let button = UIButton()
-            button.setTitle("Batal", for: .normal)
-            button.setTitleColor(UIColor.crimson, for: .normal)
-            button.backgroundColor = .clear
-            button.contentHorizontalAlignment = .left
-            return button
-        }()
-        
-        let addGoal: UILabel = {
-            let label = UILabel()
-            label.text = "Tambah Goal"
-            label.font = .bodyBold
-            return label
-        }()
-        
-        let saveButton: UIButton = {
-            let button = UIButton()
-            button.setTitle("Simpan", for: .normal)
-            button.setTitleColor(UIColor.royalHunterBlue, for: .normal)
-            button.backgroundColor = .clear
-            button.contentHorizontalAlignment = .right
-            return button
-        }()
-        
-        let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
+//        self.addSubview(scrollView)
+//
+//        scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
         
         
-        let recommendButton: UIButton = {
-            let button = UIButton()
-            button.setTitle("Bingung, guys? Lihat rekomendasinya di sini, kuy!", for: .normal)
-            button.contentHorizontalAlignment = .left
-            button.backgroundColor = .clear
-            button.setTitleColor(.royalHunterBlue, for: .normal)
-            button.titleLabel?.font = .caption1Bold
-            button.titleLabel?.textAlignment = .left
-            return button
-        }()
-
-        
-        let dueDate = DatePicker(frame: .zero, title: "Deadline")
-        
-        let inflationButton: UIButton = {
-            let button = UIButton()
-            button.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
-            button.setTitle("WATCH OUT! Nilai setelah inflasi: ", for: .normal)
-            button.contentHorizontalAlignment = .left
-            button.backgroundColor = .clear
-            button.setTitleColor(.royalHunterBlue, for: .normal)
-            button.titleLabel?.font = .caption1Bold
-            button.titleLabel?.textAlignment = .left
-            return button
-        }()
-        
-        let total = TextField(frame: .zero, title: "Jumlah", style: .template)
-        
-        let goalType = TextField(frame: .zero, title: "Tipe Goal", style: .template)
-        
-        let iconView = IconView()
-        iconView.setUp()
         let hstack = UIStackView(arrangedSubviews: [cancelButton, addGoal, saveButton])
         hstack.frame = self.bounds
         hstack.axis = .horizontal
         hstack.distribution = .fillEqually
         hstack.spacing = 10
         hstack.translatesAutoresizingMaskIntoConstraints = false
-        
         let vstack = UIStackView(arrangedSubviews: [hstack,
                                                     iconView,
                                                     goalName,
@@ -93,27 +108,18 @@ class GoalModalView: UIView {
         vstack.spacing = 20
         vstack.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(vstack)
-        
         vstack.backgroundColor = .white
+        
+        iconView.setUp()
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.heightAnchor.constraint(equalTo: iconView.iconLabel.heightAnchor).isActive = true
+        
+        addSubview(vstack)
         
         hstack.anchor(top:self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 12,paddingLeft: 20, paddingRight: 20)
         
         vstack.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
-        
-        //        iconView.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor)
-        
-        goalName.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
-        
-        recommendButton.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
-        
-        dueDate.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
-        
-        total.anchor(top: dueDate.topAnchor, left: vstack.leftAnchor, right: vstack.rightAnchor, paddingTop: 80, paddingLeft: 20, paddingRight: 20)
-        
-        inflationButton.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
-        
-        goalType.anchor(left: vstack.leftAnchor, right: vstack.rightAnchor, paddingLeft: 20, paddingRight: 20)
+        vstack.addArrangedSubview(UIView())
     }
 }
 
@@ -132,11 +138,10 @@ class IconView: UIView {
         return label
     }()
     
-    let iconButton: UIButton = {
+    let editButton: UIButton = {
 
         let button = UIButton()
         button.backgroundColor = .tangerineYellow
-//        button.setImage(UIImage(systemName: "pencil"), for: .normal)
         button.frame.size = CGSize(width: 10, height: 10)
         button.layer.cornerRadius = button.frame.height/2
         
@@ -149,11 +154,11 @@ class IconView: UIView {
     func setUp() {
         //auto-layout
         
-        addSubview(iconButton)
+        addSubview(editButton)
         addSubview(iconLabel)
-        self.bringSubviewToFront(iconButton)
+        bringSubviewToFront(editButton)
         
-        iconButton.anchor(bottom: iconLabel.bottomAnchor, right: iconLabel.rightAnchor, paddingRight: 20)
+        editButton.anchor(bottom: iconLabel.bottomAnchor, right: iconLabel.rightAnchor, paddingRight: 20)
         
         iconLabel.centerX(inView: self)
         
