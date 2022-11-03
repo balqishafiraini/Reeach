@@ -87,6 +87,8 @@ class TextField: UIView {
 
         textField.anchor(top: titleLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
         
+        titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        
         let height = textField.font!.pointSize * 2.3
         textField.anchor(height: height)
     }

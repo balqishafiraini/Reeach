@@ -49,9 +49,12 @@ class DatePicker: UIView {
         addSubview(datePicker)
         
         titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: datePicker.topAnchor, right: self.rightAnchor)
+        titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+
         
         datePicker.centerX(inView: self)
         datePicker.anchor(width: UIScreen.main.bounds.width - 32)
+        datePicker.anchor(bottom: self.bottomAnchor, width: UIScreen.main.bounds.width - 32)
     }
     
     let titleLabel: UILabel = {
