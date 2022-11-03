@@ -9,8 +9,7 @@ import UIKit
 
 class SetupProgressHeader: UIView {
 
-    var delegate: SetupDelegate!
-    var controller: SetupPageViewController?
+    weak var controller: SetupPageViewController?
     
     var progressBar: UIProgressView = {
         var view = UIProgressView(progressViewStyle: .bar)
@@ -34,8 +33,6 @@ class SetupProgressHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.delegate = self
-        
         setupView()
     }
     
@@ -51,11 +48,5 @@ class SetupProgressHeader: UIView {
         progressBar.setProgress(progressValue, animated: true)
         progressBar.center(inView: self)
         progressBar.anchor(width: UIScreen.main.bounds.width - 32)
-    }
-}
-
-extension SetupProgressHeader: SetupDelegate {
-    func updateProgress(progress: Float, progressIndex: Float) {
-        self.progressBar.setProgress(progress, animated: true)
     }
 }

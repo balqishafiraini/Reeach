@@ -9,18 +9,7 @@ import UIKit
 
 class AddBudget: UIView {
     
-    var progressDelegate: SetupDelegate!
-    var bottomDelegate: SetupDelegate!
-    var viewDelegate: SetupDelegate!
-    var controller: SetupPageViewController?
-    
-    init(frame: CGRect, viewDelegate: SetupPageView) {
-        self.viewDelegate = viewDelegate
-        
-        super.init(frame: frame)
-        
-        setupView()
-    }
+    weak var delegate: SetupDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -147,11 +136,6 @@ class AddBudget: UIView {
     }
 
     @objc func prevStep() {
-        let progress = controller?.previousProgress() ?? 0.0
-        let progressIndex = controller?.currentProgressIndex ?? 0.0
-        
-        progressDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
-        bottomDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
-        viewDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
+        delegate?.previousProgress()
     }
 }

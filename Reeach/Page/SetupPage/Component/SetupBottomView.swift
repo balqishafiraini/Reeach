@@ -9,23 +9,13 @@ import UIKit
 
 class SetupBottomView: UIView {
     
-    var progressDelegate: SetupDelegate!
-    var viewDelegate: SetupDelegate?
-    var controller: SetupPageViewController?
+    weak var delegate: SetupDelegate?
     
     let nextButton: Button = {
         let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Looking good? Lanjut, yuk!")
         
         return button
     }()
-    
-    init(frame: CGRect, viewDelegate: SetupPageView) {
-        self.viewDelegate = viewDelegate
-        
-        super.init(frame: frame)
-        
-        setupView()
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,13 +39,7 @@ class SetupBottomView: UIView {
     }
     
     @objc func nextStep() {        
-        let progress = controller?.updateProgress() ?? 0.0
-        let progressIndex = controller?.currentProgressIndex ?? 0.0
-        
-        setButtonTitle(progressIndex: progressIndex)
-        
-        progressDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
-        viewDelegate?.updateProgress(progress: progress, progressIndex: progressIndex)
+        delegate?.updateProgress()
     }
     
     func setButtonTitle(progressIndex: Float){
@@ -69,11 +53,5 @@ class SetupBottomView: UIView {
         default:
             nextButton.setTitle("Hmm I'm not supposed to be here", for: .normal)
         }
-    }
-}
-
-extension SetupBottomView: SetupDelegate {
-    func updateProgress(progress: Float, progressIndex: Float) {
-        setButtonTitle(progressIndex: progressIndex)
     }
 }

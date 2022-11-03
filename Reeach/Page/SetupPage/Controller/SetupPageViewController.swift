@@ -8,8 +8,10 @@
 import UIKit
 
 protocol SetupDelegate: AnyObject {
-    func updateProgress(progress: Float, progressIndex: Float)
+//    func updateProgress(progress: Float, progressIndex: Float)
 //    func previousProgress(progress: Float, progressIndex: Float)
+    func updateProgress()
+    func previousProgress()
 }
 
 class SetupPageViewController: UIViewController {
@@ -20,26 +22,6 @@ class SetupPageViewController: UIViewController {
     var currentProgressIndex: Float = 0.0
     let totalProgress: Float = 2.0
     
-    func updateProgress() -> Float {
-        self.currentProgressIndex += 1.0
-        currentProgress = currentProgressIndex / totalProgress
-        
-        if currentProgressIndex > totalProgress {
-            currentProgress = 0.0
-            currentProgressIndex = 0.0
-        }
-        
-        return currentProgress
-    }
-    
-    func previousProgress() -> Float {
-        self.currentProgressIndex -= 1.0
-        currentProgress = currentProgressIndex / totalProgress
-        
-        return currentProgress
-    }
-    
-    
     override func loadView() {
         super.loadView()
         view.backgroundColor = .white
@@ -47,5 +29,33 @@ class SetupPageViewController: UIViewController {
         view = contentView
         contentView.configureView(viewController: self)
     }
+    
+    func updateView() {
+        contentView.bottomView.setButtonTitle(progressIndex: currentProgressIndex)
+        contentView.setupContentView()
+        contentView.progressHeader.progressBar.setProgress(currentProgress, animated: true)
+    }
 
+}
+
+extension SetupPageViewController: SetupDelegate {
+    
+    func updateProgress() {
+        currentProgressIndex += 1.0
+        currentProgress = currentProgressIndex / totalProgress
+        
+        if currentProgressIndex > totalProgress {
+            currentProgress = 0.0
+            currentProgressIndex = 0.0
+        }
+        
+        updateView()
+    }
+    
+    func previousProgress() {
+        currentProgressIndex -= 1.0
+        currentProgress = currentProgressIndex / totalProgress
+        updateView()
+    }
+    
 }

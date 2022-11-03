@@ -9,7 +9,7 @@ import UIKit
 
 class SetupPageView: UIView {
     
-    var viewController: SetupPageViewController? = nil
+    weak var viewController: SetupPageViewController?
     
     var content = UIView()
     
@@ -47,19 +47,11 @@ class SetupPageView: UIView {
     func configureView(viewController: SetupPageViewController){
         self.viewController = viewController
         
-        bottomView.controller = viewController
-        bottomView.viewDelegate = self
-        bottomView.progressDelegate = progressHeader
+        bottomView.delegate = viewController
 
-        incomeView.controller = viewController
-        incomeView.viewDelegate = self
-        incomeView.progressDelegate = progressHeader
-        incomeView.bottomDelegate = bottomView
+        incomeView.delegate = viewController
 
-        budgetView.controller = viewController
-        budgetView.viewDelegate = self
-        budgetView.progressDelegate = progressHeader
-        budgetView.bottomDelegate = bottomView
+        budgetView.delegate = viewController
         
         setupContentView()
     }
@@ -94,14 +86,4 @@ class SetupPageView: UIView {
         bottomView.anchor(top: content.bottomAnchor, left: self.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.rightAnchor)
     }
     
-}
-
-extension SetupPageView: SetupDelegate {
-    func updateProgress(progress: Float, progressIndex: Float) {
-        setupContentView()
-    }
-    
-//    func previousProgress(progress: Float, progressIndex: Float) {
-//        setupContentView()
-//    }
 }
