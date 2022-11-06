@@ -124,4 +124,10 @@ public class Goal: Category {
         }
         return nil
     }
+    
+    static let timeTermDictionary: [String: String] = [
+        "Short"     : "< 3 tahun",
+        "Medium"    : "3 tahun - 5 tahun",
+        "Long"      : "> 5 tahun"
+    ]
 }
