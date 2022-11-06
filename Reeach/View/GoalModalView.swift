@@ -50,7 +50,7 @@ class GoalModalView: UIView {
         button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         return button
     }()
-
+    
     
     let dueDate = DatePicker(frame: .zero, title: "Deadline")
     
@@ -73,35 +73,37 @@ class GoalModalView: UIView {
     
     let iconView = IconView()
     
-    //scrollView
+    let switchView = SwitchView()
     
-    lazy var scrollView = {
+    //scrollView
+    lazy var scrollView: UIScrollView = {
             let scrollView = UIScrollView()
-            return UIScrollView()
+            return scrollView
         }()
-   
     
     func configureStackView() {
         
-//        self.addSubview(scrollView)
-//
-//        scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        self.addSubview(scrollView)
+        
+        scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
         
         
-        let hstack = UIStackView(arrangedSubviews: [cancelButton, addGoal, saveButton])
-        hstack.frame = self.bounds
-        hstack.axis = .horizontal
-        hstack.distribution = .fillEqually
-        hstack.spacing = 10
-        hstack.translatesAutoresizingMaskIntoConstraints = false
-        let vstack = UIStackView(arrangedSubviews: [hstack,
+        let navHstack = UIStackView(arrangedSubviews: [cancelButton, addGoal, saveButton])
+        navHstack.frame = self.bounds
+        navHstack.axis = .horizontal
+        navHstack.distribution = .fillEqually
+        navHstack.spacing = 10
+        navHstack.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        let vstack = UIStackView(arrangedSubviews: [navHstack,
                                                     iconView,
                                                     goalName,
                                                     recommendButton,
                                                     dueDate,
                                                     total,
                                                     inflationButton,
-                                                    goalType])
+                                                    goalType, switchView])
         vstack.frame = self.bounds
         vstack.axis = .vertical
         vstack.distribution = .fill
@@ -110,13 +112,19 @@ class GoalModalView: UIView {
         
         vstack.backgroundColor = .white
         
+        //iconview
         iconView.setUp()
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.heightAnchor.constraint(equalTo: iconView.iconLabel.heightAnchor).isActive = true
         
-        addSubview(vstack)
+        //switchview
+        switchView.setupView()
+        switchView.translatesAutoresizingMaskIntoConstraints = false
         
-        hstack.anchor(top:self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 12,paddingLeft: 20, paddingRight: 20)
+        
+        scrollView.addSubview(vstack)
+        
+        navHstack.anchor(top:self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 12,paddingLeft: 20, paddingRight: 20)
         
         vstack.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
         vstack.addArrangedSubview(UIView())
@@ -127,7 +135,7 @@ class IconView: UIView {
     let iconLabel: UILabel = {
         
         let label = UILabel()
-//        label.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        //        label.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         label.text = "Tambah icon"
         label.textAlignment = .center
         label.textColor = .royalHunterBlue
@@ -139,7 +147,7 @@ class IconView: UIView {
     }()
     
     let editButton: UIButton = {
-
+        
         let button = UIButton()
         button.backgroundColor = .tangerineYellow
         button.frame.size = CGSize(width: 10, height: 10)
@@ -150,7 +158,7 @@ class IconView: UIView {
         button.setImage(symbol, for: .normal)
         return button
     }()
-
+    
     func setUp() {
         //auto-layout
         
@@ -165,3 +173,47 @@ class IconView: UIView {
         iconLabel.anchor(width: 150, height: 150)
     }
 }
+
+class SwitchView: UIView {
+    
+    let didHaveInitSaving: UILabel = {
+        let label = UILabel()
+        label.text = "Punya tabungan awal?"
+        label.font = .bodyBold
+        label.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        return label
+    }()
+    
+    var toggleSwitch: UISwitch = {
+        let toggle = UISwitch()
+        toggle.setOn(false, animated: true)
+        toggle.onTintColor = .royalHunterBlue
+        return toggle
+    }()
+    
+    let tf = TextField(frame: .zero, style: .template)
+    
+    @objc func switchStateDidChange(_ sender:UISwitch!) {
+        if (toggleSwitch.isOn == true){
+            tf.isHidden = false
+        }
+        else{
+            tf.isHidden = true
+        }
+    }
+    
+    func setupView() {
+        addSubview(didHaveInitSaving)
+        didHaveInitSaving.anchor(top: self.topAnchor, left: self.leftAnchor)
+        
+        addSubview(toggleSwitch)
+        toggleSwitch.anchor(top: self.topAnchor, left: didHaveInitSaving.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 290)
+        toggleSwitch.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
+        
+        addSubview(tf)
+        tf.anchor(top: didHaveInitSaving.topAnchor, left: didHaveInitSaving.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 40)
+        tf.isHidden = true
+    }
+    
+}
+
