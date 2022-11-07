@@ -14,6 +14,10 @@ protocol SetupDelegate: AnyObject {
     func previousProgress()
 }
 
+protocol BudgetDelegate: AnyObject {
+    func addBudget()
+}
+
 class SetupPageViewController: UIViewController {
     
     let contentView = SetupPageView()
@@ -57,5 +61,17 @@ extension SetupPageViewController: SetupDelegate {
         currentProgress = currentProgressIndex / totalProgress
         updateView()
     }
+    
+}
+
+extension SetupPageViewController: BudgetDelegate {
+    func addBudget() {
+        print(#function)
+        
+        if let content = contentView.content as? AddBudget {
+            content.multipleProgress.add(Progress())
+        }
+    }
+    
     
 }

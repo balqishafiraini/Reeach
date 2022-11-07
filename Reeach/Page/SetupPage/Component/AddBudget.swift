@@ -49,7 +49,13 @@ class AddBudget: UIView {
         return stack
     }()
     
-    let goalStack: UIStackView = {
+    let multipleProgress: MultipleProgressBar = {
+       let progress = MultipleProgressBar()
+        
+        return progress
+    }()
+    
+    lazy var goalStack: UIStackView = {
         let stack = UIStackView()
         
         stack.axis = .vertical
@@ -60,6 +66,7 @@ class AddBudget: UIView {
         label.font = .headline
         
         let addButton = Button(style: .rounded, foreground: .destructive, background: .royalHunterBlue, title: "Tambah Kebutuhan Baru")
+        addButton.addTarget(self, action: #selector(addGoalBudget), for: .touchUpInside)
         
         stack.addArrangedSubview(label)
         stack.addArrangedSubview(addButton)
@@ -67,7 +74,7 @@ class AddBudget: UIView {
         return stack
     }()
     
-    let needStack: UIStackView = {
+    lazy var needStack: UIStackView = {
         let stack = UIStackView()
         
         stack.axis = .vertical
@@ -78,6 +85,7 @@ class AddBudget: UIView {
         label.font = .headline
         
         let addButton = Button(style: .rounded, foreground: .destructive, background: .royalHunterBlue, title: "Tambah Kebutuhan Baru")
+        addButton.addTarget(self, action: #selector(addNeedBudget), for: .touchUpInside)
         
         stack.addArrangedSubview(label)
         stack.addArrangedSubview(addButton)
@@ -85,7 +93,7 @@ class AddBudget: UIView {
         return stack
     }()
     
-    let wantStack: UIStackView = {
+    lazy var wantStack: UIStackView = {
         let stack = UIStackView()
         
         stack.axis = .vertical
@@ -96,6 +104,7 @@ class AddBudget: UIView {
         label.font = .headline
         
         let addButton = Button(style: .rounded, foreground: .destructive, background: .royalHunterBlue, title: "Tambah Kebutuhan Baru")
+        addButton.addTarget(self, action: #selector(addWantBudget), for: .touchUpInside)
         
         stack.addArrangedSubview(label)
         stack.addArrangedSubview(addButton)
@@ -121,6 +130,7 @@ class AddBudget: UIView {
     private func setupView() {
         headerStack.addArrangedSubview(topTitle)
         headerStack.addArrangedSubview(viewDescription)
+        headerStack.addArrangedSubview(multipleProgress)
         headerStack.addArrangedSubview(goalStack)
         headerStack.addArrangedSubview(needStack)
         headerStack.addArrangedSubview(wantStack)
@@ -137,5 +147,19 @@ class AddBudget: UIView {
 
     @objc func prevStep() {
         delegate?.previousProgress()
+    }
+    
+    @objc func addGoalBudget() {
+        print(#function)
+    }
+    
+    @objc func addNeedBudget() {
+        print(#function)
+        
+    }
+    
+    @objc func addWantBudget() {
+        print(#function)
+        
     }
 }
