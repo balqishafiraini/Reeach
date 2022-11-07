@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+protocol AutoIncrementInt64Id {
+    var id: Int64 { get set }
+    static var keyLastId: String { get }
+}
+
+extension DatabaseHelper {
+    
+}

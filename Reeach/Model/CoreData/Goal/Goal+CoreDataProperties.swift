@@ -11,16 +11,29 @@ import CoreData
 
 
 extension Goal {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Goal> {
-        return NSFetchRequest<Goal>(entityName: "Goal")
+        let fetchRequest = NSFetchRequest<Goal>(entityName: "Goal")
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
     }
 
+    @nonobjc public class func fetchRequest(name: String) -> NSFetchRequest<Goal> {
+        let fetchRequest = NSFetchRequest<Goal>(entityName: "Goal")
+        fetchRequest.predicate = NSPredicate(format: "name like [c] %@", name)
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
+    }
+    
+    @nonobjc public class func fetchRequest(timeTerm: String) -> NSFetchRequest<Goal> {
+        let fetchRequest = NSFetchRequest<Goal>(entityName: "Goal")
+        fetchRequest.predicate = NSPredicate(format: "timeTerm like [c] %@", timeTerm)
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
+    }
+    
     @NSManaged public var createdAt: Date?
     @NSManaged public var dueDate: Date?
-    @NSManaged public var isAchievable: Bool
-    @NSManaged public var isActive: Bool
-    @NSManaged public var targetAmount: NSNumber?
+    @NSManaged public var targetAmount: Double
     @NSManaged public var timeTerm: String?
     @NSManaged public var updatedAt: Date?
 
