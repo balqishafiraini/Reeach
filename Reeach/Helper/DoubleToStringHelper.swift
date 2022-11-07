@@ -20,4 +20,20 @@ class DoubleToStringHelper {
         
         return numberFormatter.string(from: NSNumber(value: number))!
     }
+    
+    static func roundUpToString(double: Double) -> String {
+        var result = double
+        result *= 100
+        result.round(.up)
+        result /= 100.00
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.decimalSeparator = ","
+        numberFormatter.usesGroupingSeparator = false
+        numberFormatter.minimumFractionDigits = 2
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: result))!
+    }
 }
