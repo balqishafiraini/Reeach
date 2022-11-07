@@ -84,6 +84,8 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
     func configureAutoLayout() {
         let viewMargins = contentView.layoutMarginsGuide
         
+        contentView.anchor(left: leftAnchor, right: rightAnchor, paddingLeft: 20, paddingRight: 20)
+        
         contentView.addSubview(horizontalStackView)
         horizontalStackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4)
         

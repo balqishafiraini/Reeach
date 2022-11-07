@@ -17,6 +17,9 @@
 		3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D7291867420065C01E /* TermPickerViewController.swift */; };
 		3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D92918676F0065C01E /* TermPickerView.swift */; };
 		3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197DB291867AB0065C01E /* TermPickerViewController+Delegate.swift */; };
+		3B8197E129187A7A0065C01E /* SelectGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197E029187A7A0065C01E /* SelectGoalView.swift */; };
+		3B8197E329187A890065C01E /* SelectGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197E229187A890065C01E /* SelectGoalViewController.swift */; };
+		3B8197E529187A990065C01E /* SelectGoalViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197E429187A990065C01E /* SelectGoalViewController+Delegate.swift */; };
 		3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */; };
 		3BAA29CF2907790E008D3C5B /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B028FFC0BC00923D57 /* Goal+CoreDataClass.swift */; };
 		3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */; };
@@ -99,6 +102,9 @@
 		3B8197D7291867420065C01E /* TermPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerViewController.swift; sourceTree = "<group>"; };
 		3B8197D92918676F0065C01E /* TermPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerView.swift; sourceTree = "<group>"; };
 		3B8197DB291867AB0065C01E /* TermPickerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TermPickerViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B8197E029187A7A0065C01E /* SelectGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGoalView.swift; sourceTree = "<group>"; };
+		3B8197E229187A890065C01E /* SelectGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGoalViewController.swift; sourceTree = "<group>"; };
+		3B8197E429187A990065C01E /* SelectGoalViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectGoalViewController+Delegate.swift"; sourceTree = "<group>"; };
 		3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleToStringHelper.swift; sourceTree = "<group>"; };
 		3BAA29D72907936D008D3C5B /* DatabaseHelper+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Category.swift"; sourceTree = "<group>"; };
 		3BBF303E2911BAE700F8373A /* InflationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflationDetailViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +276,32 @@
 			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
+		3B8197DD29187A450065C01E /* SelectGoal */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197DE29187A530065C01E /* Controller */,
+				3B8197DF29187A5B0065C01E /* View */,
+			);
+			path = SelectGoal;
+			sourceTree = "<group>";
+		};
+		3B8197DE29187A530065C01E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197E229187A890065C01E /* SelectGoalViewController.swift */,
+				3B8197E429187A990065C01E /* SelectGoalViewController+Delegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B8197DF29187A5B0065C01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197E029187A7A0065C01E /* SelectGoalView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3BBF303B2911BA9F00F8373A /* InflationDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +463,7 @@
 		FA9B12BF28EBCF44001203F5 /* Reeach */ = {
 			isa = PBXGroup;
 			children = (
+				3B8197DD29187A450065C01E /* SelectGoal */,
 				3B8197CF291862B60065C01E /* TermPicker */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CA2AB4B828F85F28002663AE /* Network */,
@@ -626,6 +659,7 @@
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
 				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
 				3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */,
+				3B8197E329187A890065C01E /* SelectGoalViewController.swift in Sources */,
 				3BAA29D32907790E008D3C5B /* Budget+CoreDataClass.swift in Sources */,
 				3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */,
 				3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */,
@@ -647,6 +681,7 @@
 				3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */,
 				FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */,
 				FA2E2A042903DBE40083587D /* Checkbox.swift in Sources */,
+				3B8197E529187A990065C01E /* SelectGoalViewController+Delegate.swift in Sources */,
 				3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */,
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
@@ -661,6 +696,7 @@
 				3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */,
 				FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */,
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
+				3B8197E129187A7A0065C01E /* SelectGoalView.swift in Sources */,
 				3BBF303F2911BAE700F8373A /* InflationDetailViewController.swift in Sources */,
 				CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */,
 				FA2E2A0829050A2A0083587D /* Card.swift in Sources */,
