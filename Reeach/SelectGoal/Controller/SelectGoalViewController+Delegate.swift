@@ -20,7 +20,7 @@ extension SelectGoalViewController: NavigationBarDelegate {
 
 extension SelectGoalViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return terms.count
+        return goals.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -28,10 +28,7 @@ extension SelectGoalViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.iconImageView.isHidden = true
         cell.detailLabel.isHidden = true
         
-        let term = terms[indexPath.item]
-        
-        cell.titleLabel.text = "\(term)-term"
-        cell.detailLabel.text = "\(Goal.timeTermDictionary[term] ?? "Unknown")"
+        cell.titleLabel.text = "\(goals[indexPath.item].name ?? "Unnamed Goal")"
         return cell
     }
     

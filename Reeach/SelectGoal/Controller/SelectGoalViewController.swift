@@ -8,7 +8,7 @@
 import UIKit
 
 class SelectGoalViewController: UIViewController {
-    let terms = ["Short", "Medium", "Long", "Short", "Medium", "Long", "Short", "Medium", "Long", "Short", "Medium", "Long", "Short", "Medium", "Long"]
+    let goals = DatabaseHelper().getUnallocatedGoals(on: Date())
     
     var contentView = SelectGoalView()
     

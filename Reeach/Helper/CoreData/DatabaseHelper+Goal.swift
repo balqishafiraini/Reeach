@@ -20,6 +20,17 @@ extension DatabaseHelper {
         }
     }
     
+    func getUnallocatedGoals(on month: Date) -> [Goal] {
+        var goals = getGoals()
+        let allocatedBudgets = getBudgets(on: month)
+        goals.removeAll {
+            goal in
+            allocatedBudgets.contains { $0.category == goal }
+        }
+        
+        return goals
+    }
+    
     func getGoal(name: String) -> Goal? {
         do {
             let fetchRequest: NSFetchRequest<Goal> = Goal.fetchRequest(name: name)
