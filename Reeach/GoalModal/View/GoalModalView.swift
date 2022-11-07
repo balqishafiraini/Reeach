@@ -48,6 +48,7 @@ class GoalModalView: UIView {
         button.titleLabel?.font = .caption1Bold
         button.titleLabel?.textAlignment = .left
         button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        button.addTarget(GoalModalView.self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -57,6 +58,7 @@ class GoalModalView: UIView {
     let inflationButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
+        button.tintColor = .royalHunterBlue
         button.setTitle("WATCH OUT! Nilai setelah inflasi: ", for: .normal)
         button.contentHorizontalAlignment = .left
         button.backgroundColor = .clear
@@ -64,6 +66,7 @@ class GoalModalView: UIView {
         button.titleLabel?.font = .caption1Bold
         button.titleLabel?.textAlignment = .left
         button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+        button.addTarget(GoalModalView.self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -80,6 +83,10 @@ class GoalModalView: UIView {
             let scrollView = UIScrollView()
             return scrollView
         }()
+    
+    @objc func buttonTapped(_ sender: UIButton!) {
+        print("Button clicked")
+    }
     
     func configureStackView() {
         
@@ -107,7 +114,9 @@ class GoalModalView: UIView {
         vstack.frame = self.bounds
         vstack.axis = .vertical
         vstack.distribution = .fill
-        vstack.spacing = 20
+        vstack.spacing = 16
+        vstack.setCustomSpacing(8, after: goalName)
+        vstack.setCustomSpacing(8, after: total)
         vstack.translatesAutoresizingMaskIntoConstraints = false
         
         vstack.backgroundColor = .white
@@ -172,6 +181,7 @@ class IconView: UIView {
         
         iconLabel.anchor(width: 150, height: 150)
     }
+
 }
 
 class SwitchView: UIView {

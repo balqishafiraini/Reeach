@@ -92,11 +92,11 @@ class TextField: UIView {
         addSubview(titleLabel)
         addSubview(textField)
         
-        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: textField.topAnchor, right: self.rightAnchor)
+        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: textField.topAnchor, right: self.rightAnchor, paddingBottom: 8)
 
-        textField.anchor(top: titleLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        textField.anchor(top: titleLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 20)
         
-        titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+//        titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         
         let height = textField.font!.pointSize * 2.3
         textField.anchor(height: height)
@@ -140,11 +140,15 @@ class TextField: UIView {
            let iconImage = UIImageView()
             iconImage.image = icon
             iconImage.tintColor = .darkSlateGrey
-            iconImage.translatesAutoresizingMaskIntoConstraints = false
             return iconImage
         }()
         
-        textField.rightView = icon
+        let contentView = UIView()
+        contentView.addSubview(icon)
+        contentView.frame = CGRectMake(0, 0, 35, 20)
+        icon.frame = CGRectMake(0, 0, 22, 20)
+        
+        textField.rightView = contentView
         textField.rightViewMode = .always
     }
 }
