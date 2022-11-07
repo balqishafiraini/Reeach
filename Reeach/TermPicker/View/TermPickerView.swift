@@ -57,10 +57,10 @@ class TermPickerView: UIView {
     }
     
     func configureAutoLayout() {
-        let viewMargins = layoutMarginsGuide
+        let viewMargins = safeAreaLayoutGuide
         
         addSubview(collectionView)
-        collectionView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 0)
+        collectionView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 12)
     }
     
     @objc func back(_ animated: Bool) {
