@@ -47,12 +47,7 @@ extension DatabaseHelper {
     
     func getUnallocatedCategories(on month: Date) -> [Category] {
         var categories = getCategories()
-        let allocatedBudgets = getBudgets(on: month)
-        categories.removeAll {
-            category in
-            allocatedBudgets.contains { $0.category == category }
-        }
-        
+        categories.removeAll { $0.isActive(on: month) }
         return categories
     }
     

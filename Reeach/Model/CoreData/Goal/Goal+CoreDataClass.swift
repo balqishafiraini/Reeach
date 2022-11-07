@@ -18,19 +18,6 @@ public class Goal: Category {
         return futureValue(from: budget.period ?? Date()) <= expectedSaving(of: budget) ?? 0
     }
     
-    func isActive(on month: Date) -> Bool {
-        let month = DateFormatHelper.getStartDateOfMonth(of: month)
-        let budgets = budgets?.allObjects as! [Budget]
-        
-        for budget in budgets {
-            let budgetMonth = budget.period ?? Date()
-            if budgetMonth == month {
-                return true
-            }
-        }
-        return false
-    }
-    
     func initialSaving(before month: Date) -> Double {
         var result = 0.0
         let month = DateFormatHelper.getStartDateOfMonth(of: month)
@@ -129,5 +116,28 @@ public class Goal: Category {
         "Short"     : "< 3 tahun",
         "Medium"    : "3 tahun - 5 tahun",
         "Long"      : "> 5 tahun"
+    ]
+}
+
+extension Goal {
+    class Recommendation {
+        var icon: String
+        var name: String
+        var term: String
+        var description: String
+        
+        init(icon: String, name: String, term: String, description: String) {
+            self.icon = icon
+            self.name = name
+            self.term = term
+            self.description = description
+        }
+    }
+    
+    static let goalRecommendation: [Recommendation] = [
+        Recommendation(icon: "💰", name: "Emergency Fund", term: "Short", description: "Simpanan uang yang bisa kamu pakai ketika kamu tidak punya pemasukan. "),
+        Recommendation(icon: "💵", name: "Bayar Utang", term: "Medium", description: "Jangan lupa bayar utang-utangmu, nanti gawat bunganya numpuk, loh."),
+        Recommendation(icon: "⛑", name: "Asuransi", term: "Medium", description: "Cicil asuransi untuk jaga-jaga hal yang gak terduga."),
+        Recommendation(icon: "🧓", name: "Dana Pensiun", term: "Long", description: "Yuk, siapkan dana pensiunmu. Atau malah retiring early? Leggoooo!")
     ]
 }

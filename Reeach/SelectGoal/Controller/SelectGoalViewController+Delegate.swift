@@ -25,7 +25,7 @@ extension SelectGoalViewController: UICollectionViewDelegate, UICollectionViewDa
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoalDetailCollectionViewCell.reuseIdentifier, for: indexPath) as! GoalDetailCollectionViewCell
-        cell.iconImageView.isHidden = true
+        cell.iconLabel.isHidden = true
         cell.detailLabel.isHidden = true
         
         cell.titleLabel.text = "\(goals[indexPath.item].name ?? "Unnamed Goal")"

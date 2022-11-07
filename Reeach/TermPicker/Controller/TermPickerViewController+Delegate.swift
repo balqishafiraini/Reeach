@@ -25,7 +25,7 @@ extension TermPickerViewController: UICollectionViewDelegate, UICollectionViewDa
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoalDetailCollectionViewCell.reuseIdentifier, for: indexPath) as! GoalDetailCollectionViewCell
-        cell.iconImageView.isHidden = true
+        cell.iconLabel.isHidden = true
         
         let term = terms[indexPath.item]
         

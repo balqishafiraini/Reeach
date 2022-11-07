@@ -25,14 +25,12 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    lazy var iconImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.anchor(width: 32)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.setContentCompressionResistancePriority(UILayoutPriority(48), for: .vertical)
-        imageView.setContentCompressionResistancePriority(UILayoutPriority(48), for: .horizontal)
-        return imageView
+    lazy var iconLabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 32, weight: .bold)
+        label.anchor(width: 32)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     lazy var titleLabel = {
@@ -89,7 +87,7 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(horizontalStackView)
         horizontalStackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4)
         
-        horizontalStackView.addArrangedSubview(iconImageView)
+        horizontalStackView.addArrangedSubview(iconLabel)
         horizontalStackView.addArrangedSubview(verticalStackView)
         horizontalStackView.addArrangedSubview(checkMarkImageView)
         

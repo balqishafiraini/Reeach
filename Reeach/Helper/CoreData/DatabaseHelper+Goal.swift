@@ -22,12 +22,7 @@ extension DatabaseHelper {
     
     func getUnallocatedGoals(on month: Date) -> [Goal] {
         var goals = getGoals()
-        let allocatedBudgets = getBudgets(on: month)
-        goals.removeAll {
-            goal in
-            allocatedBudgets.contains { $0.category == goal }
-        }
-        
+        goals.removeAll { $0.isActive(on: month) }
         return goals
     }
     
@@ -54,6 +49,24 @@ extension DatabaseHelper {
             print("Unresolved error \(nsError), \(nsError.userInfo), \(nsError.localizedDescription)")
             return []
         }
+    }
+    
+    func getGoalRecommendations() -> [[Goal.Recommendation]] {
+        var recommendations = Goal.goalRecommendation
+        let goals = getGoals()
+        recommendations.removeAll {
+            recommendation in
+            goals.contains { $0.name == recommendation.name }
+        }
+        
+        var result: [[Goal.Recommendation]] = [[], [], []]
+        for recommendation in recommendations {
+            var index = 0
+            if recommendation.term == "Medium" { index = 1 }
+            else if recommendation.term == "Long" { index = 2 }
+            result[index].append(recommendation)
+        }
+        return result
     }
     
     func createGoals(name: String, icon: String, dueDate: Date, targetAmount: Double, timeTerm: String) -> Goal {
