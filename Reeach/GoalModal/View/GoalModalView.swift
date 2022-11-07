@@ -67,9 +67,9 @@ class GoalModalView: UIView {
         return button
     }()
     
-    let total = TextField(frame: .zero, title: "Jumlah", style: .template)
+    let total = TextField(frame: .zero, title: "Jumlah", style: .template, prefix: "Rp")
     
-    let goalType = TextField(frame: .zero, title: "Tipe Goal", style: .template)
+    let goalType = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(systemName: "greaterthan"))
     
     let iconView = IconView()
     
@@ -191,13 +191,15 @@ class SwitchView: UIView {
         return toggle
     }()
     
-    let tf = TextField(frame: .zero, style: .template)
+    let tf = TextField(frame: .zero, style: .template, prefix: "Rp")
     
     @objc func switchStateDidChange(_ sender:UISwitch!) {
         if (toggleSwitch.isOn == true){
+//            makePrefix()
             tf.isHidden = false
         }
         else{
+//            makePrefix()
             tf.isHidden = true
         }
     }

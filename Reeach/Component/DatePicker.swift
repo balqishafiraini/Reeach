@@ -10,7 +10,7 @@ import UIKit
 class DatePicker: UIView {
     
     var datePicker: TextField = {
-        let tf = TextField(frame: .zero, style: .template)
+        let tf = TextField(frame: .zero, style: .template, icon: UIImage(systemName: "calendar"))
         
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date

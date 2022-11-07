@@ -15,7 +15,7 @@ class TextField: UIView {
         
         return tf
     }()
-
+    
     enum BorderStyle {
         case template
         case active
@@ -25,10 +25,19 @@ class TextField: UIView {
     public private(set) var style: BorderStyle
 
     
-    init(frame: CGRect, title: String? = nil, style: BorderStyle) {
+    init(frame: CGRect, title: String? = nil, style: BorderStyle, prefix: String? = nil, icon: UIImage? = nil) {
         self.style = style
         super.init(frame: frame)
         setTitle(title: title ?? "")
+        
+        if let _ = prefix {
+            makePrefix(prefix: prefix!)
+        }
+        
+        if let _ = icon {
+            makeIcon(icon: icon!)
+        }
+        
         textFieldSetup()
         configure()
     }
@@ -95,11 +104,47 @@ class TextField: UIView {
     
     private class InputTextField: UITextField {
         override func editingRect(forBounds bounds: CGRect) -> CGRect {
+            if let _ = self.leftView {
+                return bounds.insetBy(dx: 40, dy: 0)
+            }
+            
             return bounds.insetBy(dx: 20, dy: 0)
         }
         
         override func textRect(forBounds bounds: CGRect) -> CGRect {
+            if let _ = self.leftView {
+                return bounds.insetBy(dx: 40, dy: 0)
+            }
+            
             return bounds.insetBy(dx: 20, dy: 0)
         }
+    }
+    
+    func makePrefix(prefix: String){
+        let prefix: UILabel = {
+            let label = PaddingLabel()
+            label.text = prefix
+            label.font = .bodyMedium
+            label.textColor = .darkSlateGrey
+            label.paddingLeft = 12
+
+            return label
+        }()
+        
+        textField.leftView = prefix
+        textField.leftViewMode = .always
+    }
+    
+    func makeIcon(icon: UIImage) {
+        let icon: UIImageView = {
+           let iconImage = UIImageView()
+            iconImage.image = icon
+            iconImage.tintColor = .darkSlateGrey
+            iconImage.translatesAutoresizingMaskIntoConstraints = false
+            return iconImage
+        }()
+        
+        textField.rightView = icon
+        textField.rightViewMode = .always
     }
 }
