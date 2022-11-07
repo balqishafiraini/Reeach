@@ -13,6 +13,10 @@ import UIKit
     @objc optional func addBudget(type: String, budget: Budget)
 }
 
+protocol BudgetDelegate: AnyObject {
+    func addBudget()
+}
+
 class SetupPageViewController: UIViewController {
     
     let contentView = SetupPageView()
@@ -77,5 +81,17 @@ extension SetupPageViewController: SetupDelegate {
             print("Wtf do u want?")
         }
     }
+    
+}
+
+extension SetupPageViewController: BudgetDelegate {
+    func addBudget() {
+        print(#function)
+        
+        if let content = contentView.content as? AddBudget {
+            content.multipleProgress.add(Progress())
+        }
+    }
+    
     
 }
