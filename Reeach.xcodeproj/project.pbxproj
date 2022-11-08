@@ -71,6 +71,7 @@
 		FA9B12DB28EBCF46001203F5 /* ReeachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12DA28EBCF46001203F5 /* ReeachTests.swift */; };
 		FA9B12E528EBCF46001203F5 /* ReeachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */; };
 		FA9B12E728EBCF46001203F5 /* ReeachUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */; };
+		FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BED291A1FD300F2C87A /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		FA9B12DA28EBCF46001203F5 /* ReeachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachTests.swift; sourceTree = "<group>"; };
 		FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITests.swift; sourceTree = "<group>"; };
 		FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FAA37BED291A1FD300F2C87A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +433,7 @@
 		FA9B12BF28EBCF44001203F5 /* Reeach */ = {
 			isa = PBXGroup;
 			children = (
+				FAA37BEA291A1F9B00F2C87A /* TabBar */,
 				CA4D14372910069F00C35094 /* Page */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CA2AB4B828F85F28002663AE /* Network */,
@@ -476,6 +479,30 @@
 				FA2E29FF2903A95C0083587D /* UIFont+Extension.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		FAA37BEA291A1F9B00F2C87A /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FAA37BEC291A1FB000F2C87A /* View */,
+				FAA37BEB291A1FA400F2C87A /* Controller */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		FAA37BEB291A1FA400F2C87A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FAA37BED291A1FD300F2C87A /* TabBarController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FAA37BEC291A1FB000F2C87A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -653,6 +680,7 @@
 				CA4D14432910069F00C35094 /* SetupProgressHeader.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
+				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,
 				CA4D14462910069F00C35094 /* AddBudget.swift in Sources */,
 				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
 				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
