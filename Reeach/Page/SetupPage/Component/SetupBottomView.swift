@@ -39,7 +39,7 @@ class SetupBottomView: UIView {
     }
     
     @objc func nextStep() {        
-        delegate?.updateProgress()
+        delegate?.updateProgress!()
     }
     
     func setButtonTitle(progressIndex: Float){
