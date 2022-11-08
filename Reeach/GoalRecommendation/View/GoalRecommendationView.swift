@@ -60,7 +60,7 @@ class GoalRecommendationView: UIView {
         let viewMargins = safeAreaLayoutGuide
         
         addSubview(collectionView)
-        collectionView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 12)
+        collectionView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor)
     }
     
     @objc func back(_ animated: Bool) {
