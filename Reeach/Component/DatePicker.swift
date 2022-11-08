@@ -9,8 +9,10 @@ import UIKit
 
 class DatePicker: UIView {
     
-    var datePicker: TextField = {
+    lazy var datePicker: TextField = {
         let tf = TextField(frame: .zero, style: .template, icon: UIImage(systemName: "calendar"))
+        
+//        tf.textField.inputViewController?.setEditing(false, animated: true)
         
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -22,7 +24,7 @@ class DatePicker: UIView {
         
         tf.textField.inputView = datePicker
 
-        datePicker.addTarget(DatePicker.self, action: #selector(DatePicker.openDatePicker), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(openDatePicker), for: .valueChanged)
         
         return tf
     }()
@@ -51,10 +53,7 @@ class DatePicker: UIView {
         titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: datePicker.topAnchor, right: self.rightAnchor)
         titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
 
-        
-        datePicker.centerX(inView: self)
-        datePicker.anchor(width: UIScreen.main.bounds.width - 32)
-        datePicker.anchor(bottom: self.bottomAnchor, width: UIScreen.main.bounds.width - 32)
+        datePicker.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
     }
     
     let titleLabel: UILabel = {

@@ -94,7 +94,7 @@ class TextField: UIView {
         
         titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: textField.topAnchor, right: self.rightAnchor, paddingBottom: 8)
 
-        textField.anchor(top: titleLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 20)
+        textField.anchor(top: titleLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 8)
         
 //        titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         
