@@ -48,7 +48,6 @@ class GoalModalView: UIView {
         button.titleLabel?.font = .caption1Bold
         button.titleLabel?.textAlignment = .left
         button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
-        button.addTarget(GoalModalView.self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -66,7 +65,6 @@ class GoalModalView: UIView {
         button.titleLabel?.font = .caption1Bold
         button.titleLabel?.textAlignment = .left
         button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
-        button.addTarget(GoalModalView.self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -84,9 +82,6 @@ class GoalModalView: UIView {
             return scrollView
         }()
     
-    @objc func buttonTapped(_ sender: UIButton!) {
-        print("Button clicked")
-    }
     
     func configureStackView() {
         
