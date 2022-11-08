@@ -21,13 +21,14 @@ class GoalModalViewController: UIViewController {
         
         goalModalView.inflationButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
+        self.hideKeyboardWhenTappedAround()
+        
     }
     
     @objc func buttonTapped(_ sender: UIButton!) {
         print("Button clicked")
     }
 }
-
 
 
 
