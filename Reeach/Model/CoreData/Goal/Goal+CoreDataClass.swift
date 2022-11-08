@@ -40,11 +40,11 @@ public class Goal: Category {
         let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)
         let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
         
-        return targetAmount * pow((1+inflationRate), Double(dd))
+        return CurrencyHelper.roundUp(targetAmount * pow((1+inflationRate), Double(dd)))
     }
     
     func futureValue(from month: Date) -> Double {
-        valueAfterInflation(from: month) - initialSaving(before: month)
+        return valueAfterInflation(from: month) - initialSaving(before: month)
     }
     
     func expectedSaving(of budget: Budget) -> Double? {
@@ -52,7 +52,7 @@ public class Goal: Category {
         else { return nil }
         
         let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
-        return budget.monthlyAllocation * Double(dd)
+        return CurrencyHelper.roundUp(budget.monthlyAllocation * Double(dd))
     }
     
     func targetAmount(of budget: Budget) -> Double? {
@@ -67,7 +67,7 @@ public class Goal: Category {
             let month = budget.period ?? Date()
             let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
             
-            return (expectedSaving(of: budget) ?? 0 + initialSaving(before: month)) * pow((1+inflationRate), Double(-dd))
+            return CurrencyHelper.roundUp((expectedSaving(of: budget) ?? 0 + initialSaving(before: month)) * pow((1+inflationRate), Double(-dd)))
         }
     }
     
@@ -88,11 +88,21 @@ public class Goal: Category {
         else {
             let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
             
-            return (remaining(of: budget) ?? 0) / Double (dd)
+            return CurrencyHelper.roundUp((remaining(of: budget) ?? 0) / Double (dd))
         }
     }
     
-    func adjustedDeadline(of budget: Budget) -> Date? {
+    func recommendedMonthlyAllocation(of budget: Budget) -> Double? {
+        if isAchievable(of: budget) {
+            return budget.monthlyAllocation
+        }
+        else {
+            let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
+            return CurrencyHelper.roundUp(futureValue(from: budget.period ?? Date()) / Double (dd))
+        }
+    }
+    
+    func recommendedDeadline(of budget: Budget) -> Date? {
         // TODO: Change this one with Lambert's Function
         
         let expectedSaving = expectedSaving(of: budget) ?? 0
