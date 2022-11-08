@@ -4,7 +4,6 @@
 //
 //  Created by Balqis on 04/10/22.
 //
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -57,12 +56,11 @@ extension ViewController {
     
     func setupInflationData() {
 //        if shouldGetNewRate() {
-            print("Get current inflation rate")
-            let networkManager = NetworkManager()
-            networkManager.networkDelegate = self
-            networkManager.createRequest(with: inflationEndPoint)
-            return
+        print("Get current inflation rate")
+        let networkManager = NetworkManager()
+        networkManager.networkDelegate = self
+        networkManager.createRequest(with: inflationEndPoint)
+        return
 //        }
     }
 }
-
