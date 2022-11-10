@@ -109,6 +109,7 @@ class MonthlyPlanningView: UIView {
     
     lazy var createMonthlyPlanButton: Button = {
         let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Buat Monthly Planner")
+        button.addTarget(self, action: #selector(createMonthlyPlan), for: .touchUpInside)
         
         return button
     }()
@@ -220,5 +221,9 @@ class MonthlyPlanningView: UIView {
         default:
             print("Wtf u want?")
         }
+    }
+    
+    @objc func createMonthlyPlan() {
+        print(#function)
     }
 }
