@@ -8,14 +8,76 @@
 import UIKit
 
 class MonthlyPlanningView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    // For demo purpose, probably will be deleted
+    enum Month: CaseIterable {
+        case Januari, Feburari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember
+        
+        mutating func next() {
+            let allCases = type(of: self).allCases
+            self = allCases[((allCases.firstIndex(of: self)! + 1) < 0 ? 0 : (allCases.firstIndex(of: self)! + 1)) % allCases.count]
+        }
+        
+        mutating func prev() {
+            let allCases = type(of: self).allCases
+            self = allCases[((allCases.firstIndex(of: self)! - 1) < 0 ? 11 : (allCases.firstIndex(of: self)! - 1)) % allCases.count]
+        }
     }
-    */
+    
+    var currentMonth: Month = .November
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Monthly Planner"
+        label.font = .largeTitle
+        label.textColor = UIColor(named: "whiteSmoke")
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    // TODO: optimize backMonthButton & nextMonthButton
+    lazy var backMonthButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("<", for: .normal)
+        button.setTitleColor(UIColor(named: "primary6"), for: .normal)
+        button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var selectedMonthLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\(currentMonth.self) 2022"
+        label.textColor = UIColor(named: "primary6")
+        label.font = .headline
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    lazy var nextMonthButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(">", for: .normal)
+        button.setTitleColor(UIColor(named: "primary6"), for: .normal)
+        button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var monthSelectorStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        
+        stack.addArrangedSubview(backMonthButton)
+        stack.setCustomSpacing(12, after: backMonthButton)
+        stack.addArrangedSubview(selectedMonthLabel)
+        stack.setCustomSpacing(12, after: selectedMonthLabel)
+        stack.addArrangedSubview(nextMonthButton)
+        
+        return stack
+    }()
     
     lazy var noPlanImage: UIImageView = {
         let imageView = UIImageView()
@@ -79,16 +141,18 @@ class MonthlyPlanningView: UIView {
     
     lazy var tipView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor(named: "neutral6") //TODO: Change background color to conform HiFi
+        view.layer.cornerRadius = 16
         
         let label = UILabel()
         label.text = "Wah, kamu belum buat Monthly Planner nih. Yuk buat sekarang!"
         label.font = .headline
         label.textColor = UIColor(named: "black13")
-        label.numberOfLines = 2
+        label.numberOfLines = 5
+        label.textAlignment = .center
         
         view.addSubview(label)
-        label.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        label.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
         return view
     }()
@@ -109,17 +173,29 @@ class MonthlyPlanningView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView.roundCorners([.topLeft, .topRight], radius: 28)
+    }
+    
     func setupView() {
         self.backgroundColor = UIColor(named: "secondary6")
         
         scrollView.addSubview(noPlanStack)
-//        contentView.addSubview(tipView)
         contentView.addSubview(scrollView)
         
+        self.addSubview(titleLabel)
+        self.addSubview(monthSelectorStack)
         self.addSubview(contentView)
+        self.addSubview(tipView)
         
-//        tipView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.topAnchor, right: contentView.rightAnchor)
-//
+        titleLabel.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 16)
+        monthSelectorStack.anchor(top: titleLabel.bottomAnchor)
+        monthSelectorStack.centerX(inView: self)
+        
+        tipView.anchor(top: contentView.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: -32, paddingLeft: 16, paddingRight: 16)
+        
         noPlanStack.center(inView: scrollView)
         NSLayoutConstraint.activate([
             noPlanStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32)
@@ -131,9 +207,18 @@ class MonthlyPlanningView: UIView {
         
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    @objc func setMonth(_ sender: UIButton) {
+        print(sender.currentTitle!)
         
-        contentView.roundCorners([.topLeft, .topRight], radius: 28)
+        switch sender.currentTitle! {
+        case "<":
+            currentMonth.prev()
+            selectedMonthLabel.text = "\(currentMonth) 2022"
+        case ">":
+            currentMonth.next()
+            selectedMonthLabel.text = "\(currentMonth) 2022"
+        default:
+            print("Wtf u want?")
+        }
     }
 }
