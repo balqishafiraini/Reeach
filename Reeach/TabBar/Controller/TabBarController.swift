@@ -16,6 +16,7 @@ class TabBarController: UITabBarController {
         let goalsVC = GoalsVC()
         let cashflowVC = CashflowVC()
         let plannerVC = PlannerVC()
+        
         setViewControllers([dashboardVC, goalsVC, cashflowVC, plannerVC], animated: false)
         
         dashboardVC.title = "Dashboard"
@@ -30,12 +31,27 @@ class TabBarController: UITabBarController {
         for x in 0...3 {
             items[x].image = UIImage(systemName: images[x])
         }
+        
         tabBar.tintColor = .ghostWhite
         tabBar.backgroundColor = .royalHunterBlue
         tabBar.barTintColor = .ghostWhite
         
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        for tabbarItem in (self.tabBar.items)!{
+            let viewTabBar = tabbarItem.value(forKey: "view") as! UIView
+            viewTabBar.frame.origin.y = -20
+            
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tabBar.frame.size.height = UIScreen.main.bounds.height*0.135
+        tabBar.frame.origin.y = view.frame.height - 85
+    }
 }
 
 class DashboardVC: UIViewController {
