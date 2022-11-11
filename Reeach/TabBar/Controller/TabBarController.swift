@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         
         let dashboardVC = DashboardVC()
         let goalsVC = GoalsVC()
-        let cashflowVC = CashflowVC()
+        let cashflowVC = TrackerEmptyStateViewController()
         let plannerVC = PlannerVC()
         
         setViewControllers([dashboardVC, goalsVC, cashflowVC, plannerVC], animated: false)
