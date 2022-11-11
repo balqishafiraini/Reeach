@@ -20,4 +20,13 @@ class CurrencyHelper {
         
         return "Rp" + numberFormatter.string(from: NSNumber(value: number))!
     }
+    
+    static func roundUp(_ double: Double) -> Double {
+        var result = double
+        result *= 100
+        result.round(.up)
+        result /= 100.00
+        
+        return result
+    }
 }
