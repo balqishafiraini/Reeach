@@ -19,7 +19,7 @@ class TrackerEmptyStateView: UIView {
 
     let image: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "ComingSoon_Cashflow")
+        img.image = UIImage(named: "IllustrationCashflow")
         return img
     }()
     
