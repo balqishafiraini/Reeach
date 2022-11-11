@@ -18,19 +18,6 @@ public class Goal: Category {
         return futureValue(from: budget.period ?? Date()) <= expectedSaving(of: budget) ?? 0
     }
     
-    func isActive(on month: Date) -> Bool {
-        let month = DateFormatHelper.getStartDateOfMonth(of: month)
-        let budgets = budgets?.allObjects as! [Budget]
-        
-        for budget in budgets {
-            let budgetMonth = budget.period ?? Date()
-            if budgetMonth == month {
-                return true
-            }
-        }
-        return false
-    }
-    
     func initialSaving(before month: Date) -> Double {
         var result = 0.0
         let month = DateFormatHelper.getStartDateOfMonth(of: month)
@@ -53,11 +40,11 @@ public class Goal: Category {
         let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)
         let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
         
-        return targetAmount * pow((1+inflationRate), Double(dd))
+        return CurrencyHelper.roundUp(targetAmount * pow((1+inflationRate), Double(dd)))
     }
     
     func futureValue(from month: Date) -> Double {
-        valueAfterInflation(from: month) - initialSaving(before: month)
+        return valueAfterInflation(from: month) - initialSaving(before: month)
     }
     
     func expectedSaving(of budget: Budget) -> Double? {
@@ -65,7 +52,7 @@ public class Goal: Category {
         else { return nil }
         
         let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
-        return budget.monthlyAllocation * Double(dd)
+        return CurrencyHelper.roundUp(budget.monthlyAllocation * Double(dd))
     }
     
     func targetAmount(of budget: Budget) -> Double? {
@@ -80,7 +67,7 @@ public class Goal: Category {
             let month = budget.period ?? Date()
             let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
             
-            return (expectedSaving(of: budget) ?? 0 + initialSaving(before: month)) * pow((1+inflationRate), Double(-dd))
+            return CurrencyHelper.roundUp((expectedSaving(of: budget) ?? 0 + initialSaving(before: month)) * pow((1+inflationRate), Double(-dd)))
         }
     }
     
@@ -101,11 +88,21 @@ public class Goal: Category {
         else {
             let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
             
-            return (remaining(of: budget) ?? 0) / Double (dd)
+            return CurrencyHelper.roundUp((remaining(of: budget) ?? 0) / Double (dd))
         }
     }
     
-    func adjustedDeadline(of budget: Budget) -> Date? {
+    func recommendedMonthlyAllocation(of budget: Budget) -> Double? {
+        if isAchievable(of: budget) {
+            return budget.monthlyAllocation
+        }
+        else {
+            let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
+            return CurrencyHelper.roundUp(futureValue(from: budget.period ?? Date()) / Double (dd))
+        }
+    }
+    
+    func recommendedDeadline(of budget: Budget) -> Date? {
         // TODO: Change this one with Lambert's Function
         
         let expectedSaving = expectedSaving(of: budget) ?? 0
@@ -124,4 +121,33 @@ public class Goal: Category {
         }
         return nil
     }
+    
+    static let timeTermDictionary: [String: String] = [
+        "Short"     : "< 3 tahun",
+        "Medium"    : "3 tahun - 5 tahun",
+        "Long"      : "> 5 tahun"
+    ]
+}
+
+extension Goal {
+    class Recommendation {
+        var icon: String
+        var name: String
+        var term: String
+        var description: String
+        
+        init(icon: String, name: String, term: String, description: String) {
+            self.icon = icon
+            self.name = name
+            self.term = term
+            self.description = description
+        }
+    }
+    
+    static let goalRecommendation: [Recommendation] = [
+        Recommendation(icon: "💰", name: "Emergency Fund", term: "Short", description: "Simpanan uang yang bisa kamu pakai ketika kamu tidak punya pemasukan. "),
+        Recommendation(icon: "💵", name: "Bayar Utang", term: "Medium", description: "Jangan lupa bayar utang-utangmu, nanti gawat bunganya numpuk, loh."),
+        Recommendation(icon: "⛑", name: "Asuransi", term: "Medium", description: "Cicil asuransi untuk jaga-jaga hal yang gak terduga."),
+        Recommendation(icon: "🧓", name: "Dana Pensiun", term: "Long", description: "Yuk, siapkan dana pensiunmu. Atau malah retiring early? Leggoooo!")
+    ]
 }

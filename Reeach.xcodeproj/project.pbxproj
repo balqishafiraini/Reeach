@@ -13,6 +13,19 @@
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
 		3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */; };
 		3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */; };
+		3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */; };
+		3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D7291867420065C01E /* TermPickerViewController.swift */; };
+		3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D92918676F0065C01E /* TermPickerView.swift */; };
+		3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197DB291867AB0065C01E /* TermPickerViewController+Delegate.swift */; };
+		3B8197E129187A7A0065C01E /* SelectGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197E029187A7A0065C01E /* SelectGoalView.swift */; };
+		3B8197E329187A890065C01E /* SelectGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197E229187A890065C01E /* SelectGoalViewController.swift */; };
+		3B8197E529187A990065C01E /* SelectGoalViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197E429187A990065C01E /* SelectGoalViewController+Delegate.swift */; };
+		3B8197EA2918F88E0065C01E /* GoalRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197E92918F88E0065C01E /* GoalRecommendationView.swift */; };
+		3B8197EC2918F9C40065C01E /* GoalRecommendationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197EB2918F9C40065C01E /* GoalRecommendationViewController.swift */; };
+		3B8197EE2918F9D20065C01E /* GoalRecommendationViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197ED2918F9D20065C01E /* GoalRecommendationViewController+Delegate.swift */; };
+		3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197EF2919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift */; };
+		3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197F42919CC070065C01E /* BudgetingTechniqueExplanationView.swift */; };
+		3B8197F72919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197F62919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift */; };
 		3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */; };
 		3BAA29CF2907790E008D3C5B /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B028FFC0BC00923D57 /* Goal+CoreDataClass.swift */; };
 		3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */; };
@@ -28,7 +41,8 @@
 		3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF30422911BB3B00F8373A /* InflationDetailView.swift */; };
 		3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF30452911BB7A00F8373A /* NavigationBarDelegate.swift */; };
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
-		CA21B0C028EDCDB700E59539 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* Components.swift */; };
+		CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BC28EDCD8400E59539 /* Controller.swift */; };
+		CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */; };
 		CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4B928F85F28002663AE /* NetworkManager.swift */; };
 		CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4BA28F85F28002663AE /* NetworkService.swift */; };
 		CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4C228F86093002663AE /* InflationEndPoint.swift */; };
@@ -100,6 +114,19 @@
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
 		3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Goal.swift"; sourceTree = "<group>"; };
 		3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Transaction.swift"; sourceTree = "<group>"; };
+		3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B8197D7291867420065C01E /* TermPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerViewController.swift; sourceTree = "<group>"; };
+		3B8197D92918676F0065C01E /* TermPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerView.swift; sourceTree = "<group>"; };
+		3B8197DB291867AB0065C01E /* TermPickerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TermPickerViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B8197E029187A7A0065C01E /* SelectGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGoalView.swift; sourceTree = "<group>"; };
+		3B8197E229187A890065C01E /* SelectGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGoalViewController.swift; sourceTree = "<group>"; };
+		3B8197E429187A990065C01E /* SelectGoalViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectGoalViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B8197E92918F88E0065C01E /* GoalRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRecommendationView.swift; sourceTree = "<group>"; };
+		3B8197EB2918F9C40065C01E /* GoalRecommendationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRecommendationViewController.swift; sourceTree = "<group>"; };
+		3B8197ED2918F9D20065C01E /* GoalRecommendationViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalRecommendationViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B8197EF2919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderGoalDetailCollectionReusableView.swift; sourceTree = "<group>"; };
+		3B8197F42919CC070065C01E /* BudgetingTechniqueExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingTechniqueExplanationView.swift; sourceTree = "<group>"; };
+		3B8197F62919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingTechniqueExplanationViewController.swift; sourceTree = "<group>"; };
 		3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleToStringHelper.swift; sourceTree = "<group>"; };
 		3BAA29D72907936D008D3C5B /* DatabaseHelper+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Category.swift"; sourceTree = "<group>"; };
 		3BBF303E2911BAE700F8373A /* InflationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflationDetailViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +142,8 @@
 		3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CA21B0BF28EDCDB700E59539 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		CA21B0BC28EDCD8400E59539 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA2AB4B928F85F28002663AE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA2AB4BA28F85F28002663AE /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CA2AB4C228F86093002663AE /* InflationEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflationEndPoint.swift; sourceTree = "<group>"; };
@@ -245,6 +273,119 @@
 			path = Transaction;
 			sourceTree = "<group>";
 		};
+		3B8197CF291862B60065C01E /* TermPicker */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197D0291862C80065C01E /* Controller */,
+				3B8197D1291862CE0065C01E /* View */,
+			);
+			path = TermPicker;
+			sourceTree = "<group>";
+		};
+		3B8197D0291862C80065C01E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197D7291867420065C01E /* TermPickerViewController.swift */,
+				3B8197DB291867AB0065C01E /* TermPickerViewController+Delegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B8197D1291862CE0065C01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197D92918676F0065C01E /* TermPickerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B8197D2291862EE0065C01E /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */,
+				3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */,
+				3B8197EF2919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		3B8197DD29187A450065C01E /* SelectGoal */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197DE29187A530065C01E /* Controller */,
+				3B8197DF29187A5B0065C01E /* View */,
+			);
+			path = SelectGoal;
+			sourceTree = "<group>";
+		};
+		3B8197DE29187A530065C01E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197E229187A890065C01E /* SelectGoalViewController.swift */,
+				3B8197E429187A990065C01E /* SelectGoalViewController+Delegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B8197DF29187A5B0065C01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197E029187A7A0065C01E /* SelectGoalView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B8197E62918F85F0065C01E /* GoalRecommendation */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197E82918F8740065C01E /* Controller */,
+				3B8197E72918F86D0065C01E /* View */,
+			);
+			path = GoalRecommendation;
+			sourceTree = "<group>";
+		};
+		3B8197E72918F86D0065C01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197E92918F88E0065C01E /* GoalRecommendationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B8197E82918F8740065C01E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197EB2918F9C40065C01E /* GoalRecommendationViewController.swift */,
+				3B8197ED2918F9D20065C01E /* GoalRecommendationViewController+Delegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197F32919CBE00065C01E /* Controller */,
+				3B8197F22919CBD80065C01E /* View */,
+			);
+			path = BudgetingTechniqueExplanation;
+			sourceTree = "<group>";
+		};
+		3B8197F22919CBD80065C01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197F42919CC070065C01E /* BudgetingTechniqueExplanationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B8197F32919CBE00065C01E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197F62919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		3BBF303B2911BA9F00F8373A /* InflationDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,8 +442,8 @@
 		CA21B0BE28EDCDA600E59539 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				3B8197D2291862EE0065C01E /* CollectionViewCell */,
 				FA2E29E02903A5D90083587D /* Font */,
-				CA21B0BF28EDCDB700E59539 /* Components.swift */,
 				FA2E29DB29039A8B0083587D /* Button.swift */,
 				FA2E29DD29039AA50083587D /* TextField.swift */,
 				FA2E2A032903DBE40083587D /* Checkbox.swift */,
@@ -438,6 +579,10 @@
 			isa = PBXGroup;
 			children = (
 				FADF89EC2918C42C00E590C0 /* GoalModal */,
+				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
+				3B8197E62918F85F0065C01E /* GoalRecommendation */,
+				3B8197DD29187A450065C01E /* SelectGoal */,
+				3B8197CF291862B60065C01E /* TermPicker */,
 				CA4D14372910069F00C35094 /* Page */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CA2AB4B828F85F28002663AE /* Network */,
@@ -658,6 +803,8 @@
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
 				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
 				3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */,
+				3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */,
+				3B8197E329187A890065C01E /* SelectGoalViewController.swift in Sources */,
 				3BAA29D32907790E008D3C5B /* Budget+CoreDataClass.swift in Sources */,
 				3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */,
 				3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */,
@@ -669,16 +816,22 @@
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
 				CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */,
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
+				3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */,
+				FA9B12C528EBCF44001203F5 /* ViewController.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
 				3BBF30412911BB1200F8373A /* InflationDetailViewController+Delegate.swift in Sources */,
 				FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */,
+				3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */,
+				3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */,
 				FA2E2A002903A95C0083587D /* UIFont+Extension.swift in Sources */,
-				CA21B0C028EDCDB700E59539 /* Components.swift in Sources */,
+				CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */,
 				CA4D14442910069F00C35094 /* AddGoal.swift in Sources */,
 				3BAA29D82907936D008D3C5B /* DatabaseHelper+Category.swift in Sources */,
 				3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */,
+				3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */,
 				FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */,
 				FA2E2A042903DBE40083587D /* Checkbox.swift in Sources */,
+				3B8197E529187A990065C01E /* SelectGoalViewController+Delegate.swift in Sources */,
 				3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */,
 				CA4D14452910069F00C35094 /* AddIncome.swift in Sources */,
 				CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */,
@@ -692,13 +845,22 @@
 				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
 				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
 				FAA37BF0291AA19000F2C87A /* UIViewController+Extension.swift in Sources */,
+				3B8197EC2918F9C40065C01E /* GoalRecommendationViewController.swift in Sources */,
+				3B8197F72919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift in Sources */,
+				CA4D14462910069F00C35094 /* AddBudget.swift in Sources */,
+				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
+				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
+				3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */,
 				CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */,
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
 				3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */,
+				3B8197EA2918F88E0065C01E /* GoalRecommendationView.swift in Sources */,
+				3B8197EE2918F9D20065C01E /* GoalRecommendationViewController+Delegate.swift in Sources */,
 				FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */,
 				FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */,
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
+				3B8197E129187A7A0065C01E /* SelectGoalView.swift in Sources */,
 				3BBF303F2911BAE700F8373A /* InflationDetailViewController.swift in Sources */,
 				FA2E2A0829050A2A0083587D /* Card.swift in Sources */,
 				3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */,
