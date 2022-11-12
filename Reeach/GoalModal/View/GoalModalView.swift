@@ -38,7 +38,6 @@ class GoalModalView: UIView {
     
     let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
     
-    
     let recommendButton: UIButton = {
         let button = UIButton()
         button.setTitle("Bingung, guys? Lihat rekomendasinya di sini, kuy!", for: .normal)
@@ -142,12 +141,11 @@ class IconView: UIView {
     let iconLabel: UILabel = {
         
         let label = UILabel()
-        //        label.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         label.text = "Tambah icon"
         label.textAlignment = .center
         label.textColor = .royalHunterBlue
         label.font = .bodyMedium
-        label.backgroundColor = UIColor(named: "secondary2")
+        label.backgroundColor = .secondary2
         label.layer.cornerRadius = 75
         label.layer.masksToBounds = true
         return label

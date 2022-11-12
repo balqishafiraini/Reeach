@@ -68,8 +68,8 @@ class TextField: UIView {
     private func styleTF() {
         textField.font = .bodyMedium
         textField.layer.cornerRadius = 8
-        textField.backgroundColor = UIColor(named: "neutral4")
-        textField.textColor = UIColor.darkSlateGrey
+        textField.backgroundColor = .black4
+        textField.textColor = .darkSlateGrey
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
     }
