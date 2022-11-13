@@ -38,6 +38,7 @@ class SetupPageViewController: UIViewController {
         contentView.bottomView.setButtonTitle(progressIndex: currentProgressIndex)
         contentView.setupContentView()
         contentView.progressHeader.progressBar.setProgress(currentProgress, animated: true)
+        contentView.progressHeader.updateSteps(currentIndex: currentProgressIndex)
     }
 
 }
