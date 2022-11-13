@@ -41,6 +41,7 @@
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
 		CA91B8092918A3C700627257 /* MultipleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91B8082918A3C700627257 /* MultipleProgressBar.swift */; };
+		CAEDFA852921896500974168 /* ProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA842921896500974168 /* ProgressSection.swift */; };
 		CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA792912E1DB00172D04 /* ViewController.swift */; };
 		CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA7B2912E2B700172D04 /* SetupPageView.swift */; };
 		FA2E29DC29039A8B0083587D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E29DB29039A8B0083587D /* Button.swift */; };
@@ -126,6 +127,7 @@
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
 		CA91B8082918A3C700627257 /* MultipleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleProgressBar.swift; sourceTree = "<group>"; };
+		CAEDFA842921896500974168 /* ProgressSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSection.swift; sourceTree = "<group>"; };
 		CAFADA792912E1DB00172D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CAFADA7B2912E2B700172D04 /* SetupPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPageView.swift; sourceTree = "<group>"; };
 		FA2E29DA29039A470083587D /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,7 +352,7 @@
 		CA4D14392910069F00C35094 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				CA4D143A2910069F00C35094 /* SetupProgressHeader.swift */,
+				CAEDFA832921894F00974168 /* SetupProgressHeader */,
 				CA4D143B2910069F00C35094 /* AddGoal.swift */,
 				CA4D143C2910069F00C35094 /* AddIncome.swift */,
 				CA4D143D2910069F00C35094 /* AddBudget.swift */,
@@ -389,6 +391,15 @@
 				CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		CAEDFA832921894F00974168 /* SetupProgressHeader */ = {
+			isa = PBXGroup;
+			children = (
+				CA4D143A2910069F00C35094 /* SetupProgressHeader.swift */,
+				CAEDFA842921896500974168 /* ProgressSection.swift */,
+			);
+			path = SetupProgressHeader;
 			sourceTree = "<group>";
 		};
 		FA2E29E02903A5D90083587D /* Font */ = {
@@ -664,6 +675,7 @@
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
 				3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */,
+				CAEDFA852921896500974168 /* ProgressSection.swift in Sources */,
 				FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */,
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
 				3BBF303F2911BAE700F8373A /* InflationDetailViewController.swift in Sources */,
