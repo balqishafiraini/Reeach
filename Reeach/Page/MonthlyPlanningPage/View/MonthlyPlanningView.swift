@@ -142,7 +142,7 @@ class MonthlyPlanningView: UIView {
     
     lazy var tipView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "neutral6") //TODO: Change background color to conform HiFi
+        view.backgroundColor = UIColor(named: "secondary1") //TODO: Change background color to conform HiFi
         view.layer.cornerRadius = 16
         
         let label = UILabel()
