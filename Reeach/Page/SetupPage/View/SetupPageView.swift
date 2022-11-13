@@ -49,6 +49,8 @@ class SetupPageView: UIView {
         
         bottomView.delegate = viewController
 
+        goalView.delegate = viewController
+        
         incomeView.delegate = viewController
 
         budgetView.delegate = viewController
