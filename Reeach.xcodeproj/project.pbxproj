@@ -52,12 +52,9 @@
 		CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */; };
 		CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */; };
 		CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */; };
-		CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4B928F85F28002663AE /* NetworkManager.swift */; };
-		CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4BA28F85F28002663AE /* NetworkService.swift */; };
 		CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4C228F86093002663AE /* InflationEndPoint.swift */; };
 		CA4D14442910069F00C35094 /* AddGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143B2910069F00C35094 /* AddGoal.swift */; };
 		CA4D14452910069F00C35094 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143C2910069F00C35094 /* AddIncome.swift */; };
-		CA4D14462910069F00C35094 /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143D2910069F00C35094 /* AddBudget.swift */; };
 		CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143E2910069F00C35094 /* SetupBottomView.swift */; };
 		CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D14422910069F00C35094 /* SetupPageViewController.swift */; };
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
@@ -65,6 +62,9 @@
 		CA91B837291969FF00627257 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91B836291969FF00627257 /* BudgetView.swift */; };
 		CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA872922055400974168 /* SetupProgressHeader.swift */; };
 		CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA882922055400974168 /* ProgressSection.swift */; };
+		CAEDFA8B29220F2A00974168 /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143D2910069F00C35094 /* AddBudget.swift */; };
+		CAEDFA8C29220F6700974168 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4B928F85F28002663AE /* NetworkManager.swift */; };
+		CAEDFA8D29220F6700974168 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4BA28F85F28002663AE /* NetworkService.swift */; };
 		CAEFBE46291D883E0037F1AE /* GoalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEFBE45291D883E0037F1AE /* GoalItem.swift */; };
 		CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA792912E1DB00172D04 /* ViewController.swift */; };
 		CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA7B2912E2B700172D04 /* SetupPageView.swift */; };
@@ -1004,6 +1004,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAEDFA8C29220F6700974168 /* NetworkManager.swift in Sources */,
+				CAEDFA8D29220F6700974168 /* NetworkService.swift in Sources */,
+				CAEDFA8B29220F2A00974168 /* AddBudget.swift in Sources */,
 				3BAA29CF2907790E008D3C5B /* Goal+CoreDataClass.swift in Sources */,
 				CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */,
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
@@ -1056,16 +1059,10 @@
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
 				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,
 				FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */,
-				CA4D14462910069F00C35094 /* AddBudget.swift in Sources */,
 				CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */,
-				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
-				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
 				FAA37BF0291AA19000F2C87A /* UIViewController+Extension.swift in Sources */,
 				3B8197EC2918F9C40065C01E /* GoalRecommendationViewController.swift in Sources */,
 				3B8197F72919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift in Sources */,
-				CA4D14462910069F00C35094 /* AddBudget.swift in Sources */,
-				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
-				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
 				CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */,
 				3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */,
 				CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */,
@@ -1183,7 +1180,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1237,7 +1234,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
