@@ -26,21 +26,38 @@ class DateFormatHelper {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH"
         let hour = dateFormatter.string(from: date)
-        if hour <= "06" {
-            return "Night"
+        if hour < "05" {
+            return "Malam"
         }
-        else if hour <= "12" {
-            return "Morning"
+        else if hour < "11" {
+            return "Pagi"
         }
-        else if hour <= "18" {
-            return "Afternoon"
+        else if hour < "16" {
+            return "Siang"
         }
-        else if hour <= "22" {
-            return "Evening"
+        else if hour < "19" {
+            return "Sore"
         }
         else {
-            return "Night"
+            return "Malam"
         }
+    }
+    
+    static func getGreeting(from date: Date) -> String {
+        let partOfDate = getPartOfDayString(from: date)
+        if partOfDate == "Pagi" {
+            return "Morning, Sunshine!"
+        }
+        else if partOfDate == "Siang" {
+            return "Good afternoon! :)"
+        }
+        else if partOfDate == "Sore" {
+            return "Sore, bestie! :D"
+        }
+        else if partOfDate == "Malam" {
+            return "Belum bobok?"
+        }
+        return ""
     }
     
     static func getHHmmss(from totalSecond: Int) -> String {
@@ -90,6 +107,18 @@ class DateFormatHelper {
     static func getDayAndMonthString(from date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd"
+        return dateFormatter.string(from:date)
+    }
+    
+    static func getShortMonthAndYearString(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/yyyy"
+        return dateFormatter.string(from:date)
+    }
+    
+    static func getMonthAndYearString(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
         return dateFormatter.string(from:date)
     }
     

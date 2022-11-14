@@ -85,15 +85,15 @@ class Button: UIButton {
     // background-foreground
     private func handleForegroundButton() {
         switch foreground {
-        case .primary:
-            setTitleColor(UIColor.darkSlateGrey, for: .normal)
-            titleLabel?.font = .headline
-        case .secondary:
-            setTitleColor(UIColor(named: "primary7"), for: .normal)
-            titleLabel?.font = .headline
-        case .destructive:
-            setTitleColor(UIColor.ghostWhite, for: .normal)
-            titleLabel?.font = .headline
+            case .primary:
+                setTitleColor(UIColor.darkSlateGrey, for: .normal)
+                titleLabel?.font = .headline
+            case .secondary:
+                setTitleColor(UIColor.primary7, for: .normal)
+                titleLabel?.font = .headline
+            case .destructive:
+                setTitleColor(UIColor.ghostWhite, for: .normal)
+                titleLabel?.font = .headline
         }
     }
     
