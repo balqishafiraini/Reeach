@@ -8,10 +8,14 @@
 import UIKit
 
 class BudgetWantsModalViewController: UIViewController {
+    
+    let budgetWantssModalView = BudgetWantsModalView()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        budgetWantssModalView.configureStackView()
+        view = budgetWantssModalView
     }
 
 }

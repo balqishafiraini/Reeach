@@ -20,7 +20,7 @@ class BudgetNeedsModalView: UIView {
     
     let goalAllocationTitle: UILabel = {
         let label = UILabel()
-        label.text = "Alokasi Goal"
+        label.text = "Kebutuhan Pokok"
         label.textAlignment = .center
         label.font = .bodyBold
         label.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
@@ -30,12 +30,11 @@ class BudgetNeedsModalView: UIView {
     
     let iconWithoutEdit = IconWithoutEditView()
     
-    let category = TextField(frame: .zero, title: "Kategori", style: .template, icon: "greaterthan")
+    let category = TextField(frame: .zero, title: "Kategori", style: .template, icon: UIImage(systemName: "greaterthan"))
     
     let monthlyAllocation = TextField(frame: .zero, title: "Alokasi Bulanan", style: .template, prefix: "Rp")
     
     let saveButton = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Simpan")
-
 
     
     //scrollView
@@ -63,8 +62,6 @@ class BudgetNeedsModalView: UIView {
         vstack.axis = .vertical
         vstack.distribution = .fill
         vstack.spacing = 16
-        vstack.setCustomSpacing(12, after: target)
-        vstack.setCustomSpacing(12, after: monthlySaving)
 
         
         //autolayout
@@ -86,7 +83,7 @@ class BudgetNeedsModalView: UIView {
         iconWithoutEdit.setUp()
         iconWithoutEdit.heightAnchor.constraint(equalTo: iconWithoutEdit.iconLabel.heightAnchor).isActive = true
         
-        goalAllocationTitle.anchor(right: vstack.rightAnchor, paddingRight: UIScreen.main.bounds.width*0.325)
+        goalAllocationTitle.anchor(right: vstack.rightAnchor, paddingRight: UIScreen.main.bounds.width*0.25)
         
     }
 }

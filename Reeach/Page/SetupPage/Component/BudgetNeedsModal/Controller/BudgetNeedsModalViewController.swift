@@ -13,9 +13,9 @@ class BudgetNeedsModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         budgetNeedsModalView.configureStackView()
         view = budgetNeedsModalView
     
     }
-
 }
