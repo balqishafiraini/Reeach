@@ -33,6 +33,19 @@ extension DatabaseHelper {
         }
     }
     
+    func getBudgets(on month: Date, term: String) -> [Budget] {
+        let date = DateFormatHelper.getStartDateOfMonth(of: month)
+        do {
+            let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(on: date, with: term)
+            return try context.fetch(fetchRequest)
+        }
+        catch let error {
+            let nsError = error as NSError
+            print("Unresolved error \(nsError), \(nsError.userInfo), \(nsError.localizedDescription)")
+            return []
+        }
+    }
+    
     func getBudgets(of category: Category) -> [Budget] {
         do {
             let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(of: category.name ?? "")

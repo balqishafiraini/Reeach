@@ -42,7 +42,15 @@ extension Budget {
         fetchRequest.sortDescriptors = sortDescriptors
         return fetchRequest
     }
-
+    
+    @nonobjc public class func fetchRequest(on month: Date, with term: String) -> NSFetchRequest<Budget>
+    {
+        let fetchRequest = NSFetchRequest<Budget>(entityName: "Budget")
+        fetchRequest.predicate = NSPredicate(format: "period == %@ and category.term like [c] %@", month as NSDate, term)
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
+    }
+    
     @NSManaged public var monthlyAllocation: Double
     @NSManaged public var period: Date?
     @NSManaged public var transactions: NSSet?
