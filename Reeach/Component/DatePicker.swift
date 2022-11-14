@@ -9,8 +9,10 @@ import UIKit
 
 class DatePicker: UIView {
     
-    var datePicker: TextField = {
-        let tf = TextField(frame: .zero, style: .active)
+    lazy var datePicker: TextField = {
+        let tf = TextField(frame: .zero, style: .template, icon: UIImage(systemName: "calendar"))
+        
+//        tf.textField.inputViewController?.setEditing(false, animated: true)
         
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -22,7 +24,7 @@ class DatePicker: UIView {
         
         tf.textField.inputView = datePicker
 
-        datePicker.addTarget(DatePicker.self, action: #selector(DatePicker.openDatePicker), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(openDatePicker), for: .valueChanged)
         
         return tf
     }()
@@ -34,9 +36,9 @@ class DatePicker: UIView {
         }
      */
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, title: String) {
         super.init(frame: frame)
-        
+        setTitle(title: title)
         setupView()
     }
     
@@ -45,10 +47,26 @@ class DatePicker: UIView {
     }
     
     func setupView() {
+        addSubview(titleLabel)
         addSubview(datePicker)
         
-        datePicker.centerX(inView: self)
-        datePicker.anchor(width: UIScreen.main.bounds.width - 32)
+        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: datePicker.topAnchor, right: self.rightAnchor)
+        titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
+
+        datePicker.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+    }
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.font = .bodyBold
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    func setTitle(title: String) {
+        titleLabel.text = title
     }
     
     @objc func openDatePicker(sender: UIDatePicker) {

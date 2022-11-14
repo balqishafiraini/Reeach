@@ -20,6 +20,12 @@ extension DatabaseHelper {
         }
     }
     
+    func getAllocatedGoals(on month: Date) -> [Goal] {
+        var goals = getGoals()
+        goals.removeAll { $0.isActive(on: month) == false }
+        return goals
+    }
+    
     func getUnallocatedGoals(on month: Date) -> [Goal] {
         var goals = getGoals()
         goals.removeAll { $0.isActive(on: month) }
