@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GoalAllocationViewController: UIViewController {
+class GoalAllocationModalViewController: UIViewController {
     
     var type: String = "Needs"
     
