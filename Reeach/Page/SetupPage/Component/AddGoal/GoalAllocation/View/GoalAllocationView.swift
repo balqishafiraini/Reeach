@@ -29,6 +29,9 @@ class GoalAllocationView: UIView {
     }()
     
     
+    let iconWithoutEdit = IconWithoutEditView()
+    
+    
     let goalName = TextField(frame: .zero, title: "Judul", style: .template)
     
     let dueDate = DatePicker(frame: .zero, title: "Deadline")
@@ -58,7 +61,8 @@ class GoalAllocationView: UIView {
         label.font = .caption1Medium
         return label
     }()
-    let iconWithoutEdit = IconWithoutEditView()
+    
+    let saveButton = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Simpan")
 
 
     
@@ -83,7 +87,8 @@ class GoalAllocationView: UIView {
                                                     target,
                                                     inflationButton,
                                                     monthlySaving,
-                                                    budgetRemain]
+                                                    budgetRemain,
+                                                   saveButton]
         )
         
         vstack.frame = self.bounds
@@ -112,6 +117,8 @@ class GoalAllocationView: UIView {
         
         iconWithoutEdit.setUp()
         iconWithoutEdit.heightAnchor.constraint(equalTo: iconWithoutEdit.iconLabel.heightAnchor).isActive = true
+        
+        goalAllocationTitle.anchor(right: vstack.rightAnchor, paddingRight: UIScreen.main.bounds.width*0.325)
         
     }
 }
