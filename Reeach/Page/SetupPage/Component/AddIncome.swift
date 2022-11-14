@@ -109,6 +109,6 @@ class AddIncome: UIView {
     }
     
     @objc func prevStep() {
-        delegate?.previousProgress()
+        delegate?.previousProgress!()
     }
 }

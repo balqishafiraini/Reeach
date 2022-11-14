@@ -54,6 +54,8 @@
 		CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D14422910069F00C35094 /* SetupPageViewController.swift */; };
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
+		CA91B837291969FF00627257 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91B836291969FF00627257 /* BudgetView.swift */; };
+		CAEFBE46291D883E0037F1AE /* GoalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEFBE45291D883E0037F1AE /* GoalItem.swift */; };
 		CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA792912E1DB00172D04 /* ViewController.swift */; };
 		CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA7B2912E2B700172D04 /* SetupPageView.swift */; };
 		FA2E29DC29039A8B0083587D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E29DB29039A8B0083587D /* Button.swift */; };
@@ -158,6 +160,8 @@
 		CA4D14422910069F00C35094 /* SetupPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupPageViewController.swift; sourceTree = "<group>"; };
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
+		CA91B836291969FF00627257 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		CAEFBE45291D883E0037F1AE /* GoalItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalItem.swift; sourceTree = "<group>"; };
 		CAFADA792912E1DB00172D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CAFADA7B2912E2B700172D04 /* SetupPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPageView.swift; sourceTree = "<group>"; };
 		FA2E29DA29039A470083587D /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,10 +504,10 @@
 		CA4D14392910069F00C35094 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				CAEFBE44291D87A70037F1AE /* AddGoal */,
+				CA91B82C29194A4600627257 /* AddBudget */,
 				CA4D143A2910069F00C35094 /* SetupProgressHeader.swift */,
-				CA4D143B2910069F00C35094 /* AddGoal.swift */,
 				CA4D143C2910069F00C35094 /* AddIncome.swift */,
-				CA4D143D2910069F00C35094 /* AddBudget.swift */,
 				CA4D143E2910069F00C35094 /* SetupBottomView.swift */,
 			);
 			path = Component;
@@ -539,6 +543,24 @@
 				CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		CA91B82C29194A4600627257 /* AddBudget */ = {
+			isa = PBXGroup;
+			children = (
+				CA4D143D2910069F00C35094 /* AddBudget.swift */,
+				CA91B836291969FF00627257 /* BudgetView.swift */,
+			);
+			path = AddBudget;
+			sourceTree = "<group>";
+		};
+		CAEFBE44291D87A70037F1AE /* AddGoal */ = {
+			isa = PBXGroup;
+			children = (
+				CA4D143B2910069F00C35094 /* AddGoal.swift */,
+				CAEFBE45291D883E0037F1AE /* GoalItem.swift */,
+			);
+			path = AddGoal;
 			sourceTree = "<group>";
 		};
 		FA2E29E02903A5D90083587D /* Font */ = {
@@ -870,6 +892,7 @@
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */,
+				CA91B837291969FF00627257 /* BudgetView.swift in Sources */,
 				FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
 				CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */,
@@ -895,6 +918,7 @@
 				CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */,
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
+				CAEFBE46291D883E0037F1AE /* GoalItem.swift in Sources */,
 				CA4D14432910069F00C35094 /* SetupProgressHeader.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
