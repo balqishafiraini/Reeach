@@ -55,7 +55,7 @@ class BudgetView: UIView {
     lazy var statusLabel: UILabel = {
         let label = UILabel()
             
-        label.textColor = UIColor(named: "green7")
+        label.textColor = .accentGreen7
         label.font = .caption1Bold
         
         return label
@@ -102,12 +102,12 @@ class BudgetView: UIView {
             
             if percetage < 0.2 {
                 statusLabel.text = "Halah mana ini"
-                statusLabel.textColor = UIColor(named: "red7")
+                statusLabel.textColor = .red7
                 
 
             } else {
                 statusLabel.text = "Keren, alokasi ini sudah mencapai \(percetage * 100)%"
-                statusLabel.textColor = UIColor(named: "green7")
+                statusLabel.textColor = .accentGreen7
                 
             }
         } else {

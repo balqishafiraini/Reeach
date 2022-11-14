@@ -12,9 +12,6 @@ class GoalItem: UIView {
     
     lazy var icon: UIImageView = {
         let iv = UIImageView()
-//        iv.setDimensions(width: size, height: size)
-//        iv.backgroundColor = UIColor(named: "secondary2")
-        
         return iv
     }()
     
@@ -22,7 +19,7 @@ class GoalItem: UIView {
         let view = UIView()
         view.setDimensions(width: size, height: size)
         view.layer.cornerRadius = size / 2
-        view.backgroundColor = UIColor(named: "secondary2")
+        view.backgroundColor = .secondary2
         
         view.addSubview(icon)
         icon.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8)
@@ -33,7 +30,7 @@ class GoalItem: UIView {
     lazy var title: UILabel = {
         let label = UILabel()
         label.font = .bodyBold
-        label.textColor = UIColor(named: "secondary7")
+        label.textColor = .black13
         
         return label
     }()
@@ -41,7 +38,7 @@ class GoalItem: UIView {
     lazy var dueDate: UILabel = {
         let label = UILabel()
         label.font = .caption1Bold
-        label.textColor = UIColor(named: "secondary7")
+        label.textColor = .secondary7
         
         return label
     }()
@@ -49,7 +46,7 @@ class GoalItem: UIView {
     lazy var amount: UILabel = {
         let label = UILabel()
         label.font = .bodyMedium
-        label.textColor = UIColor(named: "neutral13")
+        label.textColor = .black13
         
         return label
     }()
@@ -79,7 +76,7 @@ class GoalItem: UIView {
     lazy var container: UIView = {
         let view = UIView()
         
-        view.backgroundColor = UIColor(named: "neutral4")
+        view.backgroundColor = .black4
         view.addSubview(iconContainer)
         view.addSubview(vStack)
         view.layer.cornerRadius = 16

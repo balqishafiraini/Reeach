@@ -16,8 +16,8 @@ class SetupProgressHeader: UIView {
     lazy var progressBar: UIProgressView = {
         var view = UIProgressView(progressViewStyle: .bar)
         
-        view.trackTintColor = UIColor(named: "neutral5")
-        view.tintColor = UIColor(named: "secondary6")
+        view.trackTintColor = .black5
+        view.tintColor = .secondary6
         
         return view
     }()

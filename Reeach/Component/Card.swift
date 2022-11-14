@@ -13,7 +13,7 @@ class Card: UIView {
     let boxView: UIView = {
        let box = UIView()
         box.layer.cornerRadius = 16
-        box.backgroundColor = UIColor(named: "secondary7")
+        box.backgroundColor = .secondary7
         return box
     }()
 }

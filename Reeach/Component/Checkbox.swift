@@ -28,7 +28,7 @@ class Checkbox: UIView {
         box.layer.borderWidth = 0.5
         box.layer.borderColor = UIColor.royalHunterBlue?.cgColor
         box.layer.cornerRadius = 12
-        box.backgroundColor = UIColor(named: "secondary1")
+        box.backgroundColor = .secondary1
         return box
     }()
     

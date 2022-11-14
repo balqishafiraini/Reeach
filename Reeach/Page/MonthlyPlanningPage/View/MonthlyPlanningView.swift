@@ -30,7 +30,7 @@ class MonthlyPlanningView: UIView {
         let label = UILabel()
         label.text = "Monthly Planner"
         label.font = .largeTitle
-        label.textColor = UIColor(named: "whiteSmoke")
+        label.textColor = .whiteSmoke
         label.textAlignment = .center
         
         return label
@@ -40,7 +40,7 @@ class MonthlyPlanningView: UIView {
     lazy var backMonthButton: UIButton = {
         let button = UIButton()
         button.setTitle("<", for: .normal)
-        button.setTitleColor(UIColor(named: "primary6"), for: .normal)
+        button.setTitleColor(.primary6, for: .normal)
         button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
         
         return button
@@ -49,7 +49,7 @@ class MonthlyPlanningView: UIView {
     lazy var selectedMonthLabel: UILabel = {
         let label = UILabel()
         label.text = "\(currentMonth.self) 2022"
-        label.textColor = UIColor(named: "primary6")
+        label.textColor = .primary6
         label.font = .headline
         label.textAlignment = .center
         
@@ -59,7 +59,7 @@ class MonthlyPlanningView: UIView {
     lazy var nextMonthButton: UIButton = {
         let button = UIButton()
         button.setTitle(">", for: .normal)
-        button.setTitleColor(UIColor(named: "primary6"), for: .normal)
+        button.setTitleColor(.primary6, for: .normal)
         button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
         
         return button
@@ -142,13 +142,13 @@ class MonthlyPlanningView: UIView {
     
     lazy var tipView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "secondary1") //TODO: Change background color to conform HiFi
+        view.backgroundColor = .secondary1 //TODO: Change background color to conform HiFi
         view.layer.cornerRadius = 16
         
         let label = UILabel()
         label.text = "Wah, kamu belum buat Monthly Planner nih. Yuk buat sekarang!"
         label.font = .headline
-        label.textColor = UIColor(named: "black13")
+        label.textColor = .black13
         label.numberOfLines = 5
         label.textAlignment = .center
         
@@ -181,7 +181,7 @@ class MonthlyPlanningView: UIView {
     }
     
     func setupView() {
-        self.backgroundColor = UIColor(named: "secondary6")
+        self.backgroundColor = .secondary6
         
         scrollView.addSubview(noPlanStack)
         contentView.addSubview(scrollView)
@@ -209,8 +209,6 @@ class MonthlyPlanningView: UIView {
     }
     
     @objc func setMonth(_ sender: UIButton) {
-        print(sender.currentTitle!)
-        
         switch sender.currentTitle! {
         case "<":
             currentMonth.prev()

@@ -12,10 +12,10 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dashboardVC = DashboardVC()
+        let dashboardVC = DashboardViewController()
         let goalsVC = GoalsVC()
         let cashflowVC = TrackerEmptyStateViewController()
-        let plannerVC = PlannerVC()
+        let plannerVC = MonthlyPlanningViewController()
         
         setViewControllers([dashboardVC, goalsVC, cashflowVC, plannerVC], animated: false)
         
@@ -32,6 +32,7 @@ class TabBarController: UITabBarController {
             items[x].image = UIImage(systemName: images[x])
         }
         
+        // TODO: iOS 14 color ga jalan        
         tabBar.tintColor = .ghostWhite
         tabBar.backgroundColor = .royalHunterBlue
         tabBar.barTintColor = .ghostWhite
@@ -54,30 +55,10 @@ class TabBarController: UITabBarController {
     }
 }
 
-class DashboardVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .red
-    }
-}
 
 class GoalsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
-    }
-}
-
-class CashflowVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemPink
-    }
-}
-
-class PlannerVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .brown
     }
 }

@@ -12,7 +12,7 @@ class ProgressSection: UIView {
     lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.font = .caption2SemiBold
-        label.textColor = UIColor(named: "black8")
+        label.textColor = .black8
         label.textAlignment = .center
         
         return label
@@ -21,7 +21,7 @@ class ProgressSection: UIView {
     lazy var numberView: UIView = {
         let view = UIView()
         view.anchor(width: 32, height: 32)
-        view.backgroundColor = UIColor(named: "neutral6")
+        view.backgroundColor = .black6
         view.addSubview(numberLabel)
         view.layer.cornerRadius = 16
         
@@ -33,7 +33,7 @@ class ProgressSection: UIView {
     lazy var progressLabel: UILabel = {
         let label = UILabel()
         label.font = .caption2SemiBold
-        label.textColor = UIColor(named: "black8")
+        label.textColor = .black8
         label.textAlignment = .center
         
         return label
@@ -47,8 +47,8 @@ class ProgressSection: UIView {
         
         if isActive! {
             self.numberLabel.textColor = .white
-            self.numberView.backgroundColor = UIColor(named: "secondary6")
-            self.progressLabel.textColor = UIColor(named: "secondary6")
+            self.numberView.backgroundColor = .secondary6
+            self.progressLabel.textColor = .secondary6
         }
         
         setupView()
@@ -84,12 +84,12 @@ class ProgressSection: UIView {
     func updateView(isActive: Bool? = false) {
         if isActive! {
             self.numberLabel.textColor = .white
-            self.numberView.backgroundColor = UIColor(named: "secondary6")
-            self.progressLabel.textColor = UIColor(named: "secondary6")
+            self.numberView.backgroundColor = .secondary6
+            self.progressLabel.textColor = .secondary6
         } else {
-            self.numberLabel.textColor = UIColor(named: "black8")
-            self.numberView.backgroundColor = UIColor(named: "neutral6")
-            self.progressLabel.textColor = UIColor(named: "black8")
+            self.numberLabel.textColor = .black8
+            self.numberView.backgroundColor = .black6
+            self.progressLabel.textColor = .black8
         }
     }
 }
