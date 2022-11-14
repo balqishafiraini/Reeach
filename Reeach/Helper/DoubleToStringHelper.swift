@@ -22,10 +22,7 @@ class DoubleToStringHelper {
     }
     
     static func roundUpToString(double: Double) -> String {
-        var result = double
-        result *= 100
-        result.round(.up)
-        result /= 100.00
+        var result = CurrencyHelper.roundUp(double)
         
         let numberFormatter = NumberFormatter()
         numberFormatter.decimalSeparator = ","
