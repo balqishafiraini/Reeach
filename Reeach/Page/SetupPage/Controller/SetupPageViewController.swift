@@ -89,9 +89,9 @@ extension SetupPageViewController: BudgetDelegate {
     func addBudget() {
         print(#function)
         
-        if let content = contentView.content as? AddBudget {
-            content.multipleProgress.add(Progress())
-        }
+//        if let content = contentView.content as? AddBudget {
+//            content.multipleProgress.add(Progress())
+//        }
     }
     
     

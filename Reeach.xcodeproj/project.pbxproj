@@ -51,12 +51,10 @@
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
 		CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */; };
 		CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */; };
-		CA21B0C028EDCDB700E59539 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* Components.swift */; };
 		CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */; };
 		CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4B928F85F28002663AE /* NetworkManager.swift */; };
 		CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4BA28F85F28002663AE /* NetworkService.swift */; };
 		CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4C228F86093002663AE /* InflationEndPoint.swift */; };
-		CA4D14432910069F00C35094 /* SetupProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143A2910069F00C35094 /* SetupProgressHeader.swift */; };
 		CA4D14442910069F00C35094 /* AddGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143B2910069F00C35094 /* AddGoal.swift */; };
 		CA4D14452910069F00C35094 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143C2910069F00C35094 /* AddIncome.swift */; };
 		CA4D14462910069F00C35094 /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143D2910069F00C35094 /* AddBudget.swift */; };
@@ -65,6 +63,8 @@
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
 		CA91B837291969FF00627257 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91B836291969FF00627257 /* BudgetView.swift */; };
+		CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA872922055400974168 /* SetupProgressHeader.swift */; };
+		CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA882922055400974168 /* ProgressSection.swift */; };
 		CAEFBE46291D883E0037F1AE /* GoalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEFBE45291D883E0037F1AE /* GoalItem.swift */; };
 		CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA792912E1DB00172D04 /* ViewController.swift */; };
 		CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA7B2912E2B700172D04 /* SetupPageView.swift */; };
@@ -97,11 +97,11 @@
 		FA9B12DB28EBCF46001203F5 /* ReeachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12DA28EBCF46001203F5 /* ReeachTests.swift */; };
 		FA9B12E528EBCF46001203F5 /* ReeachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */; };
 		FA9B12E728EBCF46001203F5 /* ReeachUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */; };
+		FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BE82918D52200F2C87A /* PaddingLabel.swift */; };
 		FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BED291A1FD300F2C87A /* TabBarController.swift */; };
+		FAA37BF0291AA19000F2C87A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */; };
 		FAA37BF9291D50D900F2C87A /* TrackerEmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BF8291D50D900F2C87A /* TrackerEmptyStateViewController.swift */; };
 		FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BFA291D50EF00F2C87A /* TrackerEmptyStateView.swift */; };
-		FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BE82918D52200F2C87A /* PaddingLabel.swift */; };
-		FAA37BF0291AA19000F2C87A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */; };
 		FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E7F2910E45A008EA682 /* GoalModalView.swift */; };
 /* End PBXBuildFile section */
 
@@ -167,12 +167,10 @@
 		3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningView.swift; sourceTree = "<group>"; };
 		CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningViewController.swift; sourceTree = "<group>"; };
-		CA21B0BF28EDCDB700E59539 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA2AB4B928F85F28002663AE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA2AB4BA28F85F28002663AE /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CA2AB4C228F86093002663AE /* InflationEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflationEndPoint.swift; sourceTree = "<group>"; };
-		CA4D143A2910069F00C35094 /* SetupProgressHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProgressHeader.swift; sourceTree = "<group>"; };
 		CA4D143B2910069F00C35094 /* AddGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGoal.swift; sourceTree = "<group>"; };
 		CA4D143C2910069F00C35094 /* AddIncome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIncome.swift; sourceTree = "<group>"; };
 		CA4D143D2910069F00C35094 /* AddBudget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBudget.swift; sourceTree = "<group>"; };
@@ -181,6 +179,8 @@
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
 		CA91B836291969FF00627257 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		CAEDFA872922055400974168 /* SetupProgressHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProgressHeader.swift; sourceTree = "<group>"; };
+		CAEDFA882922055400974168 /* ProgressSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSection.swift; sourceTree = "<group>"; };
 		CAEFBE45291D883E0037F1AE /* GoalItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalItem.swift; sourceTree = "<group>"; };
 		CAFADA792912E1DB00172D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CAFADA7B2912E2B700172D04 /* SetupPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPageView.swift; sourceTree = "<group>"; };
@@ -218,11 +218,11 @@
 		FA9B12DA28EBCF46001203F5 /* ReeachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachTests.swift; sourceTree = "<group>"; };
 		FA9B12E428EBCF46001203F5 /* ReeachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITests.swift; sourceTree = "<group>"; };
 		FA9B12E628EBCF46001203F5 /* ReeachUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReeachUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FAA37BE82918D52200F2C87A /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		FAA37BED291A1FD300F2C87A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FAA37BF8291D50D900F2C87A /* TrackerEmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerEmptyStateViewController.swift; sourceTree = "<group>"; };
 		FAA37BFA291D50EF00F2C87A /* TrackerEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerEmptyStateView.swift; sourceTree = "<group>"; };
-		FAA37BE82918D52200F2C87A /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
-		FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FABD7E7F2910E45A008EA682 /* GoalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -600,6 +600,7 @@
 		CA4D14372910069F00C35094 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				FAA37BF5291D508300F2C87A /* TrackerEmptyState */,
 				CA20EFD5291AB87900248477 /* MonthlyPlanningPage */,
 				CA4D14382910069F00C35094 /* SetupPage */,
 				3B8197FA291A597D0065C01E /* Dashboard */,
@@ -622,9 +623,10 @@
 		CA4D14392910069F00C35094 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				3BBF303B2911BA9F00F8373A /* InflationDetail */,
+				CAEDFA862922055400974168 /* SetupProgressHeader */,
 				CAEFBE44291D87A70037F1AE /* AddGoal */,
 				CA91B82C29194A4600627257 /* AddBudget */,
-				CA4D143A2910069F00C35094 /* SetupProgressHeader.swift */,
 				CA4D143C2910069F00C35094 /* AddIncome.swift */,
 				CA4D143E2910069F00C35094 /* SetupBottomView.swift */,
 			);
@@ -666,15 +668,29 @@
 		CA91B82C29194A4600627257 /* AddBudget */ = {
 			isa = PBXGroup;
 			children = (
+				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
+				3B8197DD29187A450065C01E /* SelectGoal */,
 				CA4D143D2910069F00C35094 /* AddBudget.swift */,
 				CA91B836291969FF00627257 /* BudgetView.swift */,
 			);
 			path = AddBudget;
 			sourceTree = "<group>";
 		};
+		CAEDFA862922055400974168 /* SetupProgressHeader */ = {
+			isa = PBXGroup;
+			children = (
+				CAEDFA872922055400974168 /* SetupProgressHeader.swift */,
+				CAEDFA882922055400974168 /* ProgressSection.swift */,
+			);
+			path = SetupProgressHeader;
+			sourceTree = "<group>";
+		};
 		CAEFBE44291D87A70037F1AE /* AddGoal */ = {
 			isa = PBXGroup;
 			children = (
+				3B8197CF291862B60065C01E /* TermPicker */,
+				3B8197E62918F85F0065C01E /* GoalRecommendation */,
+				FADF89EC2918C42C00E590C0 /* GoalModal */,
 				CA4D143B2910069F00C35094 /* AddGoal.swift */,
 				CAEFBE45291D883E0037F1AE /* GoalItem.swift */,
 			);
@@ -724,15 +740,8 @@
 		FA9B12BF28EBCF44001203F5 /* Reeach */ = {
 			isa = PBXGroup;
 			children = (
-				FAA37BF5291D508300F2C87A /* TrackerEmptyState */,
 				FAA37BEA291A1F9B00F2C87A /* TabBar */,
-				FADF89EC2918C42C00E590C0 /* GoalModal */,
-				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
-				3B8197E62918F85F0065C01E /* GoalRecommendation */,
-				3B8197DD29187A450065C01E /* SelectGoal */,
-				3B8197CF291862B60065C01E /* TermPicker */,
 				CA4D14372910069F00C35094 /* Page */,
-				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CA2AB4B828F85F28002663AE /* Network */,
 				CA21B0BE28EDCDA600E59539 /* Component */,
 				CA21B0B928EDCD3D00E59539 /* Model */,
@@ -799,31 +808,6 @@
 		FAA37BEC291A1FB000F2C87A /* View */ = {
 			isa = PBXGroup;
 			children = (
-      );
-			path = View;
-			sourceTree = "<group>";
-		};
-		FADF89EC2918C42C00E590C0 /* GoalModal */ = {
-			isa = PBXGroup;
-			children = (
-				FADF89ED2918C47500E590C0 /* Controller */,
-				FADF89EE2918C47B00E590C0 /* View */,
-			);
-			path = GoalModal;
-			sourceTree = "<group>";
-		};
-		FADF89ED2918C47500E590C0 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				FA428C7E2909993D0053153F /* GoalModalViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		FADF89EE2918C47B00E590C0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				FABD7E7F2910E45A008EA682 /* GoalModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -851,6 +835,31 @@
 				FAA37BF8291D50D900F2C87A /* TrackerEmptyStateViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		FADF89EC2918C42C00E590C0 /* GoalModal */ = {
+			isa = PBXGroup;
+			children = (
+				FADF89ED2918C47500E590C0 /* Controller */,
+				FADF89EE2918C47B00E590C0 /* View */,
+			);
+			path = GoalModal;
+			sourceTree = "<group>";
+		};
+		FADF89ED2918C47500E590C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA428C7E2909993D0053153F /* GoalModalViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FADF89EE2918C47B00E590C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FABD7E7F2910E45A008EA682 /* GoalModalView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1042,13 +1051,13 @@
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
 				CAEFBE46291D883E0037F1AE /* GoalItem.swift in Sources */,
-				CA4D14432910069F00C35094 /* SetupProgressHeader.swift in Sources */,
 				3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
 				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,
 				FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */,
 				CA4D14462910069F00C35094 /* AddBudget.swift in Sources */,
+				CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */,
 				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
 				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
 				FAA37BF0291AA19000F2C87A /* UIViewController+Extension.swift in Sources */,
@@ -1057,6 +1066,7 @@
 				CA4D14462910069F00C35094 /* AddBudget.swift in Sources */,
 				CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */,
 				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
+				CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */,
 				3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */,
 				CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */,
 				CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */,
