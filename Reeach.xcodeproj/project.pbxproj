@@ -41,7 +41,9 @@
 		3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF30422911BB3B00F8373A /* InflationDetailView.swift */; };
 		3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF30452911BB7A00F8373A /* NavigationBarDelegate.swift */; };
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
-		CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BC28EDCD8400E59539 /* Controller.swift */; };
+		CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */; };
+		CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */; };
+		CA21B0C028EDCDB700E59539 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* Components.swift */; };
 		CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */; };
 		CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4B928F85F28002663AE /* NetworkManager.swift */; };
 		CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4BA28F85F28002663AE /* NetworkService.swift */; };
@@ -147,7 +149,9 @@
 		3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CA21B0BC28EDCD8400E59539 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningView.swift; sourceTree = "<group>"; };
+		CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningViewController.swift; sourceTree = "<group>"; };
+		CA21B0BF28EDCDB700E59539 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA2AB4B928F85F28002663AE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA2AB4BA28F85F28002663AE /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -439,6 +443,31 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		CA20EFD5291AB87900248477 /* MonthlyPlanningPage */ = {
+			isa = PBXGroup;
+			children = (
+				CA20EFD7291AB88F00248477 /* View */,
+				CA20EFD6291AB88A00248477 /* Controller */,
+			);
+			path = MonthlyPlanningPage;
+			sourceTree = "<group>";
+		};
+		CA20EFD6291AB88A00248477 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA20EFD7291AB88F00248477 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA21B0B928EDCD3D00E59539 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +514,7 @@
 		CA4D14372910069F00C35094 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				CA20EFD5291AB87900248477 /* MonthlyPlanningPage */,
 				CA4D14382910069F00C35094 /* SetupPage */,
 				CAFADA792912E1DB00172D04 /* ViewController.swift */,
 			);
@@ -900,6 +930,7 @@
 				3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */,
 				FA9B12C528EBCF44001203F5 /* ViewController.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
+				CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */,
 				3BBF30412911BB1200F8373A /* InflationDetailViewController+Delegate.swift in Sources */,
 				FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */,
 				3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */,
@@ -935,6 +966,7 @@
 				CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */,
 				3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */,
 				CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */,
+				CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */,
 				FAA37BF9291D50D900F2C87A /* TrackerEmptyStateViewController.swift in Sources */,
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
