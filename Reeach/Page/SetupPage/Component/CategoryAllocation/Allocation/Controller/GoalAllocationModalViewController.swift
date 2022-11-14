@@ -18,7 +18,6 @@ class GoalAllocationModalViewController: UIViewController {
         super.viewDidLoad()
         goalAllocationModalView.configureStackView()
         view = goalAllocationModalView
-        title = "Kebutuhan Non-Pokok"
         self.setNavigationBar()
     }
     
