@@ -15,7 +15,7 @@ class TextField: UIView {
         
         return tf
     }()
-
+    
     enum BorderStyle {
         case template
         case active
@@ -25,10 +25,19 @@ class TextField: UIView {
     public private(set) var style: BorderStyle
 
     
-    init(frame: CGRect, title: String? = nil, style: BorderStyle) {
+    init(frame: CGRect, title: String? = nil, style: BorderStyle, prefix: String? = nil, icon: UIImage? = nil) {
         self.style = style
         super.init(frame: frame)
         setTitle(title: title ?? "")
+        
+        if let _ = prefix {
+            makePrefix(prefix: prefix!)
+        }
+        
+        if let _ = icon {
+            makeIcon(icon: icon!)
+        }
+        
         textFieldSetup()
         configure()
     }
@@ -59,8 +68,8 @@ class TextField: UIView {
     private func styleTF() {
         textField.font = .bodyMedium
         textField.layer.cornerRadius = 8
-        textField.backgroundColor = UIColor(named: "neutral4")
-        textField.textColor = UIColor.darkSlateGrey
+        textField.backgroundColor = .black4
+        textField.textColor = .darkSlateGrey
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
     }
@@ -83,9 +92,11 @@ class TextField: UIView {
         addSubview(titleLabel)
         addSubview(textField)
         
-        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: textField.topAnchor, right: self.rightAnchor)
+        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: textField.topAnchor, right: self.rightAnchor, paddingBottom: 8)
 
-        textField.anchor(top: titleLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        textField.anchor(top: titleLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 8)
+        
+//        titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         
         let height = textField.font!.pointSize * 2.3
         textField.anchor(height: height)
@@ -93,11 +104,51 @@ class TextField: UIView {
     
     private class InputTextField: UITextField {
         override func editingRect(forBounds bounds: CGRect) -> CGRect {
+            if let _ = self.leftView {
+                return bounds.insetBy(dx: 40, dy: 0)
+            }
+            
             return bounds.insetBy(dx: 20, dy: 0)
         }
         
         override func textRect(forBounds bounds: CGRect) -> CGRect {
+            if let _ = self.leftView {
+                return bounds.insetBy(dx: 40, dy: 0)
+            }
+            
             return bounds.insetBy(dx: 20, dy: 0)
         }
+    }
+    
+    func makePrefix(prefix: String){
+        let prefix: UILabel = {
+            let label = PaddingLabel()
+            label.text = prefix
+            label.font = .bodyMedium
+            label.textColor = .darkSlateGrey
+            label.paddingLeft = 12
+
+            return label
+        }()
+        
+        textField.leftView = prefix
+        textField.leftViewMode = .always
+    }
+    
+    func makeIcon(icon: UIImage) {
+        let icon: UIImageView = {
+           let iconImage = UIImageView()
+            iconImage.image = icon
+            iconImage.tintColor = .darkSlateGrey
+            return iconImage
+        }()
+        
+        let contentView = UIView()
+        contentView.addSubview(icon)
+        contentView.frame = CGRectMake(0, 0, 35, 20)
+        icon.frame = CGRectMake(0, 0, 22, 20)
+        
+        textField.rightView = contentView
+        textField.rightViewMode = .always
     }
 }

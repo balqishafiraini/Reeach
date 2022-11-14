@@ -7,11 +7,10 @@
 
 import UIKit
 
-protocol SetupDelegate: AnyObject {
-//    func updateProgress(progress: Float, progressIndex: Float)
-//    func previousProgress(progress: Float, progressIndex: Float)
-    func updateProgress()
-    func previousProgress()
+@objc protocol SetupDelegate: AnyObject {
+    @objc optional func updateProgress()
+    @objc optional func previousProgress()
+    @objc optional func addBudget(type: String, budget: Budget)
 }
 
 class SetupPageViewController: UIViewController {
@@ -21,6 +20,10 @@ class SetupPageViewController: UIViewController {
     var currentProgress: Float = 0.0
     var currentProgressIndex: Float = 0.0
     let totalProgress: Float = 2.0
+    
+    var goalBudgets: [Budget] = []
+    var needBudgets: [Budget] = []
+    var wantBudgets: [Budget] = []
     
     override func loadView() {
         super.loadView()
@@ -56,6 +59,23 @@ extension SetupPageViewController: SetupDelegate {
         currentProgressIndex -= 1.0
         currentProgress = currentProgressIndex / totalProgress
         updateView()
+    }
+    
+    func addBudget(type: String, budget: Budget) {
+        print(#function)
+        switch type {
+        case "Goal":
+//            goalBudgets.append(budget)
+            let _ = contentView.content as! AddBudget
+//            content.goalStack.setupStatusLabel(budgets: goalBudgets)
+            
+        case "Need":
+            needBudgets.append(budget)
+        case "Want":
+            wantBudgets.append(budget)
+        default:
+            print("Wtf do u want?")
+        }
     }
     
 }
