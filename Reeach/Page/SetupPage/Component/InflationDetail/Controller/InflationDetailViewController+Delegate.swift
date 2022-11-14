@@ -11,8 +11,4 @@ extension InflationDetailViewController: NavigationBarDelegate {
     func cancel() {
         navigationController?.popViewController(animated: true)
     }
-    
-    func confirm() {
-        
-    }
 }

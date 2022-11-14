@@ -13,6 +13,12 @@
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
 		3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */; };
 		3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */; };
+		3B4AE579292276FA000EA6C1 /* SelectBudgetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE578292276FA000EA6C1 /* SelectBudgetCategoryView.swift */; };
+		3B4AE57B2922770A000EA6C1 /* SelectBudgetCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE57A2922770A000EA6C1 /* SelectBudgetCategoryViewController.swift */; };
+		3B4AE57D29227739000EA6C1 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE57C29227739000EA6C1 /* AddCategoryView.swift */; };
+		3B4AE57F29227746000EA6C1 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE57E29227746000EA6C1 /* AddCategoryViewController.swift */; };
+		3B4AE58329227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE58229227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift */; };
+		3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift */; };
 		3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */; };
 		3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D7291867420065C01E /* TermPickerViewController.swift */; };
 		3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D92918676F0065C01E /* TermPickerView.swift */; };
@@ -129,6 +135,12 @@
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
 		3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Goal.swift"; sourceTree = "<group>"; };
 		3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Transaction.swift"; sourceTree = "<group>"; };
+		3B4AE578292276FA000EA6C1 /* SelectBudgetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBudgetCategoryView.swift; sourceTree = "<group>"; };
+		3B4AE57A2922770A000EA6C1 /* SelectBudgetCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBudgetCategoryViewController.swift; sourceTree = "<group>"; };
+		3B4AE57C29227739000EA6C1 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		3B4AE57E29227746000EA6C1 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		3B4AE58229227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectBudgetCategory+Delegate.swift"; sourceTree = "<group>"; };
+		3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBudgetCategoryViewDelegate.swift; sourceTree = "<group>"; };
 		3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8197D7291867420065C01E /* TermPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerViewController.swift; sourceTree = "<group>"; };
 		3B8197D92918676F0065C01E /* TermPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerView.swift; sourceTree = "<group>"; };
@@ -301,6 +313,74 @@
 				3BF624AF28FFC0BC00923D57 /* Transaction+CoreDataProperties.swift */,
 			);
 			path = Transaction;
+			sourceTree = "<group>";
+		};
+		3B4AE5712922767A000EA6C1 /* AddCategory */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE577292276DF000EA6C1 /* Controller */,
+				3B4AE576292276D7000EA6C1 /* View */,
+			);
+			path = AddCategory;
+			sourceTree = "<group>";
+		};
+		3B4AE573292276BE000EA6C1 /* SelectBudgetCategory */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE58429228FCE000EA6C1 /* Model */,
+				3B4AE575292276CD000EA6C1 /* Controller */,
+				3B4AE574292276C8000EA6C1 /* View */,
+			);
+			path = SelectBudgetCategory;
+			sourceTree = "<group>";
+		};
+		3B4AE574292276C8000EA6C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE578292276FA000EA6C1 /* SelectBudgetCategoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B4AE575292276CD000EA6C1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE57A2922770A000EA6C1 /* SelectBudgetCategoryViewController.swift */,
+				3B4AE58229227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B4AE576292276D7000EA6C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE57C29227739000EA6C1 /* AddCategoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B4AE577292276DF000EA6C1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE57E29227746000EA6C1 /* AddCategoryViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B4AE58429228FCE000EA6C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE58529228FD3000EA6C1 /* Protocol */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B4AE58529228FD3000EA6C1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		3B8197CF291862B60065C01E /* TermPicker */ = {
@@ -668,6 +748,8 @@
 		CA91B82C29194A4600627257 /* AddBudget */ = {
 			isa = PBXGroup;
 			children = (
+				3B4AE5712922767A000EA6C1 /* AddCategory */,
+				3B4AE573292276BE000EA6C1 /* SelectBudgetCategory */,
 				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
 				3B8197DD29187A450065C01E /* SelectGoal */,
 				CA4D143D2910069F00C35094 /* AddBudget.swift */,
@@ -1011,6 +1093,7 @@
 				CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */,
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
 				3B8197FE291A59D20065C01E /* DashboardViewController.swift in Sources */,
+				3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift in Sources */,
 				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
 				3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */,
 				3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */,
@@ -1024,6 +1107,7 @@
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */,
+				3B4AE57F29227746000EA6C1 /* AddCategoryViewController.swift in Sources */,
 				CA91B837291969FF00627257 /* BudgetView.swift in Sources */,
 				FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
@@ -1033,8 +1117,10 @@
 				3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
 				CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */,
+				3B4AE579292276FA000EA6C1 /* SelectBudgetCategoryView.swift in Sources */,
 				3BBF30412911BB1200F8373A /* InflationDetailViewController+Delegate.swift in Sources */,
 				FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */,
+				3B4AE57D29227739000EA6C1 /* AddCategoryView.swift in Sources */,
 				3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */,
 				3B81980E2921B6320065C01E /* Tip.swift in Sources */,
 				3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */,
@@ -1079,9 +1165,11 @@
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
 				3B8197E129187A7A0065C01E /* SelectGoalView.swift in Sources */,
 				3BBF303F2911BAE700F8373A /* InflationDetailViewController.swift in Sources */,
+				3B4AE57B2922770A000EA6C1 /* SelectBudgetCategoryViewController.swift in Sources */,
 				FA2E2A0829050A2A0083587D /* Card.swift in Sources */,
 				3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */,
 				3B819800291A59E00065C01E /* DashboardViewController+Delegate.swift in Sources */,
+				3B4AE58329227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift in Sources */,
 				FA2E29DC29039A8B0083587D /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
