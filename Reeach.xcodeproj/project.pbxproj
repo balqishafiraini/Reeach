@@ -86,6 +86,10 @@
 		FA2E2A042903DBE40083587D /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E2A032903DBE40083587D /* Checkbox.swift */; };
 		FA2E2A0829050A2A0083587D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E2A0729050A2A0083587D /* Card.swift */; };
 		FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E2A092907CFBD0083587D /* DatePicker.swift */; };
+		FA3ED39429226A0700FD4C15 /* BudgetNeedsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3ED39329226A0700FD4C15 /* BudgetNeedsModalViewController.swift */; };
+		FA3ED39629226A1100FD4C15 /* BudgetNeedsModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3ED39529226A1100FD4C15 /* BudgetNeedsModalView.swift */; };
+		FA3ED39829226A1F00FD4C15 /* BudgetWantsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3ED39729226A1F00FD4C15 /* BudgetWantsModalViewController.swift */; };
+		FA3ED39B29226A3300FD4C15 /* BudgetWantsModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3ED39A29226A3300FD4C15 /* BudgetWantsModalView.swift */; };
 		FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA428C7E2909993D0053153F /* GoalModalViewController.swift */; };
 		FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969528F2695800BF3B9F /* UIView+Extension.swift */; };
 		FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969728F2696200BF3B9F /* UIColor+Extension.swift */; };
@@ -203,6 +207,10 @@
 		FA2E2A032903DBE40083587D /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		FA2E2A0729050A2A0083587D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		FA2E2A092907CFBD0083587D /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
+		FA3ED39329226A0700FD4C15 /* BudgetNeedsModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetNeedsModalViewController.swift; sourceTree = "<group>"; };
+		FA3ED39529226A1100FD4C15 /* BudgetNeedsModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetNeedsModalView.swift; sourceTree = "<group>"; };
+		FA3ED39729226A1F00FD4C15 /* BudgetWantsModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetWantsModalViewController.swift; sourceTree = "<group>"; };
+		FA3ED39A29226A3300FD4C15 /* BudgetWantsModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetWantsModalView.swift; sourceTree = "<group>"; };
 		FA428C7E2909993D0053153F /* GoalModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalViewController.swift; sourceTree = "<group>"; };
 		FA5C969528F2695800BF3B9F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		FA5C969728F2696200BF3B9F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -613,6 +621,8 @@
 		CA4D14382910069F00C35094 /* SetupPage */ = {
 			isa = PBXGroup;
 			children = (
+				FA3ED38E292268F100FD4C15 /* BudgetsWantsModal */,
+				FA3ED38D292268DE00FD4C15 /* BudgetNeedsModal */,
 				CA4D14392910069F00C35094 /* Component */,
 				CA4D143F2910069F00C35094 /* Controller */,
 				CA4D14412910069F00C35094 /* View */,
@@ -722,6 +732,56 @@
 				FA2E29ED2903A5E80083587D /* GeneralSans-ExtralightItalic.otf */,
 			);
 			path = OTF;
+			sourceTree = "<group>";
+		};
+		FA3ED38D292268DE00FD4C15 /* BudgetNeedsModal */ = {
+			isa = PBXGroup;
+			children = (
+				FA3ED3922922692000FD4C15 /* View */,
+				FA3ED3912922691A00FD4C15 /* Controller */,
+			);
+			path = BudgetNeedsModal;
+			sourceTree = "<group>";
+		};
+		FA3ED38E292268F100FD4C15 /* BudgetsWantsModal */ = {
+			isa = PBXGroup;
+			children = (
+				FA3ED3902922691500FD4C15 /* View */,
+				FA3ED38F2922690D00FD4C15 /* Controller */,
+			);
+			path = BudgetsWantsModal;
+			sourceTree = "<group>";
+		};
+		FA3ED38F2922690D00FD4C15 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA3ED39729226A1F00FD4C15 /* BudgetWantsModalViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FA3ED3902922691500FD4C15 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA3ED39A29226A3300FD4C15 /* BudgetWantsModalView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA3ED3912922691A00FD4C15 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA3ED39329226A0700FD4C15 /* BudgetNeedsModalViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FA3ED3922922692000FD4C15 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA3ED39529226A1100FD4C15 /* BudgetNeedsModalView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FA9B12B428EBCF44001203F5 = {
@@ -1016,6 +1076,7 @@
 				3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */,
 				3B8197E329187A890065C01E /* SelectGoalViewController.swift in Sources */,
 				3BAA29D32907790E008D3C5B /* Budget+CoreDataClass.swift in Sources */,
+				FA3ED39629226A1100FD4C15 /* BudgetNeedsModalView.swift in Sources */,
 				3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */,
 				3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */,
 				3BAA29D52907790E008D3C5B /* Transaction+CoreDataClass.swift in Sources */,
@@ -1057,6 +1118,7 @@
 				3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
+				FA3ED39429226A0700FD4C15 /* BudgetNeedsModalViewController.swift in Sources */,
 				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,
 				FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */,
 				CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */,
@@ -1069,11 +1131,13 @@
 				CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */,
 				FAA37BF9291D50D900F2C87A /* TrackerEmptyStateViewController.swift in Sources */,
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
+				FA3ED39829226A1F00FD4C15 /* BudgetWantsModalViewController.swift in Sources */,
 				3B819806291B29D90065C01E /* TipCardView.swift in Sources */,
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
 				3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */,
 				3B8197EA2918F88E0065C01E /* GoalRecommendationView.swift in Sources */,
 				3B8197EE2918F9D20065C01E /* GoalRecommendationViewController+Delegate.swift in Sources */,
+				FA3ED39B29226A3300FD4C15 /* BudgetWantsModalView.swift in Sources */,
 				FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */,
 				FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */,
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
