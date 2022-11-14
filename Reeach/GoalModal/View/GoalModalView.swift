@@ -215,7 +215,7 @@ class SwitchView: UIView {
         didHaveInitSaving.anchor(top: self.topAnchor, left: self.leftAnchor)
         
         addSubview(toggleSwitch)
-        toggleSwitch.anchor(top: self.topAnchor, left: didHaveInitSaving.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 290)
+        toggleSwitch.anchor(top: self.topAnchor, left: didHaveInitSaving.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: UIScreen.main.bounds.width*0.77)
         toggleSwitch.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
         
         addSubview(tf)
