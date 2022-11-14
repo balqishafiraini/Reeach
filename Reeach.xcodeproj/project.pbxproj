@@ -26,6 +26,12 @@
 		3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197EF2919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift */; };
 		3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197F42919CC070065C01E /* BudgetingTechniqueExplanationView.swift */; };
 		3B8197F72919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197F62919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift */; };
+		3B8197FE291A59D20065C01E /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197FD291A59D20065C01E /* DashboardViewController.swift */; };
+		3B819800291A59E00065C01E /* DashboardViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197FF291A59E00065C01E /* DashboardViewController+Delegate.swift */; };
+		3B819802291A59EF0065C01E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B819801291A59EF0065C01E /* DashboardView.swift */; };
+		3B819806291B29D90065C01E /* TipCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B819805291B29D90065C01E /* TipCardView.swift */; };
+		3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B819809291B316E0065C01E /* DashboardViewProtocol.swift */; };
+		3B81980E2921B6320065C01E /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B81980D2921B6320065C01E /* Tip.swift */; };
 		3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */; };
 		3BAA29CF2907790E008D3C5B /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B028FFC0BC00923D57 /* Goal+CoreDataClass.swift */; };
 		3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */; };
@@ -40,8 +46,9 @@
 		3BBF30412911BB1200F8373A /* InflationDetailViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF30402911BB1200F8373A /* InflationDetailViewController+Delegate.swift */; };
 		3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF30422911BB3B00F8373A /* InflationDetailView.swift */; };
 		3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBF30452911BB7A00F8373A /* NavigationBarDelegate.swift */; };
+		3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBEFC82921CA16005A1062 /* SimpleGoalCollectionViewCell.swift */; };
+		3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBEFCB2921D590005A1062 /* TipDetailViewController.swift */; };
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
-		CA21B0BD28EDCD8400E59539 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BC28EDCD8400E59539 /* Controller.swift */; };
 		CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */; };
 		CA2AB4BB28F85F28002663AE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4B928F85F28002663AE /* NetworkManager.swift */; };
 		CA2AB4BC28F85F28002663AE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4BA28F85F28002663AE /* NetworkService.swift */; };
@@ -124,12 +131,20 @@
 		3B8197EF2919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderGoalDetailCollectionReusableView.swift; sourceTree = "<group>"; };
 		3B8197F42919CC070065C01E /* BudgetingTechniqueExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingTechniqueExplanationView.swift; sourceTree = "<group>"; };
 		3B8197F62919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingTechniqueExplanationViewController.swift; sourceTree = "<group>"; };
+		3B8197FD291A59D20065C01E /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		3B8197FF291A59E00065C01E /* DashboardViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B819801291A59EF0065C01E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		3B819805291B29D90065C01E /* TipCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCardView.swift; sourceTree = "<group>"; };
+		3B819809291B316E0065C01E /* DashboardViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewProtocol.swift; sourceTree = "<group>"; };
+		3B81980D2921B6320065C01E /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleToStringHelper.swift; sourceTree = "<group>"; };
 		3BAA29D72907936D008D3C5B /* DatabaseHelper+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Category.swift"; sourceTree = "<group>"; };
 		3BBF303E2911BAE700F8373A /* InflationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflationDetailViewController.swift; sourceTree = "<group>"; };
 		3BBF30402911BB1200F8373A /* InflationDetailViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InflationDetailViewController+Delegate.swift"; sourceTree = "<group>"; };
 		3BBF30422911BB3B00F8373A /* InflationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflationDetailView.swift; sourceTree = "<group>"; };
 		3BBF30452911BB7A00F8373A /* NavigationBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDelegate.swift; sourceTree = "<group>"; };
+		3BEBEFC82921CA16005A1062 /* SimpleGoalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleGoalCollectionViewCell.swift; sourceTree = "<group>"; };
+		3BEBEFCB2921D590005A1062 /* TipDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipDetailViewController.swift; sourceTree = "<group>"; };
 		3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyHelper.swift; sourceTree = "<group>"; };
 		3BF624AC28FFC0BB00923D57 /* Budget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BF624AD28FFC0BC00923D57 /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -139,7 +154,6 @@
 		3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CA21B0BC28EDCD8400E59539 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA2AB4B928F85F28002663AE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA2AB4BA28F85F28002663AE /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -299,6 +313,7 @@
 				CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */,
 				3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */,
 				3B8197EF2919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift */,
+				3BEBEFC82921CA16005A1062 /* SimpleGoalCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -380,6 +395,50 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		3B8197FA291A597D0065C01E /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				3B819807291B31480065C01E /* Model */,
+				3B8197FB291A59A20065C01E /* Controller */,
+				3B8197FC291A59A80065C01E /* View */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		3B8197FB291A59A20065C01E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197FD291A59D20065C01E /* DashboardViewController.swift */,
+				3B8197FF291A59E00065C01E /* DashboardViewController+Delegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B8197FC291A59A80065C01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B819801291A59EF0065C01E /* DashboardView.swift */,
+				3B819805291B29D90065C01E /* TipCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B819807291B31480065C01E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B819808291B31520065C01E /* Protocol */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B819808291B31520065C01E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3B819809291B316E0065C01E /* DashboardViewProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		3BBF303B2911BA9F00F8373A /* InflationDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +473,30 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		3BEBEFCA2921D554005A1062 /* TipDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3BEBEFCD2921D593005A1062 /* Controller */,
+				3BEBEFCE2921D598005A1062 /* View */,
+			);
+			path = TipDetail;
+			sourceTree = "<group>";
+		};
+		3BEBEFCD2921D593005A1062 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3BEBEFCB2921D590005A1062 /* TipDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3BEBEFCE2921D598005A1062 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3BF624B428FFC0DA00923D57 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +512,7 @@
 				3BBF30442911BB5100F8373A /* Protocol */,
 				CA634A6D28FD1FE2001A08D2 /* NetworkModel */,
 				3B26F7DD28F7BA3300FAC837 /* CoreData */,
+				3B81980D2921B6320065C01E /* Tip.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -470,6 +554,8 @@
 			isa = PBXGroup;
 			children = (
 				CA4D14382910069F00C35094 /* SetupPage */,
+				3B8197FA291A597D0065C01E /* Dashboard */,
+				3BEBEFCA2921D554005A1062 /* TipDetail */,
 				CAFADA792912E1DB00172D04 /* ViewController.swift */,
 			);
 			path = Page;
@@ -768,6 +854,7 @@
 				3BAA29CF2907790E008D3C5B /* Goal+CoreDataClass.swift in Sources */,
 				CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */,
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
+				3B8197FE291A59D20065C01E /* DashboardViewController.swift in Sources */,
 				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
 				3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */,
 				3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */,
@@ -776,18 +863,20 @@
 				3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */,
 				3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */,
 				3BAA29D52907790E008D3C5B /* Transaction+CoreDataClass.swift in Sources */,
+				3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */,
 				3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
 				CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */,
+				3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */,
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
 				3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */,
-				FA9B12C528EBCF44001203F5 /* ViewController.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
 				3BBF30412911BB1200F8373A /* InflationDetailViewController+Delegate.swift in Sources */,
 				3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */,
+				3B81980E2921B6320065C01E /* Tip.swift in Sources */,
 				3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */,
 				FA2E2A002903A95C0083587D /* UIFont+Extension.swift in Sources */,
 				CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */,
@@ -796,6 +885,7 @@
 				3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */,
 				3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */,
 				FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */,
+				3B819802291A59EF0065C01E /* DashboardView.swift in Sources */,
 				FA2E2A042903DBE40083587D /* Checkbox.swift in Sources */,
 				3B8197E529187A990065C01E /* SelectGoalViewController+Delegate.swift in Sources */,
 				3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */,
@@ -804,6 +894,7 @@
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
 				CA4D14432910069F00C35094 /* SetupProgressHeader.swift in Sources */,
+				3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
 				3B8197EC2918F9C40065C01E /* GoalRecommendationViewController.swift in Sources */,
@@ -814,6 +905,7 @@
 				3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */,
 				CA2AB4C328F86093002663AE /* InflationEndPoint.swift in Sources */,
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
+				3B819806291B29D90065C01E /* TipCardView.swift in Sources */,
 				CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */,
 				3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */,
 				3B8197EA2918F88E0065C01E /* GoalRecommendationView.swift in Sources */,
@@ -825,6 +917,7 @@
 				FA2E2A0829050A2A0083587D /* Card.swift in Sources */,
 				FA2E2A022903CC280083587D /* Toggle.swift in Sources */,
 				3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */,
+				3B819800291A59E00065C01E /* DashboardViewController+Delegate.swift in Sources */,
 				FA2E29DC29039A8B0083587D /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

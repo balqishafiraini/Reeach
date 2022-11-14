@@ -10,7 +10,7 @@ import UIKit
 class GoalDetailCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "goalDetailCollectionViewCell"
     
-    lazy var horizontalStackView = {
+    private lazy var horizontalStackView = {
         var stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +18,7 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    lazy var verticalStackView = {
+    private lazy var verticalStackView = {
         var stackView = UIStackView()
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
