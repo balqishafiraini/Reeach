@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GoalAllocationModalView: UIView {
+class CategoryAllocationModalView: UIView {
         
     let iconWithoutEdit = IconWithoutEditView()
     

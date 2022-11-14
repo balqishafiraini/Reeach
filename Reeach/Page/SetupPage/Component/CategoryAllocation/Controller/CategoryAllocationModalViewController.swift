@@ -7,17 +7,17 @@
 
 import UIKit
 
-class GoalAllocationModalViewController: UIViewController {
+class CategoryAllocationModalViewController: UIViewController {
     
     var type: String = "Needs"
     
-    let goalAllocationModalView = GoalAllocationModalView()
+    let categoryAllocationModalView = CategoryAllocationModalView()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        goalAllocationModalView.configureStackView()
-        view = goalAllocationModalView
+        categoryAllocationModalView.configureStackView()
+        view = categoryAllocationModalView
         self.setNavigationBar()
     }
     
