@@ -10,25 +10,6 @@ import UIKit
 
 class GoalAllocationView: UIView {
     
-    let cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Batal", for: .normal)
-        button.setTitleColor(UIColor.crimson, for: .normal)
-        button.backgroundColor = .clear
-        button.contentHorizontalAlignment = .left
-        return button
-    }()
-    
-    let goalAllocationTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Alokasi Goal"
-        label.textAlignment = .center
-        label.font = .bodyBold
-        label.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
-        return label
-    }()
-    
-    
     let iconWithoutEdit = IconWithoutEditView()
     
     
@@ -76,11 +57,6 @@ class GoalAllocationView: UIView {
     func configureStackView() {
         self.backgroundColor = .ghostWhite
         
-        let navHstack = UIStackView(arrangedSubviews: [cancelButton, goalAllocationTitle])
-        navHstack.frame = self.bounds
-        navHstack.axis = .horizontal
-        navHstack.distribution = .fill
-        
         let vstack = UIStackView(arrangedSubviews: [iconWithoutEdit,
                                                     goalName,
                                                     dueDate,
@@ -100,14 +76,10 @@ class GoalAllocationView: UIView {
 
         
         //autolayout
+        self.addSubview(scrollView)
         scrollView.addSubview(vstack)
         
-        self.addSubview(navHstack)
-        self.addSubview(scrollView)
-        
-        navHstack.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 20, paddingRight: 20, height: 50)
-        
-        scrollView.anchor(top: navHstack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width)
+        scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width)
         
         vstack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingRight: 20)
         
@@ -117,9 +89,7 @@ class GoalAllocationView: UIView {
         
         iconWithoutEdit.setUp()
         iconWithoutEdit.heightAnchor.constraint(equalTo: iconWithoutEdit.iconLabel.heightAnchor).isActive = true
-        
-        goalAllocationTitle.anchor(right: vstack.rightAnchor, paddingRight: UIScreen.main.bounds.width*0.325)
-        
+                
     }
 }
 

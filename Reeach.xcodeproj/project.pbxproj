@@ -627,6 +627,7 @@
 		CA4D14392910069F00C35094 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				FA3ED3842922432300FD4C15 /* GoalAllocation */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CAEDFA862922055400974168 /* SetupProgressHeader */,
 				CAEFBE44291D87A70037F1AE /* AddGoal */,
@@ -692,7 +693,6 @@
 		CAEFBE44291D87A70037F1AE /* AddGoal */ = {
 			isa = PBXGroup;
 			children = (
-				FA3ED3842922432300FD4C15 /* GoalAllocation */,
 				3B8197CF291862B60065C01E /* TermPicker */,
 				3B8197E62918F85F0065C01E /* GoalRecommendation */,
 				FADF89EC2918C42C00E590C0 /* GoalModal */,
