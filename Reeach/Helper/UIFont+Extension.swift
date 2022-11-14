@@ -16,7 +16,7 @@ extension UIFont {
       return customFont
     }
     
-    static let largeTitle = UIFont(name: "GeneralSans-Bold", size: 30)
+    static let largeTitle = UIFont(name: "GeneralSans-Bold", size: 28)
     static let title = UIFont(name: "GeneralSans-Bold", size: 20)
     static let headline = UIFont(name: "GeneralSans-Semibold", size: 17)
     static let bodyBold = UIFont(name: "GeneralSans-Bold", size: 16)

@@ -9,7 +9,9 @@ import UIKit
 
 class AddGoal: UIView {
     
-    let topTitle: UILabel = {
+    weak var delegate: SetupDelegate?
+    
+    lazy var topTitle: UILabel = {
         let label = UILabel()
         label.text = "Goal"
         label.font = .largeTitle
@@ -18,13 +20,13 @@ class AddGoal: UIView {
         return label
     }()
     
-    let addButton: UIButton = {
+    lazy var addButton: UIButton = {
         let button = Button(style: .circle, foreground: .primary, background: .tangerineYellow, image: UIImage(systemName: "plus"))
         
         return button
     }()
     
-    let topStack: UIStackView = {
+    lazy var topStack: UIStackView = {
         let stack = UIStackView()
         
         stack.axis = .horizontal
@@ -36,17 +38,17 @@ class AddGoal: UIView {
         return stack
     }()
     
-    let viewDescription: UILabel = {
+    lazy var viewDescription: UILabel = {
         let label = UILabel()
         
-        label.text = "Yuk tambah tujuan finansial mu sekarang, tujuan finansialmu harus SMART, yaitu  Lorem ipsum dolor sit amet sit ."
+        label.text = "Goals yang baik punya karakteristik S.M.A.R.T atau specific, measurable, achievable, relevant, dan time-bounded. Yuk, tuliskan goals kamu!"
         label.font = .bodyMedium
         label.numberOfLines = 5
         
         return label
     }()
     
-    let headerStack: UIStackView = {
+    lazy var headerStack: UIStackView = {
         let stack = UIStackView()
         
         stack.axis = .vertical
@@ -57,7 +59,7 @@ class AddGoal: UIView {
     }()
     
     
-    let emptyImage: UIImageView = {
+    lazy var emptyImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "EmptyImage")
         image.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -65,7 +67,7 @@ class AddGoal: UIView {
         return image
     }()
     
-    let emptyDescription: UILabel = {
+    lazy var emptyDescription: UILabel = {
         let label = UILabel()
         
         label.text = "Klik '+' untuk menambah target"
@@ -74,11 +76,13 @@ class AddGoal: UIView {
         return label
     }()
     
-    let emptyView: UIView = {
+    lazy var emptyView: UIView = {
         let view = UIView()
         
         return view
     }()
+    
+    lazy var goalItem = GoalItem(frame: .zero, iconName: "iphone", title: "Handphone baru", dueDate: Date(), amount: 15000000)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -120,6 +124,12 @@ class AddGoal: UIView {
     // TODO: Open sheet here
     @objc func openGoalSheet() {
         print("Opening Goal Sheet")
+        
+        emptyView.removeFromSuperview()
+        removeConstraints(emptyView.constraints)
+        
+        self.addSubview(goalItem)
+        goalItem.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor)
     }
 }
 

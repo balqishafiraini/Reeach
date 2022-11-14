@@ -43,7 +43,8 @@ extension UIColor {
     
     static let ghostWhite = UIColor(named: "GhostWhite")
     
-    static let darkSlateGrey = UIColor(named: "DarkSlateGrey")
+    static let darkSlateGray = UIColor(named: "DarkSlateGray")
+    static let darkSlateGrey = UIColor.darkSlateGray
     static let black2 = UIColor(named: "Black2")
     static let black3 = UIColor(named: "Black3")
     static let black4 = UIColor(named: "Black4")
