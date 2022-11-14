@@ -621,8 +621,6 @@
 		CA4D14382910069F00C35094 /* SetupPage */ = {
 			isa = PBXGroup;
 			children = (
-				FA3ED38E292268F100FD4C15 /* BudgetsWantsModal */,
-				FA3ED38D292268DE00FD4C15 /* BudgetNeedsModal */,
 				CA4D14392910069F00C35094 /* Component */,
 				CA4D143F2910069F00C35094 /* Controller */,
 				CA4D14412910069F00C35094 /* View */,
@@ -633,6 +631,8 @@
 		CA4D14392910069F00C35094 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				FA3ED38E292268F100FD4C15 /* BudgetsWantsModal */,
+				FA3ED38D292268DE00FD4C15 /* BudgetNeedsModal */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CAEDFA862922055400974168 /* SetupProgressHeader */,
 				CAEFBE44291D87A70037F1AE /* AddGoal */,
