@@ -53,8 +53,7 @@ extension SetupPageViewController: SetupDelegate {
         currentProgress = currentProgressIndex / totalProgress
         
         if currentProgressIndex > totalProgress {
-            currentProgress = 0.0
-            currentProgressIndex = 0.0
+            self.dismiss(animated: true)
         }
         
         updateView()
