@@ -238,7 +238,7 @@ class HeaderView: UIView {
         background.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4)
         
         addSubview(iconLabel)
-        iconLabel.anchor(top: background.topAnchor, left: background.leftAnchor, paddingTop: UIScreen.main.bounds.height*0.1, paddingLeft:UIScreen.main.bounds.width*0.16)
+        iconLabel.anchor(top: background.topAnchor, paddingTop: UIScreen.main.bounds.height*0.1)
         
         addSubview(goalName)
         goalName.centerX(inView: background)
