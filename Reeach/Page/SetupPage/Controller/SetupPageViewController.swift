@@ -11,6 +11,7 @@ import UIKit
     @objc optional func updateProgress()
     @objc optional func previousProgress()
     @objc optional func addBudget(type: String, budget: Budget)
+    @objc optional func saveIncome(income: String)
 }
 
 protocol BudgetDelegate: AnyObject {
@@ -25,6 +26,8 @@ class SetupPageViewController: UIViewController {
     var currentProgressIndex: Float = 0.0
     let totalProgress: Float = 2.0
     
+    var income: Float = 0.0
+    
     var goalBudgets: [Budget] = []
     var needBudgets: [Budget] = []
     var wantBudgets: [Budget] = []
@@ -38,12 +41,27 @@ class SetupPageViewController: UIViewController {
     }
     
     func updateView() {
+        shouldDisableButton(progressIndex: currentProgressIndex)
         contentView.bottomView.setButtonTitle(progressIndex: currentProgressIndex)
         contentView.setupContentView()
         contentView.progressHeader.progressBar.setProgress(currentProgress, animated: true)
         contentView.progressHeader.updateSteps(currentIndex: currentProgressIndex)
     }
 
+    
+    func shouldDisableButton(progressIndex: Float){
+        switch progressIndex {
+        case 1.0:
+            print(#function)
+            if income == 0.0 {
+                contentView.bottomView.nextButton.isEnabled = false
+            } else {
+                contentView.bottomView.nextButton.isEnabled = true
+            }
+        default:
+            contentView.bottomView.nextButton.isEnabled = true
+        }
+    }
 }
 
 extension SetupPageViewController: SetupDelegate {
@@ -61,6 +79,7 @@ extension SetupPageViewController: SetupDelegate {
     }
     
     func previousProgress() {
+        print(income)
         currentProgressIndex -= 1.0
         currentProgress = currentProgressIndex / totalProgress
         updateView()
@@ -81,6 +100,11 @@ extension SetupPageViewController: SetupDelegate {
         default:
             print("Wtf do u want?")
         }
+    }
+    
+    func saveIncome(income: String) {
+        self.income = (income as NSString).floatValue
+        shouldDisableButton(progressIndex: currentProgressIndex)
     }
     
 }
