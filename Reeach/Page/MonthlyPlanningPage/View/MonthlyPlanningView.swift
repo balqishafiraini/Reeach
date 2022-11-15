@@ -9,6 +9,7 @@ import UIKit
 
 class MonthlyPlanningView: UIView {
     
+    // Adding comment for PR purpose
     // For demo purpose, probably will be deleted
     enum Month: CaseIterable {
         case Januari, Feburari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember
