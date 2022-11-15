@@ -14,8 +14,8 @@ class GoalModalView: UIView {
     
     let recommendButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Bingung? Lihat rekomendasinya di sini!", for: .normal)
-        button.contentHorizontalAlignment = .center
+        button.setTitle("Lihat rekomendasinya di sini!", for: .normal)
+        button.titleLabel?.textAlignment = .center
         button.backgroundColor = .secondary1
         button.setTitleColor(.secondary8, for: .normal)
         button.titleLabel?.font = .bodyBold
