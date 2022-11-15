@@ -1,5 +1,5 @@
 //
-//  SelectBudgetCategoryViewDelegate.swift
+//  SelectBudgetCategoryDelegate.swift
 //  Reeach
 //
 //  Created by William Chrisandy on 14/11/22.

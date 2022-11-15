@@ -18,7 +18,7 @@
 		3B4AE57D29227739000EA6C1 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE57C29227739000EA6C1 /* AddCategoryView.swift */; };
 		3B4AE57F29227746000EA6C1 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE57E29227746000EA6C1 /* AddCategoryViewController.swift */; };
 		3B4AE58329227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE58229227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift */; };
-		3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift */; };
+		3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryDelegate.swift */; };
 		3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */; };
 		3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D7291867420065C01E /* TermPickerViewController.swift */; };
 		3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D92918676F0065C01E /* TermPickerView.swift */; };
@@ -140,7 +140,7 @@
 		3B4AE57C29227739000EA6C1 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		3B4AE57E29227746000EA6C1 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		3B4AE58229227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectBudgetCategory+Delegate.swift"; sourceTree = "<group>"; };
-		3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBudgetCategoryViewDelegate.swift; sourceTree = "<group>"; };
+		3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBudgetCategoryDelegate.swift; sourceTree = "<group>"; };
 		3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8197D7291867420065C01E /* TermPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerViewController.swift; sourceTree = "<group>"; };
 		3B8197D92918676F0065C01E /* TermPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerView.swift; sourceTree = "<group>"; };
@@ -378,7 +378,7 @@
 		3B4AE58529228FD3000EA6C1 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift */,
+				3B4AE58629228FFC000EA6C1 /* SelectBudgetCategoryDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1093,7 +1093,7 @@
 				CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */,
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
 				3B8197FE291A59D20065C01E /* DashboardViewController.swift in Sources */,
-				3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryViewDelegate.swift in Sources */,
+				3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryDelegate.swift in Sources */,
 				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
 				3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */,
 				3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */,
