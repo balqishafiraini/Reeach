@@ -10,32 +10,6 @@ import UIKit
 
 class GoalModalView: UIView {
     
-    let cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Batal", for: .normal)
-        button.setTitleColor(UIColor.crimson, for: .normal)
-        button.backgroundColor = .clear
-        button.contentHorizontalAlignment = .left
-        return button
-    }()
-    
-    let addGoal: UILabel = {
-        let label = UILabel()
-        label.text = "Tambah Goal"
-        label.font = .bodyBold
-        label.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
-        return label
-    }()
-    
-    let saveButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Simpan", for: .normal)
-        button.setTitleColor(UIColor.royalHunterBlue, for: .normal)
-        button.backgroundColor = .clear
-        button.contentHorizontalAlignment = .right
-        return button
-    }()
-    
     let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
     
     let recommendButton: UIButton = {
@@ -75,6 +49,8 @@ class GoalModalView: UIView {
     
     let switchView = SwitchView()
     
+    let saveButton = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Simpan")
+    
     //scrollView
     lazy var scrollView: UIScrollView = {
             let scrollView = UIScrollView()
@@ -83,23 +59,17 @@ class GoalModalView: UIView {
     
     
     func configureStackView() {
-        self.backgroundColor = .white
+        self.backgroundColor = .ghostWhite
         
-        let navHstack = UIStackView(arrangedSubviews: [cancelButton, addGoal, saveButton])
-        navHstack.frame = self.bounds
-        navHstack.axis = .horizontal
-        navHstack.distribution = .fillEqually
-        navHstack.spacing = 10
-        
-        let vstack = UIStackView(arrangedSubviews: [
-                                                    iconView,
+        let vstack = UIStackView(arrangedSubviews: [iconView,
                                                     goalName,
                                                     recommendButton,
                                                     dueDate,
                                                     total,
                                                     inflationButton,
                                                     goalType,
-                                                    switchView]
+                                                    switchView,
+                                                   saveButton]
         )
         
         vstack.frame = self.bounds
@@ -109,6 +79,19 @@ class GoalModalView: UIView {
         vstack.setCustomSpacing(8, after: goalName)
         vstack.setCustomSpacing(12, after: total)
         
+        //autolayout
+        self.addSubview(scrollView)
+
+        scrollView.addSubview(vstack)
+        
+        scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width)
+
+        vstack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingRight: 20)
+
+        NSLayoutConstraint.activate([
+            vstack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
+        ])
+        
         
         //iconview
         iconView.setUp()
@@ -116,24 +99,6 @@ class GoalModalView: UIView {
         
         //switchview
         switchView.setupView()
-        switchView.translatesAutoresizingMaskIntoConstraints = false
-        
-        //autolayout
-        scrollView.addSubview(vstack)
-        
-        self.addSubview(navHstack)
-        self.addSubview(scrollView)
-        
-        navHstack.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 20, paddingRight: 20, height: 50)
-        
-        scrollView.anchor(top: navHstack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width)
-        
-        vstack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingRight: 20)
-        
-        NSLayoutConstraint.activate([
-            vstack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
-        ])
-//        vstack.addArrangedSubview(UIView())
     }
 }
 
@@ -215,7 +180,7 @@ class SwitchView: UIView {
         didHaveInitSaving.anchor(top: self.topAnchor, left: self.leftAnchor)
         
         addSubview(toggleSwitch)
-        toggleSwitch.anchor(top: self.topAnchor, left: didHaveInitSaving.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: UIScreen.main.bounds.width*0.77)
+        toggleSwitch.anchor(top: self.topAnchor, left: didHaveInitSaving.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 50)
         toggleSwitch.addTarget(self, action: #selector(switchStateDidChange), for: .valueChanged)
         
         addSubview(tf)
