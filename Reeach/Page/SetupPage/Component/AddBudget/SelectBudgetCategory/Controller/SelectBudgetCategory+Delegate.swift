@@ -16,7 +16,7 @@ extension SelectBudgetCategoryViewController: NavigationBarDelegate {
 extension SelectBudgetCategoryViewController: SelectBudgetCategoryViewDelegate {
     func addCategory() {
         let targetViewController = AddCategoryViewController()
-        targetViewController.category = DatabaseHelper().createCategory(name: "Unnamed Category", type: type, icon: "")
+        targetViewController.type = type
         navigationController?.pushViewController(targetViewController, animated: true)
     }
 }

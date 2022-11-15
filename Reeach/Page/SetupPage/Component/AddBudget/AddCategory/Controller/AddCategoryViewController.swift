@@ -8,6 +8,7 @@
 import UIKit
 
 class AddCategoryViewController: UIViewController {
+    var type: String = "Need"
     var category: Category?
     
     override func viewDidLoad() {
