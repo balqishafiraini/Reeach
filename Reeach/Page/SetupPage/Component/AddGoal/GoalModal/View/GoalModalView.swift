@@ -14,12 +14,15 @@ class GoalModalView: UIView {
     
     let recommendButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Bingung, guys? Lihat rekomendasinya di sini, kuy!", for: .normal)
-        button.contentHorizontalAlignment = .left
-        button.backgroundColor = .clear
-        button.setTitleColor(.royalHunterBlue, for: .normal)
-        button.titleLabel?.font = .caption1Bold
+        button.setTitle("Bingung? Lihat rekomendasinya di sini!", for: .normal)
+        button.contentHorizontalAlignment = .center
+        button.backgroundColor = .secondary1
+        button.setTitleColor(.secondary8, for: .normal)
+        button.titleLabel?.font = .bodyBold
         button.titleLabel?.textAlignment = .left
+        button.layer.cornerRadius = 16
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+
         button.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         return button
     }()
@@ -120,10 +123,10 @@ class IconView: UIView {
         
         let button = UIButton()
         button.backgroundColor = .tangerineYellow
-        button.frame.size = CGSize(width: 10, height: 10)
-        button.layer.cornerRadius = button.frame.height/2
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        button.layer.cornerRadius = 25
         
-        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .black)
+        let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .black)
         let symbol = UIImage(systemName: "pencil", withConfiguration: config)
         button.setImage(symbol, for: .normal)
         return button
@@ -136,7 +139,7 @@ class IconView: UIView {
         addSubview(iconLabel)
         bringSubviewToFront(editButton)
         
-        editButton.anchor(bottom: iconLabel.bottomAnchor, right: iconLabel.rightAnchor, paddingRight: 20)
+        editButton.anchor(bottom: iconLabel.bottomAnchor, right: iconLabel.rightAnchor, paddingRight: 8)
         
         iconLabel.centerX(inView: self)
         
