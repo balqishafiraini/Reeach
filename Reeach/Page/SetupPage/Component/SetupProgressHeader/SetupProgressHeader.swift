@@ -66,19 +66,8 @@ class SetupProgressHeader: UIView {
     }
     
     func updateSteps(currentIndex: Float) {
-        // This could be better, I just don't know how to do it now
-        
-        if currentIndex >= 0.0 {
-            firstStep.updateView(isActive: true)
-            secondStep.updateView(isActive: false)
-            thirdStep.updateView(isActive: false)
-        }
-        if currentIndex >= 1.0 {
-            secondStep.updateView(isActive: true)
-            thirdStep.updateView(isActive: false)
-        }
-        if currentIndex >= 2.0 {
-            thirdStep.updateView(isActive: true)
-        }
+        firstStep.updateView(isActive: true)
+        secondStep.updateView(isActive: currentIndex >= 1.0 ? true : false)
+        thirdStep.updateView(isActive: currentIndex >= 2.0 ? true : false)
     }
 }
