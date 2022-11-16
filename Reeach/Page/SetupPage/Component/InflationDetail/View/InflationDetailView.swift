@@ -24,6 +24,8 @@ class InflationDetailView: UIView {
         stackView.axis = .vertical
         return stackView
     }()
+    
+    private var imageViewContainerView = UIView()
         
     lazy var imageView = {
         let imageView = UIImageView()
@@ -158,7 +160,12 @@ class InflationDetailView: UIView {
         stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, paddingLeft: 20)
         stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40).isActive = true
         
-        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(imageViewContainerView)
+        imageViewContainerView.addSubview(imageView)
+        imageView.center(inView: imageViewContainerView)
+        imageViewContainerView.heightAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
+        
         stackView.addArrangedSubview(whatLabel)
         stackView.addArrangedSubview(whatDetailLabel)
         stackView.addArrangedSubview(howLabel)
