@@ -71,7 +71,7 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
     }
     
     func configureView() {
-        contentView.backgroundColor = .cardColor
+        contentView.backgroundColor = .grey
         contentView.layer.cornerRadius = 12
         contentView.layer.borderColor = UIColor.secondary?.cgColor
         
