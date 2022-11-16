@@ -19,8 +19,15 @@ class NetworkManager: NSObject {
         components.scheme = "https"
         components.host = endPoint.baseUrl
         components.path = endPoint.path
-        
-        guard let url = components.url?.formatted() else {
+                
+        var url: String?
+        if #available(iOS 16, *){
+            url = components.url?.formatted()
+        } else {
+            url = "https://\(endPoint.baseUrl)\(endPoint.path)"
+        }
+
+        guard let url = url else {
             networkDelegate?.onResponse(from: nil, result: .failure(.missingUrl))
             return
         }
