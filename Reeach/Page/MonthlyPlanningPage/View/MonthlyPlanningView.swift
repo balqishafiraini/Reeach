@@ -9,23 +9,11 @@ import UIKit
 
 class MonthlyPlanningView: UIView {
     
-    // Adding comment for PR purpose
-    // For demo purpose, probably will be deleted
-    enum Month: CaseIterable {
-        case Januari, Feburari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember
-        
-        mutating func next() {
-            let allCases = type(of: self).allCases
-            self = allCases[((allCases.firstIndex(of: self)! + 1) < 0 ? 0 : (allCases.firstIndex(of: self)! + 1)) % allCases.count]
-        }
-        
-        mutating func prev() {
-            let allCases = type(of: self).allCases
-            self = allCases[((allCases.firstIndex(of: self)! - 1) < 0 ? 11 : (allCases.firstIndex(of: self)! - 1)) % allCases.count]
-        }
-    }
+    var selectedDate: Date?
+    var currentDateString: String?
+    var selectedDateString: String?
     
-    var currentMonth: Month = .November
+    var delegate: PlannerDelegate?
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -49,7 +37,6 @@ class MonthlyPlanningView: UIView {
     
     lazy var selectedMonthLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(currentMonth.self) 2022"
         label.textColor = .primary6
         label.font = .headline
         label.textAlignment = .center
@@ -132,7 +119,7 @@ class MonthlyPlanningView: UIView {
         
         return stack
     }()
-
+    
     lazy var contentView: UIView = {
         let view = UIView()
         
@@ -165,6 +152,19 @@ class MonthlyPlanningView: UIView {
         return sv
     }()
     
+    lazy var containerView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
+    
+    lazy var blankView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .ghostWhite
+        
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -181,48 +181,112 @@ class MonthlyPlanningView: UIView {
         contentView.roundCorners([.topLeft, .topRight], radius: 28)
     }
     
+    func setupDate(currentDate: Date) {
+        self.selectedDate = DateFormatHelper.getStartDateOfMonth(of: currentDate)
+        self.currentDateString = DateFormatHelper.getMonthAndYearString(from: currentDate)
+        self.selectedDateString = DateFormatHelper.getMonthAndYearString(from: currentDate)
+        
+        selectedMonthLabel.text = DateFormatHelper.getMonthAndYearString(from: currentDate)
+    }
+    
+    lazy var tipViewConstraint = tipView.topAnchor.constraint(equalTo: monthSelectorStack.bottomAnchor, constant: 20)
+    lazy var contentViewConstraint = contentView.topAnchor.constraint(equalTo: monthSelectorStack.bottomAnchor, constant: 20)
+    
+    func setupAdditionalView() {
+        if currentDateString == selectedDateString {
+            nextMonthButton.setTitle("", for: .normal)
+            nextMonthButton.isEnabled = false
+            
+            tipView.anchor(left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
+            tipView.centerYAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+            
+            tipView.isHidden = false
+            contentViewConstraint.isActive = false
+            
+            contentView.addSubview(noPlanStack)
+            noPlanStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 72, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
+            noPlanImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 5/8).isActive = true
+            noPlanImage.heightAnchor.constraint(equalTo: noPlanImage.widthAnchor).isActive = true
+            
+            tipViewConstraint.isActive = true
+            
+            createMonthlyPlanButton.isHidden = false
+            
+            return
+        }
+        nextMonthButton.setTitle(">", for: .normal)
+        nextMonthButton.isEnabled = true
+        
+        tipView.isHidden = true
+        tipViewConstraint.isActive = false
+        
+        contentViewConstraint.isActive = true
+        
+        createMonthlyPlanButton.isHidden = true
+    }
+    
     func setupView() {
         self.backgroundColor = .secondary6
         
-        scrollView.addSubview(noPlanStack)
-        contentView.addSubview(scrollView)
+        self.addSubview(blankView)
+        self.addSubview(scrollView)
         
-        self.addSubview(titleLabel)
-        self.addSubview(monthSelectorStack)
-        self.addSubview(contentView)
-        self.addSubview(tipView)
+        scrollView.addSubview(containerView)
         
-        titleLabel.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 16)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(monthSelectorStack)
+        containerView.addSubview(contentView)
+        containerView.addSubview(tipView)
+        
+        configureAutoLayout()
+        
+        setupAdditionalView()
+    }
+    
+    func configureAutoLayout() {
+        blankView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: bottomAnchor, right: safeAreaLayoutGuide.rightAnchor, paddingTop: 300)
+        
+        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor)
+        scrollView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor).isActive = true
+        scrollView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor).isActive = true
+        
+        containerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor)
+        containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        
+        titleLabel.centerX(inView: scrollView)
+        titleLabel.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, right: scrollView.rightAnchor, paddingTop: 20)
         monthSelectorStack.anchor(top: titleLabel.bottomAnchor)
-        monthSelectorStack.centerX(inView: self)
+        monthSelectorStack.centerX(inView: scrollView)
         
-        tipView.anchor(top: contentView.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: -32, paddingLeft: 16, paddingRight: 16)
-        
-        noPlanStack.center(inView: scrollView)
-        NSLayoutConstraint.activate([
-            noPlanStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32)
-        ])
-
-        scrollView.addConstraintsToFillView(contentView)
-
-        contentView.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.75)
-        
+        contentView.anchor(left: scrollView.leftAnchor, bottom: containerView.bottomAnchor, right: scrollView.rightAnchor)
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
     
     @objc func setMonth(_ sender: UIButton) {
+        print(#function)
         switch sender.currentTitle! {
         case "<":
-            currentMonth.prev()
-            selectedMonthLabel.text = "\(currentMonth) 2022"
+            nextMonthButton.isHidden = false
+            self.selectedDate = DateFormatHelper.getStartDateOfPrevMonth(of: selectedDate ?? Date())
         case ">":
-            currentMonth.next()
-            selectedMonthLabel.text = "\(currentMonth) 2022"
+            if selectedDateString == currentDateString {
+                return
+            }
+            self.selectedDate = DateFormatHelper.getStartDateOfNextMonth(of: selectedDate ?? Date())
         default:
-            print("Wtf u want?")
+            print("Something went wrong in \(#function)!")
         }
+        
+        self.selectedDateString = DateFormatHelper.getMonthAndYearString(from: selectedDate ?? Date())
+        selectedMonthLabel.text = selectedDateString
+        
+        delegate?.getPlanner(forDate: selectedDate ?? Date())
+        
+        setupAdditionalView()
     }
     
     @objc func createMonthlyPlan() {
         print(#function)
     }
+    
 }
