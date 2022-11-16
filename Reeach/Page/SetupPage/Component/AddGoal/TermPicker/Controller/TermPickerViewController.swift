@@ -9,6 +9,7 @@ import UIKit
 
 class TermPickerViewController: UIViewController {
     let terms = ["Short", "Medium", "Long"]
+    weak var delegate: TermPickerViewControllerDelegate?
     var contentView = TermPickerView()
     
     override func viewDidLoad() {
