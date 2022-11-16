@@ -9,6 +9,8 @@ import UIKit
 
 class DatePicker: UIView, UITextFieldDelegate {
     
+    var date: Date?
+    
     lazy var datePicker: TextField = {
         let tf = TextField(frame: .zero, style: .template, icon: UIImage(systemName: "calendar"))
         tf.tintColor = .clear
@@ -72,13 +74,9 @@ class DatePicker: UIView, UITextFieldDelegate {
     }
     
     @objc func openDatePicker(sender: UIDatePicker) {
-        let dateFormat = DateFormatter()
-        dateFormat.dateStyle = .long
-        dateFormat.timeStyle = .none
+        date = sender.date
         
-        print(dateFormat.string(from: sender.date))
-        
-        datePicker.textField.text = dateFormat.string(from: sender.date)
+        datePicker.textField.text = DateFormatHelper.getShortMonthAndYearString(from: sender.date)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
