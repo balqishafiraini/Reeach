@@ -24,7 +24,9 @@ class BudgetingTechniqueExplanationView: UIView {
         stackView.axis = .vertical
         return stackView
     }()
-        
+    
+    private lazy var imageViewContainerView = UIView()
+    
     lazy var imageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +87,12 @@ class BudgetingTechniqueExplanationView: UIView {
         stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, paddingLeft: 20)
         stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40).isActive = true
         
-        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(imageViewContainerView)
+        imageViewContainerView.addSubview(imageView)
+        imageView.anchor(top: imageViewContainerView.topAnchor, bottom: imageViewContainerView.bottomAnchor, paddingTop: 44, paddingBottom: 16)
+        imageView.centerX(inView: imageViewContainerView)
+        imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 2/3).isActive = true
+        
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(questionLabel)
         stackView.addArrangedSubview(answerLabel)
