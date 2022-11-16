@@ -112,6 +112,7 @@
 		FAA37BF0291AA19000F2C87A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */; };
 		FAA37BF9291D50D900F2C87A /* TrackerEmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BF8291D50D900F2C87A /* TrackerEmptyStateViewController.swift */; };
 		FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BFA291D50EF00F2C87A /* TrackerEmptyStateView.swift */; };
+		FAA857CE2924A438007B4A83 /* EmojiKeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */; };
 		FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E7F2910E45A008EA682 /* GoalModalView.swift */; };
 /* End PBXBuildFile section */
 
@@ -243,6 +244,7 @@
 		FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FAA37BF8291D50D900F2C87A /* TrackerEmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerEmptyStateViewController.swift; sourceTree = "<group>"; };
 		FAA37BFA291D50EF00F2C87A /* TrackerEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerEmptyStateView.swift; sourceTree = "<group>"; };
+		FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiKeyboardTextField.swift; sourceTree = "<group>"; };
 		FABD7E7F2910E45A008EA682 /* GoalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -663,6 +665,7 @@
 				FA2E2A0729050A2A0083587D /* Card.swift */,
 				FA2E2A092907CFBD0083587D /* DatePicker.swift */,
 				FAA37BE82918D52200F2C87A /* PaddingLabel.swift */,
+				FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1205,6 +1208,7 @@
 				3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
+				FAA857CE2924A438007B4A83 /* EmojiKeyboardTextField.swift in Sources */,
 				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,
 				FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */,
 				CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */,
@@ -1434,7 +1438,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YFHWVSQVD7;
+				DEVELOPMENT_TEAM = AZQ73MXTBD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Reeach/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
