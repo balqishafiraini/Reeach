@@ -49,7 +49,7 @@ class GoalModalView: UIView {
     let total = TextField(frame: .zero, title: "Jumlah", style: .template, prefix: "Rp")
     
     let goalType = {
-        let tf = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(systemName: "greaterthan"))
+        let tf = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(named: "ChevronRight"))
         tf.tintColor = .clear
         return tf
     }()
@@ -58,7 +58,12 @@ class GoalModalView: UIView {
     
     let switchView = SwitchView()
     
-    let saveButton = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Simpan")
+    let saveButton = {
+        let btn = Button(style: .rounded, foreground: .destructive, background: .darkSlateGrey, title: "Simpan")
+        btn.backgroundColor = .black4
+        btn.setTitleColor(UIColor.black7, for: .normal)
+        return btn
+    }()
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
