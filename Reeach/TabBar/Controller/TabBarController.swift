@@ -39,6 +39,8 @@ class TabBarController: UITabBarController {
         tabBar.backgroundColor = .royalHunterBlue
         tabBar.barTintColor = .ghostWhite
         
+        
+        setupInflationData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,13 +94,11 @@ extension TabBarController {
     }
     
     func setupInflationData() {
-//        if shouldGetNewRate() {
         print("Get current inflation rate")
         let networkManager = NetworkManager()
         networkManager.networkDelegate = self
         networkManager.createRequest(with: inflationEndPoint)
         return
-//        }
     }
 }
 
