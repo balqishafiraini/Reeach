@@ -33,10 +33,10 @@ extension DatabaseHelper {
         }
     }
     
-    func getBudgets(on month: Date, term: String) -> [Budget] {
+    func getBudgets(on month: Date, type: String) -> [Budget] {
         let date = DateFormatHelper.getStartDateOfMonth(of: month)
         do {
-            let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(on: date, with: term)
+            let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(on: date, with: type)
             return try context.fetch(fetchRequest)
         }
         catch let error {

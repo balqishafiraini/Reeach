@@ -20,11 +20,7 @@ class SetupPageView: UIView {
 
     }()
     
-    let goalView: AddGoal = {
-        let view = AddGoal(frame: CGRectZero)
-        
-        return view
-    }()
+    let goalView = AddGoalViewController()
     
     let incomeView: AddIncome = {
         let view = AddIncome(frame: CGRectZero)
@@ -62,7 +58,7 @@ class SetupPageView: UIView {
         content.removeFromSuperview()
         
         if viewController!.currentProgressIndex == 0.0 {
-            return goalView
+            return goalView.view
         } else if viewController!.currentProgressIndex == 1.0 {
             return incomeView
         } else if viewController!.currentProgressIndex == 2.0 {
@@ -81,7 +77,7 @@ class SetupPageView: UIView {
         self.addSubview(content)
         self.addSubview(bottomView)
         
-        progressHeader.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, bottom: content.topAnchor, right: self.rightAnchor,paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
+        progressHeader.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, bottom: content.topAnchor, right: self.rightAnchor, paddingTop: 20, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
         content.anchor(top: progressHeader.bottomAnchor, left: self.leftAnchor, bottom: bottomView.topAnchor, right: self.rightAnchor, paddingTop: 16)
         

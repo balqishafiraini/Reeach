@@ -12,6 +12,7 @@ class DatabaseHelper {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     init() {
+        insertDefaultCategory()
     }
     
     func insert<T: Identifiable>(_ object: T) -> T where T: NSManagedObject {
