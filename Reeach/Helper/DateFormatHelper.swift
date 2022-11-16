@@ -154,6 +154,12 @@ class DateFormatHelper {
         return getStartDate(of: calendar.date(from: components) ?? Date())
     }
     
+    static func getStartDateOfPrevMonth(of date: Date) -> Date {
+        let calendar = Calendar.current
+        let startDateOfMonth = getStartDateOfMonth(of: date)
+        return calendar.date(byAdding: .month, value: -1, to: startDateOfMonth) ?? Date()
+    }
+    
     static func getStartDateOfNextMonth(of date: Date) -> Date {
         let calendar = Calendar.current
         let startDateOfMonth = getStartDateOfMonth(of: date)
