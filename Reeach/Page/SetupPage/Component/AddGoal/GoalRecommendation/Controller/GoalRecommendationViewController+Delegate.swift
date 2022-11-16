@@ -11,10 +11,6 @@ extension GoalRecommendationViewController: NavigationBarDelegate {
     func cancel() {
         navigationController?.popViewController(animated: true)
     }
-    
-    func confirm() {
-        
-    }
 }
 
 extension GoalRecommendationViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
