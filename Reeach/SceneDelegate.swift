@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+        
+        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.bodyBold as Any]
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -57,29 +57,3 @@ class CategoryAllocationModalView: UIView {
     }
 
 }
-
-class IconWithoutEditView: UIView {
-    let iconLabel: UILabel = {
-        
-        let label = UILabel()
-        label.text = "Tambah icon"
-        label.textAlignment = .center
-        label.textColor = .royalHunterBlue
-        label.font = .bodyMedium
-        label.backgroundColor = .secondary2
-        label.layer.cornerRadius = 75
-        label.layer.masksToBounds = true
-        return label
-    }()
-    
-    
-    func setUp() {
-        //auto-layout
-        
-        addSubview(iconLabel)
-        
-        iconLabel.centerX(inView: self)
-        
-        iconLabel.anchor(width: 150, height: 150)
-    }
-}

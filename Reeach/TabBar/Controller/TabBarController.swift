@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let dashboardVC = DashboardViewController()
-        let goalsVC = GoalsVC()
+        let goalsVC = GoalTrackerViewController()
         let cashflowVC = TrackerEmptyStateViewController()
         let plannerVC = MonthlyPlanningViewController()
         
@@ -99,14 +99,5 @@ extension TabBarController {
         networkManager.networkDelegate = self
         networkManager.createRequest(with: inflationEndPoint)
         return
-    }
-}
-
-
-
-class GoalsVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .orange
     }
 }

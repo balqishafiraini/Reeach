@@ -267,7 +267,7 @@ class MonthlyPlanningView: UIView {
         switch sender.currentTitle! {
         case "<":
             nextMonthButton.isHidden = false
-            self.selectedDate = DateFormatHelper.getStartDateOfPrevMonth(of: selectedDate ?? Date())
+            self.selectedDate = DateFormatHelper.getStartDateOfPreviousMonth(of: selectedDate ?? Date())
         case ">":
             if selectedDateString == currentDateString {
                 return
