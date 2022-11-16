@@ -99,13 +99,22 @@ class AddIncome: UIView {
         contentStack.addArrangedSubview(headerStack)
         contentStack.addArrangedSubview(backButton)
         
-        
         self.addSubview(contentStack)
-        
-        backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
         
         contentStack.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
         
+        setupTargetsAndActions()
+    }
+    
+    func setupTargetsAndActions() {
+        backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
+        
+        incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .allEvents)
+        incomeTextField.textField.sendActions(for: .valueChanged)
+    }
+    
+    @objc func saveIncome() {
+        delegate?.saveIncome?(income: incomeTextField.textField.text ?? "0.0")
     }
     
     @objc func prevStep() {

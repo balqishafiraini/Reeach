@@ -57,6 +57,12 @@ extension DatabaseHelper {
         return categories
     }
     
+    func getUnallocatedCategories(on month: Date, type: String) -> [Category] {
+        var categories = getCategories(type: type)
+        categories.removeAll { $0.isActive(on: month) }
+        return categories
+    }
+    
     func createCategory(name: String, type: String, icon: String) -> Category {
         if let category = getCategory(name: name) {
             return category

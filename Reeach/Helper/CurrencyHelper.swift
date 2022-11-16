@@ -14,8 +14,8 @@ class CurrencyHelper {
         numberFormatter.decimalSeparator = ","
         numberFormatter.usesGroupingSeparator = true
         numberFormatter.groupingSize = 3
-        numberFormatter.minimumFractionDigits = 2
-        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 0
         numberFormatter.numberStyle = .decimal
         
         return "Rp" + numberFormatter.string(from: NSNumber(value: number))!

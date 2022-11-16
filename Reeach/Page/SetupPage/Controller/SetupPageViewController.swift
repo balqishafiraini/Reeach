@@ -50,7 +50,6 @@ class SetupPageViewController: UIViewController {
         contentView.progressHeader.progressBar.setProgress(currentProgress, animated: true)
         contentView.progressHeader.updateSteps(currentIndex: currentProgressIndex)
     }
-
     
     func shouldDisableButton(progressIndex: Float){
         switch progressIndex {
@@ -65,5 +64,3 @@ class SetupPageViewController: UIViewController {
         }
     }
 }
-
-
