@@ -13,6 +13,7 @@
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
 		3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */; };
 		3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */; };
+		3B4AE59C29246B5C000EA6C1 /* GoalRecommendationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE59B29246B5C000EA6C1 /* GoalRecommendationDelegate.swift */; };
 		3B8197D42918631B0065C01E /* BlankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */; };
 		3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D7291867420065C01E /* TermPickerViewController.swift */; };
 		3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197D92918676F0065C01E /* TermPickerView.swift */; };
@@ -129,6 +130,7 @@
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
 		3B26F7E828F7BEF000FAC837 /* DatabaseHelper+Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Goal.swift"; sourceTree = "<group>"; };
 		3B26F7EA28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Transaction.swift"; sourceTree = "<group>"; };
+		3B4AE59B29246B5C000EA6C1 /* GoalRecommendationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRecommendationDelegate.swift; sourceTree = "<group>"; };
 		3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8197D7291867420065C01E /* TermPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerViewController.swift; sourceTree = "<group>"; };
 		3B8197D92918676F0065C01E /* TermPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,22 @@
 			path = Transaction;
 			sourceTree = "<group>";
 		};
+		3B4AE59929246B3E000EA6C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE59A29246B42000EA6C1 /* Protocol */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B4AE59A29246B42000EA6C1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE59B29246B5C000EA6C1 /* GoalRecommendationDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		3B8197CF291862B60065C01E /* TermPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +387,7 @@
 		3B8197E62918F85F0065C01E /* GoalRecommendation */ = {
 			isa = PBXGroup;
 			children = (
+				3B4AE59929246B3E000EA6C1 /* Model */,
 				3B8197E82918F8740065C01E /* Controller */,
 				3B8197E72918F86D0065C01E /* View */,
 			);
@@ -1032,6 +1051,7 @@
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
 				3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
+				3B4AE59C29246B5C000EA6C1 /* GoalRecommendationDelegate.swift in Sources */,
 				CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */,
 				3BBF30412911BB1200F8373A /* InflationDetailViewController+Delegate.swift in Sources */,
 				FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */,

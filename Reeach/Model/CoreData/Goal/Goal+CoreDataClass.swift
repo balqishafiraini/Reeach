@@ -145,8 +145,8 @@ extension Goal {
     }
     
     static let goalRecommendation: [Recommendation] = [
-        Recommendation(icon: "💰", name: "Emergency Fund", term: "Short", description: "Simpanan uang yang bisa kamu pakai ketika kamu tidak punya pemasukan. "),
-        Recommendation(icon: "💵", name: "Bayar Utang", term: "Medium", description: "Jangan lupa bayar utang-utangmu, nanti gawat bunganya numpuk, loh."),
+        Recommendation(icon: "💰", name: "Emergency Fund", term: "Short", description: "Simpanan uang yang bisa kamu pakai ketika kamu tidak punya pemasukan."),
+        Recommendation(icon: "💵", name: "Tabungan bisnis baru", term: "Medium", description: "Punya bisnis sampingan bisa bantu kamu tambah penghasilan."),
         Recommendation(icon: "⛑", name: "Asuransi", term: "Medium", description: "Cicil asuransi untuk jaga-jaga hal yang gak terduga."),
         Recommendation(icon: "🧓", name: "Dana Pensiun", term: "Long", description: "Yuk, siapkan dana pensiunmu. Atau malah retiring early? Leggoooo!")
     ]

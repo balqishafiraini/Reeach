@@ -18,6 +18,8 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
+    private lazy var verticalStackViewContainerView = UIView()
+    
     private lazy var verticalStackView = {
         var stackView = UIStackView()
         stackView.axis = .vertical
@@ -88,8 +90,12 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
         horizontalStackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4)
         
         horizontalStackView.addArrangedSubview(iconLabel)
-        horizontalStackView.addArrangedSubview(verticalStackView)
+        horizontalStackView.addArrangedSubview(verticalStackViewContainerView)
         horizontalStackView.addArrangedSubview(checkMarkImageView)
+        
+        verticalStackViewContainerView.addSubview(verticalStackView)
+        verticalStackView.anchor(left: verticalStackViewContainerView.leftAnchor, right: verticalStackViewContainerView.rightAnchor)
+        verticalStackView.centerY(inView: verticalStackViewContainerView)
         
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(detailLabel)

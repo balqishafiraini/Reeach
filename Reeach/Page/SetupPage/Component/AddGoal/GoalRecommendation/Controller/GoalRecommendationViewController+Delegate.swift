@@ -29,14 +29,14 @@ extension GoalRecommendationViewController: UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: collectionView.frame.width, height: 90)
+        return CGSize(width: collectionView.frame.width, height: 112)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoalDetailCollectionViewCell.reuseIdentifier, for: indexPath) as! GoalDetailCollectionViewCell
         
         let goal = goals[indexPath.section][indexPath.item]
-        cell.contentView.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        cell.contentView.heightAnchor.constraint(equalToConstant: 112).isActive = true
         cell.titleLabel.text = goal.name
         cell.detailLabel.text = goal.description
         cell.iconLabel.text = goal.icon
@@ -64,6 +64,8 @@ extension GoalRecommendationViewController: UICollectionViewDelegate, UICollecti
         if let cell = collectionView.cellForItem(at: indexPath)! as? GoalDetailCollectionViewCell {
             cell.configureSelectedView()
             cell.isSelected = false
+            delegate?.selected(recommendation: goals[indexPath.section][indexPath.item])
+            navigationController?.popViewController(animated: true)
         }
     }
 
