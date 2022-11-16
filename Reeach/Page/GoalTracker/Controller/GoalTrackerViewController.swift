@@ -18,7 +18,6 @@ class GoalTrackerViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Lalala")
         goals = Goal.categorizeGoals(goals: DatabaseHelper().getAllocatedGoals(on: Date()))
         
         terms.removeAll()
@@ -38,6 +37,7 @@ class GoalTrackerViewController: UIViewController {
             contentView.emptyDescriptionLabel.text = "Kamu belum memiliki goals tidak aktif"
             contentView.centerYEmptyContainerViewConstraint.constant = 100
         }
+        contentView.collectionView.reloadData()
     }
     
     override func loadView() {
