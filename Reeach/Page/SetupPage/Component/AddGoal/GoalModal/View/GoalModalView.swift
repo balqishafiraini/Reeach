@@ -10,6 +10,8 @@ import UIKit
 
 class GoalModalView: UIView {
     
+    weak var delegate: GoalSetupDelegate?
+    
     let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
     
     let recommendButton: UIButton = {
@@ -60,7 +62,6 @@ class GoalModalView: UIView {
             return scrollView
         }()
     
-    
     func configureStackView() {
         self.backgroundColor = .ghostWhite
         
@@ -103,6 +104,27 @@ class GoalModalView: UIView {
         //switchview
         switchView.setupView()
     }
+    
+//    func setupTriggerForm() {
+//        goalName.textField.addTarget(self, action: #selector(textFieldTapped), for: .allEvents)
+//        goalName.textField.sendActions(for: .valueChanged)
+//
+////        dueDate.textField.addTarget(self, action: #selector(textFieldTapped), for: .allEvents)
+////        dueDate.textField.sendActions(for: .valueChanged)
+//
+//        total.textField.addTarget(self, action: #selector(textFieldTapped), for: .allEvents)
+//        total.textField.sendActions(for: .valueChanged)
+//
+////        goalType.textField.addTarget(self, action: #selector(textFieldTapped), for: .allEvents)
+////        goalType.textField.sendActions(for: .valueChanged)
+//
+//        switchView.tf.textField.addTarget(self, action: #selector(textFieldTapped), for: .allEvents)
+//        switchView.tf.textField.sendActions(for: .valueChanged)
+//    }
+//
+//    @objc func textFieldTapped(_ sender: UITextField!) {
+//        print("TextField clicked")
+//    }
 }
 
 class IconView: UIView {
