@@ -39,6 +39,8 @@ extension TermPickerViewController: UICollectionViewDelegate, UICollectionViewDa
         if let cell = collectionView.cellForItem(at: indexPath)! as? GoalDetailCollectionViewCell {
             cell.configureSelectedView()
             cell.isSelected = false
+            delegate?.selected(timeTerm: terms[indexPath.item])
+            navigationController?.popViewController(animated: true)
         }
     }
 
