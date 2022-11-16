@@ -81,7 +81,7 @@ class SetupPageView: UIView {
         self.addSubview(content)
         self.addSubview(bottomView)
         
-        progressHeader.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, bottom: content.topAnchor, right: self.rightAnchor,paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
+        progressHeader.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, bottom: content.topAnchor, right: self.rightAnchor, paddingTop: 20, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
         content.anchor(top: progressHeader.bottomAnchor, left: self.leftAnchor, bottom: bottomView.topAnchor, right: self.rightAnchor, paddingTop: 16)
         
