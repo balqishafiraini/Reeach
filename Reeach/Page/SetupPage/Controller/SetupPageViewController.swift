@@ -7,16 +7,6 @@
 
 import UIKit
 
-@objc protocol SetupDelegate: AnyObject {
-    @objc optional func updateProgress()
-    @objc optional func previousProgress()
-    
-    @objc optional func openGoalSheet()
-    
-    @objc optional func addBudget(type: String, budget: Budget)
-    @objc optional func saveIncome(income: String)
-}
-
 protocol BudgetDelegate: AnyObject {
     func addBudget()
 }
