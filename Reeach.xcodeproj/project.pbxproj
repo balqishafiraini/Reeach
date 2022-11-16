@@ -73,6 +73,7 @@
 		CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D14422910069F00C35094 /* SetupPageViewController.swift */; };
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
+		CA6EBC8629235EE400A33A2E /* SetupPageViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */; };
 		CA91B837291969FF00627257 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91B836291969FF00627257 /* BudgetView.swift */; };
 		CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA872922055400974168 /* SetupProgressHeader.swift */; };
 		CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA882922055400974168 /* ProgressSection.swift */; };
@@ -211,6 +212,7 @@
 		CA4D14422910069F00C35094 /* SetupPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupPageViewController.swift; sourceTree = "<group>"; };
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
+		CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupPageViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CA91B836291969FF00627257 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
 		CAEDFA872922055400974168 /* SetupProgressHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProgressHeader.swift; sourceTree = "<group>"; };
 		CAEDFA882922055400974168 /* ProgressSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSection.swift; sourceTree = "<group>"; };
@@ -826,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				CA4D14422910069F00C35094 /* SetupPageViewController.swift */,
+				CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1268,6 +1271,7 @@
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */,
+				CA6EBC8629235EE400A33A2E /* SetupPageViewController+Delegate.swift in Sources */,
 				3B4AE57F29227746000EA6C1 /* AddCategoryViewController.swift in Sources */,
 				CA91B837291969FF00627257 /* BudgetView.swift in Sources */,
 				3B4AE59029231AF6000EA6C1 /* ChipCollectionViewCell.swift in Sources */,

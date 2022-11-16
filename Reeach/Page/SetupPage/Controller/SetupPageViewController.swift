@@ -10,6 +10,9 @@ import UIKit
 @objc protocol SetupDelegate: AnyObject {
     @objc optional func updateProgress()
     @objc optional func previousProgress()
+    
+    @objc optional func openGoalSheet()
+    
     @objc optional func addBudget(type: String, budget: Budget)
     @objc optional func saveIncome(income: String)
 }
@@ -47,12 +50,10 @@ class SetupPageViewController: UIViewController {
         contentView.progressHeader.progressBar.setProgress(currentProgress, animated: true)
         contentView.progressHeader.updateSteps(currentIndex: currentProgressIndex)
     }
-
     
     func shouldDisableButton(progressIndex: Float){
         switch progressIndex {
         case 1.0:
-            print(#function)
             if income == 0.0 {
                 contentView.bottomView.nextButton.isEnabled = false
             } else {
@@ -62,60 +63,4 @@ class SetupPageViewController: UIViewController {
             contentView.bottomView.nextButton.isEnabled = true
         }
     }
-}
-
-extension SetupPageViewController: SetupDelegate {
-    
-    func updateProgress() {
-        currentProgressIndex += 1.0
-        currentProgress = currentProgressIndex / totalProgress
-        
-        if currentProgressIndex > totalProgress {
-            self.dismiss(animated: true)
-        }
-        
-        updateView()
-    }
-    
-    func previousProgress() {
-        print(income)
-        currentProgressIndex -= 1.0
-        currentProgress = currentProgressIndex / totalProgress
-        updateView()
-    }
-    
-    func addBudget(type: String, budget: Budget) {
-        print(#function)
-        switch type {
-        case "Goal":
-//            goalBudgets.append(budget)
-            let _ = contentView.content as! AddBudget
-//            content.goalStack.setupStatusLabel(budgets: goalBudgets)
-            
-        case "Need":
-            needBudgets.append(budget)
-        case "Want":
-            wantBudgets.append(budget)
-        default:
-            print("Wtf do u want?")
-        }
-    }
-    
-    func saveIncome(income: String) {
-        self.income = (income as NSString).floatValue
-        shouldDisableButton(progressIndex: currentProgressIndex)
-    }
-    
-}
-
-extension SetupPageViewController: BudgetDelegate {
-    func addBudget() {
-        print(#function)
-        
-//        if let content = contentView.content as? AddBudget {
-//            content.multipleProgress.add(Progress())
-//        }
-    }
-    
-    
 }

@@ -121,15 +121,8 @@ class AddGoal: UIView {
         emptyView.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
     }
     
-    // TODO: Open sheet here
     @objc func openGoalSheet() {
-        print("Opening Goal Sheet")
-        
-        emptyView.removeFromSuperview()
-        removeConstraints(emptyView.constraints)
-        
-        self.addSubview(goalItem)
-        goalItem.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor)
+        delegate?.openGoalSheet?()
     }
 }
 
