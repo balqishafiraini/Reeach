@@ -30,7 +30,7 @@ class BudgetingTechniqueExplanationView: UIView {
     lazy var imageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 5/6).isActive = true
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "IllustrationBudget")
         return imageView
