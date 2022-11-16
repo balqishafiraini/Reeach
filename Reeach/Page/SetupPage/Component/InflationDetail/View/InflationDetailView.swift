@@ -30,7 +30,7 @@ class InflationDetailView: UIView {
     lazy var imageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 5/6).isActive = true
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "IllustrationInflasi")
         return imageView
@@ -162,9 +162,9 @@ class InflationDetailView: UIView {
         
         stackView.addArrangedSubview(imageViewContainerView)
         imageViewContainerView.addSubview(imageView)
-        imageView.center(inView: imageViewContainerView)
-        imageViewContainerView.heightAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
-        imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
+        imageView.anchor(top: imageViewContainerView.topAnchor, bottom: imageViewContainerView.bottomAnchor, paddingTop: 20, paddingBottom: 16)
+        imageView.centerX(inView: imageViewContainerView)
+        imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 2/3).isActive = true
         
         stackView.addArrangedSubview(whatLabel)
         stackView.addArrangedSubview(whatDetailLabel)
