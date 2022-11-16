@@ -30,7 +30,7 @@ class GoalDetailCollectionViewCell: UICollectionViewCell {
     lazy var iconLabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 32, weight: .bold)
-        label.anchor(width: 32)
+        label.anchor(width: 36)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
