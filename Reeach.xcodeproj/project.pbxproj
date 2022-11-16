@@ -60,6 +60,8 @@
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
 		CA91B837291969FF00627257 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91B836291969FF00627257 /* BudgetView.swift */; };
+		CAD6C4442925274E00755DF9 /* PlannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6C4432925274E00755DF9 /* PlannerDelegate.swift */; };
+		CAD6C4462925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6C4452925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift */; };
 		CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA872922055400974168 /* SetupProgressHeader.swift */; };
 		CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA882922055400974168 /* ProgressSection.swift */; };
 		CAEDFA8B29220F2A00974168 /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143D2910069F00C35094 /* AddBudget.swift */; };
@@ -179,6 +181,8 @@
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
 		CA91B836291969FF00627257 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		CAD6C4432925274E00755DF9 /* PlannerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerDelegate.swift; sourceTree = "<group>"; };
+		CAD6C4452925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyPlanningViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CAEDFA872922055400974168 /* SetupProgressHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProgressHeader.swift; sourceTree = "<group>"; };
 		CAEDFA882922055400974168 /* ProgressSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSection.swift; sourceTree = "<group>"; };
 		CAEFBE45291D883E0037F1AE /* GoalItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalItem.swift; sourceTree = "<group>"; };
@@ -531,8 +535,9 @@
 		CA20EFD5291AB87900248477 /* MonthlyPlanningPage */ = {
 			isa = PBXGroup;
 			children = (
-				CA20EFD7291AB88F00248477 /* View */,
+				CAD6C4412925273900755DF9 /* Model */,
 				CA20EFD6291AB88A00248477 /* Controller */,
+				CA20EFD7291AB88F00248477 /* View */,
 			);
 			path = MonthlyPlanningPage;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */,
+				CAD6C4452925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -674,6 +680,22 @@
 				CA91B836291969FF00627257 /* BudgetView.swift */,
 			);
 			path = AddBudget;
+			sourceTree = "<group>";
+		};
+		CAD6C4412925273900755DF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CAD6C4422925274000755DF9 /* Protocol */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAD6C4422925274000755DF9 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				CAD6C4432925274E00755DF9 /* PlannerDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		CAEDFA862922055400974168 /* SetupProgressHeader */ = {
@@ -1015,6 +1037,7 @@
 				3BAA29D22907790E008D3C5B /* Category+CoreDataProperties.swift in Sources */,
 				3B8197F02919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift in Sources */,
 				3B8197E329187A890065C01E /* SelectGoalViewController.swift in Sources */,
+				CAD6C4442925274E00755DF9 /* PlannerDelegate.swift in Sources */,
 				3BAA29D32907790E008D3C5B /* Budget+CoreDataClass.swift in Sources */,
 				3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */,
 				3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */,
@@ -1054,6 +1077,7 @@
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
 				CAEFBE46291D883E0037F1AE /* GoalItem.swift in Sources */,
+				CAD6C4462925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift in Sources */,
 				3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
