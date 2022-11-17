@@ -13,13 +13,23 @@ protocol GoalSetupDelegate: AnyObject {
 
 class GoalModalViewController: UIViewController {
     
+    enum EditMode {
+           case add
+           case edit
+       }
+    
+    weak var delegate: GoalModalViewControllerDelegate?
+
+    
+    var mode: EditMode = .add
+    
     var iconName: String?
     var goal: String?
     var deadline: Date?
     var amount: Double?
     var goalType: String?
     var initSaving: Float?
-    
+        
     let goalModalView = GoalModalView()
     
     override func viewDidLoad() {
@@ -93,6 +103,7 @@ class GoalModalViewController: UIViewController {
     }
     
     @objc func dismissView(){
+        delegate?.viewDismissed()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -150,6 +161,7 @@ extension GoalModalViewController: UITextFieldDelegate {
         
         if textField == goalModalView.goalType.textField {
             let goalVC = TermPickerViewController()
+            goalVC.delegate = self
             navigationController?.pushViewController(goalVC, animated: true)
             textField.resignFirstResponder()
         } else {
@@ -164,4 +176,10 @@ extension GoalModalViewController: UITextFieldDelegate {
     }
     
     
+}
+
+extension GoalModalViewController: TermPickerViewControllerDelegate {
+    func selected(timeTerm: String) {
+        goalModalView.goalType.textField.text = timeTerm
+    }
 }

@@ -13,7 +13,8 @@ protocol AutoIncrementInt64Id {
 }
 
 extension DatabaseHelper {
-    func insertDefaultCategory() {
+    func insertDefaultCategory() {        
+        let _ = createCategory(name: "Income", type: "Income", icon: "💵")
         let _ = createCategory(name: "Makanan", type: "Need", icon: "🍕")
         let _ = createCategory(name: "Pakaian", type: "Need", icon: "👕")
         let _ = createCategory(name: "Pendidikan", type: "Need", icon: "📚")

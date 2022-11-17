@@ -13,6 +13,7 @@ class DatePicker: UIView, UITextFieldDelegate {
     
     lazy var datePicker: TextField = {
         let tf = TextField(frame: .zero, style: .template, icon: UIImage(named: "Calendar"))
+        tf.textField.placeholder = "MM/YYYY"
         tf.tintColor = .clear
         tf.textField.delegate = self
         
