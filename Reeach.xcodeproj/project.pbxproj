@@ -89,6 +89,8 @@
 		CAEDFA8D29220F6700974168 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB4BA28F85F28002663AE /* NetworkService.swift */; };
 		CAFADA7A2912E1DB00172D04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA792912E1DB00172D04 /* ViewController.swift */; };
 		CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFADA7B2912E2B700172D04 /* SetupPageView.swift */; };
+		FA10B0D72922B4D0005D856C /* GoalsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10B0D62922B4D0005D856C /* GoalsOverviewViewController.swift */; };
+		FA10B0D92922B4DA005D856C /* GoalsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10B0D82922B4DA005D856C /* GoalsOverviewView.swift */; };
 		FA10B0CF2922A9E3005D856C /* CategoryAllocationModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10B0CE2922A9E3005D856C /* CategoryAllocationModalView.swift */; };
 		FA10B0D22922A9FD005D856C /* CategoryAllocationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10B0D12922A9FD005D856C /* CategoryAllocationModalViewController.swift */; };
 		FA2E29DC29039A8B0083587D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E29DB29039A8B0083587D /* Button.swift */; };
@@ -231,6 +233,8 @@
 		CAEDFA882922055400974168 /* ProgressSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSection.swift; sourceTree = "<group>"; };
 		CAFADA792912E1DB00172D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CAFADA7B2912E2B700172D04 /* SetupPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPageView.swift; sourceTree = "<group>"; };
+		FA10B0D62922B4D0005D856C /* GoalsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsOverviewViewController.swift; sourceTree = "<group>"; };
+		FA10B0D82922B4DA005D856C /* GoalsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsOverviewView.swift; sourceTree = "<group>"; };
 		FA10B0CE2922A9E3005D856C /* CategoryAllocationModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAllocationModalView.swift; sourceTree = "<group>"; };
 		FA10B0D12922A9FD005D856C /* CategoryAllocationModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAllocationModalViewController.swift; sourceTree = "<group>"; };
 		FA2E29DA29039A470083587D /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -822,6 +826,7 @@
 		CA4D14372910069F00C35094 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				FA10B0D32922B4B3005D856C /* GoalsOverview */,
 				FAA37BF5291D508300F2C87A /* TrackerEmptyState */,
 				CA20EFD5291AB87900248477 /* MonthlyPlanningPage */,
 				CA4D14382910069F00C35094 /* SetupPage */,
@@ -957,6 +962,23 @@
 			path = AddGoal;
 			sourceTree = "<group>";
 		};
+		FA10B0D32922B4B3005D856C /* GoalsOverview */ = {
+			isa = PBXGroup;
+			children = (
+				FA10B0D52922B4BF005D856C /* Controller */,
+				FA10B0D42922B4BB005D856C /* View */,
+			);
+			path = GoalsOverview;
+			sourceTree = "<group>";
+		};
+		FA10B0D42922B4BB005D856C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA10B0D82922B4DA005D856C /* GoalsOverviewView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FA10B0CB2922A9BE005D856C /* CategoryAllocation */ = {
 			isa = PBXGroup;
 			children = (
@@ -972,6 +994,14 @@
 				FA10B0CE2922A9E3005D856C /* CategoryAllocationModalView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FA10B0D52922B4BF005D856C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA10B0D62922B4D0005D856C /* GoalsOverviewViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		FA10B0D02922A9EE005D856C /* Controller */ = {
@@ -1350,6 +1380,7 @@
 				FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */,
 				3B4AE57D29227739000EA6C1 /* AddCategoryView.swift in Sources */,
 				3B8197DA2918676F0065C01E /* TermPickerView.swift in Sources */,
+				FA10B0D92922B4DA005D856C /* GoalsOverviewView.swift in Sources */,
 				3B4AE598292322BD000EA6C1 /* CategoryCardCollectionViewCell.swift in Sources */,
 				3B81980E2921B6320065C01E /* Tip.swift in Sources */,
 				3B8197D8291867420065C01E /* TermPickerViewController.swift in Sources */,
@@ -1379,6 +1410,7 @@
 				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,
 				FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */,
 				CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */,
+				FA10B0D72922B4D0005D856C /* GoalsOverviewViewController.swift in Sources */,
 				FAA37BF0291AA19000F2C87A /* UIViewController+Extension.swift in Sources */,
 				3B8197EC2918F9C40065C01E /* GoalRecommendationViewController.swift in Sources */,
 				3B8197F72919CC160065C01E /* BudgetingTechniqueExplanationViewController.swift in Sources */,
