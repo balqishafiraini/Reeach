@@ -1,5 +1,5 @@
 //
-//  GoalAllocationViewController.swift
+//  GoalAllocationModalViewController.swift
 //  Reeach
 //
 //  Created by Balqis on 14/11/22.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-class GoalAllocationViewController: UIViewController {
+class GoalAllocationModalViewController: UIViewController {
     
-    let goalAllocationView = GoalAllocationView()
+    let goalAllocationModalView = GoalAllocationModalView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goalAllocationView.configureStackView()
-        view = goalAllocationView
+        goalAllocationModalView.configureStackView()
+        view = goalAllocationModalView
         title = "Alokasi Goal"
         self.setNavigationBar()
     }

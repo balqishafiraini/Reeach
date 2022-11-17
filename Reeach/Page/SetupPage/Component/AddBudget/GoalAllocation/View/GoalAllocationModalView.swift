@@ -1,5 +1,5 @@
 //
-//  GoalAllocationView.swift
+//  GoalAllocationModalView.swift
 //  Reeach
 //
 //  Created by Balqis on 14/11/22.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class GoalAllocationView: UIView {
+class GoalAllocationModalView: UIView {
     
     let iconWithoutEdit = IconWithoutEditView()
     
