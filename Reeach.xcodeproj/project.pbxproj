@@ -114,6 +114,7 @@
 		FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA428C7E2909993D0053153F /* GoalModalViewController.swift */; };
 		FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969528F2695800BF3B9F /* UIView+Extension.swift */; };
 		FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969728F2696200BF3B9F /* UIColor+Extension.swift */; };
+		FA940D0229263DEC00D7C6E5 /* CategoryAllocationModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA940D0129263DEC00D7C6E5 /* CategoryAllocationModalDelegate.swift */; };
 		FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C028EBCF44001203F5 /* AppDelegate.swift */; };
 		FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C228EBCF44001203F5 /* SceneDelegate.swift */; };
 		FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C928EBCF44001203F5 /* Reeach.xcdatamodeld */; };
@@ -260,6 +261,7 @@
 		FA84163728FF993700AA973C /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA84163828FF993700AA973C /* ReeachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA84163928FF993700AA973C /* ReeachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA940D0129263DEC00D7C6E5 /* CategoryAllocationModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAllocationModalDelegate.swift; sourceTree = "<group>"; };
 		FA9B12C028EBCF44001203F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA9B12C228EBCF44001203F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FA9B12CA28EBCF44001203F5 /* Reeach.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reeach.xcdatamodel; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 		FA10B0CB2922A9BE005D856C /* CategoryAllocation */ = {
 			isa = PBXGroup;
 			children = (
+				FA940CFF29263DC200D7C6E5 /* Model */,
 				FA10B0D02922A9EE005D856C /* Controller */,
 				FA10B0CC2922A9C7005D856C /* View */,
 			);
@@ -1032,6 +1035,22 @@
 				FA3ED3892922437000FD4C15 /* GoalAllocationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		FA940CFF29263DC200D7C6E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA940D0029263DC900D7C6E5 /* Protocol */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FA940D0029263DC900D7C6E5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				FA940D0129263DEC00D7C6E5 /* CategoryAllocationModalDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		FA9B12B428EBCF44001203F5 = {
@@ -1374,6 +1393,7 @@
 				CAD6C4462925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift in Sources */,
 				3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */,
 				3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */,
+				FA940D0229263DEC00D7C6E5 /* CategoryAllocationModalDelegate.swift in Sources */,
 				FA2E2A0A2907CFBD0083587D /* DatePicker.swift in Sources */,
 				FAA857CE2924A438007B4A83 /* EmojiKeyboardTextField.swift in Sources */,
 				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,

@@ -22,6 +22,8 @@ class CategoryAllocationModalViewController: UIViewController {
     var type: CategoryType = .needs
     var mode: EditMode = .add
     
+    weak var delegate: CategoryAllocationModalViewControllerDelegate?
+    
     let categoryAllocationModalView = CategoryAllocationModalView()
     
     
@@ -93,6 +95,7 @@ class CategoryAllocationModalViewController: UIViewController {
     }
     
     @objc func dismissView(){
+        delegate?.viewDismissed()
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -131,6 +134,5 @@ extension CategoryAllocationModalViewController: SelectBudgetCategoryViewControl
     func selected(category: Category) {
         categoryAllocationModalView.category.textField.text = category.name
     }
-    
-    
 }
+
