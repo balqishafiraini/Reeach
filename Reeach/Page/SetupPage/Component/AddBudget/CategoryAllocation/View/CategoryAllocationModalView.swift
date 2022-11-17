@@ -11,7 +11,11 @@ class CategoryAllocationModalView: UIView {
     
     let iconWithoutEdit = IconWithoutEditView()
     
-    let category = TextField(frame: .zero, title: "Kategori", style: .template, icon: UIImage(named: "ChevronRight"))
+    let category = {
+        let tf = TextField(frame: .zero, title: "Kategori", style: .template, icon: UIImage(named: "ChevronRight"))
+        tf.textField.placeholder = "Pilih Kategori"
+        return tf
+    }()
     
     let monthlyAllocation = TextField(frame: .zero, title: "Alokasi Bulanan", style: .template, prefix: "Rp")
     

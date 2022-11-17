@@ -110,8 +110,7 @@ extension CategoryAllocationModalViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if textField == categoryAllocationModalView.category.textField {
-            // TODO: GANTI TermPickerViewController KE CategoryViewController
-            let goalVC = TermPickerViewController()
+            let goalVC = SelectBudgetCategoryViewController()
             navigationController?.pushViewController(goalVC, animated: true)
             textField.resignFirstResponder()
         } else {
