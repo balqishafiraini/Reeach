@@ -14,7 +14,7 @@ class GoalAllocationModalViewController: UIViewController {
         case edit
     }
     
-    weak var delegate: GoalAllocationModalViewCOntrollerDelegate?
+    weak var delegate: GoalAllocationModalViewControllerDelegate?
     
     var mode: EditMode = .add
     

@@ -7,6 +7,6 @@
 
 import UIKit
 
-protocol GoalAllocationModalViewCOntrollerDelegate: AnyObject {
+protocol GoalAllocationModalViewControllerDelegate: AnyObject {
     func viewDismissed()
 }
