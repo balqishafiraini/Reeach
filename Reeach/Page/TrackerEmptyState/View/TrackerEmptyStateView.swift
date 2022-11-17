@@ -25,7 +25,7 @@ class TrackerEmptyStateView: UIView {
     
     let descLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Coming Soon, Gaes!"
+        lbl.text = "Coming soon ges!"
         lbl.font = .bodyMedium
         lbl.textColor = .black7
         return lbl
