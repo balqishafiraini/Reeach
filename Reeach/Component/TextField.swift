@@ -145,8 +145,8 @@ class TextField: UIView {
         
         let contentView = UIView()
         contentView.addSubview(icon)
-        contentView.frame = CGRectMake(0, 0, 35, 20)
-        icon.frame = CGRectMake(0, 0, 22, 20)
+        contentView.frame = CGRectMake(0, 0, 30, 20)
+        icon.frame = CGRectMake(0, 0, 20, 20)
         
         textField.rightView = contentView
         textField.rightViewMode = .always

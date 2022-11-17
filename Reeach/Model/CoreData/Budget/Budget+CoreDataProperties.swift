@@ -43,10 +43,10 @@ extension Budget {
         return fetchRequest
     }
     
-    @nonobjc public class func fetchRequest(on month: Date, with term: String) -> NSFetchRequest<Budget>
+    @nonobjc public class func fetchRequest(on month: Date, with type: String) -> NSFetchRequest<Budget>
     {
         let fetchRequest = NSFetchRequest<Budget>(entityName: "Budget")
-        fetchRequest.predicate = NSPredicate(format: "period == %@ and category.term like [c] %@", month as NSDate, term)
+        fetchRequest.predicate = NSPredicate(format: "period == %@ and category.type like [c] %@", month as NSDate, type)
         fetchRequest.sortDescriptors = sortDescriptors
         return fetchRequest
     }

@@ -40,7 +40,7 @@ public class Goal: Category {
         let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)
         let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
         
-        return CurrencyHelper.roundUp(targetAmount * pow((1+inflationRate), Double(dd)))
+        return (targetAmount * pow((1+inflationRate), Double(dd))).rounded(.up)
     }
     
     func futureValue(from month: Date) -> Double {
@@ -52,7 +52,7 @@ public class Goal: Category {
         else { return nil }
         
         let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
-        return CurrencyHelper.roundUp(budget.monthlyAllocation * Double(dd))
+        return (budget.monthlyAllocation * Double(dd)).rounded(.up)
     }
     
     func targetAmount(of budget: Budget) -> Double? {
@@ -67,7 +67,7 @@ public class Goal: Category {
             let month = budget.period ?? Date()
             let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
             
-            return CurrencyHelper.roundUp((expectedSaving(of: budget) ?? 0 + initialSaving(before: month)) * pow((1+inflationRate), Double(-dd)))
+            return ((expectedSaving(of: budget) ?? 0 + initialSaving(before: month)) * pow((1+inflationRate), Double(-dd))).rounded(.up)
         }
     }
     
@@ -88,7 +88,7 @@ public class Goal: Category {
         else {
             let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
             
-            return CurrencyHelper.roundUp((remaining(of: budget) ?? 0) / Double (dd))
+            return ((remaining(of: budget) ?? 0) / Double (dd)).rounded(.up)
         }
     }
     
@@ -98,7 +98,7 @@ public class Goal: Category {
         }
         else {
             let dd = DateFormatHelper.getMonthDifferences(between: budget.period ?? Date(), and: dueDate ?? Date()) + 1
-            return CurrencyHelper.roundUp(futureValue(from: budget.period ?? Date()) / Double (dd))
+            return (futureValue(from: budget.period ?? Date()) / Double (dd)).rounded(.up)
         }
     }
     
@@ -127,6 +127,31 @@ public class Goal: Category {
         "Medium"    : "3 tahun - 5 tahun",
         "Long"      : "> 5 tahun"
     ]
+    
+    static func categorizeGoals(goals: [Goal]) -> [[Goal]] {
+        var result: [[Goal]] = []
+        var shortGoals: [Goal] = []
+        var mediumGoals: [Goal] = []
+        var longGoals: [Goal] = []
+        
+        for goal in goals {
+            if goal.timeTerm == "Short" {
+                shortGoals.append(goal)
+            }
+            else if goal.timeTerm == "Medium" {
+                mediumGoals.append(goal)
+            }
+            else if goal.timeTerm == "Long" {
+                longGoals.append(goal)
+            }
+        }
+        
+        if shortGoals.isEmpty == false { result.append(shortGoals) }
+        if mediumGoals.isEmpty == false { result.append(mediumGoals) }
+        if longGoals.isEmpty == false { result.append(longGoals) }
+        
+        return result
+    }
 }
 
 extension Goal {
@@ -145,8 +170,8 @@ extension Goal {
     }
     
     static let goalRecommendation: [Recommendation] = [
-        Recommendation(icon: "💰", name: "Emergency Fund", term: "Short", description: "Simpanan uang yang bisa kamu pakai ketika kamu tidak punya pemasukan. "),
-        Recommendation(icon: "💵", name: "Bayar Utang", term: "Medium", description: "Jangan lupa bayar utang-utangmu, nanti gawat bunganya numpuk, loh."),
+        Recommendation(icon: "💰", name: "Dana Darurat", term: "Short", description: "Simpanan uang yang bisa kamu pakai ketika kamu tidak punya pemasukan."),
+        Recommendation(icon: "💵", name: "Tabungan bisnis baru", term: "Medium", description: "Punya bisnis sampingan bisa bantu kamu tambah penghasilan."),
         Recommendation(icon: "⛑", name: "Asuransi", term: "Medium", description: "Cicil asuransi untuk jaga-jaga hal yang gak terduga."),
         Recommendation(icon: "🧓", name: "Dana Pensiun", term: "Long", description: "Yuk, siapkan dana pensiunmu. Atau malah retiring early? Leggoooo!")
     ]

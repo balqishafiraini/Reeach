@@ -9,5 +9,4 @@ import Foundation
 
 protocol NavigationBarDelegate: AnyObject {
     func cancel()
-    func confirm()
 }
