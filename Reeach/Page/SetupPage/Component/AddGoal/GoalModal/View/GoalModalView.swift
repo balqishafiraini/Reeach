@@ -12,7 +12,12 @@ class GoalModalView: UIView {
     
     weak var delegate: GoalSetupDelegate?
     
-    let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
+    let goalName = {
+        let tf = TextField(frame: .zero, title: "Judul Goal", style: .template)
+        tf.textField.placeholder = "Tulis goals kamu di sini, bestie."
+        return tf
+        
+    }()
     
     let recommendButton: UIButton = {
         let button = UIButton()
@@ -51,6 +56,7 @@ class GoalModalView: UIView {
     let goalType = {
         let tf = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(named: "ChevronRight"))
         tf.tintColor = .clear
+        tf.textField.placeholder = "Pilih Tipe Goal"
         return tf
     }()
     
