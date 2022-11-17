@@ -12,7 +12,12 @@ class GoalModalView: UIView {
     
     weak var delegate: GoalSetupDelegate?
     
-    let goalName = TextField(frame: .zero, title: "Judul Goal", style: .template)
+    let goalName = {
+        let tf = TextField(frame: .zero, title: "Judul Goal", style: .template)
+        tf.textField.placeholder = "Tulis goals kamu di sini, bestie."
+        return tf
+        
+    }()
     
     let recommendButton: UIButton = {
         let button = UIButton()
@@ -51,6 +56,7 @@ class GoalModalView: UIView {
     let goalType = {
         let tf = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(named: "ChevronRight"))
         tf.tintColor = .clear
+        tf.textField.placeholder = "Pilih Tipe Goal"
         return tf
     }()
     
@@ -126,13 +132,7 @@ class GoalModalView: UIView {
         
         let editButton: UIButton = {
             let button = UIButton()
-            button.backgroundColor = .tangerineYellow
-            button.tintColor = .royalHunterBlue
-            button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-            button.layer.cornerRadius = 25
-            let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .black)
-            let symbol = UIImage(systemName: "pencil", withConfiguration: config)
-            button.setImage(symbol, for: .normal)
+            button.setImage(UIImage(named: "EditCircle"), for: .normal)
             return button
         }()
         
@@ -143,7 +143,7 @@ class GoalModalView: UIView {
             addSubview(iconTextField)
             bringSubviewToFront(editButton)
             
-            editButton.anchor(bottom: iconTextField.bottomAnchor, right: iconTextField.rightAnchor, paddingRight: 8)
+            editButton.anchor(bottom: iconTextField.bottomAnchor, right: iconTextField.rightAnchor, paddingRight: 15)
             
             iconTextField.centerX(inView: self)
             
