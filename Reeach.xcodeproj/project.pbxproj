@@ -847,7 +847,6 @@
 			isa = PBXGroup;
 			children = (
 				FA3ED3842922432300FD4C15 /* GoalAllocation */,
-				FA10B0CB2922A9BE005D856C /* CategoryAllocation */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CAEDFA862922055400974168 /* SetupProgressHeader */,
 				CAEFBE44291D87A70037F1AE /* AddGoal */,
@@ -910,6 +909,7 @@
 		CA91B82C29194A4600627257 /* AddBudget */ = {
 			isa = PBXGroup;
 			children = (
+				FA10B0CB2922A9BE005D856C /* CategoryAllocation */,
 				3B4AE5712922767A000EA6C1 /* AddCategory */,
 				3B4AE573292276BE000EA6C1 /* SelectBudgetCategory */,
 				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
