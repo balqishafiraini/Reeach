@@ -22,12 +22,14 @@ class BudgetView: UIView {
     var budgets: [Budget]?
     var allocated: Double = 0.0
     var allocationCount = 0
+    var shouldDisableButton: Bool
     
     weak var delegate: SetupDelegate?
     
-    init(frame: CGRect, labelText: String, type: String){
+    init(frame: CGRect, labelText: String, type: String, disableButtonAndStatus: Bool? = false){
         self.labelText = labelText
         self.type = type
+        self.shouldDisableButton = disableButtonAndStatus!
         
         super.init(frame: frame)
     }
@@ -35,6 +37,7 @@ class BudgetView: UIView {
     override init(frame: CGRect) {
         self.labelText = "Implement label here"
         self.type = "Goal"
+        self.shouldDisableButton = false
         
         super.init(frame: frame)
     }
@@ -99,11 +102,15 @@ class BudgetView: UIView {
         setupStatusLabel()
         
         stack.addArrangedSubview(label)
-        stack.addArrangedSubview(statusLabel)
+        if !shouldDisableButton {
+            stack.addArrangedSubview(statusLabel)
+        }
         stack.addArrangedSubview(budgetStack)
-        stack.addArrangedSubview(addButton)
+        if !shouldDisableButton {
+            stack.addArrangedSubview(addButton)
+        }
         
-        stack.setCustomSpacing(4, after: label)
+        stack.setCustomSpacing(shouldDisableButton ? 12 : 4, after: label)
         stack.setCustomSpacing(12, after: statusLabel)
         stack.setCustomSpacing(12, after: budgetStack)
         
