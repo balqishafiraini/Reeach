@@ -10,7 +10,7 @@ import UIKit
 class TabBarController: UITabBarController {
     
     let inflationEndPoint = InflationAPI.getInflation
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,24 +21,23 @@ class TabBarController: UITabBarController {
         
         setViewControllers([dashboardVC, goalsVC, cashflowVC, plannerVC], animated: false)
         
-        dashboardVC.title = "Dashboard"
-        goalsVC.title = "Goals"
-        cashflowVC.title = "Cashflow"
-        plannerVC.title = "Planner"
-        
         guard let items = self.tabBar.items else { return }
-        
-        let images = ["house", "list.bullet.rectangle", "list.clipboard", "doc.on.clipboard"]
-        
+        let images = ["Dashboard", "Goals", "Cashflow", "Planning"]
         for x in 0...3 {
-            items[x].image = UIImage(systemName: images[x])
+            items[x].image = UIImage(named: images[x])
         }
         
-        // TODO: iOS 14 color ga jalan        
-        tabBar.tintColor = .ghostWhite
-        tabBar.backgroundColor = .royalHunterBlue
-        tabBar.barTintColor = .ghostWhite
+        self.tabBar.tintColor = UIColor.ghostWhite
+        self.tabBar.isTranslucent = false
+        UITabBar.appearance().barTintColor = UIColor.royalHunterBlue
         
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .royalHunterBlue
+            tabBar.standardAppearance = appearance
+            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        }
         
         setupInflationData()
     }
@@ -47,7 +46,7 @@ class TabBarController: UITabBarController {
         super.viewDidAppear(true)
         for tabbarItem in (self.tabBar.items)!{
             let viewTabBar = tabbarItem.value(forKey: "view") as! UIView
-            viewTabBar.frame.origin.y = -20
+            viewTabBar.frame.origin.y = 5
             
         }
     }
