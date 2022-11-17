@@ -111,6 +111,7 @@ extension CategoryAllocationModalViewController: UITextFieldDelegate {
         
         if textField == categoryAllocationModalView.category.textField {
             let goalVC = SelectBudgetCategoryViewController()
+            goalVC.delegate = self
             navigationController?.pushViewController(goalVC, animated: true)
             textField.resignFirstResponder()
         } else {
@@ -122,6 +123,13 @@ extension CategoryAllocationModalViewController: UITextFieldDelegate {
         categoryAllocationModalView.scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
         
         self.view.endEditing(true);
+    }
+    
+}
+
+extension CategoryAllocationModalViewController: SelectBudgetCategoryViewControllerDelegate {
+    func selected(category: Category) {
+        categoryAllocationModalView.category.textField.text = category.name
     }
     
     
