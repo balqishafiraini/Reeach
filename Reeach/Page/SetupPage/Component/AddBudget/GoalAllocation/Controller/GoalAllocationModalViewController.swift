@@ -14,6 +14,13 @@ class GoalAllocationModalViewController: UIViewController {
         case edit
     }
     
+    var goal: Goal?
+    var iconEmoji: String?
+    var goalName: String?
+    var deadline: Date?
+    var targetAmount: Double?
+    var monthlySaving: Double?
+    
     weak var delegate: GoalAllocationModalViewControllerDelegate?
     
     var mode: EditMode = .add
