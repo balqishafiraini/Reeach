@@ -119,41 +119,6 @@ class GoalsOverviewView: UIView {
 
     }
     
-//    func configureStackView() {
-//
-//        self.backgroundColor = .royalHunterBlue
-//
-//        let vstack = UIStackView(arrangedSubviews: [totalTitle,
-//                                                    amount,
-//                                                    deadline,
-//                                                    deadlineView,
-//                                                    status,
-//                                                    statusView]
-//        )
-//
-//        vstack.frame = self.bounds
-//        vstack.axis = .vertical
-//        vstack.distribution = .fill
-//        vstack.spacing = 16
-//
-//        //autolayout
-//        self.addSubview(scrollView)
-//
-//        scrollView.addSubview(vstack)
-//
-//        scrollView.anchor(top: self.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: safeAreaLayoutGuide.rightAnchor, width: UIScreen.main.bounds.width)
-//
-//        vstack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingRight: 20)
-//
-//        NSLayoutConstraint.activate([
-//            vstack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
-//        ])
-////        headerView.setUp()
-////        headerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, right: scrollView.rightAnchor)
-//
-//        deadlineView.setUp()
-//        statusView.setUp()
-//    }
 }
 class HeaderView: UIView {
     
