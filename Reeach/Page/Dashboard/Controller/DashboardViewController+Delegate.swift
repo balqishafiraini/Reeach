@@ -19,10 +19,16 @@ extension DashboardViewController: DashboardViewProtocol {
     }
     
     func goToTipDetail(tip: Tip) {
-        let targetViewController = TipDetailViewController()
-        targetViewController.tip = tip
-        targetViewController.modalPresentationStyle = .pageSheet
-        present(targetViewController, animated: true)
+        let navigationController = UINavigationController()
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+
+        let modalViewController = TipDetailViewController()
+        modalViewController.tip = tip
+        modalViewController.modalPresentationStyle = .formSheet
+        navigationController.pushViewController(modalViewController, animated: true)
+        
+        present(navigationController, animated: true)
     }
 }
 
