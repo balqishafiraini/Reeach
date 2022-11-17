@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */; };
+		3B1AF1D529258D510063DFDC /* TipDetailViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */; };
 		3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */; };
 		3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */; };
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
@@ -150,6 +151,7 @@
 
 /* Begin PBXFileReference section */
 		3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatHelper.swift; sourceTree = "<group>"; };
+		3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TipDetailViewController+Delegate.swift"; sourceTree = "<group>"; };
 		3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Budget.swift"; sourceTree = "<group>"; };
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
@@ -733,6 +735,7 @@
 			isa = PBXGroup;
 			children = (
 				3BEBEFCB2921D590005A1062 /* TipDetailViewController.swift */,
+				3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1370,6 +1373,7 @@
 				CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */,
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				3B4AE59629231FBD000EA6C1 /* GoalTrackerViewController+Delegate.swift in Sources */,
+				3B1AF1D529258D510063DFDC /* TipDetailViewController+Delegate.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
 				CAD6C4462925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift in Sources */,
 				3B81980A291B316E0065C01E /* DashboardViewProtocol.swift in Sources */,

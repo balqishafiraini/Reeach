@@ -9,22 +9,21 @@ import UIKit
 
 class TipDetailViewController: UIViewController {
     var tip: Tip?
+    var contentView = TipDetailView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view = contentView
+        
+        contentView.imageView.image = tip?.image
+        contentView.titleLabel.text = tip?.explanationHeader
+        contentView.descriptionLabel.text = tip?.explanationDetail
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func loadView() {
+        super.loadView()
+        title = tip?.title
+        view = contentView
+        contentView.configureView(viewController: self)
     }
-    */
-
 }

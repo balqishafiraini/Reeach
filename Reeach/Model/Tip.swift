@@ -30,19 +30,28 @@ class Tip {
         Tip(
             id: 1,
             title: "S.M.A.R.T. Goals",
-            description: "Punya financial goals yang S.M.A.R.T bisa bantu kamu lebih stay on-track loh. Yuk lihat risetnya!",
-            explanationHeader: "SMART Goal",
+            description: "Pelajari lebih lanjut soal S.M.A.R.T. goals di sini.",
+            explanationHeader: "Apa fungsi S.M.A.R.T. Goal?",
             explanationDetail: """
-                Penjelasan tentang SMART Goal
+                S.M.A.R.T. merupakan singkatan dari specific, measurable, achievable, relevant, dan time-bounded atau spesifik, dapat diukur, dapat dicapai, relevan, dan terkait waktu.
+                
+                Metode S.M.A.R.T. dapat membantumu membuat goals yang lebih realistis dan terukur. Tidak hanya itu, metode ini juga bisa menjadi panduan kamu dalam menyusun strategi untuk mencapai goals kamu.
+                
                 """
         ),
         Tip(
             id: 2,
             title: "Tipe Goals",
-            description: "Kamu disarankan membagi goalsmu jadi tiga tipe, short, medium, dan long term. Apa saja goalsnya?",
+            description: "Yuk, kenali tipe financial goals!",
             explanationHeader: "Tentang Tipe Goal",
             explanationDetail: """
-                Penjelasan tentang tipe goal
+                Terdapat tiga tipe goal yang perlu kamu ketahui. Mengetahui tipe goal yang sesuai dapat membantu kamu membuat strategi dan perencanaan keuangan yang lebih efektif.
+                
+                Berikut adalah tiga tipe goal yang perlu kamu ketahui:  
+                • Short-term goals: Goals yang ingin kamu capai dalam waktu kurang dari 3 tahun.
+                • Medium-term goals: Goals yang ingin kamu capai dalam waktu 3-10 tahun.
+                • Long-term goals: Goals yang ingin kamu capai lebih dari 10-tahun.
+                
                 """
         )
     ]
