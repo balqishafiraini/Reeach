@@ -29,7 +29,6 @@ class MonthlyPlanningViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-//        getPlanner(forDate: DateFormatHelper.getStartDateOfMonth(of: Date()))
         setupInitialState()
     }
     

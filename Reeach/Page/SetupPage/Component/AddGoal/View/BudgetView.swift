@@ -36,7 +36,7 @@ class BudgetView: UIView {
     
     override init(frame: CGRect) {
         self.labelText = "Implement label here"
-        self.type = "Goal"
+        self.type = "Type"
         self.shouldDisableButton = false
         
         super.init(frame: frame)
