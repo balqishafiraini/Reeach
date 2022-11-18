@@ -10,22 +10,23 @@ import UIKit
 class AddCategoryViewController: UIViewController {
     var type: String = "Need"
     var category: Category?
+    var contentView = AddCategoryView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        category = DatabaseHelper().createCategory(name: "Unnamed Category", type: type, icon: "")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func loadView() {
+        super.loadView()
+        title = "Kategori Baru"
+        view = contentView
+        contentView.configureView(viewController: self)
     }
-    */
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        contentView.dismissKeyboard()
+        super.touchesBegan(touches, with: event)
+    }
 }

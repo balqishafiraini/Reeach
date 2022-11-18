@@ -8,6 +8,9 @@
 import UIKit
 
 class CategoryAllocationModalView: UIView {
+    weak var viewDelegate: CategoryAllocationModalViewDelegate?
+    weak var navigationBarDelegate: NavigationBarDelegate?
+    weak var viewController: CategoryAllocationModalViewController?
     
     let iconWithoutEdit = IconWithoutEditView()
     
@@ -33,23 +36,44 @@ class CategoryAllocationModalView: UIView {
         return btn
     }()
     
+    lazy var remainingLabel = {
+        let label = UILabel()
+        label.text = "Sisa anggaran: "
+        label.font = .caption1Medium
+        label.textColor = .black13
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
     }()
     
-    
-    func configureStackView() {
+    func configureStackView(viewController: CategoryAllocationModalViewController) {
         self.backgroundColor = .ghostWhite
         
-
-        let vstack = UIStackView(arrangedSubviews: [iconWithoutEdit, category, monthlyAllocation]
-        )
+        self.viewController = viewController
+        viewDelegate = viewController
+        navigationBarDelegate = viewController
+        setupAddTargetIsNotEmptyTextFields()
+        hideKeyboardWhenTappedAround()
         
+        category.textField.delegate = self
+        monthlyAllocation.textField.delegate = self
+        monthlyAllocation.textField.keyboardType = .numberPad
+        
+        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteBudget), for: .touchUpInside)
+        
+        setNavigationBar()
+        
+        let vstack = UIStackView(arrangedSubviews: [iconWithoutEdit, category, monthlyAllocation, remainingLabel])
         vstack.frame = self.bounds
         vstack.axis = .vertical
         vstack.distribution = .fill
         vstack.spacing = 16
+        vstack.setCustomSpacing(8, after: monthlyAllocation)
         
         let buttonStackView = UIStackView(arrangedSubviews: [saveButton, deleteButton])
         buttonStackView.frame = self.bounds
@@ -71,9 +95,9 @@ class CategoryAllocationModalView: UIView {
         stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
         
         NSLayoutConstraint.activate([
-                    stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
-                    stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-                ])
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
+            stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: -20)
+        ])
 
         iconWithoutEdit.setUp()
         iconWithoutEdit.anchor(top: vstack.topAnchor, paddingTop: 20)
@@ -81,4 +105,68 @@ class CategoryAllocationModalView: UIView {
         
     }
     
+    func setNavigationBar() {
+        let doneItem = UIBarButtonItem(title: "Batal", style: .plain, target: self, action: #selector(dismissView))
+        
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.red6 as Any,
+            NSAttributedString.Key.font: UIFont.bodyMedium as Any
+        ]
+        
+        doneItem.setTitleTextAttributes(attributes, for: .normal)
+        
+        viewController?.navigationItem.leftBarButtonItem = doneItem
+    }
+    
+    func setupAddTargetIsNotEmptyTextFields() {
+        saveButton.isEnabled = false
+        monthlyAllocation.textField.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged)
+    }
+    
+    @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
+        viewDelegate?.updateRemainingLabel()
+        
+        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
+        
+        guard let category = category.textField.text, !category.isEmpty,
+              let allocationAmount = monthlyAllocation.textField.text, !allocationAmount.isEmpty
+        else {
+            saveButton.backgroundColor = .black4
+            saveButton.setTitleColor(UIColor.black7, for: .normal)
+            saveButton.isEnabled = false
+            return
+        }
+        
+        guard let monthlyAllocation = Double(allocationAmount)
+        else {
+            saveButton.backgroundColor = .black4
+            saveButton.setTitleColor(UIColor.black7, for: .normal)
+            saveButton.isEnabled = false
+            return
+        }
+        
+        if monthlyAllocation <= 0 || monthlyAllocation > viewController?.maximumAllocation ?? 0 {
+            saveButton.backgroundColor = .black4
+            saveButton.setTitleColor(UIColor.black7, for: .normal)
+            saveButton.isEnabled = false
+            return
+        }
+        
+        saveButton.backgroundColor = .tangerineYellow
+        saveButton.setTitleColor(UIColor.black13, for: .normal)
+        saveButton.isEnabled = true
+    }
+    
+    @objc func dismissView() {
+        navigationBarDelegate?.cancel()
+    }
+    
+    @objc func save (_ sender: UIButton) {
+        let monthlyAllocation = Double(monthlyAllocation.textField.text ?? "0.0") ?? 0
+        viewDelegate?.save(monthlyAllocation: monthlyAllocation)
+    }
+    
+    @objc func deleteBudget(_ sender: UIButton) {
+        viewDelegate?.delete()
+    }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 class GoalsOverviewView: UIView {
+    weak var viewDelegate: GoalsOverviewViewDelegate?
+    weak var viewController: GoalsOverviewViewController?
     
     let headerView = HeaderView()
     
@@ -84,8 +86,17 @@ class GoalsOverviewView: UIView {
         return view
     }()
     
+    func configureView(viewController: GoalsOverviewViewController) {
+        self.viewController = viewController
+        backgroundColor = .royalHunterBlue
+        
+        viewDelegate = viewController
+        
+        configureAutoLayout()
+        configureClickableTarget()
+    }
+    
     func configureAutoLayout() {
-        self.backgroundColor = .royalHunterBlue
         
         addSubview(blankView)
         blankView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, height: 300)
@@ -119,6 +130,18 @@ class GoalsOverviewView: UIView {
 
     }
     
+    func configureClickableTarget() {
+        headerView.editButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
+        headerView.backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
+    }
+    
+    @objc func back() {
+        viewDelegate?.back()
+    }
+    
+    @objc func edit() {
+        viewDelegate?.goToEditMode()
+    }
 }
 class HeaderView: UIView {
     
@@ -126,6 +149,14 @@ class HeaderView: UIView {
         let bg = UIView()
         bg.backgroundColor = .royalHunterBlue
         return bg
+    }()
+    
+    let backButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "Back"), for: .normal)
+        button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
+        button.anchor(width: 28)
+        return button
     }()
     
     let iconLabel: UILabel = {
@@ -202,8 +233,11 @@ class HeaderView: UIView {
         addSubview(background)
         background.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4)
         
+        addSubview(backButton)
+        backButton.anchor(top: background.topAnchor, left: background.leftAnchor, paddingTop: 20, paddingLeft: 20)
+        
         addSubview(iconLabel)
-        iconLabel.anchor(top: background.topAnchor, paddingTop: UIScreen.main.bounds.height*0.1)
+        iconLabel.anchor(top: backButton.bottomAnchor, paddingTop: 8)
         
         addSubview(goalName)
         goalName.centerX(inView: background)

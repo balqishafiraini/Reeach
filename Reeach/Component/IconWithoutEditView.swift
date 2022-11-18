@@ -11,7 +11,7 @@ class IconWithoutEditView: UIView {
     let iconLabel: UILabel = {
         
         let label = UILabel()
-        label.text = "Tambah icon"
+        label.text = "Icon"
         label.textAlignment = .center
         label.textColor = .royalHunterBlue
         label.font = .bodyMedium

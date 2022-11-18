@@ -21,32 +21,68 @@ class CategoryAllocationModalViewController: UIViewController {
     
     var type: CategoryType = .needs
     var mode: EditMode = .add
-    
-    weak var delegate: CategoryAllocationModalViewControllerDelegate?
-    
+    var budget: Budget?
+    var initialCategory: Category?
+    var currentCategory: Category?
+    var initialMonthlyAllocation: Double = 0
+    var currentMonthlyAllocation: Double = 0
+    var maximumAllocation: Double = 0
+    weak var delegate: DismissViewDelegate?
     let categoryAllocationModalView = CategoryAllocationModalView()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = type == .needs ? "Kebutuhan Pokok" : "Kebutuhan Nonpokok"
         
-        categoryAllocationModalView.category.textField.delegate = self
-        categoryAllocationModalView.monthlyAllocation.textField.delegate = self
+        if let budget, mode == .edit {
+            initialCategory = budget.category
+            currentCategory = budget.category
+            initialMonthlyAllocation = budget.monthlyAllocation
+            currentMonthlyAllocation = budget.monthlyAllocation
+            
+            categoryAllocationModalView.iconWithoutEdit.iconLabel.font = .systemFont(ofSize: 58, weight: .bold)
+            categoryAllocationModalView.iconWithoutEdit.iconLabel.text = budget.category?.icon
+            categoryAllocationModalView.category.textField.text = budget.category?.name
+            categoryAllocationModalView.monthlyAllocation.textField.text = DoubleToStringHelper.getString(from: budget.monthlyAllocation)
+        }
         
+        calculateMaxAllocation()
+        updateRemainingLabel()
+    }
+    
+    func calculateMaxAllocation() {
+        let databaseHelper = DatabaseHelper()
         
-        categoryAllocationModalView.configureStackView()
-        view = categoryAllocationModalView
+        guard let incomeCategory = databaseHelper.getCategory(name: "Income")
+        else { return }
         
-        categoryAllocationModalView.monthlyAllocation.textField.keyboardType = .numberPad
+        guard let incomeBudget = databaseHelper.getBudget(on: Date(), of: incomeCategory)
+        else { return }
         
-        categoryAllocationModalView.layoutIfNeeded()
-        self.setNavigationBar()
-        self.hideKeyboardWhenTappedAround()
-        setupAddTargetIsNotEmptyTextFields()
+        let needs = databaseHelper.getBudgets(on: Date(), type: "Need")
+        let wants = databaseHelper.getBudgets(on: Date(), type: "Want")
+        
+        maximumAllocation = incomeBudget.monthlyAllocation * 0.8
+        
+        for need in needs {
+            maximumAllocation -= need.monthlyAllocation
+        }
+        
+        for want in wants {
+            maximumAllocation -= want.monthlyAllocation
+        }
+        
+        guard let budget
+        else { return }
+        
+        maximumAllocation += budget.monthlyAllocation
     }
     
     override func loadView() {
         super.loadView()
+        categoryAllocationModalView.configureStackView(viewController: self)
+        view = categoryAllocationModalView
+        
         title = type == .needs ? "Kebutuhan Pokok" : "Kebutuhan Non-Pokok"
         
         if mode == .add {
@@ -56,83 +92,8 @@ class CategoryAllocationModalViewController: UIViewController {
         }
     }
     
-    func setNavigationBar() {
-        let doneItem = UIBarButtonItem(title: "Batal", style: .plain, target: self, action: #selector(dismissView))
-        
-        let attributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.foregroundColor: UIColor.red6 as Any,
-            NSAttributedString.Key.font: UIFont.bodyMedium as Any
-        ]
-        
-        doneItem.setTitleTextAttributes(attributes, for: .normal)
-        
-        navigationItem.leftBarButtonItem = doneItem
-    }
-    
-    func setupAddTargetIsNotEmptyTextFields() {
-        categoryAllocationModalView.saveButton.isEnabled = false
-        [
-            //            categoryAllocationModalView.category.textField,
-            categoryAllocationModalView.monthlyAllocation.textField].forEach({ $0.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged) })
-        
-    }
-    
-    @objc func textFieldsIsNotEmpty(sender: UITextField) {
-        
-        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
-        
-        guard
-            //            let allocationCategory = categoryAllocationModalView.category.textField.text, !allocationCategory.isEmpty,
-            let allocationAmount = categoryAllocationModalView.monthlyAllocation.textField.text, !allocationAmount.isEmpty
-        else {
-            categoryAllocationModalView.saveButton.isEnabled = false
-            return
-        }
-        categoryAllocationModalView.saveButton.backgroundColor = .tangerineYellow
-        categoryAllocationModalView.saveButton.setTitleColor(UIColor.black13, for: .normal)
-        
-        categoryAllocationModalView.saveButton.isEnabled = true
-    }
-    
-    @objc func dismissView(){
+    func dismissView(){
         delegate?.viewDismissed()
         self.dismiss(animated: true, completion: nil)
     }
 }
-
-extension CategoryAllocationModalViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if textField == categoryAllocationModalView.category.textField {
-            return false
-        }
-        
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if textField == categoryAllocationModalView.category.textField {
-            let goalVC = SelectBudgetCategoryViewController()
-            goalVC.delegate = self
-            navigationController?.pushViewController(goalVC, animated: true)
-            textField.resignFirstResponder()
-        } else {
-            categoryAllocationModalView.scrollView.setContentOffset(CGPoint.init(x: 0, y: UIScreen.main.bounds.height/3), animated: true)
-        }
-    }
-    
-    private func textFieldDidEndEditing(textField: UITextField!) {
-        categoryAllocationModalView.scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
-        
-        self.view.endEditing(true);
-    }
-    
-}
-
-extension CategoryAllocationModalViewController: SelectBudgetCategoryViewControllerDelegate {
-    func selected(category: Category) {
-        categoryAllocationModalView.category.textField.text = category.name
-    }
-}
-

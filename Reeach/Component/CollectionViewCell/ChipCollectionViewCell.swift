@@ -48,8 +48,8 @@ class ChipCollectionViewCell: UICollectionViewCell {
         titleLabel.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 8, paddingRight: 16)
     }
     
-    func toggleIsActive(){
-        style = style == .active ? .inactive : .active
+    func setIsActive(_ style: Style){
+        self.style = style
         configureActiveView()
     }
     

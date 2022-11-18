@@ -67,6 +67,8 @@ class GoalAllocationModalView: UIView {
     func configureStackView() {
         self.backgroundColor = .ghostWhite
         
+        hideKeyboardWhenTappedAround()
+        
         let vstack = UIStackView(arrangedSubviews: [iconWithoutEdit, goalName, dueDate, target, inflationButton, monthlySaving, budgetRemain]
         )
         

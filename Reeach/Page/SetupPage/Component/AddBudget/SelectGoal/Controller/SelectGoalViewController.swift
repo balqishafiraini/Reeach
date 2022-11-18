@@ -9,7 +9,7 @@ import UIKit
 
 class SelectGoalViewController: UIViewController {
     let goals = DatabaseHelper().getUnallocatedGoals(on: Date())
-    
+    weak var dismissViewDelegate: DismissViewDelegate?
     var contentView = SelectGoalView()
     
     override func viewDidLoad() {
