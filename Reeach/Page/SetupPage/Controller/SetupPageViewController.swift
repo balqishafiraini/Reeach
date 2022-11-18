@@ -19,6 +19,8 @@ class SetupPageViewController: UIViewController {
     var currentProgressIndex: Float = 0.0
     let totalProgress: Float = 2.0
     
+    var hasGoal: Bool = false
+    
     var income: Double = 0.0
     
     var goalBudgets: [Budget] = []
@@ -46,15 +48,13 @@ class SetupPageViewController: UIViewController {
         
         switch index {
         case 0.0:
-            print("Disable goal if no goal available")
+            contentView.bottomView.nextButton.isEnabled = hasGoal
         case 1.0:
-            if income == 0.0 {
-                contentView.bottomView.nextButton.isEnabled = false
-            } else {
-                contentView.bottomView.nextButton.isEnabled = true
-            }
+            contentView.bottomView.nextButton.isEnabled = income <= 0.0
         case 2.0:
             print("")
+            let disable = true
+            // Kalo
         default:
             contentView.bottomView.nextButton.isEnabled = true
         }
