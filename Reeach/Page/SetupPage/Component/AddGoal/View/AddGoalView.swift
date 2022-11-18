@@ -145,7 +145,8 @@ class AddGoal: UIView {
             emptyView.removeFromSuperview()
             removeConstraints(emptyView.constraints)
 
-            goalList.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+            goalList.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 16, paddingRight: 16)
+            goalList.backgroundColor = .ghostWhite
         }
         
         headerStack.addArrangedSubview(topStack)
