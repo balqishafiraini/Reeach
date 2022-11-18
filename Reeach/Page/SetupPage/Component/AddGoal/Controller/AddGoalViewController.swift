@@ -29,7 +29,7 @@ class AddGoalViewController: UIViewController {
         goals = DatabaseHelper().getGoals()
         
         addGoal.goals = goals
-        delegate?.hasGoal = !goals.isEmpty
+        delegate?.goals = goals
         delegate?.setDisableButton()
         addGoal.setupView()
         addGoal.goalList.reloadData()
