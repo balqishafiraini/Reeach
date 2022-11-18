@@ -19,7 +19,7 @@ class SetupPageViewController: UIViewController {
     var currentProgressIndex: Float = 0.0
     let totalProgress: Float = 2.0
     
-    var income: Float = 0.0
+    var income: Double = 0.0
     
     var goalBudgets: [Budget] = []
     var needBudgets: [Budget] = []

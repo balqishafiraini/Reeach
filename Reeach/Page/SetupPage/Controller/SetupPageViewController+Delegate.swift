@@ -52,7 +52,16 @@ extension SetupPageViewController: SetupDelegate {
     }
     
     func saveIncome(income: String) {
-        self.income = (income as NSString).floatValue
+        print(#function)
+        self.income = (income as NSString).doubleValue
+        let income = DatabaseHelper().getCategory(name: "Income")
+        if let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: income!) {
+            incomeBudget.monthlyAllocation = self.income
+            
+            DatabaseHelper().saveContext()
+        } else {
+            let _ = DatabaseHelper().createBudget(monthlyAllocation: self.income, period: Date(), category: income!)
+        }
         shouldDisableButton(progressIndex: currentProgressIndex)
     }
     
