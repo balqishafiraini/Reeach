@@ -34,25 +34,7 @@ extension SetupPageViewController: SetupDelegate {
         self.show(goalVC, sender: self)
     }
     
-    func addBudget(type: String, budget: Budget) {
-        print(#function)
-        switch type {
-        case "Goal":
-//            goalBudgets.append(budget)
-            let _ = contentView.content as! AddBudget
-//            content.goalStack.setupStatusLabel(budgets: goalBudgets)
-            
-        case "Need":
-            needBudgets.append(budget)
-        case "Want":
-            wantBudgets.append(budget)
-        default:
-            print("Wtf do u want?")
-        }
-    }
-    
     func saveIncome(income: String) {
-        print(#function)
         self.income = (income as NSString).doubleValue
         let income = DatabaseHelper().getCategory(name: "Income")
         if let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: income!) {
@@ -63,6 +45,10 @@ extension SetupPageViewController: SetupDelegate {
             let _ = DatabaseHelper().createBudget(monthlyAllocation: self.income, period: Date(), category: income!)
         }
         shouldDisableButton(progressIndex: currentProgressIndex)
+    }
+    
+    func setDisableButton(progressIndex: Float? = nil) {
+        shouldDisableButton(progressIndex: progressIndex)
     }
     
 }

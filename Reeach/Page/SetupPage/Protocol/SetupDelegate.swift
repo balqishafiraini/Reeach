@@ -12,7 +12,7 @@ import Foundation
     @objc optional func previousProgress()
     
     @objc optional func openGoalSheet()
-    
-    @objc optional func addBudget(type: String, budget: Budget)
     @objc optional func saveIncome(income: String)
+    
+    @objc optional func setDisableButton()
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class AddIncomeViewController: UIViewController {
 
-    weak var delegate: SetupDelegate?
+    weak var delegate: SetupPageViewController?
     
     var addIncomeView = AddIncome()
     
@@ -30,6 +30,8 @@ class AddIncomeViewController: UIViewController {
         
         addIncomeView.income = income
         addIncomeView.delegate = delegate
+        delegate?.income = income
+        delegate?.shouldDisableButton()
         addIncomeView.setupView()
     }
 
