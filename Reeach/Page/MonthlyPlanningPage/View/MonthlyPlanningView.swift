@@ -148,7 +148,7 @@ class MonthlyPlanningView: UIView {
     
     lazy var tipView: UIView = {
         let view = UIView()
-        view.backgroundColor = .secondary1 //TODO: Change background color to conform HiFi
+        view.backgroundColor = .secondary1
         view.layer.cornerRadius = 16
         
         view.addSubview(tipLabel)
@@ -159,35 +159,62 @@ class MonthlyPlanningView: UIView {
     
     lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
+//        sv.backgroundColor = .secondary6
         
         return sv
     }()
     
     lazy var containerView: UIView = {
         let view = UIView()
+        view.backgroundColor = .secondary6
         
         return view
     }()
     
     lazy var blankView: UIView = {
         let view = UIView()
-        view.backgroundColor = .ghostWhite
+        view.backgroundColor = .secondary6
         
         return view
     }()
+    
+    lazy var contentStack: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = .ghostWhite
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.spacing = 20
+        
+        return stack
+    }()
+    
+    lazy var stack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fill
+        
+        return stack
+    }()
+    
+    lazy var tipViewContainerView = UIView()
+    lazy var monthStackContainerView = UIView()
+    lazy var blankView2 = UIView()
     
     lazy var incomeStack = BudgetView()
     lazy var goalStack = BudgetView()
     lazy var needStack = BudgetView()
     lazy var wantStack = BudgetView()
     
-    lazy var tipViewConstraint = tipView.topAnchor.constraint(equalTo: monthSelectorStack.bottomAnchor, constant: 20)
-    lazy var contentViewConstraint = contentView.topAnchor.constraint(equalTo: monthSelectorStack.bottomAnchor, constant: 20)
+    lazy var contentTopToTip = tipView.topAnchor.constraint(equalTo: monthSelectorStack.bottomAnchor, constant: 20)
+    
+    lazy var contentToSelector = contentView.topAnchor.constraint(equalTo: monthSelectorStack.bottomAnchor, constant: 20)
+    
+    lazy var stackTopToTip = contentStack.topAnchor.constraint(equalTo: tipView.bottomAnchor, constant: 24)
+    
+    lazy var stackToContent = contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -197,7 +224,8 @@ class MonthlyPlanningView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.roundCorners([.topLeft, .topRight], radius: 28)
+        blankView.roundCorners([.topLeft, .topRight], radius: 28)
+        contentView.roundCorners([.topLeft, .topRight], radius: shouldSetValue(value: 28))
     }
     
     func setupDate(currentDate: Date) {
@@ -208,195 +236,137 @@ class MonthlyPlanningView: UIView {
         selectedMonthLabel.text = DateFormatHelper.getMonthAndYearString(from: currentDate)
     }
     
-    
-    
-    func setupAdditionalView() {
-        if currentDateString == selectedDateString {
-            nextMonthButton.setTitle("", for: .normal)
-            nextMonthButton.isEnabled = false
-            
-            tipView.anchor(left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
-            tipView.centerYAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-            
-            tipView.isHidden = false
-            contentViewConstraint.isActive = false
-            
-            contentView.addSubview(noPlanStack)
-            noPlanStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 72, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
-            noPlanImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 5/8).isActive = true
-            noPlanImage.heightAnchor.constraint(equalTo: noPlanImage.widthAnchor).isActive = true
-                        
-            tipViewConstraint.isActive = true
-            
-            createMonthlyPlanButton.isHidden = false
-            
-            return
+    func shouldSetValue(value: CGFloat) -> CGFloat {
+        if hasBudget! {
+            if selectedDateString == currentDateString {
+                return 0
+            } else {
+                return value
+            }
         }
-        nextMonthButton.setTitle(">", for: .normal)
-        nextMonthButton.isEnabled = true
         
-        tipView.isHidden = true
-        tipViewConstraint.isActive = false
-        
-        contentViewConstraint.isActive = true
-        
-        createMonthlyPlanButton.isHidden = true
+        return value
     }
     
     func setupView() {
-        if hasBudget! {
-            print("Should setup view")
-        } else {
-            print("No budget")
-        }
-        
         self.backgroundColor = .secondary6
+        configureStacks()
         
-        self.addSubview(blankView)
+        monthStackContainerView.addSubview(monthSelectorStack)
+        monthSelectorStack.anchor(top: monthStackContainerView.topAnchor, bottom: monthStackContainerView.bottomAnchor)
+        monthSelectorStack.centerX(inView: monthStackContainerView)
+        
+        tipViewContainerView.addSubview(blankView)
+        tipViewContainerView.addSubview(tipView)
+        
+        contentStack.addArrangedSubview(incomeStack)
+        contentStack.addArrangedSubview(goalStack)
+        contentStack.addArrangedSubview(needStack)
+        contentStack.addArrangedSubview(wantStack)
+        contentStack.addArrangedSubview(noPlanStack)
+        
+        contentView.addSubview(contentStack)
+        contentView.backgroundColor = .ghostWhite
+        
+        stack.addArrangedSubview(titleLabel)
+        stack.addArrangedSubview(monthStackContainerView)
+        stack.addArrangedSubview(tipViewContainerView)
+        stack.addArrangedSubview(contentView)
+        
+        stack.setCustomSpacing(10, after: monthStackContainerView)
+    
+        scrollView.addSubview(stack)
+        
+        self.addSubview(blankView2)
         self.addSubview(scrollView)
         
-        scrollView.addSubview(containerView)
+        stack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, paddingTop: 8)
+        stack.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
-        containerView.addSubview(titleLabel)
-        containerView.addSubview(monthSelectorStack)
-        containerView.addSubview(contentView)
-        containerView.addSubview(tipView)
+        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, width: UIScreen.main.bounds.maxX)
         
-        contentView.addSubview(noPlanStack)
-        contentView.addSubview(incomeStack)
-        contentView.addSubview(goalStack)
-        contentView.addSubview(needStack)
-        contentView.addSubview(wantStack)
+        contentStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: shouldSetValue(value: 32), paddingLeft: 16, paddingBottom: 20, paddingRight: 16)
         
-        configureAutoLayout()
+        tipView.anchor(top: tipViewContainerView.topAnchor, left: tipViewContainerView.leftAnchor, bottom: tipViewContainerView.bottomAnchor, right: tipViewContainerView.rightAnchor, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
         
-        setupContentView()
-    }
-    
-    func setupContentView() {
-        if hasBudget! { // Punya budget
-            noPlanStack.isHidden = true
-            
-            incomeStack = BudgetView(frame: CGRectZero, labelText: "Ringkasan Monthly Budget", type: "Income", disableButtonAndStatus: true)
-            goalStack = BudgetView(frame: CGRectZero, labelText: "Goal", type: "Goal", disableButtonAndStatus: true)
-            needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan", type: "Need", disableButtonAndStatus: true)
-            wantStack = BudgetView(frame: CGRectZero, labelText: "Keingingan", type: "Want", disableButtonAndStatus: true)
-            
-            incomeStack.budgets = incomeBudgets
-            goalStack.budgets = goalBudgets
-            needStack.budgets = needBudgets
-            wantStack.budgets = wantBudgets
-            
-//            incomeStack.anchor(top: tipView.bottomAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor)
-//            goalStack.anchor(top: incomeStack.bottomAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor)
-//            needStack.anchor(top: goalStack.bottomAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor)
-//            wantStack.anchor(top: needStack.bottomAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
-            
-            incomeStack.setupView()
-            goalStack.setupView()
-            needStack.setupView()
-            wantStack.setupView()
-            
-            if currentDateString == selectedDateString { // Di bulan yang sama
-                // Tampilin budget dengan tipView
+        blankView.anchor(top: tipView.centerYAnchor, left: tipViewContainerView.leftAnchor, bottom: tipViewContainerView.bottomAnchor, right: tipViewContainerView.rightAnchor)
+        blankView.backgroundColor = .ghostWhite
+        
+        blankView2.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, paddingTop: 300)
+        blankView2.backgroundColor = .ghostWhite
+        
+        
+        tipViewContainerView.isHidden = !hasBudget!
+        tipLabel.text = hasBudget! ? "Hooray! 🙌🏻 Monthly Bugdet kamu udah jadi. Jangan lupa untuk cek progresnya di Goals Tracker dan Cashflow Tracker secara rutin, ya!" : "Wah, kamu belum buat Monthly Planner nih. Yuk buat sekarang!"
+        
+        noPlanStack.isHidden = hasBudget!
+        incomeStack.isHidden = !hasBudget!
+        needStack.isHidden = !hasBudget!
+        goalStack.isHidden = !hasBudget!
+        wantStack.isHidden = !hasBudget!
+        
+        if hasBudget! {
+            if selectedDateString == currentDateString {
                 nextMonthButton.setTitle("", for: .normal)
                 nextMonthButton.isEnabled = false
-                
-                tipView.anchor(left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
-                tipView.centerYAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-                
-                tipView.isHidden = false
-                contentViewConstraint.isActive = false
-                tipViewConstraint.isActive = true
-                
-                tipLabel.text = "Hooray! 🙌🏻 Monthly Bugdet kamu udah jadi. Jangan lupa untuk cek progresnya di Goals Tracker dan Cashflow Tracker secara rutin, ya!"
-                                
-            } else { // Di bulan yang beda
-                // Tampilin budget tanpa tipView
-                nextMonthButton.setTitle(">", for: .normal)
-                nextMonthButton.isEnabled = true
-                
-                tipView.isHidden = true
-                tipViewConstraint.isActive = false
-                
-                contentViewConstraint.isActive = true
-            }
-            
-        } else { // Ngga punya budget
-            noPlanStack.isHidden = false
-            
-            incomeStack.isHidden = true
-            goalStack.isHidden = true
-            needStack.isHidden = true
-            wantStack.isHidden = true
-            
-            if currentDateString == selectedDateString {
-                nextMonthButton.setTitle("", for: .normal)
-                nextMonthButton.isEnabled = false
-                
-                tipView.anchor(left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
-                tipView.centerYAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-                
-                tipView.isHidden = false
-                contentViewConstraint.isActive = false
-                
-                tipLabel.text = "Wah, kamu belum buat Monthly Planner nih. Yuk buat sekarang!"
-                noPlanLabel.text = "Kamu belum memiliki Monthly Planner di bulan ini."
-                
-                noPlanStack.isHidden = false
-                noPlanStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 72, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
-                noPlanImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 5/8).isActive = true
-                noPlanImage.heightAnchor.constraint(equalTo: noPlanImage.widthAnchor).isActive = true
-                            
-                tipViewConstraint.isActive = true
-                
-                createMonthlyPlanButton.isHidden = false
+
             } else {
                 nextMonthButton.setTitle(">", for: .normal)
                 nextMonthButton.isEnabled = true
                 
-                tipView.isHidden = true
-                tipViewConstraint.isActive = false
+                tipViewContainerView.isHidden = true
+            }
+        } else {
+            if selectedDateString == currentDateString {
+                nextMonthButton.setTitle("", for: .normal)
+                nextMonthButton.isEnabled = false
                 
-                noPlanLabel.text = "Kamu tidak memiliki Monthly Planner di bulan ini."
+                createMonthlyPlanButton.isHidden = false
                 
-                contentViewConstraint.isActive = true
-
+                noPlanLabel.text = "Kamu belum memiliki Monthly Planner bulan ini."
+            } else {
+                nextMonthButton.setTitle(">", for: .normal)
+                nextMonthButton.isEnabled = true
+                
                 createMonthlyPlanButton.isHidden = true
                 
+                noPlanLabel.text = "Kamu tidak memiliki Monthly Planner di bulan ini."
             }
         }
     }
     
-    func configureAutoLayout() {
-        blankView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: bottomAnchor, right: safeAreaLayoutGuide.rightAnchor, paddingTop: 300)
+    func configureStacks() {
+        incomeStack = BudgetView(frame: .zero, labelText: "Ringkasan Monthly Budget", type: "Income", disableButtonAndStatus: true)
+        goalStack = BudgetView(frame: .zero, labelText: "Goal", type: "Goal", disableButtonAndStatus: true)
+        needStack = BudgetView(frame: .zero, labelText: "Kebutuhan", type: "Need", disableButtonAndStatus: true)
+        wantStack = BudgetView(frame: .zero, labelText: "Keingingan", type: "Want", disableButtonAndStatus: true)
         
-        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor)
-        scrollView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor).isActive = true
-        scrollView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor).isActive = true
+        incomeStack.budgets = incomeBudgets
+        goalStack.budgets = goalBudgets
+        needStack.budgets = needBudgets
+        wantStack.budgets = wantBudgets
         
-        containerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor)
-        containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        
-        titleLabel.centerX(inView: scrollView)
-        titleLabel.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, right: scrollView.rightAnchor, paddingTop: 20)
-        monthSelectorStack.anchor(top: titleLabel.bottomAnchor)
-        monthSelectorStack.centerX(inView: scrollView)
-        
-        contentView.anchor(left: scrollView.leftAnchor, bottom: containerView.bottomAnchor, right: scrollView.rightAnchor)
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        incomeStack.setupView()
+        goalStack.setupView()
+        needStack.setupView()
+        wantStack.setupView()
+    }
+    
+    func removeStacks() {
+        incomeStack.removeFromSuperview()
+        goalStack.removeFromSuperview()
+        needStack.removeFromSuperview()
+        wantStack.removeFromSuperview()
     }
     
     @objc func setMonth(_ sender: UIButton) {
-        print(#function)
         switch sender.currentTitle! {
         case "<":
+            removeStacks()
             nextMonthButton.isHidden = false
             self.selectedDate = DateFormatHelper.getStartDateOfPreviousMonth(of: selectedDate ?? Date())
         case ">":
-            if selectedDateString == currentDateString {
-                return
-            }
+            removeStacks()
             self.selectedDate = DateFormatHelper.getStartDateOfNextMonth(of: selectedDate ?? Date())
         default:
             print("Something went wrong in \(#function)!")
