@@ -19,7 +19,7 @@ class SetupPageViewController: UIViewController {
     var currentProgressIndex: Float = 0.0
     let totalProgress: Float = 2.0
     
-    var income: Float = 0.0
+    var income: Double = 0.0
     
     var goalBudgets: [Budget] = []
     var needBudgets: [Budget] = []
@@ -43,17 +43,20 @@ class SetupPageViewController: UIViewController {
     
     func shouldDisableButton(progressIndex: Float){
         switch progressIndex {
+        case 0.0:
+            print("Disable goal if no goal available")
         case 1.0:
             if income == 0.0 {
                 contentView.bottomView.nextButton.isEnabled = false
             } else {
                 contentView.bottomView.nextButton.isEnabled = true
             }
+        case 2.0:
+            print("")
         default:
             contentView.bottomView.nextButton.isEnabled = true
         }
     }
-    
     func showPopUpConfirm() {
         let alert = UIAlertController(title: "Yakin udah selesai?", message: "Coba cek deh. Ada yang kureng gak?", preferredStyle: UIAlertController.Style.alert)
         
