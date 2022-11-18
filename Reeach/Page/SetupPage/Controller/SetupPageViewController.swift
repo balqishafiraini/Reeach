@@ -19,6 +19,8 @@ class SetupPageViewController: UIViewController {
     var currentProgressIndex: Float = 0.0
     let totalProgress: Float = 2.0
     
+    var goals: [Goal] = []
+    
     var income: Double = 0.0
     
     var goalBudgets: [Budget] = []
@@ -41,18 +43,20 @@ class SetupPageViewController: UIViewController {
         contentView.progressHeader.updateSteps(currentIndex: currentProgressIndex)
     }
     
-    func shouldDisableButton(progressIndex: Float){
-        switch progressIndex {
+    func shouldDisableButton(progressIndex: Float? = nil){
+        let index: Float = progressIndex ?? self.currentProgressIndex
+        
+        switch index {
         case 0.0:
-            print("Disable goal if no goal available")
+            contentView.bottomView.nextButton.isEnabled = !goals.isEmpty
         case 1.0:
-            if income == 0.0 {
-                contentView.bottomView.nextButton.isEnabled = false
-            } else {
-                contentView.bottomView.nextButton.isEnabled = true
-            }
+            contentView.bottomView.nextButton.isEnabled = income > 0.0
         case 2.0:
-            print("")
+            var isEnabled = false
+            isEnabled = goalBudgets.count == 3 || goalBudgets.count == goals.count
+            isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
+            
+            contentView.bottomView.nextButton.isEnabled = isEnabled
         default:
             contentView.bottomView.nextButton.isEnabled = true
         }

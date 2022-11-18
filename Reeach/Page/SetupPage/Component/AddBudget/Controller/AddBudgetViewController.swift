@@ -11,7 +11,7 @@ class AddBudgetViewController: UIViewController {
 
     let addBudgetView = AddBudget()
     
-    weak var delegate: SetupDelegate?
+    weak var delegate: SetupPageViewController?
     
     var goalBudgets: [Budget] = []
     var needBudgets: [Budget] = []
@@ -38,6 +38,11 @@ class AddBudgetViewController: UIViewController {
         addBudgetView.goalStack.removeFromSuperview()
         addBudgetView.needStack.removeFromSuperview()
         addBudgetView.wantStack.removeFromSuperview()
+        
+        delegate?.goalBudgets = goalBudgets
+        delegate?.needBudgets = needBudgets
+        delegate?.wantBudgets = wantBudgets
+        delegate?.setDisableButton()
         
         addBudgetView.setupView()
     }

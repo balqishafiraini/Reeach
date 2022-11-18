@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension SetupPageViewController: SetupDelegate {
     
@@ -28,10 +29,17 @@ extension SetupPageViewController: SetupDelegate {
     }
     
     func openGoalSheet() {
+        let navigationController = UINavigationController()
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+        
         let goalVC = GoalModalViewController()
-        goalVC.modalPresentationStyle = .popover
+        goalVC.modalPresentationStyle = .pageSheet
         goalVC.modalTransitionStyle = .coverVertical
-        self.show(goalVC, sender: self)
+        
+        
+        navigationController.pushViewController(goalVC, animated: true)
+        self.present(navigationController, animated: true)
     }
     
     func saveIncome(income: String) {
