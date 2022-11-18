@@ -46,7 +46,12 @@ class TabBarController: UITabBarController {
         super.viewDidAppear(true)
         for tabbarItem in (self.tabBar.items)!{
             let viewTabBar = tabbarItem.value(forKey: "view") as! UIView
-            viewTabBar.frame.origin.y = 5
+            
+            if UIDevice.current.hasNotch {
+                viewTabBar.frame.origin.y = 5
+            } else {
+                viewTabBar.frame.origin.y = 18
+            }
             
         }
     }
@@ -55,6 +60,13 @@ class TabBarController: UITabBarController {
         super.viewDidLayoutSubviews()
         tabBar.frame.size.height = UIScreen.main.bounds.height*0.135
         tabBar.frame.origin.y = view.frame.height - 85
+        
+        if UIDevice.current.hasNotch {
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else {
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+        }
+        
     }
 }
 
