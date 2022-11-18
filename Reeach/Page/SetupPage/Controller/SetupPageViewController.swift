@@ -57,4 +57,18 @@ class SetupPageViewController: UIViewController {
             contentView.bottomView.nextButton.isEnabled = true
         }
     }
+    func showPopUpConfirm() {
+        let alert = UIAlertController(title: "Yakin udah selesai?", message: "Coba cek deh. Ada yang kureng gak?", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Batal",
+                                      style: UIAlertAction.Style.destructive,
+                                      handler: nil
+        ))
+        
+        alert.addAction(UIAlertAction(title: "Lanjut", style: UIAlertAction.Style.default, handler: { _ in
+            //TODO: Action lanjut
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
