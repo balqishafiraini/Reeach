@@ -17,20 +17,25 @@ class GoalItemCollectionViewCell: UICollectionViewCell {
     
     let size = 60.0
     
-    lazy var icon: UIImageView = {
-        let iv = UIImageView()
+    lazy var iconLabel: UILabel = {
+        let iv = UILabel()
+        iv.font = UIFont.systemFont(ofSize: 32)
         
         return iv
     }()
     
     lazy var iconContainer: UIView = {
         let view = UIView()
-        view.setDimensions(width: size, height: size)
+        if #available(iOS 15, *){
+            view.setDimensions(width: size, height: size)
+        }
         view.layer.cornerRadius = size / 2
         view.backgroundColor = .secondary2
         
-        view.addSubview(icon)
-        icon.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8)
+        view.addSubview(iconLabel)
+        iconLabel.center(inView: view)
+        view.heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        view.widthAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         
         return view
     }()
@@ -106,7 +111,7 @@ class GoalItemCollectionViewCell: UICollectionViewCell {
     }
     
     func configureData() {
-        icon.image = UIImage(systemName: iconName ?? "iphone")
+        iconLabel.text = iconName ?? "❓"
         titleLabel.text = title ?? "Goal title"
         dueDateLabel.text = DateFormatHelper.getShortMonthAndYearString(from: dueDate ?? Date())
         amountLabel.text = CurrencyHelper.getCurrency(from: amount ?? 0.0)
@@ -121,6 +126,6 @@ class GoalItemCollectionViewCell: UICollectionViewCell {
     }
     
     func configureAutoLayout() {
-        container.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 10, paddingLeft: 16, width: UIScreen.main.bounds.width - 32)
+        container.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 16, width: UIScreen.main.bounds.width - 32)
     }
 }
