@@ -32,6 +32,7 @@ class BudgetItem: UIView {
     lazy var amountLabel: UILabel = {
         let label = UILabel()
         label.font = .bodyMedium
+        label.textAlignment = .right
         
         return label
     }()
@@ -39,7 +40,7 @@ class BudgetItem: UIView {
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.distribution = .fill
+        stack.distribution = .fillProportionally
         
         return stack
     }()

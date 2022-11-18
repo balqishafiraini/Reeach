@@ -13,6 +13,11 @@ class MonthlyPlanningViewController: UIViewController {
     
     var currentDate: Date = Date()
     
+    var incomeBudgets: [Budget] = []
+    var goalBudgets: [Budget] = []
+    var needBudgets: [Budget] = []
+    var wantBudgets: [Budget] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,6 +29,30 @@ class MonthlyPlanningViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        getPlanner(forDate: DateFormatHelper.getStartDateOfMonth(of: Date()))
+        setupInitialState()
+    }
+    
+    func setupInitialState(date: Date? = Date()) {
+        print("Get Planner for \(DateFormatHelper.getShortMonthAndYearString(from: date!))")
+        
+        let budgets = DatabaseHelper().getBudgets(on: date!)
+        
+        if budgets.isEmpty {
+            planningView.hasBudget = false
+        } else {
+            planningView.hasBudget = true
+            
+            incomeBudgets = DatabaseHelper().getBudgets(on: date!, type: "Income")
+            goalBudgets = DatabaseHelper().getBudgets(on: date!, type: "Goal")
+            needBudgets = DatabaseHelper().getBudgets(on: date!, type: "Need")
+            wantBudgets = DatabaseHelper().getBudgets(on: date!, type: "Want")
+            
+            planningView.incomeBudgets = incomeBudgets
+            planningView.goalBudgets = goalBudgets
+            planningView.needBudgets = needBudgets
+            planningView.wantBudgets = wantBudgets
+        }
+        
+        planningView.setupView()
     }
 }
