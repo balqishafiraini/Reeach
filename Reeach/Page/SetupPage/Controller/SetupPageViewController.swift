@@ -43,12 +43,16 @@ class SetupPageViewController: UIViewController {
     
     func shouldDisableButton(progressIndex: Float){
         switch progressIndex {
+        case 0.0:
+            print("Disable goal if no goal available")
         case 1.0:
             if income == 0.0 {
                 contentView.bottomView.nextButton.isEnabled = false
             } else {
                 contentView.bottomView.nextButton.isEnabled = true
             }
+        case 2.0:
+            print("")
         default:
             contentView.bottomView.nextButton.isEnabled = true
         }
