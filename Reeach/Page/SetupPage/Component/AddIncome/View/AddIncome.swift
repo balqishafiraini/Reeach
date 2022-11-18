@@ -10,6 +10,7 @@ import UIKit
 class AddIncome: UIView {
     
     weak var delegate: SetupDelegate?
+    var income: Double?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,8 +91,11 @@ class AddIncome: UIView {
         return stack
     }()
     
-    
     func setupView() {
+        if let income = income {
+            incomeTextField.textField.text = "\(income)"
+        }
+        
         headerStack.addArrangedSubview(topTitle)
         headerStack.addArrangedSubview(viewDescription)
         headerStack.addArrangedSubview(incomeTextField)
@@ -109,7 +113,7 @@ class AddIncome: UIView {
     func setupTargetsAndActions() {
         backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
         
-        incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .allEvents)
+        incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .editingDidEnd)
         incomeTextField.textField.sendActions(for: .valueChanged)
     }
     

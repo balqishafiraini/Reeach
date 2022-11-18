@@ -75,6 +75,7 @@
 		CA4D14452910069F00C35094 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143C2910069F00C35094 /* AddIncome.swift */; };
 		CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143E2910069F00C35094 /* SetupBottomView.swift */; };
 		CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D14422910069F00C35094 /* SetupPageViewController.swift */; };
+		CA4DF4042927F465004E6067 /* AddIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */; };
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
 		CA6EBC8629235EE400A33A2E /* SetupPageViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */; };
@@ -228,6 +229,7 @@
 		CA4D143D2910069F00C35094 /* AddBudget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBudget.swift; sourceTree = "<group>"; };
 		CA4D143E2910069F00C35094 /* SetupBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupBottomView.swift; sourceTree = "<group>"; };
 		CA4D14422910069F00C35094 /* SetupPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupPageViewController.swift; sourceTree = "<group>"; };
+		CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewController.swift; sourceTree = "<group>"; };
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/NetworkModel/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
 		CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupPageViewController+Delegate.swift"; sourceTree = "<group>"; };
@@ -873,11 +875,11 @@
 		CA4D14392910069F00C35094 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				CA4DF4022927F455004E6067 /* AddIncome */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CAEDFA862922055400974168 /* SetupProgressHeader */,
 				CAEFBE44291D87A70037F1AE /* AddGoal */,
 				CA91B82C29194A4600627257 /* AddBudget */,
-				CA4D143C2910069F00C35094 /* AddIncome.swift */,
 				CA4D143E2910069F00C35094 /* SetupBottomView.swift */,
 			);
 			path = Component;
@@ -896,6 +898,31 @@
 			isa = PBXGroup;
 			children = (
 				CAFADA7B2912E2B700172D04 /* SetupPageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA4DF4022927F455004E6067 /* AddIncome */ = {
+			isa = PBXGroup;
+			children = (
+				CA4DF4062927F473004E6067 /* View */,
+				CA4DF4052927F46B004E6067 /* Controller */,
+			);
+			path = AddIncome;
+			sourceTree = "<group>";
+		};
+		CA4DF4052927F46B004E6067 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA4DF4062927F473004E6067 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA4D143C2910069F00C35094 /* AddIncome.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1451,6 +1478,7 @@
 				CA91B837291969FF00627257 /* BudgetView.swift in Sources */,
 				3B4AE59029231AF6000EA6C1 /* ChipCollectionViewCell.swift in Sources */,
 				FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */,
+				CA4DF4042927F465004E6067 /* AddIncomeViewController.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
 				CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */,
 				3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */,
