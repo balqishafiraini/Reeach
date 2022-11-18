@@ -41,8 +41,10 @@ class SetupPageViewController: UIViewController {
         contentView.progressHeader.updateSteps(currentIndex: currentProgressIndex)
     }
     
-    func shouldDisableButton(progressIndex: Float){
-        switch progressIndex {
+    func shouldDisableButton(progressIndex: Float? = nil){
+        let index: Float = progressIndex ?? self.currentProgressIndex
+        
+        switch index {
         case 0.0:
             print("Disable goal if no goal available")
         case 1.0:
