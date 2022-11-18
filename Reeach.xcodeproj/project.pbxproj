@@ -122,6 +122,7 @@
 		FA45FA132926912B000DD6C7 /* GoalModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45FA122926912B000DD6C7 /* GoalModalDelegate.swift */; };
 		FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969528F2695800BF3B9F /* UIView+Extension.swift */; };
 		FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969728F2696200BF3B9F /* UIColor+Extension.swift */; };
+		FA668E0B29277FCE002CBF04 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */; };
 		FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C028EBCF44001203F5 /* AppDelegate.swift */; };
 		FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C228EBCF44001203F5 /* SceneDelegate.swift */; };
 		FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C928EBCF44001203F5 /* Reeach.xcdatamodeld */; };
@@ -273,6 +274,7 @@
 		FA45FA122926912B000DD6C7 /* GoalModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalDelegate.swift; sourceTree = "<group>"; };
 		FA5C969528F2695800BF3B9F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		FA5C969728F2696200BF3B9F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		FA84163728FF993700AA973C /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA84163828FF993700AA973C /* ReeachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA84163928FF993700AA973C /* ReeachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1205,6 +1207,7 @@
 				3B9A749228EFD78E00AA2725 /* DoubleToStringHelper.swift */,
 				FA2E29FF2903A95C0083587D /* UIFont+Extension.swift */,
 				FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */,
+				FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1477,6 +1480,7 @@
 				CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */,
 				3B4AE5A02924731D000EA6C1 /* TermPickerDelegate.swift in Sources */,
 				3BAA29D82907936D008D3C5B /* DatabaseHelper+Category.swift in Sources */,
+				FA668E0B29277FCE002CBF04 /* UIDevice+Extension.swift in Sources */,
 				3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */,
 				3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */,
 				3B4AE5AD292585E3000EA6C1 /* TipDetailView.swift in Sources */,
