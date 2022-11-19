@@ -25,6 +25,7 @@ class BudgetView: UIView {
     var shouldDisableButton: Bool
     
     weak var delegate: SetupDelegate?
+    weak var budgetDelegate: BudgetDelegate?
     
     init(frame: CGRect, labelText: String, type: String, disableButtonAndStatus: Bool? = false){
         self.labelText = labelText
@@ -73,7 +74,7 @@ class BudgetView: UIView {
     }()
     
     lazy var addButton: Button = {
-        let button = Button(style: .rounded, foreground: .destructive, background: .royalHunterBlue, title: "Tambah Kebutuhan Baru")
+        let button = Button(style: .rounded, foreground: .destructive, background: .royalHunterBlue, title: "Tambah Kebutuhan Baru", textColor: .secondary8, backColor: .secondary1)
         
         return button
     }()
@@ -181,11 +182,18 @@ class BudgetView: UIView {
     }
     
     @objc func openGoalSelection() {
+<<<<<<< HEAD:Reeach/Page/SetupPage/Component/AddBudget/View/BudgetView.swift
         if type == "Goal" {
             delegate?.openGoalAllocationSheet()
         }
         else {
             delegate?.openCategoryAllocationSheet(type: type)
         }
+=======
+        // TODO: Coba tambahin goal ke controller disini
+        print("\(#function) for \(type)")
+        budgetDelegate?.addBudget()
+        
+>>>>>>> 91b79da (Feat: Add temporary function to disable addBudget button):Reeach/Page/SetupPage/Component/AddGoal/View/BudgetView.swift
     }
 }

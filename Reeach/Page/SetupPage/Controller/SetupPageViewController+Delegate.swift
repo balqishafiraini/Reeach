@@ -118,10 +118,3 @@ extension SetupPageViewController: SetupDelegate {
         }
     }
 }
-
-extension SetupPageViewController: BudgetDelegate {
-    func addBudget() {
-        print(#function)
-    }
-}
-
