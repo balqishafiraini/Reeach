@@ -9,7 +9,7 @@ import UIKit
 
 class AddGoalViewController: UIViewController {
 
-    weak var delegate: SetupDelegate?
+    weak var delegate: SetupPageViewController?
     
     var addGoal: AddGoal = AddGoal(frame: .zero)
     
@@ -29,6 +29,8 @@ class AddGoalViewController: UIViewController {
         goals = DatabaseHelper().getGoals()
         
         addGoal.goals = goals
+        delegate?.goals = goals
+        delegate?.setDisableButton()
         addGoal.setupView()
         addGoal.goalList.reloadData()
     }
@@ -66,6 +68,6 @@ extension AddGoalViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: collectionView.frame.width, height: 104)
+        return CGSize(width: collectionView.frame.width, height: 88)
     }
 }

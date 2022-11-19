@@ -82,6 +82,7 @@
 		3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBEFC82921CA16005A1062 /* SimpleGoalCollectionViewCell.swift */; };
 		3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBEFCB2921D590005A1062 /* TipDetailViewController.swift */; };
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
+		CA0CB2CF2926A51800D8AAB0 /* BudgetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB2CE2926A51800D8AAB0 /* BudgetItem.swift */; };
 		CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */; };
 		CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */; };
 		CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */; };
@@ -89,6 +90,7 @@
 		CA4D14452910069F00C35094 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143C2910069F00C35094 /* AddIncome.swift */; };
 		CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143E2910069F00C35094 /* SetupBottomView.swift */; };
 		CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D14422910069F00C35094 /* SetupPageViewController.swift */; };
+		CA4DF4042927F465004E6067 /* AddIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */; };
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
 		CA6EBC8629235EE400A33A2E /* SetupPageViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */; };
@@ -109,6 +111,7 @@
 		CAFC302B29269EC000D21274 /* GoalAllocationModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFC302829269EBF00D21274 /* GoalAllocationModalView.swift */; };
 		CAFC303429269EC900D21274 /* CategoryAllocationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFC302E29269EC900D21274 /* CategoryAllocationModalViewController.swift */; };
 		CAFC303629269EC900D21274 /* CategoryAllocationModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFC303329269EC900D21274 /* CategoryAllocationModalView.swift */; };
+		CAFC30392926A31300D21274 /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFC30382926A31300D21274 /* AddBudgetViewController.swift */; };
 		FA10B0D72922B4D0005D856C /* GoalsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10B0D62922B4D0005D856C /* GoalsOverviewViewController.swift */; };
 		FA10B0D92922B4DA005D856C /* GoalsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10B0D82922B4DA005D856C /* GoalsOverviewView.swift */; };
 		FA2E29DC29039A8B0083587D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E29DB29039A8B0083587D /* Button.swift */; };
@@ -132,6 +135,7 @@
 		FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA428C7E2909993D0053153F /* GoalModalViewController.swift */; };
 		FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969528F2695800BF3B9F /* UIView+Extension.swift */; };
 		FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C969728F2696200BF3B9F /* UIColor+Extension.swift */; };
+		FA668E0B29277FCE002CBF04 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */; };
 		FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C028EBCF44001203F5 /* AppDelegate.swift */; };
 		FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C228EBCF44001203F5 /* SceneDelegate.swift */; };
 		FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA9B12C928EBCF44001203F5 /* Reeach.xcdatamodeld */; };
@@ -240,6 +244,7 @@
 		3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CA0CB2CE2926A51800D8AAB0 /* BudgetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItem.swift; sourceTree = "<group>"; };
 		CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningView.swift; sourceTree = "<group>"; };
 		CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningViewController.swift; sourceTree = "<group>"; };
 		CA21B0BF28EDCDB700E59539 /* GoalDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -251,6 +256,7 @@
 		CA4D143D2910069F00C35094 /* AddBudget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBudget.swift; sourceTree = "<group>"; };
 		CA4D143E2910069F00C35094 /* SetupBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupBottomView.swift; sourceTree = "<group>"; };
 		CA4D14422910069F00C35094 /* SetupPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupPageViewController.swift; sourceTree = "<group>"; };
+		CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewController.swift; sourceTree = "<group>"; };
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/NetworkModel/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
 		CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupPageViewController+Delegate.swift"; sourceTree = "<group>"; };
@@ -268,6 +274,7 @@
 		CAFC302829269EBF00D21274 /* GoalAllocationModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalAllocationModalView.swift; sourceTree = "<group>"; };
 		CAFC302E29269EC900D21274 /* CategoryAllocationModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryAllocationModalViewController.swift; sourceTree = "<group>"; };
 		CAFC303329269EC900D21274 /* CategoryAllocationModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryAllocationModalView.swift; sourceTree = "<group>"; };
+		CAFC30382926A31300D21274 /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
 		FA10B0D62922B4D0005D856C /* GoalsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsOverviewViewController.swift; sourceTree = "<group>"; };
 		FA10B0D82922B4DA005D856C /* GoalsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsOverviewView.swift; sourceTree = "<group>"; };
 		FA2E29DA29039A470083587D /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +299,7 @@
 		FA428C7E2909993D0053153F /* GoalModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalViewController.swift; sourceTree = "<group>"; };
 		FA5C969528F2695800BF3B9F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		FA5C969728F2696200BF3B9F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		FA84163728FF993700AA973C /* Reeach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reeach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA84163828FF993700AA973C /* ReeachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA84163928FF993700AA973C /* ReeachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReeachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -864,6 +872,14 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		CA0CB2CD2926A43500D8AAB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA4D143D2910069F00C35094 /* AddBudget.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA20EFD5291AB87900248477 /* MonthlyPlanningPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,6 +931,7 @@
 				FAA37BE82918D52200F2C87A /* PaddingLabel.swift */,
 				FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */,
 				3B4AE5A629258548000EA6C1 /* IconWithoutEditView.swift */,
+				CA0CB2CE2926A51800D8AAB0 /* BudgetItem.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -965,11 +982,11 @@
 		CA4D14392910069F00C35094 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				CA4DF4022927F455004E6067 /* AddIncome */,
 				3BBF303B2911BA9F00F8373A /* InflationDetail */,
 				CAEDFA862922055400974168 /* SetupProgressHeader */,
 				CAEFBE44291D87A70037F1AE /* AddGoal */,
 				CA91B82C29194A4600627257 /* AddBudget */,
-				CA4D143C2910069F00C35094 /* AddIncome.swift */,
 				CA4D143E2910069F00C35094 /* SetupBottomView.swift */,
 			);
 			path = Component;
@@ -988,6 +1005,31 @@
 			isa = PBXGroup;
 			children = (
 				CAFADA7B2912E2B700172D04 /* SetupPageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA4DF4022927F455004E6067 /* AddIncome */ = {
+			isa = PBXGroup;
+			children = (
+				CA4DF4062927F473004E6067 /* View */,
+				CA4DF4052927F46B004E6067 /* Controller */,
+			);
+			path = AddIncome;
+			sourceTree = "<group>";
+		};
+		CA4DF4052927F46B004E6067 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA4DF4062927F473004E6067 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA4D143C2910069F00C35094 /* AddIncome.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1011,6 +1053,7 @@
 		CA84896B2923BB6100CF6CB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA91B836291969FF00627257 /* BudgetView.swift */,
 				CA4D143B2910069F00C35094 /* AddGoalView.swift */,
 			);
 			path = View;
@@ -1027,14 +1070,14 @@
 		CA91B82C29194A4600627257 /* AddBudget */ = {
 			isa = PBXGroup;
 			children = (
+				CA0CB2CD2926A43500D8AAB0 /* View */,
+				CAFC30372926A30000D21274 /* Controller */,
 				CAFC302C29269EC900D21274 /* CategoryAllocation */,
 				CAFC302129269EBF00D21274 /* GoalAllocation */,
 				3B4AE5712922767A000EA6C1 /* AddCategory */,
 				3B4AE573292276BE000EA6C1 /* SelectBudgetCategory */,
 				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
 				3B8197DD29187A450065C01E /* SelectGoal */,
-				CA4D143D2910069F00C35094 /* AddBudget.swift */,
-				CA91B836291969FF00627257 /* BudgetView.swift */,
 			);
 			path = AddBudget;
 			sourceTree = "<group>";
@@ -1129,6 +1172,14 @@
 				3B2688802927AE3A00E22410 /* CategoryAllocationModalView+Delegate.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CAFC30372926A30000D21274 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAFC30382926A31300D21274 /* AddBudgetViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		FA10B0D32922B4B3005D856C /* GoalsOverview */ = {
@@ -1246,6 +1297,8 @@
 				FA2E29FF2903A95C0083587D /* UIFont+Extension.swift */,
 				3B26886C2927230500E22410 /* String+Extension.swift */,
 				3B26886E2927232200E22410 /* Character+Extension.swift */,
+				FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */,
+				FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1487,6 +1540,7 @@
 				3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */,
 				3B2688812927AE3A00E22410 /* CategoryAllocationModalView+Delegate.swift in Sources */,
 				3BAA29D52907790E008D3C5B /* Transaction+CoreDataClass.swift in Sources */,
+				CA0CB2CF2926A51800D8AAB0 /* BudgetItem.swift in Sources */,
 				3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */,
 				3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
@@ -1500,6 +1554,7 @@
 				3B4AE59029231AF6000EA6C1 /* ChipCollectionViewCell.swift in Sources */,
 				FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */,
 				3B1AF1E32926F5730063DFDC /* GoalsOverviewViewController+Delegate.swift in Sources */,
+				CA4DF4042927F465004E6067 /* AddIncomeViewController.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
 				CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */,
 				3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */,
@@ -1512,6 +1567,7 @@
 				CAFC302929269EC000D21274 /* GoalAllocationModalViewController.swift in Sources */,
 				3B26886B292714F100E22410 /* AddCategoryDelegate.swift in Sources */,
 				3B4AE579292276FA000EA6C1 /* SelectBudgetCategoryView.swift in Sources */,
+				CAFC30392926A31300D21274 /* AddBudgetViewController.swift in Sources */,
 				3BBF30412911BB1200F8373A /* InflationDetailViewController+Delegate.swift in Sources */,
 				FAA37BE92918D52200F2C87A /* PaddingLabel.swift in Sources */,
 				3B4AE57D29227739000EA6C1 /* AddCategoryView.swift in Sources */,
@@ -1526,6 +1582,7 @@
 				CA21B0C028EDCDB700E59539 /* GoalDetailCollectionViewCell.swift in Sources */,
 				3B4AE5A02924731D000EA6C1 /* TermPickerDelegate.swift in Sources */,
 				3BAA29D82907936D008D3C5B /* DatabaseHelper+Category.swift in Sources */,
+				FA668E0B29277FCE002CBF04 /* UIDevice+Extension.swift in Sources */,
 				3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */,
 				3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */,
 				3B4AE5AD292585E3000EA6C1 /* TipDetailView.swift in Sources */,

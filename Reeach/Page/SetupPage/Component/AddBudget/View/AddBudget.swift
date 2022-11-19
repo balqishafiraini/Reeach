@@ -11,10 +11,12 @@ class AddBudget: UIView {
     
     weak var delegate: SetupDelegate?
     
+    var goalBudgets: [Budget]?
+    var needBudgets: [Budget]?
+    var wantBudgets: [Budget]?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -49,11 +51,11 @@ class AddBudget: UIView {
         return stack
     }()
     
-    lazy var goalStack = BudgetView(frame: CGRectZero, labelText: "Goal", type: "Goal")
+    lazy var goalStack = BudgetView()
     
-    lazy var needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan", type: "Need")
+    lazy var needStack = BudgetView()
     
-    lazy var wantStack = BudgetView(frame: CGRectZero, labelText: "Keingingan", type: "Want")
+    lazy var wantStack = BudgetView()
     
     let backButton: Button = {
         let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Kembali ke income")
@@ -69,10 +71,26 @@ class AddBudget: UIView {
     
     let contentView = UIView()
     
-    private func setupView() {
+    func setupContentStack() {
+        goalStack = BudgetView(frame: CGRectZero, labelText: "Goal", type: "Goal")
+        needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan", type: "Need")
+        wantStack = BudgetView(frame: CGRectZero, labelText: "Keingingan", type: "Want")
+        
         goalStack.delegate = self.delegate
         needStack.delegate = self.delegate
         wantStack.delegate = self.delegate
+        
+        goalStack.budgets = goalBudgets!
+        needStack.budgets = needBudgets!
+        wantStack.budgets = wantBudgets!
+        
+        goalStack.setupView()
+        needStack.setupView()
+        wantStack.setupView()
+    }
+    
+    func setupView() {
+        setupContentStack()
         
         headerStack.addArrangedSubview(topTitle)
         headerStack.addArrangedSubview(viewDescription)
@@ -83,8 +101,8 @@ class AddBudget: UIView {
         contentView.addSubview(headerStack)
         contentView.addSubview(backButton)
         
-        headerStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: backButton.topAnchor, right: contentView.rightAnchor, paddingBottom: 44)
-        backButton.anchor(top: headerStack.bottomAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 44)
+        headerStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: backButton.topAnchor, right: contentView.rightAnchor, paddingBottom: 20)
+        backButton.anchor(top: headerStack.bottomAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 20)
         
         scrollView.addSubview(contentView)
         

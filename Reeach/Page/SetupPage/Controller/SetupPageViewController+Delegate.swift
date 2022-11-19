@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension SetupPageViewController: SetupDelegate {
     
@@ -28,32 +29,34 @@ extension SetupPageViewController: SetupDelegate {
     }
     
     func openGoalSheet() {
+        let navigationController = UINavigationController()
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+        
         let goalVC = GoalModalViewController()
-        goalVC.modalPresentationStyle = .popover
+        goalVC.modalPresentationStyle = .pageSheet
         goalVC.modalTransitionStyle = .coverVertical
-        self.show(goalVC, sender: self)
-    }
-    
-    func addBudget(type: String, budget: Budget) {
-        print(#function)
-        switch type {
-        case "Goal":
-//            goalBudgets.append(budget)
-            let _ = contentView.content as! AddBudget
-//            content.goalStack.setupStatusLabel(budgets: goalBudgets)
-            
-        case "Need":
-            needBudgets.append(budget)
-        case "Want":
-            wantBudgets.append(budget)
-        default:
-            print("Wtf do u want?")
-        }
+        
+        
+        navigationController.pushViewController(goalVC, animated: true)
+        self.present(navigationController, animated: true)
     }
     
     func saveIncome(income: String) {
-        self.income = (income as NSString).floatValue
+        self.income = (income as NSString).doubleValue
+        let income = DatabaseHelper().getCategory(name: "Income")
+        if let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: income!) {
+            incomeBudget.monthlyAllocation = self.income
+            
+            DatabaseHelper().saveContext()
+        } else {
+            let _ = DatabaseHelper().createBudget(monthlyAllocation: self.income, period: Date(), category: income!)
+        }
         shouldDisableButton(progressIndex: currentProgressIndex)
+    }
+    
+    func setDisableButton(progressIndex: Float? = nil) {
+        shouldDisableButton(progressIndex: progressIndex)
     }
     
 }

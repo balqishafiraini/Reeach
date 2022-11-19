@@ -22,17 +22,9 @@ class SetupPageView: UIView {
     
     let goalView = AddGoalViewController()
     
-    let incomeView: AddIncome = {
-        let view = AddIncome(frame: CGRectZero)
-        
-        return view
-    }()
+    let incomeView = AddIncomeViewController()
     
-    let budgetView: AddBudget = {
-        let view = AddBudget(frame: CGRectZero)
-        
-        return view
-    }()
+    let budgetView = AddBudgetViewController()
     
     let bottomView: SetupBottomView = {
         let view = SetupBottomView(frame: CGRectZero)
@@ -60,9 +52,9 @@ class SetupPageView: UIView {
         if viewController!.currentProgressIndex == 0.0 {
             return goalView.view
         } else if viewController!.currentProgressIndex == 1.0 {
-            return incomeView
+            return incomeView.view
         } else if viewController!.currentProgressIndex == 2.0 {
-            return budgetView
+            return budgetView.view
         }
         
         return UIView()

@@ -9,6 +9,6 @@ import Foundation
 
 extension MonthlyPlanningViewController: PlannerDelegate {
     func getPlanner(forDate: Date) {
-        print("Get Planner for \(DateFormatHelper.getDayAndMonthString(from: forDate))")
+        setupInitialState(date: forDate)
     }
 }
