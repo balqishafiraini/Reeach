@@ -15,8 +15,10 @@ extension SetupPageViewController: SetupDelegate {
         currentProgress = currentProgressIndex / totalProgress
         
         if currentProgressIndex > totalProgress {
-            currentProgress = 0.0
-            currentProgressIndex = 0.0
+            currentProgress = 1.0
+            currentProgressIndex = totalProgress
+            
+            showPopUpConfirm()
         }
         
         updateView()
