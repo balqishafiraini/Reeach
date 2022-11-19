@@ -43,7 +43,7 @@ class BudgetItem: UIView {
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         
         return stack
     }()
@@ -56,12 +56,29 @@ class BudgetItem: UIView {
         return view
     }()
     
+<<<<<<< HEAD
     init(frame: CGRect, budget: Budget) {
+=======
+    init(frame: CGRect, icon: String, title: String, amount: Double, type: String) {
+>>>>>>> f6d3203 (Fix: Budget layout)
         super.init(frame: frame)
         iconLabel.text = budget.category?.icon
         titleLabel.text = budget.category?.name
         amountLabel.text = CurrencyHelper.getCurrency(from: budget.monthlyAllocation)
         self.budget = budget
+        
+        switch type {
+        case "Goal":
+            iconLabel.backgroundColor = .secondary2
+        case "Need":
+            iconLabel.backgroundColor = .primary4
+        case "Want":
+            iconLabel.backgroundColor = .accentRed4
+        case "Income":
+            iconLabel.backgroundColor = .secondary2
+        default:
+            iconLabel.backgroundColor = .black3
+        }
         
         setupView()
     }

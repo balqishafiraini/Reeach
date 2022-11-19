@@ -93,9 +93,14 @@ class BudgetView: UIView {
         self.addSubview(stack)
         
         for budget in budgets! {
+<<<<<<< HEAD:Reeach/Page/SetupPage/Component/AddBudget/View/BudgetView.swift
             let newItem = BudgetItem(frame: .zero, budget: budget)
             newItem.delegate = delegate
+=======
+            let newItem = BudgetItem(frame: .zero, icon: budget.category?.icon ?? "❓", title: budget.category?.name ?? "Title", amount: budget.monthlyAllocation, type: budget.category?.type ?? "Type")
+>>>>>>> f6d3203 (Fix: Budget layout):Reeach/Page/SetupPage/Component/AddGoal/View/BudgetView.swift
             budgetStack.addArrangedSubview(newItem)
+            
             allocationCount+=1
             
             allocated += budget.monthlyAllocation
