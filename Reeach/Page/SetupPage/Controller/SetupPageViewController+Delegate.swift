@@ -30,16 +30,16 @@ extension SetupPageViewController: SetupDelegate {
         updateView()
     }
     
-    func openGoalSheet(goal: Goal? = nil) {
+    func openGoalSheet(forGoalIndex: Int) {
         let navigationController = UINavigationController()
         navigationController.navigationItem.largeTitleDisplayMode = .never
         navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
         
         let goalVC = GoalModalViewController()
         goalVC.delegate = contentView.goalView
-        if let goal = goal {
+        if forGoalIndex >= 0 {
             goalVC.mode = .edit
-            goalVC.goal = goal
+            goalVC.goal = goals[forGoalIndex]
         }
         goalVC.modalPresentationStyle = .pageSheet
         goalVC.modalTransitionStyle = .coverVertical

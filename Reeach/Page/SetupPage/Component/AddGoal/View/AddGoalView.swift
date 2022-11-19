@@ -186,7 +186,7 @@ class AddGoal: UIView {
     }
     
     @objc func openGoalSheet() {
-        delegate?.openGoalSheet?()
+        delegate?.openGoalSheet?(forGoalIndex: -1)
     }
     
     
