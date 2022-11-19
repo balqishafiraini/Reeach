@@ -11,10 +11,25 @@ class SetupBottomView: UIView {
     
     weak var delegate: SetupDelegate?
     
+    let backButton: Button = {
+        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Kembali ke income")
+        
+        return button
+    }()
+    
     let nextButton: Button = {
         let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Looking good? Lanjut, yuk!")
         
         return button
+    }()
+    
+    let stackButton: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.spacing = 12
+        
+        return stack
     }()
     
     override init(frame: CGRect) {
@@ -28,18 +43,30 @@ class SetupBottomView: UIView {
     }
     
     func setupView() {
-        self.setDimensions(width: UIScreen.main.bounds.width, height: 100)
+//        self.setDimensions(width: UIScreen.main.bounds.width, height: 150)
+//        self.backgroundColor = .red
         
-        self.addSubview(nextButton)
+        stackButton.addArrangedSubview(backButton)
+        stackButton.addArrangedSubview(nextButton)
+        
+//        self.addSubview(nextButton)
+        self.addSubview(stackButton)
+        
+        stackButton.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.rightAnchor)
         
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
+//        nextButton.anchor(width: UIScreen.main.bounds.width - 32, height: 100)
         
-        nextButton.center(inView: self)
-        nextButton.anchor(width: UIScreen.main.bounds.width - 32)
+        backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
+//        backButton.anchor(width: UIScreen.main.bounds.width - 32)
     }
     
-    @objc func nextStep() {        
+    @objc func nextStep() {
         delegate?.updateProgress!()
+    }
+    
+    @objc func prevStep() {
+        delegate?.previousProgress!()
     }
     
     func setButtonTitle(progressIndex: Float){

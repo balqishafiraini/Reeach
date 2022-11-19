@@ -34,6 +34,7 @@ extension SetupPageViewController: SetupDelegate {
         navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
         
         let goalVC = GoalModalViewController()
+        goalVC.delegate = contentView.goalView
         goalVC.modalPresentationStyle = .pageSheet
         goalVC.modalTransitionStyle = .coverVertical
         

@@ -49,14 +49,19 @@ class SetupPageViewController: UIViewController {
         switch index {
         case 0.0:
             contentView.bottomView.nextButton.isEnabled = !goals.isEmpty
+            contentView.bottomView.backButton.isHidden = true
         case 1.0:
             contentView.bottomView.nextButton.isEnabled = income > 0.0
+            contentView.bottomView.backButton.isHidden = false
+            contentView.bottomView.backButton.setTitle("Balik ke Goal-Setting", for: .normal)
         case 2.0:
             var isEnabled = false
             isEnabled = goalBudgets.count == 3 || goalBudgets.count == goals.count
             isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
             
             contentView.bottomView.nextButton.isEnabled = isEnabled
+            contentView.bottomView.backButton.isHidden = false
+            contentView.bottomView.backButton.setTitle("Kembali ke income", for: .normal)
         default:
             contentView.bottomView.nextButton.isEnabled = true
         }

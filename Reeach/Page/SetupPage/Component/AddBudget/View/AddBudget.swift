@@ -57,12 +57,6 @@ class AddBudget: UIView {
     
     lazy var wantStack = BudgetView()
     
-    let backButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Kembali ke income")
-        
-        return button
-    }()
-    
     let scrollView: UIScrollView = {
         let sv = UIScrollView()
         
@@ -99,16 +93,12 @@ class AddBudget: UIView {
         headerStack.addArrangedSubview(wantStack)
         
         contentView.addSubview(headerStack)
-        contentView.addSubview(backButton)
         
-        headerStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: backButton.topAnchor, right: contentView.rightAnchor, paddingBottom: 20)
-        backButton.anchor(top: headerStack.bottomAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 20)
+        headerStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingBottom: 20)
         
         scrollView.addSubview(contentView)
         
         self.addSubview(scrollView)
-        
-        backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
         
         scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.maxX)
         

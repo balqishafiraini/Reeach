@@ -44,6 +44,7 @@ class AddIncome: UIView {
     
     let incomeTextField: TextField = {
         let textField = TextField(frame: .zero, style: .active)
+        textField.textField.keyboardType = .numberPad
         
         return textField
     }()
@@ -56,12 +57,6 @@ class AddIncome: UIView {
         stack.distribution = .fill
         
         return stack
-    }()
-    
-    let backButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Balik ke Goal-Setting")
-        
-        return button
     }()
     
     let contentStack: UIStackView = {
@@ -101,18 +96,15 @@ class AddIncome: UIView {
         headerStack.addArrangedSubview(incomeTextField)
         
         contentStack.addArrangedSubview(headerStack)
-        contentStack.addArrangedSubview(backButton)
         
         self.addSubview(contentStack)
         
-        contentStack.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
+        contentStack.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
         
         setupTargetsAndActions()
     }
     
-    func setupTargetsAndActions() {
-        backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
-        
+    func setupTargetsAndActions() {        
         incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .editingDidEnd)
         incomeTextField.textField.sendActions(for: .valueChanged)
     }

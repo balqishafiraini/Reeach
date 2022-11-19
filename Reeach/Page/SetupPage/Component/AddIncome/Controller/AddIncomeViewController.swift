@@ -18,7 +18,7 @@ class AddIncomeViewController: UIViewController {
 
         
         self.view = addIncomeView
-        self.hideKeyboardWhenTappedAround()
+        view.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,3 +36,5 @@ class AddIncomeViewController: UIViewController {
     }
 
 }
+
+

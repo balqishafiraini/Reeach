@@ -26,6 +26,10 @@ class AddGoalViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setupData()
+    }
+    
+    func setupData() {
         goals = DatabaseHelper().getGoals()
         
         addGoal.goals = goals
@@ -69,5 +73,11 @@ extension AddGoalViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: collectionView.frame.width, height: 88)
+    }
+}
+
+extension AddGoalViewController: DismissViewDelegate {
+    func viewDismissed() {
+        setupData()
     }
 }
