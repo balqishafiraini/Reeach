@@ -62,7 +62,11 @@ class GoalAllocationModalView: UIView {
         return textField
     }()
     
-    lazy var dueDateDatePicker = DatePicker(frame: .zero, title: "Deadline")
+    lazy var dueDateDatePicker = {
+        let datePicker = DatePicker(frame: .zero, title: "Deadline")
+        datePicker.datePicker.minimumDate = Date()
+        return datePicker
+    }()
     
     lazy var targetAmountTextField = TextField(frame: .zero, title: "Target Terkumpul", style: .template, prefix: "Rp")
     

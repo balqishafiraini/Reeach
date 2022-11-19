@@ -32,6 +32,7 @@ extension CategoryAllocationModalViewController: CategoryAllocationModalViewDele
     func goToSelectCategory() {
         let targetViewController = SelectBudgetCategoryViewController()
         targetViewController.delegate = self
+        targetViewController.type = type == .needs ? "Need" : "Want"
         navigationController?.pushViewController(targetViewController, animated: true)
     }
     

@@ -87,6 +87,7 @@ class CategoryCardCollectionViewCell: UICollectionViewCell {
     private lazy var middleRightVerticalStackView = {
         var stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.alignment = .trailing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()

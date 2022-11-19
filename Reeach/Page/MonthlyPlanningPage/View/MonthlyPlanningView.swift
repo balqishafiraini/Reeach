@@ -24,9 +24,9 @@ class MonthlyPlanningView: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Monthly Planner"
+        label.text = "Monthly Budget Plan"
         label.font = .largeTitle
-        label.textColor = .whiteSmoke
+        label.textColor = .ghostWhite
         label.textAlignment = .center
         
         return label

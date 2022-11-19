@@ -10,9 +10,10 @@ import Foundation
 @objc protocol SetupDelegate: AnyObject {
     @objc optional func updateProgress()
     @objc optional func previousProgress()
-    
+    func openGoalAllocationSheet()
+    func openCategoryAllocationSheet(type: String)
     @objc optional func openGoalSheet()
     @objc optional func saveIncome(income: String)
-    
+    func openBudgetDetail(budget: Budget)
     @objc optional func setDisableButton()
 }

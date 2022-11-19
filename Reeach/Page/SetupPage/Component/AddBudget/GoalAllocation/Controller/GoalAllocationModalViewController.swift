@@ -36,6 +36,7 @@ class GoalAllocationModalViewController: UIViewController {
                 return
             }
             self.goal = goal
+            goalAllocationModalView.monthlyAllocationTextField.textField.text = "\(Int(budget.monthlyAllocation))"
         }
         
         guard let goal

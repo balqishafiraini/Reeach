@@ -49,7 +49,7 @@ class GoalModalView: UIView {
         button.imageView?.heightAnchor.constraint(equalTo: button.titleLabel?.heightAnchor ?? button.heightAnchor).isActive = true
         button.imageView?.widthAnchor.constraint(equalTo: button.imageView!.heightAnchor).isActive = true
         button.tintColor = .royalHunterBlue
-        button.setTitle("WATCH OUT! Nilai setelah inflasi: ", for: .normal)
+        button.setTitle("Nilai setelah inflasi: ", for: .normal)
         button.contentHorizontalAlignment = .left
         button.backgroundColor = .clear
         button.setTitleColor(.royalHunterBlue, for: .normal)
@@ -202,6 +202,7 @@ class GoalModalView: UIView {
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
+        dismissKeyboard()
         if sender == recommendButton {
             viewDelegate?.goToGoalRecommendation()
         }

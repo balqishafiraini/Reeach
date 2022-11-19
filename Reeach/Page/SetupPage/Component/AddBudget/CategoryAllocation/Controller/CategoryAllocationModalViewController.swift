@@ -39,6 +39,7 @@ class CategoryAllocationModalViewController: UIViewController {
             currentCategory = budget.category
             initialMonthlyAllocation = budget.monthlyAllocation
             currentMonthlyAllocation = budget.monthlyAllocation
+            type = budget.category?.type == "Need" ? .needs : .wants
             
             categoryAllocationModalView.iconWithoutEdit.iconLabel.font = .systemFont(ofSize: 58, weight: .bold)
             categoryAllocationModalView.iconWithoutEdit.iconLabel.text = budget.category?.icon

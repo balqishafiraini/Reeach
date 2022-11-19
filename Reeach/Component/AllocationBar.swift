@@ -98,7 +98,7 @@ class AllocationBar: UIView {
     
     lazy var needDescriptionLabel = {
         let label = UILabel()
-        label.text = "Kebutuhan"
+        label.text = "Pokok"
         label.font = .caption2Medium
         label.textColor = .black10
         label.textAlignment = .center
@@ -108,7 +108,7 @@ class AllocationBar: UIView {
     
     lazy var wantDescriptionLabel = {
         let label = UILabel()
-        label.text = "Keinginan"
+        label.text = "Nonpokok"
         label.font = .caption2Medium
         label.textColor = .black10
         label.textAlignment = .center
