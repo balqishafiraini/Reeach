@@ -44,10 +44,10 @@ class SetupPageViewController: UIViewController {
         
         switch index {
         case 0.0:
-            contentView.bottomView.nextButton.isEnabled = !goals.isEmpty
             contentView.bottomView.backButton.isHidden = true
+            contentView.bottomView.shouldDisableNextButton(isEnabled: !goals.isEmpty)
         case 1.0:
-            contentView.bottomView.nextButton.isEnabled = income > 0.0
+            contentView.bottomView.shouldDisableNextButton(isEnabled: income > 0.0)
             contentView.bottomView.backButton.isHidden = false
             contentView.bottomView.backButton.setTitle("Balik ke Goal-Setting", for: .normal)
         case 2.0:
@@ -55,7 +55,7 @@ class SetupPageViewController: UIViewController {
             isEnabled = goalBudgets.count == 3 || goalBudgets.count == goals.count
             isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
             
-            contentView.bottomView.nextButton.isEnabled = isEnabled
+            contentView.bottomView.shouldDisableNextButton(isEnabled: isEnabled)
             contentView.bottomView.backButton.isHidden = false
             contentView.bottomView.backButton.setTitle("Kembali ke Pemasukan", for: .normal)
         default:
