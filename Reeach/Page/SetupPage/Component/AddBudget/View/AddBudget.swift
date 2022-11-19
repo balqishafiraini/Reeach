@@ -9,7 +9,7 @@ import UIKit
 
 class AddBudget: UIView {
     
-    weak var delegate: SetupDelegate?
+    weak var delegate: SetupPageViewController?
     weak var budgetDelegate: BudgetDelegate?
     
     var goalBudgets: [Budget]?
@@ -144,6 +144,6 @@ class AddBudget: UIView {
     }
 
     @objc func prevStep() {
-        delegate?.previousProgress!()
+        delegate?.previousProgress()
     }
 }

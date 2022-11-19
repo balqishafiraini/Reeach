@@ -24,7 +24,7 @@ class BudgetView: UIView {
     var allocationCount = 0
     var shouldDisableButton: Bool
     
-    weak var delegate: SetupDelegate?
+    weak var delegate: SetupPageViewController?
     weak var budgetDelegate: BudgetDelegate?
     
     init(frame: CGRect, labelText: String, type: String, disableButtonAndStatus: Bool? = false){
@@ -115,6 +115,10 @@ class BudgetView: UIView {
         stack.addArrangedSubview(budgetStack)
         if !shouldDisableButton {
             stack.addArrangedSubview(addButton)
+        }
+        
+        if type == "Goal" && !shouldDisableButton {
+            label.text = "Goals (\(allocationCount)/\(delegate?.goals.count ?? 0))"
         }
         
         stack.setCustomSpacing(shouldDisableButton ? 12 : 4, after: label)
