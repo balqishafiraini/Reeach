@@ -38,6 +38,7 @@ class AddIncome: UIView {
         label.text = "Pemasukan adalah nominal yang kamu terima tiap bulannya ya, Bestie, bukan uang yang masih tersisa. Yuk, tulis pemasukanmu."
         label.font = .bodyMedium
         label.numberOfLines = 0
+        label.textColor = .black8
         
         return label
     }()
@@ -53,7 +54,7 @@ class AddIncome: UIView {
         let stack = UIStackView()
         
         stack.axis = .vertical
-        stack.spacing = 32
+        stack.spacing = 20
         stack.distribution = .fill
         
         return stack
@@ -64,24 +65,6 @@ class AddIncome: UIView {
         
         stack.axis = .vertical
         stack.distribution = .equalSpacing
-        
-        return stack
-    }()
-    
-    let goalStack: UIStackView = {
-        let stack = UIStackView()
-        
-        stack.axis = .vertical
-        stack.spacing = 12
-        
-        let label = UILabel()
-        label.text = "Goal"
-        label.font = .headline
-        
-        let addButton = Button(style: .rounded, foreground: .destructive, background: .royalHunterBlue, title: "Tambah Kebutuhan Baru")
-        
-        stack.addArrangedSubview(label)
-        stack.addArrangedSubview(addButton)
         
         return stack
     }()
@@ -102,6 +85,8 @@ class AddIncome: UIView {
         self.addSubview(contentStack)
         
         contentStack.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
+        
+        headerStack.setCustomSpacing(12, after: topTitle)
         
         setupTargetsAndActions()
     }

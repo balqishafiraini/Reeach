@@ -35,9 +35,10 @@ class AddBudget: UIView {
     let viewDescription: UILabel = {
         let label = UILabel()
         
-        label.text = "Sekarang, mari kita rencanakan anggaran perbulan mu. Kami merekomendasikan supaya teknik 50-30-20. Pelajari lebih lanjut"
+        label.text = "Yuk, rencanakan keuanganmu supaya target goals terkumpul pakai metode 50/30/20."
         label.font = .bodyMedium
         label.numberOfLines = 5
+        label.textColor = .black8
         
         return label
     }()
@@ -46,7 +47,7 @@ class AddBudget: UIView {
         let stack = UIStackView()
         
         stack.axis = .vertical
-        stack.spacing = 24
+        stack.spacing = 20
         stack.distribution = .fill
         
         return stack
@@ -68,8 +69,8 @@ class AddBudget: UIView {
     
     func setupContentStack() {
         goalStack = BudgetView(frame: CGRectZero, labelText: "Goal", type: "Goal")
-        needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan", type: "Need")
-        wantStack = BudgetView(frame: CGRectZero, labelText: "Keingingan", type: "Want")
+        needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan Pokok", type: "Need")
+        wantStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan Nonpokok", type: "Want")
         
         goalStack.addButton.setTitle("Tambah budget untuk goals", for: .normal)
         needStack.addButton.setTitle("Tambah kebutuhan pokok", for: .normal)
@@ -104,6 +105,7 @@ class AddBudget: UIView {
         contentView.addSubview(headerStack)
         
         headerStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingBottom: 20)
+        headerStack.setCustomSpacing(12, after: topTitle)
         
         scrollView.addSubview(contentView)
         

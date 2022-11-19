@@ -18,7 +18,7 @@ class SetupBottomView: UIView {
     }()
     
     let nextButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Looking good? Lanjut, yuk!")
+        let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Looking good? Gasss!")
         
         return button
     }()
@@ -66,9 +66,9 @@ class SetupBottomView: UIView {
     func setButtonTitle(progressIndex: Float){
         switch progressIndex {
         case 0:
-            nextButton.setTitle("Looking good? Lanjut, yuk!", for: .normal)
+            nextButton.setTitle("Looking good? Gasss!", for: .normal)
         case 1:
-            nextButton.setTitle("Skuy ke Budgeting!", for: .normal)
+            nextButton.setTitle("Skuy ke Budget!", for: .normal)
         case 2:
             nextButton.setTitle("Yuhuuu, beres!", for: .normal)
         default:
