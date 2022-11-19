@@ -1,12 +1,16 @@
 //
-//  GoalAllocationModalDelegate.swift
+//  GoalModalDelegate.swift
 //  Reeach
 //
-//  Created by Balqis on 17/11/22.
+//  Created by William Chrisandy on 18/11/22.
 //
 
-import UIKit
+import Foundation
 
-protocol GoalModalViewControllerDelegate: AnyObject {
-    func viewDismissed()
+protocol GoalModalViewDelegate: AnyObject {
+    func goToTermPicker()
+    func goToGoalRecommendation()
+    func goToInflationDetail()
+    func save(name: String, icon: String, dueDate: Date, targetAmount: Double, timeTerm: String, initialSaving: Double)
+    func updateInflationButton()
 }

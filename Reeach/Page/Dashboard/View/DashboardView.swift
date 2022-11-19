@@ -8,7 +8,7 @@
 import UIKit
 
 class DashboardView: UIView {
-    weak var viewDelegate: DashboardViewProtocol?
+    weak var viewDelegate: DashboardViewDelegate?
     weak var viewController: DashboardViewController?
     
     private lazy var scrollView = {
@@ -244,16 +244,15 @@ class DashboardView: UIView {
     }
     
     func configureClickableTarget() {
-        goalHeaderButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToAllGoals)))
-        
-        emptyGoalButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addGoal)))
+        goalHeaderButton.addTarget(self, action: #selector(goToAllGoals), for: .touchUpInside)
+        emptyGoalButton.addTarget(self, action: #selector(addGoal), for: .touchUpInside)
     }
     
-    @objc func goToAllGoals() {
+    @objc func goToAllGoals(_ sender: UIButton) {
         viewDelegate?.goToAllGoals()
     }
     
-    @objc func addGoal() {
+    @objc func addGoal(_ sender: UIButton) {
         viewDelegate?.addGoal()
     }
     

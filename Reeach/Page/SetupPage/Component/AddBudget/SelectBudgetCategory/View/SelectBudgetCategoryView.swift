@@ -83,10 +83,10 @@ class SelectBudgetCategoryView: UIView {
     }
     
     func configureClickableTarget() {
-        addCategoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addCategory)))
+        addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
     }
     
-    @objc func addCategory() {
+    @objc func addCategory(_ sender: UIButton) {
         viewDelegate?.addCategory()
     }
     

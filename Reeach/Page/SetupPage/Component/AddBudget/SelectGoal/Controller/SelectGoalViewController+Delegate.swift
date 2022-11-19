@@ -9,10 +9,10 @@ import UIKit
 
 extension SelectGoalViewController: NavigationBarDelegate {
     func cancel() {
-        navigationController?.popViewController(animated: true)
+        dismissViewDelegate?.viewDismissed()
+        dismiss(animated: true)
     }
 }
-
 
 extension SelectGoalViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -37,6 +37,15 @@ extension SelectGoalViewController: UICollectionViewDelegate, UICollectionViewDa
         if let cell = collectionView.cellForItem(at: indexPath)! as? GoalDetailCollectionViewCell {
             cell.configureSelectedView()
             cell.isSelected = false
+            
+            let targetViewController = GoalAllocationModalViewController()
+            targetViewController.delegate = dismissViewDelegate
+            targetViewController.modalPresentationStyle = .pageSheet
+            targetViewController.mode = .add
+            targetViewController.goal = goals[indexPath.item]
+            
+            navigationController?.popViewController(animated: false)
+            navigationController?.pushViewController(targetViewController, animated: false)
         }
     }
 

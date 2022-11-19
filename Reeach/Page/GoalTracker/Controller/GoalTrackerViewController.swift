@@ -18,6 +18,10 @@ class GoalTrackerViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+    
+    func loadData() {
         goals = Goal.categorizeGoals(goals: DatabaseHelper().getAllocatedGoals(on: Date()))
         
         terms.removeAll()
@@ -29,14 +33,24 @@ class GoalTrackerViewController: UIViewController {
             contentView.goalTermContainerView.isHidden = true
             contentView.addGoalButton.isHidden = true
             contentView.titleExplanationLabel.text = "Semua goals yang udah kamu buat."
+            
+            contentView.emptyStateContainerView.isHidden = false
+            contentView.emptyGoalButton.isHidden = false
+            contentView.emptyDescriptionLabel.text = "Tahu gak sih, bikin goals itu langkah pertama untuk financial planning lho."
+            contentView.centerYEmptyContainerViewConstraint.constant = 0
         }
         else {
+            contentView.goalTermContainerView.isHidden = false
+            contentView.addGoalButton.isHidden = false
+            contentView.titleExplanationLabel.text = "Semua goals yang kamu budget bulan ini."
+            
             contentView.emptyStateContainerView.isHidden = true
             contentView.emptyGoalButton.isHidden = true
-            contentView.titleExplanationLabel.text = "Semua goals yang kamu budget bulan ini."
             contentView.emptyDescriptionLabel.text = "Kamu belum memiliki goals tidak aktif"
             contentView.centerYEmptyContainerViewConstraint.constant = 100
         }
+        contentView.activeButton.setIsActive(.active)
+        contentView.inActiveButton.setIsActive(.inactive)
         contentView.collectionView.reloadData()
     }
     

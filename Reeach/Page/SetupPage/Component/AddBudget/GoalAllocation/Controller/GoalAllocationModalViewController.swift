@@ -15,16 +15,8 @@ class GoalAllocationModalViewController: UIViewController {
     }
     
     var goal: Goal?
-    var iconEmoji: String?
-    var goalName: String?
-    var deadline: Date?
-    var targetAmount: Double?
-    var monthlySaving: Double?
-    
-    weak var delegate: GoalAllocationModalViewControllerDelegate?
-    
+    weak var delegate: DismissViewDelegate?
     var mode: EditMode = .add
-    
     let goalAllocationModalView = GoalAllocationModalView()
     
     override func viewDidLoad() {
@@ -37,7 +29,6 @@ class GoalAllocationModalViewController: UIViewController {
         title = "Alokasi Goal"
         self.setNavigationBar()
         
-        self.hideKeyboardWhenTappedAround()
         setupAddTargetIsNotEmptyTextFields()
         
         goalAllocationModalView.target.textField.keyboardType = .numberPad

@@ -11,14 +11,7 @@ class DatePicker: UIView, UITextFieldDelegate {
     
     var date: Date?
     
-    lazy var datePicker: TextField = {
-        let tf = TextField(frame: .zero, style: .template, icon: UIImage(named: "Calendar"))
-        tf.textField.placeholder = "MM/YYYY"
-        tf.tintColor = .clear
-        tf.textField.delegate = self
-        
-//        tf.textField.inputViewController?.setEditing(false, animated: true)
-        
+    lazy var datePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.locale = .current
@@ -27,10 +20,17 @@ class DatePicker: UIView, UITextFieldDelegate {
             datePicker.sizeToFit()
         }
         
-        tf.textField.inputView = datePicker
-
         datePicker.addTarget(self, action: #selector(openDatePicker), for: .valueChanged)
         
+        return datePicker
+    }()
+    
+    lazy var textField: TextField = {
+        let tf = TextField(frame: .zero, style: .template, icon: UIImage(named: "Calendar"))
+        tf.textField.placeholder = "MM/YYYY"
+        tf.tintColor = .clear
+        tf.textField.delegate = self
+        tf.textField.inputView = datePicker
         return tf
     }()
     
@@ -53,12 +53,12 @@ class DatePicker: UIView, UITextFieldDelegate {
     
     func setupView() {
         addSubview(titleLabel)
-        addSubview(datePicker)
+        addSubview(textField)
         
-        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: datePicker.topAnchor, right: self.rightAnchor)
+        titleLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: textField.topAnchor, right: self.rightAnchor)
         titleLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
 
-        datePicker.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        textField.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
     }
     
     let titleLabel: UILabel = {
@@ -77,7 +77,7 @@ class DatePicker: UIView, UITextFieldDelegate {
     @objc func openDatePicker(sender: UIDatePicker) {
         date = sender.date
         
-        datePicker.textField.text = DateFormatHelper.getShortMonthAndYearString(from: sender.date)
+        textField.textField.text = DateFormatHelper.getShortMonthAndYearString(from: sender.date)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

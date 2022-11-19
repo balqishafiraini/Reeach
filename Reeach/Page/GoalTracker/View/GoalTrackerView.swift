@@ -85,7 +85,7 @@ class GoalTrackerView: UIView {
     lazy var activeButton = {
         var chip = ChipCollectionViewCell()
         chip.titleLabel.text = "Aktif"
-        chip.toggleIsActive()
+        chip.setIsActive(.active)
         chip.anchor(height: 38)
         return chip
     }()
@@ -194,23 +194,23 @@ class GoalTrackerView: UIView {
     }
     
     func configureClickableTarget() {
-        emptyGoalButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToBudgetPlanner)))
+        emptyGoalButton.addTarget(self, action: #selector(goToBudgetPlanner), for: .touchUpInside)
         activeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeGoalStatus)))
         inActiveButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeGoalStatus)))
-        addGoalButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addGoal)))
+        addGoalButton.addTarget(self, action: #selector(addGoal), for: .touchUpInside)
     }
     
-    @objc func goToBudgetPlanner() {
+    @objc func goToBudgetPlanner(_ sender: UIButton) {
         viewDelegate?.goToBudgetPlanner()
     }
     
-    @objc func addGoal() {
+    @objc func addGoal(_ sender: UIButton) {
         viewDelegate?.addGoal()
     }
     
     @objc func changeGoalStatus(gestureRecognizer: UITapGestureRecognizer) {
-        activeButton.toggleIsActive()
-        inActiveButton.toggleIsActive()
+        activeButton.setIsActive(gestureRecognizer.view == activeButton ? .active : .inactive)
+        inActiveButton.setIsActive(gestureRecognizer.view == activeButton ? .inactive : .active)
         viewDelegate?.changeGoalStatusData(gestureRecognizer.view == activeButton ? "Active" : "Inactive")
     }
 }

@@ -37,7 +37,7 @@ public class Goal: Category {
     }
     
     func valueAfterInflation(from month:Date) -> Double {
-        let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)
+        let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)/1200
         let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
         
         return (targetAmount * pow((1+inflationRate), Double(dd))).rounded(.up)
@@ -63,7 +63,7 @@ public class Goal: Category {
             return targetAmount
         }
         else {
-            let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)
+            let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)/1200
             let month = budget.period ?? Date()
             let dd = DateFormatHelper.getMonthDifferences(between: month, and: dueDate ?? Date()) + 1
             
@@ -108,7 +108,7 @@ public class Goal: Category {
         let expectedSaving = expectedSaving(of: budget) ?? 0
         let month = budget.period ?? Date()
         let initialSaving = initialSaving(before: month)
-        let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)
+        let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)/1200
         
         for ad in 0...1200 {
             let saving = expectedSaving * Double(ad) + initialSaving
