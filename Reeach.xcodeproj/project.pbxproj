@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */; };
 		3B1AF1D529258D510063DFDC /* TipDetailViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */; };
+		3B26888B2928C18E00E22410 /* AllocationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26888A2928C18E00E22410 /* AllocationBar.swift */; };
 		3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */; };
 		3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */; };
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
@@ -161,6 +162,7 @@
 /* Begin PBXFileReference section */
 		3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatHelper.swift; sourceTree = "<group>"; };
 		3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TipDetailViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B26888A2928C18E00E22410 /* AllocationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllocationBar.swift; sourceTree = "<group>"; };
 		3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Budget.swift"; sourceTree = "<group>"; };
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
@@ -827,6 +829,7 @@
 				FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */,
 				3B4AE5A629258548000EA6C1 /* IconWithoutEditView.swift */,
 				CA0CB2CE2926A51800D8AAB0 /* BudgetItem.swift */,
+				3B26888A2928C18E00E22410 /* AllocationBar.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1473,6 +1476,7 @@
 				CA0CB2CF2926A51800D8AAB0 /* BudgetItem.swift in Sources */,
 				3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */,
 				3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */,
+				3B26888B2928C18E00E22410 /* AllocationBar.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */,
