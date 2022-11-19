@@ -82,6 +82,7 @@ class AddGoal: UIView {
         
         label.text = "Klik '+' untuk menambah target"
         label.font = label.font.withSize(14)
+        label.textAlignment = .center
         
         return label
     }()
@@ -92,11 +93,18 @@ class AddGoal: UIView {
         return view
     }()
     
+    lazy var emptyStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        
+        return stack
+    }()
+    
     lazy var goalList: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 16
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.register(GoalItemCollectionViewCell.self, forCellWithReuseIdentifier: GoalItemCollectionViewCell.identifier)
@@ -123,6 +131,7 @@ class AddGoal: UIView {
         goalList.delegate = controller
         goalList.dataSource = controller
         
+        self.backgroundColor = .ghostWhite
         self.addSubview(headerStack)
         self.addSubview(emptyView)
         self.addSubview(goalList)
@@ -133,21 +142,26 @@ class AddGoal: UIView {
             goalList.removeFromSuperview()
             removeConstraints(goalList.constraints)
 
-            emptyView.addSubview(emptyImage)
-            emptyView.addSubview(emptyDescription)
-            emptyImage.widthAnchor.constraint(equalTo: emptyView.widthAnchor, multiplier: 6.5/10).isActive = true
-            emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor).isActive = true
+            emptyStack.addArrangedSubview(emptyImage)
+            emptyStack.addArrangedSubview(emptyDescription)
+//            emptyView.backgroundColor = .red
 
-            emptyImage.center(inView: emptyView)
-            emptyDescription.anchor(top: emptyImage.bottomAnchor, paddingTop: 12)
-            emptyDescription.centerX(inView: emptyView)
+            emptyView.addSubview(emptyStack)
+            
+//            emptyDescription.anchor(top: emptyImage.bottomAnchor, paddingTop: 12)
+//            emptyDescription.centerX(inView: emptyView)
 
             emptyView.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+            
+            emptyStack.center(inView: emptyView)
+            
+            emptyImage.widthAnchor.constraint(equalTo: emptyView.widthAnchor, multiplier: 6.5/10).isActive = true
+            emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor).isActive = true
         } else {
             emptyView.removeFromSuperview()
             removeConstraints(emptyView.constraints)
 
-            goalList.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 16, paddingRight: 16)
+            goalList.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
             goalList.backgroundColor = .ghostWhite
         }
         
