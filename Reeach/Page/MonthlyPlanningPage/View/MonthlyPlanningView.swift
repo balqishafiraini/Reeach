@@ -213,6 +213,10 @@ class MonthlyPlanningView: UIView {
     
     lazy var stackToContent = contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
     
+    lazy var contentStackWithPaddingTop = contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32)
+    
+    lazy var contentStackWithoutPaddingTop = contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -285,8 +289,8 @@ class MonthlyPlanningView: UIView {
         
         scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, width: UIScreen.main.bounds.maxX)
         
-        contentStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: shouldSetValue(value: 32), paddingLeft: 16, paddingBottom: 20, paddingRight: 16)
-        
+        contentStack.anchor(left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 16, paddingBottom: 20, paddingRight: 16)
+    
         tipView.anchor(top: tipViewContainerView.topAnchor, left: tipViewContainerView.leftAnchor, bottom: tipViewContainerView.bottomAnchor, right: tipViewContainerView.rightAnchor, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
         
         blankView.anchor(top: tipView.centerYAnchor, left: tipViewContainerView.leftAnchor, bottom: tipViewContainerView.bottomAnchor, right: tipViewContainerView.rightAnchor)
@@ -305,6 +309,14 @@ class MonthlyPlanningView: UIView {
         goalStack.isHidden = !hasBudget!
         wantStack.isHidden = !hasBudget!
         
+        if selectedDateString == currentDateString {
+            contentStackWithPaddingTop.isActive = false
+            contentStackWithoutPaddingTop.isActive = true
+        } else {
+            contentStackWithoutPaddingTop.isActive = false
+            contentStackWithPaddingTop.isActive = true
+        }
+            
         if hasBudget! {
             if selectedDateString == currentDateString {
                 nextMonthButton.setTitle("", for: .normal)
