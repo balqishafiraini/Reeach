@@ -28,6 +28,7 @@ class SetupPageView: UIView {
     
     let bottomView: SetupBottomView = {
         let view = SetupBottomView(frame: CGRectZero)
+        view.backgroundColor = .ghostWhite
         
         return view
     }()
@@ -61,7 +62,7 @@ class SetupPageView: UIView {
     }
     
     func setupContentView() {
-        self.backgroundColor = .white
+        self.backgroundColor = .ghostWhite
         
         content = setupContent()
         

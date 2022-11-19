@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */; };
 		3B1AF1D529258D510063DFDC /* TipDetailViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */; };
-		3B26888B2928C18E00E22410 /* AllocationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26888A2928C18E00E22410 /* AllocationBar.swift */; };
 		3B1AF1E12926F5180063DFDC /* GoalsOverviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1E02926F5180063DFDC /* GoalsOverviewDelegate.swift */; };
 		3B1AF1E32926F5730063DFDC /* GoalsOverviewViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1E22926F5730063DFDC /* GoalsOverviewViewController+Delegate.swift */; };
 		3B1AF1E5292703BC0063DFDC /* DismissViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1E4292703BC0063DFDC /* DismissViewDelegate.swift */; };
@@ -27,6 +26,7 @@
 		3B2688832927AE4700E22410 /* CategoryAllocationModalViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2688822927AE4700E22410 /* CategoryAllocationModalViewController+Delegate.swift */; };
 		3B268887292866AF00E22410 /* GoalAllocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B268886292866AF00E22410 /* GoalAllocationDelegate.swift */; };
 		3B268889292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B268888292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift */; };
+		3B26888B2928C18E00E22410 /* AllocationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26888A2928C18E00E22410 /* AllocationBar.swift */; };
 		3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */; };
 		3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */; };
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
@@ -175,7 +175,6 @@
 /* Begin PBXFileReference section */
 		3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatHelper.swift; sourceTree = "<group>"; };
 		3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TipDetailViewController+Delegate.swift"; sourceTree = "<group>"; };
-		3B26888A2928C18E00E22410 /* AllocationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllocationBar.swift; sourceTree = "<group>"; };
 		3B1AF1E02926F5180063DFDC /* GoalsOverviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsOverviewDelegate.swift; sourceTree = "<group>"; };
 		3B1AF1E22926F5730063DFDC /* GoalsOverviewViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalsOverviewViewController+Delegate.swift"; sourceTree = "<group>"; };
 		3B1AF1E4292703BC0063DFDC /* DismissViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissViewDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +192,7 @@
 		3B2688822927AE4700E22410 /* CategoryAllocationModalViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryAllocationModalViewController+Delegate.swift"; sourceTree = "<group>"; };
 		3B268886292866AF00E22410 /* GoalAllocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAllocationDelegate.swift; sourceTree = "<group>"; };
 		3B268888292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalAllocationModalViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B26888A2928C18E00E22410 /* AllocationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllocationBar.swift; sourceTree = "<group>"; };
 		3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Budget.swift"; sourceTree = "<group>"; };
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
@@ -1306,7 +1306,6 @@
 				FA2E29FF2903A95C0083587D /* UIFont+Extension.swift */,
 				3B26886C2927230500E22410 /* String+Extension.swift */,
 				3B26886E2927232200E22410 /* Character+Extension.swift */,
-				FAA37BEF291AA19000F2C87A /* UIViewController+Extension.swift */,
 				FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */,
 			);
 			path = Helper;

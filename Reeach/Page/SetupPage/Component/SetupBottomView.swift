@@ -43,22 +43,16 @@ class SetupBottomView: UIView {
     }
     
     func setupView() {
-//        self.setDimensions(width: UIScreen.main.bounds.width, height: 150)
-//        self.backgroundColor = .red
-        
         stackButton.addArrangedSubview(backButton)
         stackButton.addArrangedSubview(nextButton)
         
-//        self.addSubview(nextButton)
         self.addSubview(stackButton)
         
-        stackButton.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.rightAnchor)
+        stackButton.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.rightAnchor, paddingTop: 20)
         
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
-//        nextButton.anchor(width: UIScreen.main.bounds.width - 32, height: 100)
         
         backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
-//        backButton.anchor(width: UIScreen.main.bounds.width - 32)
     }
     
     @objc func nextStep() {
