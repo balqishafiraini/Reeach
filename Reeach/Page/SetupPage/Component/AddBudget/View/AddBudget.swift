@@ -10,6 +10,7 @@ import UIKit
 class AddBudget: UIView {
     
     weak var delegate: SetupDelegate?
+    weak var budgetDelegate: BudgetDelegate?
     
     var goalBudgets: [Budget]?
     var needBudgets: [Budget]?
@@ -77,6 +78,10 @@ class AddBudget: UIView {
         goalStack.delegate = self.delegate
         needStack.delegate = self.delegate
         wantStack.delegate = self.delegate
+        
+        goalStack.budgetDelegate = budgetDelegate
+        needStack.budgetDelegate = budgetDelegate
+        wantStack.budgetDelegate = budgetDelegate
         
         goalStack.budgets = goalBudgets!
         needStack.budgets = needBudgets!

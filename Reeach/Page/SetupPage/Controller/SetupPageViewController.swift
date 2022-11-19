@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol BudgetDelegate: AnyObject {
-    func addBudget()
-}
-
 class SetupPageViewController: UIViewController {
     
     let contentView = SetupPageView()
