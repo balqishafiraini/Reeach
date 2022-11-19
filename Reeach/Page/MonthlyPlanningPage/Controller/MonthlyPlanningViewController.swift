@@ -9,7 +9,7 @@ import UIKit
 
 class MonthlyPlanningViewController: UIViewController {
 
-    let planningView = MonthlyPlanningView()
+    var planningView = MonthlyPlanningView()
     
     var currentDate: Date = Date()
     
@@ -21,14 +21,14 @@ class MonthlyPlanningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func loadView() {
+
+    override func viewWillAppear(_ animated: Bool) {
+        planningView = MonthlyPlanningView()
+        
         self.view = planningView
         planningView.delegate = self
         planningView.setupDate(currentDate: currentDate)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
+        
         setupInitialState()
     }
     
