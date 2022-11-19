@@ -46,7 +46,7 @@ class AddGoalViewController: UIViewController {
 
 extension AddGoalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.openGoalSheet(goal: goals[indexPath.item])
+        delegate?.openGoalSheet(forGoalIndex: indexPath.item)
     }
 }
 

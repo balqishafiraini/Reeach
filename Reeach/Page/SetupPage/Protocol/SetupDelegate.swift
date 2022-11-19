@@ -11,7 +11,7 @@ import Foundation
     @objc optional func updateProgress()
     @objc optional func previousProgress()
     
-    @objc optional func openGoalSheet()
+    @objc optional func openGoalSheet(forGoalIndex: Int)
     @objc optional func saveIncome(income: String)
     
     @objc optional func setDisableButton()
