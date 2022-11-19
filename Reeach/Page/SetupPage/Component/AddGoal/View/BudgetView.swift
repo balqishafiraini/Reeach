@@ -181,6 +181,6 @@ class BudgetView: UIView {
     
     @objc func openGoalSelection() {
         // TODO: Coba tambahin goal ke controller disini
-        print("\(#function) for \(type)")
+//        print("\(#function) for \(type)")
     }
 }

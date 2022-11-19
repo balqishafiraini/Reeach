@@ -35,9 +35,9 @@ class AddIncome: UIView {
     let viewDescription: UILabel = {
         let label = UILabel()
         
-        label.text = "Masukkan pemasukan bulanan mu disini, lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing. "
+        label.text = "Pemasukan adalah nominal yang kamu terima tiap bulannya ya, Bestie, bukan uang yang masih tersisa. Yuk, tulis pemasukanmu."
         label.font = .bodyMedium
-        label.numberOfLines = 5
+        label.numberOfLines = 0
         
         return label
     }()

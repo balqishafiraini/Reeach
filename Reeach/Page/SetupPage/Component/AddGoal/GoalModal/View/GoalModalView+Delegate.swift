@@ -29,6 +29,7 @@ extension GoalModalView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: .whitespaces)
         iconView.iconTextField.isUserInteractionEnabled = false
         scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
         textFieldsIsNotEmpty(textField)

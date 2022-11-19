@@ -26,6 +26,7 @@ extension CategoryAllocationModalView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: .whitespaces)
         if textField == monthlyAllocation.textField {
             viewDelegate?.validate(monthlyAllocation: Double(textField.text ?? "") ?? 0)
         }

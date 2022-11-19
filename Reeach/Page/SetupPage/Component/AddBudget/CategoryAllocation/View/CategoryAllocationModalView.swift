@@ -126,8 +126,6 @@ class CategoryAllocationModalView: UIView {
     @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
         viewDelegate?.updateRemainingLabel()
         
-        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
-        
         guard let category = category.textField.text, !category.isEmpty,
               let allocationAmount = monthlyAllocation.textField.text, !allocationAmount.isEmpty
         else {

@@ -171,7 +171,6 @@ class GoalModalView: UIView {
     
     @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
         viewDelegate?.updateInflationButton()
-        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
         
         guard
             let goalTitle = goalName.textField.text, !goalTitle.isEmpty,

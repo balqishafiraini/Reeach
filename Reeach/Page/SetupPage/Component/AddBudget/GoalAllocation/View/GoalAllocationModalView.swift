@@ -264,8 +264,6 @@ class GoalAllocationModalView: UIView {
     @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
         viewDelegate?.updateDynamicView()
         
-        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
-        
         guard let saving = monthlyAllocationTextField.textField.text, !saving.isEmpty,
               let totalAmount = targetAmountTextField.textField.text, !totalAmount.isEmpty,
               let goalDueDate = dueDateDatePicker.textField.textField.text, !goalDueDate.isEmpty

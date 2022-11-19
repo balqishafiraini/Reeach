@@ -13,6 +13,7 @@ extension GoalAllocationModalView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: .whitespaces)
         textFieldsIsNotEmpty(textField)
         blankViewHeightConstraint.constant = 0
         dismissKeyboard()

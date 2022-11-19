@@ -70,6 +70,10 @@ class AddBudget: UIView {
         needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan", type: "Need")
         wantStack = BudgetView(frame: CGRectZero, labelText: "Keingingan", type: "Want")
         
+        goalStack.addButton.setTitle("Tambah budget untuk goals", for: .normal)
+        needStack.addButton.setTitle("Tambah kebutuhan pokok", for: .normal)
+        wantStack.addButton.setTitle("Tambah kebutuhan nonpokok", for: .normal)
+        
         goalStack.delegate = self.delegate
         needStack.delegate = self.delegate
         wantStack.delegate = self.delegate
