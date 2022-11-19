@@ -75,4 +75,10 @@ class SetupBottomView: UIView {
             nextButton.setTitle("Hmm I'm not supposed to be here", for: .normal)
         }
     }
+    
+    func shouldDisableNextButton(isEnabled: Bool) {
+        nextButton.isEnabled = isEnabled
+        
+        nextButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
+    }
 }
