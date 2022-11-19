@@ -92,7 +92,8 @@ class AddGoal: UIView {
         let label = UILabel()
         
         label.text = "Klik '+' untuk menambah target"
-        label.font = label.font.withSize(14)
+        label.font = .bodyMedium
+        label.textColor = .black7
         label.textAlignment = .center
         
         return label
