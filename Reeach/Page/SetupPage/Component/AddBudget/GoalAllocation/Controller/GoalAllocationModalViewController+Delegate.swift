@@ -92,7 +92,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             .font: UIFont.caption1Medium as Any
         ]
         
-        let inflationAttributedString: NSMutableAttributedString = NSMutableAttributedString(string: "WATCH OUT! Nilai setelah inflasi: ", attributes: blueBoldAttributes)
+        let inflationAttributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Nilai setelah inflasi: ", attributes: blueBoldAttributes)
         inflationAttributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: Date())), attributes: blackBoldAttributes))
         goalAllocationModalView.inflationButton.setAttributedTitle(inflationAttributedString, for: .normal)
         
