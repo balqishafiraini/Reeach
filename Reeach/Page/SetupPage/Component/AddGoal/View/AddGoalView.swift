@@ -71,8 +71,8 @@ class AddGoal: UIView {
     
     lazy var emptyImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "EmptyImage")
-        image.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+//        image.setDimensions(width: 300, height: 300)
+        image.image = UIImage(named: "IllustrationGoal")
         
         return image
     }()
@@ -135,6 +135,8 @@ class AddGoal: UIView {
 
             emptyView.addSubview(emptyImage)
             emptyView.addSubview(emptyDescription)
+            emptyImage.widthAnchor.constraint(equalTo: emptyView.widthAnchor, multiplier: 6.5/10).isActive = true
+            emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor).isActive = true
 
             emptyImage.center(inView: emptyView)
             emptyDescription.anchor(top: emptyImage.bottomAnchor, paddingTop: 12)
