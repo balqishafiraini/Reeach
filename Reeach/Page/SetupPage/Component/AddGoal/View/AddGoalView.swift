@@ -14,7 +14,7 @@ class AddGoal: UIView {
     
     var goals: [Goal]
     
-    let size = 44.0
+    let size = 36.0
     
     lazy var topTitle: UILabel = {
         let label = UILabel()
@@ -24,18 +24,28 @@ class AddGoal: UIView {
         return label
     }()
     
-    lazy var addButton: UIButton = {
+    lazy var addButton: UIView = {
+        let view = UIView()
+        
         let button = UIButton()
         
-        let icon = UIImage(systemName: "plus")
+        let icon = UIImage(named: "Add")
         
         button.setImage(icon, for: .normal)
-        button.backgroundColor = .tangerineYellow
         button.tintColor = .black
-        button.setDimensions(width: size, height: size)
-        button.layer.cornerRadius = size / 2
         
-        return button
+        view.addSubview(button)
+        view.setDimensions(width: size, height: size)
+        view.backgroundColor = .tangerineYellow
+        view.layer.cornerRadius = size * 0.5
+        
+        button.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openGoalSheet))
+        
+        view.addGestureRecognizer(tap)
+        
+        return view
     }()
     
     lazy var topStack: UIStackView = {
@@ -136,8 +146,6 @@ class AddGoal: UIView {
         self.addSubview(headerStack)
         self.addSubview(emptyView)
         self.addSubview(goalList)
-        
-        addButton.addTarget(self, action: #selector(openGoalSheet), for: .touchUpInside)
     
         if goals.isEmpty {
             goalList.removeFromSuperview()
