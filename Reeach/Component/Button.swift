@@ -130,6 +130,8 @@ class Button: UIButton {
     func setButtonByStatus(isEnabled: Bool, backColor: UIColor, textColor: UIColor) {
         backgroundColor = backColor
         setTitleColor(textColor, for: isEnabled ? .normal : .disabled)
+        titleLabel?.font = isEnabled ? .bodyBold : .bodyMedium
+        
         self.isEnabled = isEnabled
     }
     
