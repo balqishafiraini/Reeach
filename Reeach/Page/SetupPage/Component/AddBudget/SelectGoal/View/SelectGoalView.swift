@@ -35,23 +35,11 @@ class SelectGoalView: UIView {
     }()
     
     lazy var explanationLabel = {
-        let mediumAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.black8 as Any,
-            .font: UIFont.bodyMedium as Any
-        ]
-        
-        let boldAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.black8 as Any,
-            .font: UIFont.bodyBold as Any
-        ]
-        
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Yuk, pilih mau nabung untuk goals apa di bulan ini. Kamu cuma bisa pilih sampai ", attributes: mediumAttributes)
-        attributedString.append(NSAttributedString(string: "tiga goals", attributes: boldAttributes))
-        attributedString.append(NSAttributedString(string: " ya. Harus fokus, bosque!", attributes: mediumAttributes))
-        
         let label = UILabel()
-        label.attributedText = attributedString
+        label.text = "Yuk, pilih mau nabung untuk goals apa di bulan ini."
         label.numberOfLines = 0
+        label.font = UIFont.bodyMedium
+        label.textColor = .black8
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

@@ -9,7 +9,7 @@ import UIKit
 
 class GoalRecommendationViewController: UIViewController {
     let terms = ["Short", "Medium", "Long"]
-    let goals = DatabaseHelper().getGoalRecommendations()
+    let goals = DatabaseHelper.shared.getGoalRecommendations()
     weak var delegate: GoalRecommendationViewControllerDelegate?
     var contentView = GoalRecommendationView()
     

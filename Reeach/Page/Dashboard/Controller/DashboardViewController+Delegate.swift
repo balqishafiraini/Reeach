@@ -7,9 +7,9 @@
 
 import UIKit
 
-extension DashboardViewController: DashboardViewProtocol {
+extension DashboardViewController: DashboardViewDelegate {
     func goToAllGoals() {
-        // TODO: SWITCH TAB TO TAB 2
+        tabBarController?.selectedIndex = 1
     }
     
     func addGoal() {
@@ -57,9 +57,13 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath)! as? SimpleGoalCollectionViewCell {
-            // TODO: PRESENT FULL SCREEN GOAL OVERVIEW
-            
             cell.isSelected = false
+            
+            let targetViewController = GoalsOverviewViewController()
+            targetViewController.goal = goals[indexPath.item]
+            targetViewController.modalPresentationStyle = .fullScreen
+            targetViewController.modalTransitionStyle = .crossDissolve
+            present(targetViewController, animated: true)
         }
     }
 }

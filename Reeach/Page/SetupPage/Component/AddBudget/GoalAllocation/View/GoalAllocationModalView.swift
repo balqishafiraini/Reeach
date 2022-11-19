@@ -9,18 +9,70 @@ import Foundation
 import UIKit
 
 class GoalAllocationModalView: UIView {
+    weak var viewDelegate: GoalAllocationModalViewDelegate?
+    weak var navigationBarDelegate: NavigationBarDelegate?
+    weak var viewController: GoalAllocationModalViewController?
     
-    let iconWithoutEdit = IconWithoutEditView()
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
     
-    let goalName = TextField(frame: .zero, title: "Judul", style: .template)
+    private lazy var stackView = {
+        var stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        return stackView
+    }()
     
-    let dueDate = DatePicker(frame: .zero, title: "Deadline")
+    private lazy var iconContainerView = UIView()
     
-    let target = TextField(frame: .zero, title: "Target Terkumpul", style: .template, prefix: "Rp")
+    private lazy var backgroundView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.anchor(width: 120, height: 120)
+        view.layer.cornerRadius = 60
+        view.backgroundColor = .secondary2
+        return view
+    }()
     
-    let inflationButton: UIButton = {
+    lazy var iconTextField: UIEmojiTextField = {
+        let emojiTextField = UIEmojiTextField()
+        emojiTextField.font = UIFont.systemFont(ofSize: 56)
+        emojiTextField.attributedPlaceholder = NSAttributedString(
+            string: "Tambah Icon",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.bodyMedium as Any,
+                NSAttributedString.Key.foregroundColor: UIColor.secondary7 as Any
+            ]
+        )
+        emojiTextField.tintColor = .clear
+        emojiTextField.textAlignment = .center
+        emojiTextField.isUserInteractionEnabled = false
+        emojiTextField.translatesAutoresizingMaskIntoConstraints = false
+        emojiTextField.delegate = self
+        return emojiTextField
+    }()
+    
+    lazy var goalNameTextField = {
+        let textField = TextField(frame: .zero, title: "Judul", style: .template)
+        textField.isUserInteractionEnabled = false
+        textField.textField.placeholder = ""
+        return textField
+    }()
+    
+    lazy var dueDateDatePicker = DatePicker(frame: .zero, title: "Deadline")
+    
+    lazy var targetAmountTextField = TextField(frame: .zero, title: "Target Terkumpul", style: .template, prefix: "Rp")
+    
+    lazy var inflationButton: UIButton = {
         let button = UIButton()
+        button.imageView?.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        button.imageView?.heightAnchor.constraint(equalTo: button.titleLabel?.heightAnchor ?? button.heightAnchor).isActive = true
+        button.imageView?.widthAnchor.constraint(equalTo: button.imageView!.heightAnchor).isActive = true
         button.tintColor = .royalHunterBlue
         button.setTitle("WATCH OUT! Nilai setelah inflasi: ", for: .normal)
         button.contentHorizontalAlignment = .left
@@ -32,119 +84,234 @@ class GoalAllocationModalView: UIView {
         return button
     }()
     
-    let monthlySaving = TextField(frame: .zero, title: "Tabungan Bulanan", style: .template, prefix: "Rp")
+    lazy var monthlyAllocationTextField = TextField(frame: .zero, title: "Tabungan Bulanan", style: .template, prefix: "Rp")
     
-    let budgetRemain: UILabel = {
+    lazy var remainingLabel: UILabel = {
         let label = UILabel()
         label.text = "Sisa anggaran yang harus dialokasikan"
+        label.numberOfLines = 0
         label.textColor = .black13
         label.font = .caption1Medium
         return label
     }()
     
-    let deleteButton = {
+    lazy var recommendationVerticalStackViewContainerView = {
+        let view = UIView()
+        view.layer.cornerRadius = 12
+        view.backgroundColor = .red1
+        return view
+    }()
+
+    private lazy var recommendationVerticalStackView = {
+        var stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 12
+        return stackView
+    }()
+
+    private lazy var recommendationHorizontalStackView = {
+        var stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .top
+        stackView.spacing = 12
+        return stackView
+    }()
+
+    lazy var showHideButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
+        button.anchor(width: 22)
+        button.setImage(UIImage(named: "DownRed"), for: .normal)
+        button.contentMode = .scaleAspectFit
+        return button
+    }()
+
+    lazy var recommendationHeaderLabel = {
+        let label = UILabel()
+        label.text = """
+            YUK REVISI GOALSNYA YUK!
+            
+            Pake strategi ini goalsnya akan sulit kamu capai nih.
+            """
+        label.numberOfLines = 0
+        label.font = UIFont.caption1Bold
+        label.textColor = .darkSlateGrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    lazy var recommendationDetailLabel = {
+        let label = UILabel()
+        label.text = """
+            Worry not. Stay calm, stay slay. Ini ada beberapa rekomendasi yang bisa kamu ikuti untuk mencapai goalsmu:
+            
+            1. Ubah deadline menjadi 08/25, atau
+            2. Ubah jumlah tujuan menjadi Rp1.517.036,84, atau
+            3. Ubah alokasi bulanan menjadi Rp197.753,93
+            """
+        label.numberOfLines = 0
+        label.font = UIFont.caption1Medium
+        label.textColor = .darkSlateGrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
+        return label
+    }()
+    
+    lazy var blankView = UIView()
+    lazy var blankViewHeightConstraint = blankView.heightAnchor.constraint(equalToConstant: 0)
+    
+    lazy var deleteButton = {
         let btn = Button(style: .rounded, foreground: .destructive, background: .darkSlateGrey, title: "Hapus Kebutuhan")
         btn.backgroundColor = .red6
         btn.setTitleColor(UIColor.ghostWhite, for: .normal)
         return btn
     }()
     
-    let saveButton = {
-        let btn = Button(style: .rounded, foreground: .destructive, background: .darkSlateGrey, title: "Simpan")
+    lazy var saveButton = {
+        let btn = Button(style: .rounded, foreground: .primary, background: .darkSlateGrey, title: "Simpan")
         btn.backgroundColor = .black4
         btn.setTitleColor(UIColor.black7, for: .normal)
         return btn
     }()
     
-    
-    //scrollView
-    lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
-    
-    
-    func configureStackView() {
-        self.backgroundColor = .ghostWhite
+    func configureStackView(viewContoller: GoalAllocationModalViewController) {
+        backgroundColor = .ghostWhite
         
-        let vstack = UIStackView(arrangedSubviews: [iconWithoutEdit, goalName, dueDate, target, inflationButton, monthlySaving, budgetRemain]
-        )
+        self.viewController = viewContoller
+        viewDelegate = viewController
+        navigationBarDelegate = viewController
+        setupAddTargetIsNotEmptyTextFields()
+        hideKeyboardWhenTappedAround()
+        setNavigationBar()
         
-        vstack.frame = self.bounds
-        vstack.axis = .vertical
-        vstack.distribution = .fill
-        vstack.spacing = 16
-        vstack.setCustomSpacing(12, after: target)
-        vstack.setCustomSpacing(12, after: monthlySaving)
+        dueDateDatePicker.textField.textField.delegate = self
+        monthlyAllocationTextField.textField.delegate = self
+        targetAmountTextField.textField.delegate = self
         
-        let buttonStackView = UIStackView(arrangedSubviews: [saveButton, deleteButton])
-        buttonStackView.frame = self.bounds
-        buttonStackView.axis = .vertical
-        buttonStackView.distribution = .fillEqually
-        buttonStackView.spacing = 12
+        dueDateDatePicker.textField.textField.delegate = self
+        monthlyAllocationTextField.textField.keyboardType = .numberPad
+        targetAmountTextField.textField.keyboardType = .numberPad
         
-        let stackView = UIStackView(arrangedSubviews: [vstack, buttonStackView])
-        stackView.frame = self.bounds
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        inflationButton.addTarget(self, action: #selector(inflationButtonTapped), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteBudget), for: .touchUpInside)
+        showHideButton.addTarget(self, action: #selector(showHide), for: .touchUpInside)
         
-        //autolayout
-        self.addSubview(scrollView)
-        scrollView.addSubview(stackView)
-        
+        addSubview(scrollView)
         scrollView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: safeAreaLayoutGuide.rightAnchor)
         
-        stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
+        scrollView.addSubview(stackView)
+        stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, paddingTop: 20, paddingLeft: 20)
+        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40).isActive = true
+        stackView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor, constant: -40).isActive = true
         
-        NSLayoutConstraint.activate([
-            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
-            stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        ])
+        stackView.addArrangedSubview(iconContainerView)
+        stackView.addArrangedSubview(goalNameTextField)
+        stackView.addArrangedSubview(dueDateDatePicker)
+        stackView.addArrangedSubview(targetAmountTextField)
+        stackView.addArrangedSubview(inflationButton)
+        stackView.addArrangedSubview(monthlyAllocationTextField)
+        stackView.addArrangedSubview(remainingLabel)
+        stackView.addArrangedSubview(recommendationVerticalStackViewContainerView)
+        stackView.addArrangedSubview(UIView())
+        stackView.addArrangedSubview(saveButton)
+        stackView.addArrangedSubview(deleteButton)
+        stackView.addArrangedSubview(blankView)
         
-        iconWithoutEdit.setUp()
-        iconWithoutEdit.anchor(top: vstack.topAnchor, paddingTop: 20)
-        iconWithoutEdit.heightAnchor.constraint(equalTo: iconWithoutEdit.iconLabel.heightAnchor).isActive = true
+        stackView.setCustomSpacing(8, after: targetAmountTextField)
+        stackView.setCustomSpacing(8, after: monthlyAllocationTextField)
         
+        iconContainerView.addSubview(backgroundView)
+        backgroundView.centerX(inView: iconContainerView)
+        backgroundView.anchor(top: iconContainerView.topAnchor, bottom: iconContainerView.bottomAnchor)
+        
+        iconContainerView.addSubview(iconTextField)
+        iconTextField.anchor(top: backgroundView.topAnchor, left: backgroundView.leftAnchor, bottom: backgroundView.bottomAnchor, right: backgroundView.rightAnchor)
+        
+        recommendationVerticalStackViewContainerView.addSubview(recommendationVerticalStackView)
+        recommendationVerticalStackView.anchor(top: recommendationVerticalStackViewContainerView.topAnchor, left: recommendationVerticalStackViewContainerView.leftAnchor, bottom: recommendationVerticalStackViewContainerView.bottomAnchor, right: recommendationVerticalStackViewContainerView.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
+
+        recommendationVerticalStackView.addArrangedSubview(recommendationHorizontalStackView)
+        recommendationVerticalStackView.addArrangedSubview(recommendationDetailLabel)
+
+        recommendationHorizontalStackView.addArrangedSubview(recommendationHeaderLabel)
+        recommendationHorizontalStackView.addArrangedSubview(showHideButton)
+        
+        blankViewHeightConstraint.isActive = true
     }
     
-    /*
-     func configureStackView() {
-     self.backgroundColor = .ghostWhite
-     
-     let vstack = UIStackView(arrangedSubviews: [iconWithoutEdit,
-     goalName,
-     dueDate,
-     target,
-     inflationButton,
-     monthlySaving,
-     budgetRemain,
-     saveButton]
-     )
-     
-     vstack.frame = self.bounds
-     vstack.axis = .vertical
-     vstack.distribution = .fill
-     vstack.spacing = 16
-     vstack.setCustomSpacing(12, after: target)
-     vstack.setCustomSpacing(12, after: monthlySaving)
-     
-     
-     //autolayout
-     self.addSubview(scrollView)
-     scrollView.addSubview(vstack)
-     
-     scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width)
-     
-     vstack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingRight: 20)
-     
-     NSLayoutConstraint.activate([
-     vstack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
-     ])
-     
-     iconWithoutEdit.setUp()
-     iconWithoutEdit.heightAnchor.constraint(equalTo: iconWithoutEdit.iconLabel.heightAnchor).isActive = true
-     
-     }
-     */
+    func setNavigationBar() {
+        let doneItem = UIBarButtonItem(title: "Batal", style: .plain, target: self, action: #selector(dismissView))
+        
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.red6 as Any,
+            NSAttributedString.Key.font: UIFont.bodyMedium as Any
+        ]
+        
+        doneItem.setTitleTextAttributes(attributes, for: .normal)
+        
+        viewController?.navigationItem.leftBarButtonItem = doneItem
+    }
+    
+    func setupAddTargetIsNotEmptyTextFields() {
+        saveButton.isEnabled = false
+        [targetAmountTextField.textField, monthlyAllocationTextField.textField].forEach({ $0.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged) })
+    }
+    
+    @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
+        viewDelegate?.updateDynamicView()
+        
+        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
+        
+        guard let saving = monthlyAllocationTextField.textField.text, !saving.isEmpty,
+              let totalAmount = targetAmountTextField.textField.text, !totalAmount.isEmpty,
+              let goalDueDate = dueDateDatePicker.textField.textField.text, !goalDueDate.isEmpty
+        else {
+            saveButton.backgroundColor = .black4
+            saveButton.setTitleColor(UIColor.black7, for: .normal)
+            saveButton.isEnabled = false
+            return
+        }
+        
+        viewDelegate?.disableButtonIfNotAchivable()
+    }
+    
+    @objc func inflationButtonTapped(_ sender: UIButton) {
+        viewDelegate?.goToInflationDetail()
+    }
+    
+    @objc func dismissView() {
+        navigationBarDelegate?.cancel()
+    }
+    
+    @objc func save(_ sender: UIButton) {
+        let dueDate = dueDateDatePicker.date ?? Date()
+        let targetAmount = Double(targetAmountTextField.textField.text ?? "0.0") ?? 0
+        let monthlyAllocation = Double(monthlyAllocationTextField.textField.text ?? "0.0") ?? 0
+        viewDelegate?.save(dueDate: dueDate, targetAmount: targetAmount, montlyAllocation: monthlyAllocation)
+    }
+    
+    @objc func deleteBudget(_ sender: UIButton) {
+        viewDelegate?.delete()
+    }
+    
+    @objc func showHide(_ sender: UIButton) {
+        if sender.imageView?.image == UIImage(named: "DownRed") {
+            sender.setImage(UIImage(named: "UpRed"), for: .normal)
+        }
+        else if sender.imageView?.image == UIImage(named: "UpRed") {
+            sender.setImage(UIImage(named: "DownRed"), for: .normal)
+        }
+        else if sender.imageView?.image == UIImage(named: "DownGreen") {
+            sender.setImage(UIImage(named: "UpGreen"), for: .normal)
+        }
+        else if sender.imageView?.image == UIImage(named: "UpGreen") {
+            sender.setImage(UIImage(named: "DownGreen"), for: .normal)
+        }
+        recommendationDetailLabel.isHidden.toggle()
+    }
 }
 

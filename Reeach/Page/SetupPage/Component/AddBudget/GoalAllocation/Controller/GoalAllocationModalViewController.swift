@@ -14,96 +14,97 @@ class GoalAllocationModalViewController: UIViewController {
         case edit
     }
     
+    var budget: Budget?
     var goal: Goal?
-    var iconEmoji: String?
-    var goalName: String?
-    var deadline: Date?
-    var targetAmount: Double?
-    var monthlySaving: Double?
-    
-    weak var delegate: GoalAllocationModalViewControllerDelegate?
-    
-    var mode: EditMode = .add
-    
+    var maximumAllocation: Double = 0
+    var unallocatedIncome: Double = 0
+    var mode: EditMode = .edit
+    weak var delegate: DismissViewDelegate?
     let goalAllocationModalView = GoalAllocationModalView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        goalAllocationModalView.monthlySaving.textField.delegate = self
-        
-        goalAllocationModalView.configureStackView()
-        view = goalAllocationModalView
         title = "Alokasi Goal"
-        self.setNavigationBar()
         
-        self.hideKeyboardWhenTappedAround()
-        setupAddTargetIsNotEmptyTextFields()
+        if let goal, mode == .add {
+            budget = DatabaseHelper.shared.createBudget(monthlyAllocation: 0, period: Date(), category: goal)
+        }
+        if let budget, mode == .edit {
+            guard let goal = budget.category as? Goal
+            else {
+                dismissView()
+                return
+            }
+            self.goal = goal
+        }
         
-        goalAllocationModalView.target.textField.keyboardType = .numberPad
-        goalAllocationModalView.monthlySaving.textField.keyboardType = .numberPad
+        guard let goal
+        else {
+            dismissView()
+            return
+        }
         
+        goalAllocationModalView.iconTextField.text = goal.icon
+        goalAllocationModalView.goalNameTextField.textField.text = goal.name
+        goalAllocationModalView.dueDateDatePicker.date = goal.dueDate
+        goalAllocationModalView.dueDateDatePicker.textField.textField.text = DateFormatHelper.getShortMonthAndYearString(from: goal.dueDate ?? Date())
+        goalAllocationModalView.targetAmountTextField.textField.text = DoubleToStringHelper.getString(from: goal.targetAmount)
+        
+        calculateMaxAllocation()
+        goalAllocationModalView.textFieldsIsNotEmpty(goalAllocationModalView.monthlyAllocationTextField.textField)
     }
     
     override func loadView() {
         super.loadView()
         
+        goalAllocationModalView.configureStackView(viewContoller: self)
+        view = goalAllocationModalView
+        
         if mode == .add {
             goalAllocationModalView.deleteButton.isHidden = true
-        } else {
+        }
+        else if mode == .edit {
             goalAllocationModalView.deleteButton.isHidden = false
         }
     }
     
-    func setNavigationBar() {
-        let doneItem = UIBarButtonItem(title: "Batal", style: .plain, target: self, action: #selector(dismissView))
-        let attributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.foregroundColor: UIColor.red6 as Any,
-            NSAttributedString.Key.font: UIFont.bodyMedium as Any
-        ]
-        doneItem.setTitleTextAttributes(attributes, for: .normal)
-        navigationItem.leftBarButtonItem = doneItem
-    }
-    
-    func setupAddTargetIsNotEmptyTextFields() {
-        goalAllocationModalView.saveButton.isEnabled = false
-        [goalAllocationModalView.monthlySaving.textField].forEach({ $0.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged) })
-    }
-    
-    @objc func textFieldsIsNotEmpty(sender: UITextField) {
-                
-        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
-        
-        guard let saving = goalAllocationModalView.monthlySaving.textField.text, !saving.isEmpty
-        else {
-            goalAllocationModalView.saveButton.isEnabled = false
-            return
-        }
-        goalAllocationModalView.saveButton.backgroundColor = .tangerineYellow
-        goalAllocationModalView.saveButton.setTitleColor(UIColor.black13, for: .normal)
-        
-        goalAllocationModalView.saveButton.isEnabled = true
-    }
-    
-    @objc func dismissView(){
+    func dismissView(){
         delegate?.viewDismissed()
         self.dismiss(animated: true, completion: nil)
     }
     
-}
-
-extension GoalAllocationModalViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func calculateMaxAllocation() {
+        let databaseHelper = DatabaseHelper.shared
         
-        goalAllocationModalView.scrollView.setContentOffset(CGPoint.init(x: 0, y: UIScreen.main.bounds.height/3), animated: true)
-    }
-    private func textFieldDidEndEditing(textField: UITextField!) {
-        goalAllocationModalView.scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        guard let incomeCategory = databaseHelper.getCategory(name: "Income")
+        else { return }
         
-        self.view.endEditing(true);
+        guard let incomeBudget = databaseHelper.getBudget(on: Date(), of: incomeCategory)
+        else { return }
+        
+        unallocatedIncome = incomeBudget.monthlyAllocation
+        maximumAllocation = incomeBudget.monthlyAllocation * 0.2
+        
+        let goals = databaseHelper.getBudgets(on: Date(), type: "Goal")
+        for goal in goals {
+            unallocatedIncome -= goal.monthlyAllocation
+            maximumAllocation -= goal.monthlyAllocation
+        }
+        
+        let needs = databaseHelper.getBudgets(on: Date(), type: "Need")
+        for need in needs {
+            unallocatedIncome -= need.monthlyAllocation
+        }
+        
+        let wants = databaseHelper.getBudgets(on: Date(), type: "Want")
+        for want in wants {
+            unallocatedIncome -= want.monthlyAllocation
+        }
+        
+        guard let budget
+        else { return }
+        
+        unallocatedIncome += budget.monthlyAllocation
+        maximumAllocation += budget.monthlyAllocation
     }
 }
-
-
-

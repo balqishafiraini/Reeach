@@ -15,19 +15,26 @@ extension GoalTrackerViewController: GoalTrackerViewDelegate {
     }
     
     func addGoal() {
+        let navigationController = UINavigationController()
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+        
         let targetViewController = GoalModalViewController()
-        targetViewController.modalPresentationStyle = .formSheet
-        // TODO: Pasang Delegate
-        present(targetViewController, animated: true)
+        targetViewController.delegate = self
+        targetViewController.modalPresentationStyle = .pageSheet
+        targetViewController.mode = .add
+        
+        navigationController.pushViewController(targetViewController, animated: true)
+        self.present(navigationController, animated: true)
     }
     
     func changeGoalStatusData(_ status: String) {
         if status == "Active" {
-            goals = Goal.categorizeGoals(goals: DatabaseHelper().getAllocatedGoals(on: Date()))
+            goals = Goal.categorizeGoals(goals: DatabaseHelper.shared.getAllocatedGoals(on: Date()))
             contentView.titleExplanationLabel.text = "Semua goals yang kamu budget bulan ini."
         }
         else if status == "Inactive" {
-            goals = Goal.categorizeGoals(goals: DatabaseHelper().getUnallocatedGoals(on: Date()))
+            goals = Goal.categorizeGoals(goals: DatabaseHelper.shared.getUnallocatedGoals(on: Date()))
             contentView.titleExplanationLabel.text = "Semua goals yang tidak kamu budget bulan ini."
         }
         
@@ -38,6 +45,12 @@ extension GoalTrackerViewController: GoalTrackerViewDelegate {
         
         contentView.emptyStateContainerView.isHidden = goals.isEmpty ? false : true
         contentView.collectionView.reloadData()
+    }
+}
+
+extension GoalTrackerViewController: DismissViewDelegate {
+    func viewDismissed() {
+        loadData()
     }
 }
 
@@ -87,8 +100,13 @@ extension GoalTrackerViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath)! as? CategoryCardCollectionViewCell {
-            // TODO: Pindah view ke goal overview
             cell.isSelected = false
+            
+            let targetViewController = GoalsOverviewViewController()
+            targetViewController.goal = goals[indexPath.section][indexPath.item]
+            targetViewController.modalPresentationStyle = .fullScreen
+            targetViewController.modalTransitionStyle = .crossDissolve
+            present(targetViewController, animated: true)
         }
     }
 }

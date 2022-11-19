@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 class GoalModalView: UIView {
-    
-    weak var delegate: GoalSetupDelegate?
+    weak var viewDelegate: GoalModalViewDelegate?
+    weak var navigationBarDelegate: NavigationBarDelegate?
+    weak var viewController: GoalModalViewController?
     
     let goalName = {
         let tf = TextField(frame: .zero, title: "Judul Goal", style: .template)
@@ -35,11 +36,18 @@ class GoalModalView: UIView {
     }()
     
     
-    let dueDate = DatePicker(frame: .zero, title: "Deadline")
+    lazy var dueDate = {
+        let datePicker = DatePicker(frame: .zero, title: "Deadline")
+        datePicker.datePicker.minimumDate = Date()
+        return datePicker
+    }()
     
     let inflationButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        button.imageView?.heightAnchor.constraint(equalTo: button.titleLabel?.heightAnchor ?? button.heightAnchor).isActive = true
+        button.imageView?.widthAnchor.constraint(equalTo: button.imageView!.heightAnchor).isActive = true
         button.tintColor = .royalHunterBlue
         button.setTitle("WATCH OUT! Nilai setelah inflasi: ", for: .normal)
         button.contentHorizontalAlignment = .left
@@ -76,8 +84,30 @@ class GoalModalView: UIView {
         return scrollView
     }()
     
-    func configureStackView() {
+    func configureStackView(viewController: GoalModalViewController) {
         self.backgroundColor = .ghostWhite
+        
+        self.viewController = viewController
+        viewDelegate = viewController
+        navigationBarDelegate = viewController
+        setupAddTargetIsNotEmptyTextFields()
+        hideKeyboardWhenTappedAround()
+        
+        goalType.textField.delegate = self
+        total.textField.delegate = self
+        switchView.tf.textField.delegate = self
+        iconView.iconTextField.delegate = self
+        dueDate.textField.textField.delegate = self
+        
+        total.textField.keyboardType = .numberPad
+        switchView.tf.textField.keyboardType = .numberPad
+        
+        recommendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        inflationButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveGoalToCoreData), for: .touchUpInside)
+        iconView.editButton.addTarget(self, action: #selector(editIconTapped), for: .touchUpInside)
+        
+        setNavigationBar()
         
         let vstack = UIStackView(arrangedSubviews: [iconView,
                                                     goalName,
@@ -114,6 +144,75 @@ class GoalModalView: UIView {
         iconView.heightAnchor.constraint(equalTo: iconView.iconTextField.heightAnchor).isActive = true
         
         switchView.setupView()
+    }
+    
+    func setNavigationBar() {
+        let doneItem = UIBarButtonItem(title: "Batal", style: .plain, target: self, action: #selector(dismissView))
+        
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.red6 as Any,
+            NSAttributedString.Key.font: UIFont.bodyMedium as Any
+        ]
+        
+        doneItem.setTitleTextAttributes(attributes, for: .normal)
+        
+        viewController?.navigationItem.leftBarButtonItem = doneItem
+    }
+    
+    @objc func editIconTapped(_ sender: UIButton!) {
+        iconView.iconTextField.isUserInteractionEnabled = true
+        iconView.iconTextField.becomeFirstResponder()
+    }
+    
+    func setupAddTargetIsNotEmptyTextFields() {
+        saveButton.isEnabled = false
+        [goalName.textField, total.textField, iconView.iconTextField].forEach({ $0.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged) })
+    }
+    
+    @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
+        viewDelegate?.updateInflationButton()
+        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
+        
+        guard
+            let goalTitle = goalName.textField.text, !goalTitle.isEmpty,
+            let totalAmount = total.textField.text, !totalAmount.isEmpty,
+            let iconEmoji = iconView.iconTextField.text, !iconEmoji.isEmpty,
+            let goalTerm = goalType.textField.text, !goalTerm.isEmpty,
+            let goalDueDate = dueDate.textField.textField.text, !goalDueDate.isEmpty
+        else {
+            saveButton.backgroundColor = .black4
+            saveButton.setTitleColor(UIColor.black7, for: .normal)
+            saveButton.isEnabled = false
+            return
+        }
+        saveButton.backgroundColor = .tangerineYellow
+        saveButton.setTitleColor(UIColor.black13, for: .normal)
+        saveButton.isEnabled = true
+    }
+    
+    @objc func saveGoalToCoreData() {
+        let icon = iconView.iconTextField.text ?? ""
+        let name = goalName.textField.text ?? "No Name"
+        let dueDate = dueDate.date ?? Date()
+        let termExtended = goalType.textField.text ?? "Unknown-term"
+        let term = String(termExtended[..<(termExtended.firstIndex(of: "-") ?? termExtended.endIndex)])
+        let amount = Double(total.textField.text ?? "0.0") ?? 0
+        let initSaving = Double(switchView.tf.textField.text ?? "0.0") ?? 0
+        
+        viewDelegate?.save(name: name, icon: icon, dueDate: dueDate, targetAmount: amount, timeTerm: term, initialSaving: initSaving)
+    }
+    
+    @objc func buttonTapped(_ sender: UIButton) {
+        if sender == recommendButton {
+            viewDelegate?.goToGoalRecommendation()
+        }
+        else if sender == inflationButton {
+            viewDelegate?.goToInflationDetail()
+        }
+    }
+    
+    @objc func dismissView() {
+        navigationBarDelegate?.cancel()
     }
     
     class IconView: UIView {
