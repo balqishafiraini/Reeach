@@ -164,7 +164,7 @@ class BudgetView: UIView {
             target = income * 0.3
             percentage = "30%"
         default :
-            print("Something when wrong in \(#function)")
+            print("Something when wrong in \(#function). Cannot get status label for type \(type)")
         }
         
         statusLabel.textColor = .accentGreen7
