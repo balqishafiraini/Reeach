@@ -43,6 +43,20 @@ class AddBudget: UIView {
         return label
     }()
     
+    lazy var explanationButton: UILabel = {
+        let buttonLabel = UILabel()
+        
+        buttonLabel.text = "Baca detilnya di sini."
+        buttonLabel.textColor = .secondary6
+        buttonLabel.font = .bodyBold
+        buttonLabel.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showExplanation))
+        buttonLabel.addGestureRecognizer(tap)
+        
+        return buttonLabel
+    }()
+    
     let headerStack: UIStackView = {
         let stack = UIStackView()
         
@@ -98,6 +112,7 @@ class AddBudget: UIView {
         
         headerStack.addArrangedSubview(topTitle)
         headerStack.addArrangedSubview(viewDescription)
+        headerStack.addArrangedSubview(explanationButton)
         headerStack.addArrangedSubview(goalStack)
         headerStack.addArrangedSubview(needStack)
         headerStack.addArrangedSubview(wantStack)
@@ -106,6 +121,7 @@ class AddBudget: UIView {
         
         headerStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingBottom: 20)
         headerStack.setCustomSpacing(12, after: topTitle)
+        headerStack.setCustomSpacing(0, after: viewDescription)
         
         scrollView.addSubview(contentView)
         
@@ -120,6 +136,11 @@ class AddBudget: UIView {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32)
         ])
         
+    }
+    
+    @objc func showExplanation() {
+        print(#function)
+        budgetDelegate?.showTip()
     }
 
     @objc func prevStep() {

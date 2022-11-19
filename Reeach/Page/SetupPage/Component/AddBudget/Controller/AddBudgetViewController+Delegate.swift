@@ -21,4 +21,8 @@ extension AddBudgetViewController: BudgetDelegate {
         shouldDisableAddButton(enable: true)
 >>>>>>> 91b79da (Feat: Add temporary function to disable addBudget button)
     }
+    
+    func showTip() {
+        self.showExplanation()
+    }
 }
