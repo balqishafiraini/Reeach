@@ -9,7 +9,7 @@ import UIKit
 
 extension GoalModalViewController: NavigationBarDelegate {
     func cancel() {
-        let databaseHelper = DatabaseHelper()
+        let databaseHelper = DatabaseHelper.shared
         if let goal, mode == .add {
             let _ = databaseHelper.delete(goal)
         }
@@ -69,7 +69,7 @@ extension GoalModalViewController: GoalModalViewDelegate {
         attributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: Date())), attributes: blackAttributes))
         
         goalModalView.inflationButton.setAttributedTitle(attributedString, for: .normal)
-        DatabaseHelper().rollbackContext()
+        DatabaseHelper.shared.rollbackContext()
     }
     
     func goToGoalRecommendation() {
@@ -84,9 +84,10 @@ extension GoalModalViewController: GoalModalViewDelegate {
     }
     
     func save(name: String, icon: String, dueDate: Date, targetAmount: Double, timeTerm: String, initialSaving: Double) {
-        guard let goal else { return }
+        guard let goal
+        else { return }
         
-        let databaseHelper = DatabaseHelper()
+        let databaseHelper = DatabaseHelper.shared
         goal.icon = icon
         goal.name = name
         goal.dueDate = dueDate

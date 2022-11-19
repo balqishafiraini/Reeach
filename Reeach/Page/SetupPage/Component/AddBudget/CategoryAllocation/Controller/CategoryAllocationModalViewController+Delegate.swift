@@ -12,7 +12,7 @@ extension CategoryAllocationModalViewController: NavigationBarDelegate {
         if mode == .edit {
             budget?.category = initialCategory
             budget?.monthlyAllocation = initialMonthlyAllocation
-            DatabaseHelper().saveContext()
+            DatabaseHelper.shared.saveContext()
         }
         dismissView()
     }
@@ -36,7 +36,7 @@ extension CategoryAllocationModalViewController: CategoryAllocationModalViewDele
     }
     
     func save(monthlyAllocation: Double) {
-        let databaseHelper = DatabaseHelper()
+        let databaseHelper = DatabaseHelper.shared
         if let currentCategory, mode == .add {
             let _ = databaseHelper.createBudget(monthlyAllocation: currentMonthlyAllocation, period: Date(), category: currentCategory)
             dismissView()
@@ -51,7 +51,7 @@ extension CategoryAllocationModalViewController: CategoryAllocationModalViewDele
     
     func delete() {
         if let budget {
-            let _ = DatabaseHelper().delete(budget)
+            let _ = DatabaseHelper.shared.delete(budget)
         }
         dismissView()
     }
@@ -80,7 +80,20 @@ extension CategoryAllocationModalViewController: CategoryAllocationModalViewDele
     }
     
     func validate(monthlyAllocation: Double) {
-        currentMonthlyAllocation = monthlyAllocation <= maximumAllocation ? monthlyAllocation : 0
+        if monthlyAllocation <= 0 || monthlyAllocation > maximumAllocation {
+            currentMonthlyAllocation = 0
+            categoryAllocationModalView.saveButton.backgroundColor = .black4
+            categoryAllocationModalView.saveButton.setTitleColor(UIColor.black7, for: .normal)
+            categoryAllocationModalView.saveButton.isEnabled = false
+        }
+        else if currentCategory != nil {
+            currentMonthlyAllocation = monthlyAllocation
+            categoryAllocationModalView.saveButton.backgroundColor = .tangerineYellow
+            categoryAllocationModalView.saveButton.setTitleColor(UIColor.black13, for: .normal)
+            categoryAllocationModalView.saveButton.isEnabled = true
+        }
+        
         categoryAllocationModalView.monthlyAllocation.textField.text = DoubleToStringHelper.getString(from: currentMonthlyAllocation)
+        return
     }
 }

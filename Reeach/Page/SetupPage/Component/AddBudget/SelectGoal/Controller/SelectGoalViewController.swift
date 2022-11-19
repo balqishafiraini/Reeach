@@ -8,7 +8,7 @@
 import UIKit
 
 class SelectGoalViewController: UIViewController {
-    let goals = DatabaseHelper().getUnallocatedGoals(on: Date())
+    let goals = DatabaseHelper.shared.getUnallocatedGoals(on: Date())
     weak var dismissViewDelegate: DismissViewDelegate?
     var contentView = SelectGoalView()
     

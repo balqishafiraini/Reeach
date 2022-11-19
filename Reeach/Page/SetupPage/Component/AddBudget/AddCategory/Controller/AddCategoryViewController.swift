@@ -14,7 +14,7 @@ class AddCategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        category = DatabaseHelper().createCategory(name: "Unnamed Category", type: type, icon: "")
+        category = DatabaseHelper.shared.createCategory(name: "Unnamed Category", type: type, icon: "")
     }
     
     override func loadView() {

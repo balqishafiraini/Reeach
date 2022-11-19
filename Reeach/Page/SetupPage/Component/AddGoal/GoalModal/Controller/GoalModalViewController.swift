@@ -23,7 +23,7 @@ class GoalModalViewController: UIViewController {
         super.viewDidLoad()
         title = mode == .add ? "Tambah Goal" : "Edit Goal"
         if mode == .add {
-            goal = DatabaseHelper().createGoals(name: "Unnamed Goals", icon: "", dueDate: Date(), targetAmount: 0, timeTerm: "Unknown")
+            goal = DatabaseHelper.shared.createGoals(name: "Unnamed Goals", icon: "", dueDate: Date(), targetAmount: 0, timeTerm: "Unknown")
         }
         else if let goal, mode == .edit {
             goalModalView.iconView.iconTextField.text = goal.icon
@@ -34,7 +34,7 @@ class GoalModalViewController: UIViewController {
             goalModalView.goalType.textField.text = "\(goal.timeTerm ?? "Unknown")-term"
             goalModalView.switchView.tf.textField.text = DoubleToStringHelper.getString(from: goal.initialSaving(before: Date()))
         }
-        updateInflationButton()
+        goalModalView.textFieldsIsNotEmpty(goalModalView.total.textField)
     }
     
     override func loadView() {

@@ -30,11 +30,11 @@ extension GoalTrackerViewController: GoalTrackerViewDelegate {
     
     func changeGoalStatusData(_ status: String) {
         if status == "Active" {
-            goals = Goal.categorizeGoals(goals: DatabaseHelper().getAllocatedGoals(on: Date()))
+            goals = Goal.categorizeGoals(goals: DatabaseHelper.shared.getAllocatedGoals(on: Date()))
             contentView.titleExplanationLabel.text = "Semua goals yang kamu budget bulan ini."
         }
         else if status == "Inactive" {
-            goals = Goal.categorizeGoals(goals: DatabaseHelper().getUnallocatedGoals(on: Date()))
+            goals = Goal.categorizeGoals(goals: DatabaseHelper.shared.getUnallocatedGoals(on: Date()))
             contentView.titleExplanationLabel.text = "Semua goals yang tidak kamu budget bulan ini."
         }
         

@@ -10,6 +10,7 @@ import CoreData
 
 class DatabaseHelper {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    static let shared = DatabaseHelper()
     
     init() {
         insertDefaultCategory()

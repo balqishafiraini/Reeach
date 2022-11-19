@@ -47,11 +47,11 @@ class CategoryAllocationModalViewController: UIViewController {
         }
         
         calculateMaxAllocation()
-        updateRemainingLabel()
+        categoryAllocationModalView.textFieldsIsNotEmpty(categoryAllocationModalView.monthlyAllocation.textField)
     }
     
     func calculateMaxAllocation() {
-        let databaseHelper = DatabaseHelper()
+        let databaseHelper = DatabaseHelper.shared
         
         guard let incomeCategory = databaseHelper.getCategory(name: "Income")
         else { return }
