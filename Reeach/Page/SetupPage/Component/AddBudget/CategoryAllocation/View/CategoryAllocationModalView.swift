@@ -145,16 +145,7 @@ class CategoryAllocationModalView: UIView {
             return
         }
         
-        if monthlyAllocation <= 0 || monthlyAllocation > viewController?.maximumAllocation ?? 0 {
-            saveButton.backgroundColor = .black4
-            saveButton.setTitleColor(UIColor.black7, for: .normal)
-            saveButton.isEnabled = false
-            return
-        }
-        
-        saveButton.backgroundColor = .tangerineYellow
-        saveButton.setTitleColor(UIColor.black13, for: .normal)
-        saveButton.isEnabled = true
+        viewDelegate?.validate(monthlyAllocation: monthlyAllocation)
     }
     
     @objc func dismissView() {

@@ -10,7 +10,7 @@ import UIKit
 extension AddCategoryViewController: NavigationBarDelegate {
     func cancel() {
         if let category {
-            let _ = DatabaseHelper().delete(category)
+            let _ = DatabaseHelper.shared.delete(category)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -21,7 +21,7 @@ extension AddCategoryViewController: AddCategoryViewDelegate {
         print(#function)
         category?.icon = icon
         category?.name = name
-        DatabaseHelper().saveContext()
+        DatabaseHelper.shared.saveContext()
         navigationController?.popViewController(animated: true)
     }
     

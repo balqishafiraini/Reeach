@@ -8,7 +8,7 @@
 import UIKit
 
 class DashboardViewController: UIViewController {
-    var goals = DatabaseHelper().getAllocatedGoals(on: Date())
+    var goals = DatabaseHelper.shared.getAllocatedGoals(on: Date())
     let tips = Tip.allTips
     
     var contentView = DashboardView()
@@ -22,7 +22,7 @@ class DashboardViewController: UIViewController {
     }
     
     func loadData() {
-        goals = DatabaseHelper().getAllocatedGoals(on: Date())
+        goals = DatabaseHelper.shared.getAllocatedGoals(on: Date())
         
         if goals.isEmpty {
             contentView.collectionView.isHidden = true

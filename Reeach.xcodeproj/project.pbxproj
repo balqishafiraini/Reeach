@@ -24,6 +24,8 @@
 		3B26887F2927AE2D00E22410 /* CategoryAllocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26887E2927AE2D00E22410 /* CategoryAllocationDelegate.swift */; };
 		3B2688812927AE3A00E22410 /* CategoryAllocationModalView+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2688802927AE3A00E22410 /* CategoryAllocationModalView+Delegate.swift */; };
 		3B2688832927AE4700E22410 /* CategoryAllocationModalViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2688822927AE4700E22410 /* CategoryAllocationModalViewController+Delegate.swift */; };
+		3B268887292866AF00E22410 /* GoalAllocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B268886292866AF00E22410 /* GoalAllocationDelegate.swift */; };
+		3B268889292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B268888292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift */; };
 		3B26F7E128F7BBFD00FAC837 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */; };
 		3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */; };
 		3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */; };
@@ -183,6 +185,8 @@
 		3B26887E2927AE2D00E22410 /* CategoryAllocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAllocationDelegate.swift; sourceTree = "<group>"; };
 		3B2688802927AE3A00E22410 /* CategoryAllocationModalView+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryAllocationModalView+Delegate.swift"; sourceTree = "<group>"; };
 		3B2688822927AE4700E22410 /* CategoryAllocationModalViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryAllocationModalViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B268886292866AF00E22410 /* GoalAllocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAllocationDelegate.swift; sourceTree = "<group>"; };
+		3B268888292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalAllocationModalViewController+Delegate.swift"; sourceTree = "<group>"; };
 		3B26F7E028F7BBFD00FAC837 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		3B26F7E428F7BDC000FAC837 /* DatabaseHelper+Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Budget.swift"; sourceTree = "<group>"; };
 		3B26F7E628F7BDCF00FAC837 /* DatabaseHelper+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseHelper+Constants.swift"; sourceTree = "<group>"; };
@@ -412,6 +416,7 @@
 		3B2688852927AFB900E22410 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				3B268886292866AF00E22410 /* GoalAllocationDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1090,6 +1095,7 @@
 			isa = PBXGroup;
 			children = (
 				CAFC302329269EBF00D21274 /* GoalAllocationModalViewController.swift */,
+				3B268888292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1527,6 +1533,7 @@
 				3B4AE5A02924731D000EA6C1 /* TermPickerDelegate.swift in Sources */,
 				3BAA29D82907936D008D3C5B /* DatabaseHelper+Category.swift in Sources */,
 				3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */,
+				3B268889292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift in Sources */,
 				3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */,
 				3B4AE5AD292585E3000EA6C1 /* TipDetailView.swift in Sources */,
 				FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */,
@@ -1549,6 +1556,7 @@
 				FAA37BEE291A1FD300F2C87A /* TabBarController.swift in Sources */,
 				FA428C7F2909993D0053153F /* GoalModalViewController.swift in Sources */,
 				3B26886D2927230500E22410 /* String+Extension.swift in Sources */,
+				3B268887292866AF00E22410 /* GoalAllocationDelegate.swift in Sources */,
 				CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */,
 				FA10B0D72922B4D0005D856C /* GoalsOverviewViewController.swift in Sources */,
 				3B26887529273F4B00E22410 /* GoalModalView+Delegate.swift in Sources */,

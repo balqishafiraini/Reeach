@@ -22,7 +22,7 @@ class GoalTrackerViewController: UIViewController {
     }
     
     func loadData() {
-        goals = Goal.categorizeGoals(goals: DatabaseHelper().getAllocatedGoals(on: Date()))
+        goals = Goal.categorizeGoals(goals: DatabaseHelper.shared.getAllocatedGoals(on: Date()))
         
         terms.removeAll()
         for goal in goals {

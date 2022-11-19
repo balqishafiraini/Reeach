@@ -18,7 +18,7 @@ class SelectBudgetCategoryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        categories = DatabaseHelper().getUnallocatedCategories(on: Date(), type: type)
+        categories = DatabaseHelper.shared.getUnallocatedCategories(on: Date(), type: type)
         contentView.collectionView.reloadData()
     }
     
