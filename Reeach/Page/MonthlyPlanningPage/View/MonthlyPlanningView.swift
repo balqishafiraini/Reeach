@@ -33,9 +33,13 @@ class MonthlyPlanningView: UIView {
     }()
     
     // TODO: optimize backMonthButton & nextMonthButton
+    lazy var backButton = UIImage(named: "LeftYellow")
+    lazy var nextButton = UIImage(named: "RightYellow")
+    
     lazy var backMonthButton: UIButton = {
         let button = UIButton()
-        button.setTitle("<", for: .normal)
+//        button.setTitle("<", for: .normal)
+        button.setImage(backButton, for: .normal)
         button.setTitleColor(.primary6, for: .normal)
         button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
         
@@ -53,9 +57,11 @@ class MonthlyPlanningView: UIView {
     
     lazy var nextMonthButton: UIButton = {
         let button = UIButton()
-        button.setTitle(">", for: .normal)
+//        button.setTitle(">", for: .normal)
+        button.setImage(nextButton, for: .normal)
         button.setTitleColor(.primary6, for: .normal)
         button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
+        button.contentMode = .scaleAspectFit
         
         return button
     }()
@@ -319,25 +325,21 @@ class MonthlyPlanningView: UIView {
             
         if hasBudget! {
             if selectedDateString == currentDateString {
-                nextMonthButton.setTitle("", for: .normal)
                 nextMonthButton.isEnabled = false
 
             } else {
-                nextMonthButton.setTitle(">", for: .normal)
                 nextMonthButton.isEnabled = true
                 
                 tipViewContainerView.isHidden = true
             }
         } else {
             if selectedDateString == currentDateString {
-                nextMonthButton.setTitle("", for: .normal)
                 nextMonthButton.isEnabled = false
                 
                 createMonthlyPlanButton.isHidden = false
                 
                 noPlanLabel.text = "Kamu belum memiliki Monthly Planner bulan ini."
             } else {
-                nextMonthButton.setTitle(">", for: .normal)
                 nextMonthButton.isEnabled = true
                 
                 createMonthlyPlanButton.isHidden = true
@@ -372,12 +374,12 @@ class MonthlyPlanningView: UIView {
     }
     
     @objc func setMonth(_ sender: UIButton) {
-        switch sender.currentTitle! {
-        case "<":
+        switch sender.currentImage {
+        case backButton:
             removeStacks()
             nextMonthButton.isHidden = false
             self.selectedDate = DateFormatHelper.getStartDateOfPreviousMonth(of: selectedDate ?? Date())
-        case ">":
+        case nextButton:
             removeStacks()
             self.selectedDate = DateFormatHelper.getStartDateOfNextMonth(of: selectedDate ?? Date())
         default:
