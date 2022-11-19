@@ -54,6 +54,7 @@ class AddGoal: UIView {
         label.text = "Goals yang baik punya karakteristik S.M.A.R.T atau specific, measurable, achievable, relevant, dan time-bounded. Yuk, tuliskan goals kamu!"
         label.font = .bodyMedium
         label.numberOfLines = 5
+        label.textColor = .black8
         
         return label
     }()

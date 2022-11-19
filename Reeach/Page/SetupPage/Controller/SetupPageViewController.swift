@@ -57,7 +57,7 @@ class SetupPageViewController: UIViewController {
             
             contentView.bottomView.nextButton.isEnabled = isEnabled
             contentView.bottomView.backButton.isHidden = false
-            contentView.bottomView.backButton.setTitle("Kembali ke income", for: .normal)
+            contentView.bottomView.backButton.setTitle("Kembali ke Pemasukan", for: .normal)
         default:
             contentView.bottomView.nextButton.isEnabled = true
         }
