@@ -93,8 +93,9 @@ class BudgetView: UIView {
         self.addSubview(stack)
         
         for budget in budgets! {
-            let newItem = BudgetItem(frame: .zero, icon: budget.category?.icon ?? "❓", title: budget.category?.name ?? "Title", amount: budget.monthlyAllocation)
+            let newItem = BudgetItem(frame: .zero, icon: budget.category?.icon ?? "❓", title: budget.category?.name ?? "Title", amount: budget.monthlyAllocation, type: budget.category?.type ?? "Type")
             budgetStack.addArrangedSubview(newItem)
+            
             allocationCount+=1
             
             allocated += budget.monthlyAllocation
