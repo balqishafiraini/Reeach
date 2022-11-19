@@ -32,15 +32,19 @@ class Button: UIButton {
     public private(set) var style: Style
     public private(set) var foreground: Foreground
     public private(set) var background: Background
+    public private(set) var textColor: UIColor?
+    public private(set) var backColor: UIColor?
     public private(set) var title: String?
     public private(set) var image: UIImage?
     
-    init(style: Style, foreground: Foreground, background: Background, title: String? = nil, image: UIImage? = nil) {
+    init(style: Style, foreground: Foreground, background: Background, title: String? = nil, image: UIImage? = nil, textColor: UIColor? = nil, backColor: UIColor? = nil) {
         self.style = style
         self.foreground = foreground
         self.background = background
         self.title = title
         self.image = image
+        self.textColor = textColor
+        self.backColor = backColor
         super.init(frame: .zero)
         setup()
     }
@@ -84,35 +88,49 @@ class Button: UIButton {
     
     // background-foreground
     private func handleForegroundButton() {
-        switch foreground {
-            case .primary:
-                setTitleColor(UIColor.darkSlateGrey, for: .normal)
-                titleLabel?.font = .headline
-            case .secondary:
-                setTitleColor(UIColor.primary7, for: .normal)
-                titleLabel?.font = .headline
-            case .destructive:
-                setTitleColor(UIColor.ghostWhite, for: .normal)
-                titleLabel?.font = .headline
+        if let color = textColor {
+            setTitleColor(color, for: .normal)
+            titleLabel?.font = .headline
+        } else {
+            switch foreground {
+                case .primary:
+                    setTitleColor(UIColor.darkSlateGrey, for: .normal)
+                    titleLabel?.font = .headline
+                case .secondary:
+                    setTitleColor(UIColor.primary7, for: .normal)
+                    titleLabel?.font = .headline
+                case .destructive:
+                    setTitleColor(UIColor.ghostWhite, for: .normal)
+                    titleLabel?.font = .headline
+            }
         }
     }
     
     private func handleBackgroundButton() {
-        switch background {
-        case .tangerineYellow:
-            backgroundColor = .tangerineYellow
-        case .royalHunterBlue:
-            backgroundColor = .royalHunterBlue
-        case .tangelo:
-            backgroundColor = .tangelo
-        case .caribbeanGreen:
-            backgroundColor = .caribbeanGreen
-        case.darkSlateGrey:
-            backgroundColor = .darkSlateGrey
-        case.ghostWhite:
-            backgroundColor = .ghostWhite
+        if let color = backColor {
+            backgroundColor = color
+        } else {
+            switch background {
+            case .tangerineYellow:
+                backgroundColor = .tangerineYellow
+            case .royalHunterBlue:
+                backgroundColor = .royalHunterBlue
+            case .tangelo:
+                backgroundColor = .tangelo
+            case .caribbeanGreen:
+                backgroundColor = .caribbeanGreen
+            case.darkSlateGrey:
+                backgroundColor = .darkSlateGrey
+            case.ghostWhite:
+                backgroundColor = .ghostWhite
+            }
         }
     }
     
+    func setButtonByStatus(isEnabled: Bool, backColor: UIColor, textColor: UIColor) {
+        backgroundColor = backColor
+        setTitleColor(textColor, for: isEnabled ? .normal : .disabled)
+        self.isEnabled = isEnabled
+    }
     
 }
