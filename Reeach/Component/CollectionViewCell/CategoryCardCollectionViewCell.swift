@@ -38,7 +38,7 @@ class CategoryCardCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28, weight: .bold)
         label.textAlignment = .center
-        label.anchor(width: 28)
+        label.anchor(width: 32)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

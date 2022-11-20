@@ -12,13 +12,13 @@ class SetupBottomView: UIView {
     weak var delegate: SetupDelegate?
     
     let backButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Kembali ke income")
+        let button = Button(style: .rounded, title: "Kembali ke income", textColor: .primary7, backColor: .ghostWhite, useBorder: true, borderColorUseTextColor: true)
         
         return button
     }()
     
     let nextButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Looking good? Lanjut, yuk!")
+        let button = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Looking good? Gasss!")
         
         return button
     }()
@@ -43,22 +43,16 @@ class SetupBottomView: UIView {
     }
     
     func setupView() {
-//        self.setDimensions(width: UIScreen.main.bounds.width, height: 150)
-//        self.backgroundColor = .red
-        
         stackButton.addArrangedSubview(backButton)
         stackButton.addArrangedSubview(nextButton)
         
-//        self.addSubview(nextButton)
         self.addSubview(stackButton)
         
         stackButton.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.rightAnchor, paddingTop: 20)
         
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
-//        nextButton.anchor(width: UIScreen.main.bounds.width - 32, height: 100)
         
         backButton.addTarget(self, action: #selector(prevStep), for: .touchUpInside)
-//        backButton.anchor(width: UIScreen.main.bounds.width - 32)
     }
     
     @objc func nextStep() {
@@ -72,13 +66,19 @@ class SetupBottomView: UIView {
     func setButtonTitle(progressIndex: Float){
         switch progressIndex {
         case 0:
-            nextButton.setTitle("Looking good? Lanjut, yuk!", for: .normal)
+            nextButton.setTitle("Looking good? Gasss!", for: .normal)
         case 1:
-            nextButton.setTitle("Skuy ke Budgeting!", for: .normal)
+            nextButton.setTitle("Skuy ke Budget!", for: .normal)
         case 2:
             nextButton.setTitle("Yuhuuu, beres!", for: .normal)
         default:
             nextButton.setTitle("Hmm I'm not supposed to be here", for: .normal)
         }
+    }
+    
+    func shouldDisableNextButton(isEnabled: Bool) {
+        nextButton.isEnabled = isEnabled
+        
+        nextButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
     }
 }

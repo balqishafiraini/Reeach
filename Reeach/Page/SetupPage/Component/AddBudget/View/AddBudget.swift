@@ -9,7 +9,8 @@ import UIKit
 
 class AddBudget: UIView {
     
-    weak var delegate: SetupDelegate?
+    weak var delegate: SetupPageViewController?
+    weak var budgetDelegate: BudgetDelegate?
     
     var goalBudgets: [Budget]?
     var needBudgets: [Budget]?
@@ -34,18 +35,40 @@ class AddBudget: UIView {
     let viewDescription: UILabel = {
         let label = UILabel()
         
-        label.text = "Sekarang, mari kita rencanakan anggaran perbulan mu. Kami merekomendasikan supaya teknik 50-30-20. Pelajari lebih lanjut"
+        label.text = "Yuk, rencanakan keuanganmu supaya target goals terkumpul pakai metode 50/30/20."
         label.font = .bodyMedium
         label.numberOfLines = 5
+        label.textColor = .black8
         
         return label
+    }()
+    
+    lazy var explanationButton: UILabel = {
+        let buttonLabel = UILabel()
+        
+        buttonLabel.text = "Baca detilnya di sini."
+        buttonLabel.textColor = .secondary6
+        buttonLabel.font = .bodyBold
+        buttonLabel.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showExplanation))
+        buttonLabel.addGestureRecognizer(tap)
+        
+        return buttonLabel
+    }()
+    
+    lazy var allocationBar: AllocationBar = {
+        let bar = AllocationBar()
+        bar.configureView()
+        
+        return bar
     }()
     
     let headerStack: UIStackView = {
         let stack = UIStackView()
         
         stack.axis = .vertical
-        stack.spacing = 24
+        stack.spacing = 20
         stack.distribution = .fill
         
         return stack
@@ -67,8 +90,8 @@ class AddBudget: UIView {
     
     func setupContentStack() {
         goalStack = BudgetView(frame: CGRectZero, labelText: "Goal", type: "Goal")
-        needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan", type: "Need")
-        wantStack = BudgetView(frame: CGRectZero, labelText: "Keingingan", type: "Want")
+        needStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan Pokok", type: "Need")
+        wantStack = BudgetView(frame: CGRectZero, labelText: "Kebutuhan Nonpokok", type: "Want")
         
         goalStack.addButton.setTitle("Tambah budget untuk goals", for: .normal)
         needStack.addButton.setTitle("Tambah kebutuhan pokok", for: .normal)
@@ -77,6 +100,10 @@ class AddBudget: UIView {
         goalStack.delegate = self.delegate
         needStack.delegate = self.delegate
         wantStack.delegate = self.delegate
+        
+        goalStack.budgetDelegate = budgetDelegate
+        needStack.budgetDelegate = budgetDelegate
+        wantStack.budgetDelegate = budgetDelegate
         
         goalStack.budgets = goalBudgets!
         needStack.budgets = needBudgets!
@@ -88,10 +115,13 @@ class AddBudget: UIView {
     }
     
     func setupView() {
+        self.backgroundColor = .ghostWhite
         setupContentStack()
         
         headerStack.addArrangedSubview(topTitle)
         headerStack.addArrangedSubview(viewDescription)
+        headerStack.addArrangedSubview(explanationButton)
+        headerStack.addArrangedSubview(allocationBar)
         headerStack.addArrangedSubview(goalStack)
         headerStack.addArrangedSubview(needStack)
         headerStack.addArrangedSubview(wantStack)
@@ -99,6 +129,8 @@ class AddBudget: UIView {
         contentView.addSubview(headerStack)
         
         headerStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingBottom: 20)
+        headerStack.setCustomSpacing(12, after: topTitle)
+        headerStack.setCustomSpacing(0, after: viewDescription)
         
         scrollView.addSubview(contentView)
         
@@ -108,14 +140,49 @@ class AddBudget: UIView {
         
         contentView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 16, paddingRight: 16)
         
+        setAllocationBar()
         
         NSLayoutConstraint.activate([
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32)
         ])
         
     }
+    
+    func setAllocationBar() {
+        let incomeCategory = DatabaseHelper().getCategory(name: "Income")
+        let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: incomeCategory!)
+        let income = incomeBudget?.monthlyAllocation ?? 0.0
+        
+        var goal = 0.0
+        var need = 0.0
+        var want = 0.0
+        
+        for budget in goalBudgets! {
+            goal += budget.monthlyAllocation
+        }
+        
+        for budget in needBudgets! {
+            need += budget.monthlyAllocation
+        }
+        
+        for budget in wantBudgets! {
+            want += budget.monthlyAllocation
+        }
+        
+        print("income: \(income)")
+        print("goal: \(goal)")
+        print("need: \(need)")
+        print("want: \(want)")
+
+        allocationBar.adjustWidth(goal: goal, need: need, want: want, income: income)
+    }
+    
+    @objc func showExplanation() {
+        print(#function)
+        budgetDelegate?.showTip()
+    }
 
     @objc func prevStep() {
-        delegate?.previousProgress!()
+        delegate?.previousProgress()
     }
 }

@@ -15,8 +15,10 @@ extension SetupPageViewController: SetupDelegate {
         currentProgress = currentProgressIndex / totalProgress
         
         if currentProgressIndex > totalProgress {
-            currentProgress = 0.0
-            currentProgressIndex = 0.0
+            currentProgress = 1.0
+            currentProgressIndex = totalProgress
+            
+            showPopUpConfirm()
         }
         
         updateView()
@@ -28,13 +30,17 @@ extension SetupPageViewController: SetupDelegate {
         updateView()
     }
     
-    func openGoalSheet() {
+    func openGoalSheet(forGoalIndex: Int) {
         let navigationController = UINavigationController()
         navigationController.navigationItem.largeTitleDisplayMode = .never
         navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
         
         let goalVC = GoalModalViewController()
         goalVC.delegate = contentView.goalView
+        if forGoalIndex >= 0 {
+            goalVC.mode = .edit
+            goalVC.goal = goals[forGoalIndex]
+        }
         goalVC.modalPresentationStyle = .pageSheet
         goalVC.modalTransitionStyle = .coverVertical
         
@@ -118,10 +124,3 @@ extension SetupPageViewController: SetupDelegate {
         }
     }
 }
-
-extension SetupPageViewController: BudgetDelegate {
-    func addBudget() {
-        print(#function)
-    }
-}
-

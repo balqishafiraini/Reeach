@@ -17,8 +17,15 @@ public class Category: NSManagedObject {
         let budgets = budgets?.allObjects as! [Budget]
         
         for budget in budgets {
-            let budgetMonth = budget.period ?? Date()
-            if budgetMonth == month {
+            if let budgetMonth = budget.period,
+               budgetMonth == month {
+                if let goal = self as? Goal,
+                   let createdAt = goal.createdAt,
+                   budgetMonth < DateFormatHelper.getStartDateOfMonth(of: createdAt)
+                {
+                    print(#function)
+                    return false
+                }
                 return true
             }
         }

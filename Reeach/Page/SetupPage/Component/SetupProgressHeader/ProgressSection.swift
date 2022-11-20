@@ -20,12 +20,12 @@ class ProgressSection: UIView {
     
     lazy var numberView: UIView = {
         let view = UIView()
-        view.anchor(width: 32, height: 32)
+        view.anchor(width: 24, height: 24)
         view.backgroundColor = .black6
         view.addSubview(numberLabel)
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = 12
         
-        numberLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 6, paddingLeft: 10, paddingBottom: 6, paddingRight: 10)
+        numberLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8)
         
         return view
     }()

@@ -60,10 +60,20 @@ class CategoryAllocationModalViewController: UIViewController {
         guard let incomeBudget = databaseHelper.getBudget(on: Date(), of: incomeCategory)
         else { return }
         
+        let goals = databaseHelper.getBudgets(on: Date(), type: "Goal")
         let needs = databaseHelper.getBudgets(on: Date(), type: "Need")
         let wants = databaseHelper.getBudgets(on: Date(), type: "Want")
         
-        maximumAllocation = incomeBudget.monthlyAllocation * 0.8
+        maximumAllocation = incomeBudget.monthlyAllocation
+        for goal in goals {
+            maximumAllocation -= goal.monthlyAllocation
+        }
+        
+        let defaultLimit = incomeBudget.monthlyAllocation * 0.8
+        
+        if defaultLimit < maximumAllocation {
+            maximumAllocation = defaultLimit
+        }
         
         for need in needs {
             maximumAllocation -= need.monthlyAllocation

@@ -14,7 +14,7 @@ class AddGoal: UIView {
     
     var goals: [Goal]
     
-    let size = 44.0
+    let size = 36.0
     
     lazy var topTitle: UILabel = {
         let label = UILabel()
@@ -24,18 +24,29 @@ class AddGoal: UIView {
         return label
     }()
     
-    lazy var addButton: UIButton = {
+    lazy var addButton: UIView = {
+        let view = UIView()
+        
         let button = UIButton()
         
-        let icon = UIImage(systemName: "plus")
+        let icon = UIImage(named: "Add")
         
         button.setImage(icon, for: .normal)
-        button.backgroundColor = .tangerineYellow
         button.tintColor = .black
-        button.setDimensions(width: size, height: size)
-        button.layer.cornerRadius = size / 2
         
-        return button
+        view.addSubview(button)
+        view.setDimensions(width: size, height: size)
+        view.backgroundColor = .tangerineYellow
+        view.layer.cornerRadius = size * 0.5
+        
+        button.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openGoalSheet))
+        
+        button.addTarget(self, action: #selector(openGoalSheet), for: .touchUpInside)
+        view.addGestureRecognizer(tap)
+        
+        return view
     }()
     
     lazy var topStack: UIStackView = {
@@ -54,6 +65,7 @@ class AddGoal: UIView {
         label.text = "Goals yang baik punya karakteristik S.M.A.R.T atau specific, measurable, achievable, relevant, dan time-bounded. Yuk, tuliskan goals kamu!"
         label.font = .bodyMedium
         label.numberOfLines = 5
+        label.textColor = .black8
         
         return label
     }()
@@ -81,7 +93,9 @@ class AddGoal: UIView {
         let label = UILabel()
         
         label.text = "Klik '+' untuk menambah target"
-        label.font = label.font.withSize(14)
+        label.font = .bodyMedium
+        label.textColor = .black7
+        label.textAlignment = .center
         
         return label
     }()
@@ -92,11 +106,18 @@ class AddGoal: UIView {
         return view
     }()
     
+    lazy var emptyStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        
+        return stack
+    }()
+    
     lazy var goalList: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 16
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.register(GoalItemCollectionViewCell.self, forCellWithReuseIdentifier: GoalItemCollectionViewCell.identifier)
@@ -123,31 +144,35 @@ class AddGoal: UIView {
         goalList.delegate = controller
         goalList.dataSource = controller
         
+        self.backgroundColor = .ghostWhite
         self.addSubview(headerStack)
         self.addSubview(emptyView)
         self.addSubview(goalList)
-        
-        addButton.addTarget(self, action: #selector(openGoalSheet), for: .touchUpInside)
     
         if goals.isEmpty {
             goalList.removeFromSuperview()
             removeConstraints(goalList.constraints)
 
-            emptyView.addSubview(emptyImage)
-            emptyView.addSubview(emptyDescription)
-            emptyImage.widthAnchor.constraint(equalTo: emptyView.widthAnchor, multiplier: 6.5/10).isActive = true
-            emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor).isActive = true
+            emptyStack.addArrangedSubview(emptyImage)
+            emptyStack.addArrangedSubview(emptyDescription)
+//            emptyView.backgroundColor = .red
 
-            emptyImage.center(inView: emptyView)
-            emptyDescription.anchor(top: emptyImage.bottomAnchor, paddingTop: 12)
-            emptyDescription.centerX(inView: emptyView)
+            emptyView.addSubview(emptyStack)
+            
+//            emptyDescription.anchor(top: emptyImage.bottomAnchor, paddingTop: 12)
+//            emptyDescription.centerX(inView: emptyView)
 
             emptyView.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+            
+            emptyStack.center(inView: emptyView)
+            
+            emptyImage.widthAnchor.constraint(equalTo: emptyView.widthAnchor, multiplier: 6.5/10).isActive = true
+            emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor).isActive = true
         } else {
             emptyView.removeFromSuperview()
             removeConstraints(emptyView.constraints)
 
-            goalList.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 16, paddingRight: 16)
+            goalList.anchor(top: headerStack.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
             goalList.backgroundColor = .ghostWhite
         }
         
@@ -162,7 +187,7 @@ class AddGoal: UIView {
     }
     
     @objc func openGoalSheet() {
-        delegate?.openGoalSheet?()
+        delegate?.openGoalSheet?(forGoalIndex: -1)
     }
     
     

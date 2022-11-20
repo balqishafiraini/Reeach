@@ -9,7 +9,7 @@ import UIKit
 
 class MonthlyPlanningViewController: UIViewController {
 
-    let planningView = MonthlyPlanningView()
+    var planningView = MonthlyPlanningView()
     
     var currentDate: Date = Date()
     
@@ -21,23 +21,25 @@ class MonthlyPlanningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func loadView() {
+
+    override func viewWillAppear(_ animated: Bool) {
+        planningView = MonthlyPlanningView()
+        
         self.view = planningView
         planningView.delegate = self
         planningView.setupDate(currentDate: currentDate)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
+        
         setupInitialState()
     }
     
     func setupInitialState(date: Date? = Date()) {
         print("Get Planner for \(DateFormatHelper.getShortMonthAndYearString(from: date!))")
         
+        let isInitialized = UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: date!))
+        
         let budgets = DatabaseHelper().getBudgets(on: date!)
         
-        if budgets.isEmpty {
+        if budgets.isEmpty || !isInitialized {
             planningView.hasBudget = false
         } else {
             planningView.hasBudget = true

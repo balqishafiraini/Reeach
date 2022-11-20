@@ -12,7 +12,8 @@ import Foundation
     @objc optional func previousProgress()
     func openGoalAllocationSheet()
     func openCategoryAllocationSheet(type: String)
-    @objc optional func openGoalSheet()
+    
+    @objc optional func openGoalSheet(forGoalIndex: Int)
     @objc optional func saveIncome(income: String)
     func openBudgetDetail(budget: Budget)
     @objc optional func setDisableButton()

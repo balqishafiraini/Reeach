@@ -38,12 +38,13 @@ class AddIncome: UIView {
         label.text = "Pemasukan adalah nominal yang kamu terima tiap bulannya ya, Bestie, bukan uang yang masih tersisa. Yuk, tulis pemasukanmu."
         label.font = .bodyMedium
         label.numberOfLines = 0
+        label.textColor = .black8
         
         return label
     }()
     
     let incomeTextField: TextField = {
-        let textField = TextField(frame: .zero, style: .active)
+        let textField = TextField(frame: .zero, style: .active, prefix: "Rp ")
         textField.textField.keyboardType = .numberPad
         
         return textField
@@ -53,7 +54,7 @@ class AddIncome: UIView {
         let stack = UIStackView()
         
         stack.axis = .vertical
-        stack.spacing = 32
+        stack.spacing = 20
         stack.distribution = .fill
         
         return stack
@@ -68,27 +69,13 @@ class AddIncome: UIView {
         return stack
     }()
     
-    let goalStack: UIStackView = {
-        let stack = UIStackView()
-        
-        stack.axis = .vertical
-        stack.spacing = 12
-        
-        let label = UILabel()
-        label.text = "Goal"
-        label.font = .headline
-        
-        let addButton = Button(style: .rounded, foreground: .destructive, background: .royalHunterBlue, title: "Tambah Kebutuhan Baru")
-        
-        stack.addArrangedSubview(label)
-        stack.addArrangedSubview(addButton)
-        
-        return stack
-    }()
-    
     func setupView() {
+        self.backgroundColor = .ghostWhite
+        
         if let income = income {
-            incomeTextField.textField.text = "\(income)"
+            if income > 0.0 {
+                incomeTextField.textField.text = "\(income)"
+            }
         }
         
         headerStack.addArrangedSubview(topTitle)
@@ -101,11 +88,13 @@ class AddIncome: UIView {
         
         contentStack.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingLeft: 16, paddingRight: 16)
         
+        headerStack.setCustomSpacing(12, after: topTitle)
+        
         setupTargetsAndActions()
     }
     
     func setupTargetsAndActions() {        
-        incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .editingDidEnd)
+        incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .allEditingEvents)
         incomeTextField.textField.sendActions(for: .valueChanged)
     }
     

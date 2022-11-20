@@ -33,9 +33,13 @@ class MonthlyPlanningView: UIView {
     }()
     
     // TODO: optimize backMonthButton & nextMonthButton
+    lazy var backButton = UIImage(named: "LeftYellow")
+    lazy var nextButton = UIImage(named: "RightYellow")
+    
     lazy var backMonthButton: UIButton = {
         let button = UIButton()
-        button.setTitle("<", for: .normal)
+//        button.setTitle("<", for: .normal)
+        button.setImage(backButton, for: .normal)
         button.setTitleColor(.primary6, for: .normal)
         button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
         
@@ -53,9 +57,11 @@ class MonthlyPlanningView: UIView {
     
     lazy var nextMonthButton: UIButton = {
         let button = UIButton()
-        button.setTitle(">", for: .normal)
+//        button.setTitle(">", for: .normal)
+        button.setImage(nextButton, for: .normal)
         button.setTitleColor(.primary6, for: .normal)
         button.addTarget(self, action: #selector(setMonth), for: .touchUpInside)
+        button.contentMode = .scaleAspectFit
         
         return button
     }()
@@ -213,6 +219,10 @@ class MonthlyPlanningView: UIView {
     
     lazy var stackToContent = contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
     
+    lazy var contentStackWithPaddingTop = contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32)
+    
+    lazy var contentStackWithoutPaddingTop = contentStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -285,8 +295,8 @@ class MonthlyPlanningView: UIView {
         
         scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, width: UIScreen.main.bounds.maxX)
         
-        contentStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: shouldSetValue(value: 32), paddingLeft: 16, paddingBottom: 20, paddingRight: 16)
-        
+        contentStack.anchor(left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 16, paddingBottom: 20, paddingRight: 16)
+    
         tipView.anchor(top: tipViewContainerView.topAnchor, left: tipViewContainerView.leftAnchor, bottom: tipViewContainerView.bottomAnchor, right: tipViewContainerView.rightAnchor, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
         
         blankView.anchor(top: tipView.centerYAnchor, left: tipViewContainerView.leftAnchor, bottom: tipViewContainerView.bottomAnchor, right: tipViewContainerView.rightAnchor)
@@ -305,27 +315,31 @@ class MonthlyPlanningView: UIView {
         goalStack.isHidden = !hasBudget!
         wantStack.isHidden = !hasBudget!
         
+        if selectedDateString == currentDateString {
+            contentStackWithPaddingTop.isActive = hasBudget! ? false : true
+            contentStackWithoutPaddingTop.isActive = hasBudget! ? true : false
+        } else {
+            contentStackWithoutPaddingTop.isActive = false
+            contentStackWithPaddingTop.isActive = true
+        }
+            
         if hasBudget! {
             if selectedDateString == currentDateString {
-                nextMonthButton.setTitle("", for: .normal)
                 nextMonthButton.isEnabled = false
 
             } else {
-                nextMonthButton.setTitle(">", for: .normal)
                 nextMonthButton.isEnabled = true
                 
                 tipViewContainerView.isHidden = true
             }
         } else {
             if selectedDateString == currentDateString {
-                nextMonthButton.setTitle("", for: .normal)
                 nextMonthButton.isEnabled = false
                 
                 createMonthlyPlanButton.isHidden = false
                 
                 noPlanLabel.text = "Kamu belum memiliki Monthly Planner bulan ini."
             } else {
-                nextMonthButton.setTitle(">", for: .normal)
                 nextMonthButton.isEnabled = true
                 
                 createMonthlyPlanButton.isHidden = true
@@ -360,12 +374,12 @@ class MonthlyPlanningView: UIView {
     }
     
     @objc func setMonth(_ sender: UIButton) {
-        switch sender.currentTitle! {
-        case "<":
+        switch sender.currentImage {
+        case backButton:
             removeStacks()
             nextMonthButton.isHidden = false
             self.selectedDate = DateFormatHelper.getStartDateOfPreviousMonth(of: selectedDate ?? Date())
-        case ">":
+        case nextButton:
             removeStacks()
             self.selectedDate = DateFormatHelper.getStartDateOfNextMonth(of: selectedDate ?? Date())
         default:
@@ -379,7 +393,7 @@ class MonthlyPlanningView: UIView {
     }
     
     @objc func createMonthlyPlan() {
-        print(#function)
+        delegate?.goToBudgetPlanner()
     }
     
 }
