@@ -59,7 +59,7 @@ extension CategoryAllocationModalViewController: CategoryAllocationModalViewDele
     
     func updateRemainingLabel() {
         let monthlyAllocation: Double = {
-            guard let monthlyAllocationString = categoryAllocationModalView.monthlyAllocation.textField.text, monthlyAllocationString != ""
+            guard let monthlyAllocationString = categoryAllocationModalView.monthlyAllocation.textField.text?.replacingOccurrences(of: ".", with: ""), monthlyAllocationString != ""
             else { return 0 }
             return Double(monthlyAllocationString) ?? 0
         }()
@@ -94,7 +94,7 @@ extension CategoryAllocationModalViewController: CategoryAllocationModalViewDele
             categoryAllocationModalView.saveButton.isEnabled = true
         }
         
-        categoryAllocationModalView.monthlyAllocation.textField.text = DoubleToStringHelper.getString(from: currentMonthlyAllocation)
+        categoryAllocationModalView.monthlyAllocation.textField.text = CurrencyHelper.getFormattedNumber(from: currentMonthlyAllocation)
         updateRemainingLabel()
         
         return

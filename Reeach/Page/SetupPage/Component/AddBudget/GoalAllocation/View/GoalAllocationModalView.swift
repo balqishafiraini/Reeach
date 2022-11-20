@@ -268,8 +268,14 @@ class GoalAllocationModalView: UIView {
     @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
         viewDelegate?.updateDynamicView()
         
-        guard let saving = monthlyAllocationTextField.textField.text, !saving.isEmpty,
-              let totalAmount = targetAmountTextField.textField.text, !totalAmount.isEmpty,
+        let targetAmountDouble = Double(targetAmountTextField.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0") ?? 0
+        targetAmountTextField.textField.text = CurrencyHelper.getFormattedNumber(from: targetAmountDouble)
+        
+        let monthlyAllocationDouble = Double(monthlyAllocationTextField.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0") ?? 0
+        monthlyAllocationTextField.textField.text = CurrencyHelper.getFormattedNumber(from: monthlyAllocationDouble)
+        
+        guard let saving = monthlyAllocationTextField.textField.text?.replacingOccurrences(of: ".", with: ""), !saving.isEmpty,
+              let totalAmount = targetAmountTextField.textField.text?.replacingOccurrences(of: ".", with: ""), !totalAmount.isEmpty,
               let goalDueDate = dueDateDatePicker.textField.textField.text, !goalDueDate.isEmpty
         else {
             saveButton.backgroundColor = .black4
@@ -291,8 +297,8 @@ class GoalAllocationModalView: UIView {
     
     @objc func save(_ sender: UIButton) {
         let dueDate = dueDateDatePicker.date ?? Date()
-        let targetAmount = Double(targetAmountTextField.textField.text ?? "0.0") ?? 0
-        let monthlyAllocation = Double(monthlyAllocationTextField.textField.text ?? "0.0") ?? 0
+        let targetAmount = Double(targetAmountTextField.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0
+        let monthlyAllocation = Double(monthlyAllocationTextField.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0
         viewDelegate?.save(dueDate: dueDate, targetAmount: targetAmount, montlyAllocation: monthlyAllocation)
     }
     

@@ -50,7 +50,8 @@ extension SetupPageViewController: SetupDelegate {
     }
     
     func saveIncome(income: String) {
-        self.income = (income as NSString).doubleValue
+        let incomeString = income.replacingOccurrences(of: ".", with: "")
+        self.income = Double(incomeString) ?? 0.0
         let income = DatabaseHelper().getCategory(name: "Income")
         if let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: income!) {
             incomeBudget.monthlyAllocation = self.income

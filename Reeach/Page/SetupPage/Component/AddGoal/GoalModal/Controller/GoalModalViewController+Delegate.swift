@@ -40,7 +40,7 @@ extension GoalModalViewController: GoalModalViewDelegate {
         else { return }
         
         let targetAmount: Double = {
-            guard let targetAmountString = goalModalView.total.textField.text, targetAmountString != ""
+            guard let targetAmountString = goalModalView.total.textField.text?.replacingOccurrences(of: ".", with: ""), targetAmountString != ""
             else { return 0 }
             return Double(targetAmountString) ?? 0
         }()

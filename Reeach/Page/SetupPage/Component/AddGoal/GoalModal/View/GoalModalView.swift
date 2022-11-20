@@ -168,11 +168,17 @@ class GoalModalView: UIView {
     
     func setupAddTargetIsNotEmptyTextFields() {
         saveButton.isEnabled = false
-        [goalName.textField, total.textField, iconView.iconTextField].forEach({ $0.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged) })
+        [goalName.textField, total.textField, iconView.iconTextField, switchView.tf.textField].forEach({ $0.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged) })
     }
     
     @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
         viewDelegate?.updateInflationButton()
+        
+        let initialSavingDouble = Double(switchView.tf.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0") ?? 0
+        switchView.tf.textField.text = CurrencyHelper.getFormattedNumber(from: initialSavingDouble)
+        
+        let totalAmountDouble = Double(total.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0") ?? 0
+        total.textField.text = CurrencyHelper.getFormattedNumber(from: totalAmountDouble)
         
         guard
             let goalTitle = goalName.textField.text, !goalTitle.isEmpty,

@@ -36,7 +36,7 @@ class GoalAllocationModalViewController: UIViewController {
                 return
             }
             self.goal = goal
-            goalAllocationModalView.monthlyAllocationTextField.textField.text = "\(Int(budget.monthlyAllocation))"
+            goalAllocationModalView.monthlyAllocationTextField.textField.text = CurrencyHelper.getFormattedNumber(from: budget.monthlyAllocation)
         }
         
         guard let goal
@@ -49,7 +49,7 @@ class GoalAllocationModalViewController: UIViewController {
         goalAllocationModalView.goalNameTextField.textField.text = goal.name
         goalAllocationModalView.dueDateDatePicker.date = goal.dueDate
         goalAllocationModalView.dueDateDatePicker.textField.textField.text = DateFormatHelper.getShortMonthAndYearString(from: goal.dueDate ?? Date())
-        goalAllocationModalView.targetAmountTextField.textField.text = DoubleToStringHelper.getString(from: goal.targetAmount)
+        goalAllocationModalView.targetAmountTextField.textField.text = CurrencyHelper.getFormattedNumber(from: goal.targetAmount)
         
         calculateMaxAllocation()
         goalAllocationModalView.textFieldsIsNotEmpty(goalAllocationModalView.monthlyAllocationTextField.textField)

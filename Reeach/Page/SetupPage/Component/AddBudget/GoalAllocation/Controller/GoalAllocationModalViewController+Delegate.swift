@@ -55,7 +55,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
         else { return }
         
         let targetAmount: Double = {
-            guard let targetAmountString = goalAllocationModalView.targetAmountTextField.textField.text, targetAmountString != ""
+            guard let targetAmountString = goalAllocationModalView.targetAmountTextField.textField.text?.replacingOccurrences(of: ".", with: ""), targetAmountString != ""
             else { return 0 }
             return Double(targetAmountString) ?? 0
         }()
@@ -69,7 +69,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
         goal.dueDate = dueDate
         
         let monthlyAllocation: Double = {
-            guard let monthlyAllocationString = goalAllocationModalView.monthlyAllocationTextField.textField.text, monthlyAllocationString != ""
+            guard let monthlyAllocationString = goalAllocationModalView.monthlyAllocationTextField.textField.text?.replacingOccurrences(of: ".", with: ""), monthlyAllocationString != ""
             else { return 0 }
             return Double(monthlyAllocationString) ?? 0
         }()
@@ -118,7 +118,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             """
             
             goalAllocationModalView.recommendationDetailLabel.text = """
-            Penghasilan yang belum kamu alokasikan hanya \(CurrencyHelper.getCurrency(from: unallocatedIncome)) :(
+            Kamu udah mengalokasikan lebih dari penghasilanmu, nih. :(
             
             Worry not. Stay calm, stay slay. Ini ada beberapa rekomendasi yang bisa kamu ikuti untuk mencapai goalsmu:
             
@@ -142,9 +142,9 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             Pake strategi ini goalsnya akan sulit kamu capai nih.
             """
             
-            var recommendedDeadlineString = "selamanya"
+            var recommendedDeadlineString = "1. Butuh lebih dari 100 tahun nih, bestie, buat capai goal kamu,"
             if let recommendedDeadline = goal.recommendedDeadline(of: budget) {
-                recommendedDeadlineString = DateFormatHelper.getShortMonthAndYearString(from: recommendedDeadline)
+                recommendedDeadlineString = "1. Ubah deadline menjadi \(DateFormatHelper.getShortMonthAndYearString(from: recommendedDeadline)), atau"
             }
             
             var recommendedTargetAmountString = "infinity :(("
@@ -160,7 +160,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             goalAllocationModalView.recommendationDetailLabel.text = """
             Worry not. Stay calm, stay slay. Ini ada beberapa rekomendasi yang bisa kamu ikuti untuk mencapai goalsmu:
 
-            1. Ubah deadline menjadi \(recommendedDeadlineString), atau
+            \(recommendedDeadlineString)
             2. Ubah jumlah tujuan menjadi \(recommendedTargetAmountString), atau
             3. Ubah alokasi bulanan menjadi \(recommendedMonthlyAllocationString)
             """

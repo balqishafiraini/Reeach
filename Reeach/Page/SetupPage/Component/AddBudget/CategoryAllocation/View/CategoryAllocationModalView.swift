@@ -128,8 +128,11 @@ class CategoryAllocationModalView: UIView {
     @objc func textFieldsIsNotEmpty(_ sender: UITextField) {
         viewDelegate?.updateRemainingLabel()
         
+        let monthlyAllocationDouble = Double(monthlyAllocation.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0") ?? 0
+        monthlyAllocation.textField.text = CurrencyHelper.getFormattedNumber(from: monthlyAllocationDouble)
+        
         guard let category = category.textField.text, !category.isEmpty,
-              let allocationAmount = monthlyAllocation.textField.text, !allocationAmount.isEmpty
+              let allocationAmount = monthlyAllocation.textField.text?.replacingOccurrences(of: ".", with: ""), !allocationAmount.isEmpty
         else {
             saveButton.backgroundColor = .black4
             saveButton.setTitleColor(UIColor.black7, for: .normal)
@@ -158,7 +161,7 @@ class CategoryAllocationModalView: UIView {
     }
     
     @objc func save (_ sender: UIButton) {
-        let monthlyAllocation = Double(monthlyAllocation.textField.text ?? "0.0") ?? 0
+        let monthlyAllocation = Double(monthlyAllocation.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0
         viewDelegate?.save(monthlyAllocation: monthlyAllocation)
     }
     

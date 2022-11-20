@@ -44,7 +44,7 @@ class CategoryAllocationModalViewController: UIViewController {
             categoryAllocationModalView.iconWithoutEdit.iconLabel.font = .systemFont(ofSize: 58, weight: .bold)
             categoryAllocationModalView.iconWithoutEdit.iconLabel.text = budget.category?.icon
             categoryAllocationModalView.category.textField.text = budget.category?.name
-            categoryAllocationModalView.monthlyAllocation.textField.text = DoubleToStringHelper.getString(from: budget.monthlyAllocation)
+            categoryAllocationModalView.monthlyAllocation.textField.text = CurrencyHelper.getFormattedNumber(from: budget.monthlyAllocation)
         }
         
         calculateMaxAllocation()

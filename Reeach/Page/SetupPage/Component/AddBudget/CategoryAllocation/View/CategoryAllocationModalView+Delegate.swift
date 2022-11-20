@@ -22,7 +22,7 @@ extension CategoryAllocationModalView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.text = textField.text?.trimmingCharacters(in: .whitespaces)
         if textField == monthlyAllocation.textField {
-            viewDelegate?.validate(monthlyAllocation: Double(textField.text ?? "") ?? 0)
+            viewDelegate?.validate(monthlyAllocation: Double(textField.text?.replacingOccurrences(of: ".", with: "") ?? "") ?? 0)
         }
         
         scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)

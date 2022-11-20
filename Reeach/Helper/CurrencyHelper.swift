@@ -8,7 +8,7 @@
 import Foundation
 
 class CurrencyHelper {
-    static func getCurrency(from number: Double) -> String {
+    static func getFormattedNumber(from number: Double) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.groupingSeparator = "."
         numberFormatter.decimalSeparator = ","
@@ -18,7 +18,11 @@ class CurrencyHelper {
         numberFormatter.maximumFractionDigits = 0
         numberFormatter.numberStyle = .decimal
         
-        return "Rp" + numberFormatter.string(from: NSNumber(value: number))!
+        return numberFormatter.string(from: NSNumber(value: number))!
+    }
+    
+    static func getCurrency(from number: Double) -> String {
+        return "Rp" + getFormattedNumber(from: number)
     }
     
     static func roundUp(_ double: Double) -> Double {

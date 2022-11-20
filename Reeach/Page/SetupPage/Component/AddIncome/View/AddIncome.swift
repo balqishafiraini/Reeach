@@ -74,7 +74,7 @@ class AddIncome: UIView {
         
         if let income = income {
             if income > 0.0 {
-                incomeTextField.textField.text = "\(income)"
+                incomeTextField.textField.text = "\(CurrencyHelper.getFormattedNumber(from: income))"
             }
         }
         
@@ -93,13 +93,19 @@ class AddIncome: UIView {
         setupTargetsAndActions()
     }
     
-    func setupTargetsAndActions() {        
+    func setupTargetsAndActions() {
         incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .allEditingEvents)
         incomeTextField.textField.sendActions(for: .valueChanged)
     }
     
     @objc func saveIncome() {
-        delegate?.saveIncome?(income: incomeTextField.textField.text ?? "0.0")
+        let textField = incomeTextField.textField
+        let incomeString = (textField.text ?? "0.0").replacingOccurrences(of: ".", with: "")
+        let incomeDouble = Double(incomeString) ?? 0.0
+        
+        textField.text = CurrencyHelper.getFormattedNumber(from: incomeDouble)
+        
+        delegate?.saveIncome?(income: textField.text ?? "0.0")
     }
     
     @objc func prevStep() {
