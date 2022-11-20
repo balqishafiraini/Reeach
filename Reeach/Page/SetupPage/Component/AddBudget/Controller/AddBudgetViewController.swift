@@ -29,6 +29,24 @@ class AddBudgetViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view = addBudgetView
+        
+        let databaseHelper = DatabaseHelper.shared
+        
+        goalBudgets = databaseHelper.getBudgets(on: Date(), type: "Goal")
+        needBudgets = databaseHelper.getBudgets(on: Date(), type: "Need")
+        wantBudgets = databaseHelper.getBudgets(on: Date(), type: "Want")
+        
+        if goalBudgets.isEmpty && needBudgets.isEmpty && wantBudgets.isEmpty {
+            print("Budget is empty, using previous month data")
+            let oldGoalBudgets = databaseHelper.getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Goal")
+            self.goalBudgets = databaseHelper.copyBudgets(oldGoalBudgets, to: Date())
+            
+            let oldNeedBudget = databaseHelper.getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Need")
+            self.needBudgets = databaseHelper.copyBudgets(oldNeedBudget, to: Date())
+            
+            let oldWantBudget = databaseHelper.getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Want")
+            self.wantBudgets = databaseHelper.copyBudgets(oldWantBudget, to: Date())
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,30 +54,11 @@ class AddBudgetViewController: UIViewController {
     }
     
     func setupData() {
-        goalBudgets = DatabaseHelper().getBudgets(on: Date(), type: "Goal")
-        needBudgets = DatabaseHelper().getBudgets(on: Date(), type: "Need")
-        wantBudgets = DatabaseHelper().getBudgets(on: Date(), type: "Want")
+        let databaseHelper = DatabaseHelper.shared
+        goalBudgets = databaseHelper.getBudgets(on: Date(), type: "Goal")
+        needBudgets = databaseHelper.getBudgets(on: Date(), type: "Need")
+        wantBudgets = databaseHelper.getBudgets(on: Date(), type: "Want")
         
-        if goalBudgets.isEmpty {
-            print("Goal is empty, using previous month data")
-            let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Goal")
-            
-            self.goalBudgets = oldBudget
-            DatabaseHelper.shared.saveContext()
-        }
-        if needBudgets.isEmpty {
-            print("Need is empty, using previous month data")
-            let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Need")
-            self.needBudgets = oldBudget
-            DatabaseHelper.shared.saveContext()
-        }
-        if wantBudgets.isEmpty {
-            print("Want is empty, using previous month data")
-            let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Want")
-            self.wantBudgets = oldBudget
-            DatabaseHelper.shared.saveContext()
-        }
-
         addBudgetView.goalBudgets = self.goalBudgets
         addBudgetView.needBudgets = self.needBudgets
         addBudgetView.wantBudgets = self.wantBudgets
