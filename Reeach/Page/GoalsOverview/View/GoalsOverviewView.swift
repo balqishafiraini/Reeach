@@ -236,7 +236,7 @@ class HeaderView: UIView {
         goalName.anchor(top: iconLabel.bottomAnchor, paddingTop: 5)
         
         addSubview(editButton)
-        editButton.anchor(top: iconLabel.bottomAnchor, left: goalName.rightAnchor, paddingTop: 10, paddingLeft: 5)
+        editButton.anchor(top: iconLabel.bottomAnchor, left: goalName.rightAnchor, paddingTop: 6, paddingLeft: 5)
         
         addSubview(termLabel)
         termLabel.centerX(inView: iconLabel)
