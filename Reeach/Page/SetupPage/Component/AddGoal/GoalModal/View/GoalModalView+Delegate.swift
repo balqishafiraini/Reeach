@@ -19,13 +19,7 @@ extension GoalModalView: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == goalType.textField {
-            viewDelegate?.goToTermPicker()
-            textField.resignFirstResponder()
-        }
-        else {
-            scrollView.setContentOffset(CGPoint.init(x: 0, y: UIScreen.main.bounds.height/3), animated: true)
-        }
+        scrollView.setContentOffset(CGPoint.init(x: 0, y: UIScreen.main.bounds.height/3), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

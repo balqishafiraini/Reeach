@@ -16,6 +16,7 @@ class CategoryAllocationModalView: UIView {
     
     let category = {
         let tf = TextField(frame: .zero, title: "Kategori", style: .template, icon: UIImage(named: "ChevronRight"))
+        tf.textField.isUserInteractionEnabled = false
         tf.textField.placeholder = "Pilih Kategori"
         return tf
     }()
@@ -63,6 +64,7 @@ class CategoryAllocationModalView: UIView {
         monthlyAllocation.textField.delegate = self
         monthlyAllocation.textField.keyboardType = .numberPad
         
+        category.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToSelectCategory)))
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(deleteBudget), for: .touchUpInside)
         
@@ -144,6 +146,11 @@ class CategoryAllocationModalView: UIView {
         }
         
         viewDelegate?.validate(monthlyAllocation: monthlyAllocation)
+    }
+    
+    @objc func goToSelectCategory(_ gestureRecognizer: UITapGestureRecognizer) {
+        dismissKeyboard()
+        viewDelegate?.goToSelectCategory()
     }
     
     @objc func dismissView() {

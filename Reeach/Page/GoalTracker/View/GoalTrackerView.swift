@@ -208,7 +208,7 @@ class GoalTrackerView: UIView {
         viewDelegate?.addGoal()
     }
     
-    @objc func changeGoalStatus(gestureRecognizer: UITapGestureRecognizer) {
+    @objc func changeGoalStatus(_ gestureRecognizer: UITapGestureRecognizer) {
         activeButton.setIsActive(gestureRecognizer.view == activeButton ? .active : .inactive)
         inActiveButton.setIsActive(gestureRecognizer.view == activeButton ? .inactive : .active)
         viewDelegate?.changeGoalStatusData(gestureRecognizer.view == activeButton ? "Active" : "Inactive")

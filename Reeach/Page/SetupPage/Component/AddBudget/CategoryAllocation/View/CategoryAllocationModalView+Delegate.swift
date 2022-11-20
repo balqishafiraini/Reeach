@@ -16,13 +16,7 @@ extension CategoryAllocationModalView: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == category.textField {
-            viewDelegate?.goToSelectCategory()
-            textField.resignFirstResponder()
-        }
-        else {
-            scrollView.setContentOffset(CGPoint.init(x: 0, y: UIScreen.main.bounds.height/3), animated: true)
-        }
+        scrollView.setContentOffset(CGPoint.init(x: 0, y: UIScreen.main.bounds.height/3), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

@@ -65,14 +65,7 @@ extension DatabaseHelper {
             goals.contains { $0.name == recommendation.name }
         }
         
-        var result: [[Goal.Recommendation]] = [[], [], []]
-        for recommendation in recommendations {
-            var index = 0
-            if recommendation.term == "Medium" { index = 1 }
-            else if recommendation.term == "Long" { index = 2 }
-            result[index].append(recommendation)
-        }
-        return result
+        return Goal.categorizeRecommendations(recommendations)
     }
     
     func createGoals(name: String, icon: String, dueDate: Date, targetAmount: Double, timeTerm: String) -> Goal {

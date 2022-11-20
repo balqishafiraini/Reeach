@@ -95,6 +95,8 @@ extension CategoryAllocationModalViewController: CategoryAllocationModalViewDele
         }
         
         categoryAllocationModalView.monthlyAllocation.textField.text = DoubleToStringHelper.getString(from: currentMonthlyAllocation)
+        updateRemainingLabel()
+        
         return
     }
 }

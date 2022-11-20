@@ -8,13 +8,21 @@
 import UIKit
 
 class GoalRecommendationViewController: UIViewController {
-    let terms = ["Short", "Medium", "Long"]
+    var terms: [String] = []
     let goals = DatabaseHelper.shared.getGoalRecommendations()
     weak var delegate: GoalRecommendationViewControllerDelegate?
     var contentView = GoalRecommendationView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        terms.removeAll()
+        for goal in goals {
+            if goal.isEmpty == false {
+                terms.append(goal[0].term)
+            }
+        }
+        contentView.collectionView.reloadData()
     }
     
     override func loadView() {

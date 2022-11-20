@@ -64,6 +64,7 @@ class GoalModalView: UIView {
     let goalType = {
         let tf = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(named: "ChevronRight"))
         tf.tintColor = .clear
+        tf.textField.isUserInteractionEnabled = false
         tf.textField.placeholder = "Pilih Tipe Goal"
         return tf
     }()
@@ -102,6 +103,7 @@ class GoalModalView: UIView {
         total.textField.keyboardType = .numberPad
         switchView.tf.textField.keyboardType = .numberPad
         
+        goalType.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToTermPicker)))
         recommendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         inflationButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveGoalToCoreData), for: .touchUpInside)
@@ -209,6 +211,11 @@ class GoalModalView: UIView {
         else if sender == inflationButton {
             viewDelegate?.goToInflationDetail()
         }
+    }
+    
+    @objc func goToTermPicker(_ gestureRecognizer: UITapGestureRecognizer) {
+        dismissKeyboard()
+        viewDelegate?.goToTermPicker()
     }
     
     @objc func dismissView() {

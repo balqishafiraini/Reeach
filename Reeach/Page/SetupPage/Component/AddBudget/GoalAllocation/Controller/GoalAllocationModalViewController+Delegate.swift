@@ -10,11 +10,9 @@ import UIKit
 extension GoalAllocationModalViewController: NavigationBarDelegate {
     func cancel() {
         let databaseHelper = DatabaseHelper.shared
+        databaseHelper.rollbackContext()
         if let budget, mode == .add {
             let _ = databaseHelper.delete(budget)
-        }
-        else if mode == .edit {
-            databaseHelper.rollbackContext()
         }
         dismissView()
     }
@@ -93,7 +91,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
         ]
         
         let inflationAttributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Nilai setelah inflasi: ", attributes: blueBoldAttributes)
-        inflationAttributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: Date())), attributes: blackBoldAttributes))
+        inflationAttributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: DateFormatHelper.getStartDateOfMonth(of: Date()))), attributes: blackBoldAttributes))
         goalAllocationModalView.inflationButton.setAttributedTitle(inflationAttributedString, for: .normal)
         
         var remaining = maximumAllocation - monthlyAllocation
