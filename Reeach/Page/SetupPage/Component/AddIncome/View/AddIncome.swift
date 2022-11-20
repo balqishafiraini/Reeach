@@ -70,6 +70,8 @@ class AddIncome: UIView {
     }()
     
     func setupView() {
+        self.backgroundColor = .ghostWhite
+        
         if let income = income {
             if income > 0.0 {
                 incomeTextField.textField.text = "\(income)"
