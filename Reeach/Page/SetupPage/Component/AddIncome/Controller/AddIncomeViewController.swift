@@ -29,7 +29,10 @@ class AddIncomeViewController: UIViewController {
         let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: incomeCategory!)
         
         if incomeBudget == nil {
+            print("Come here")
             let prevIncomeBudget = DatabaseHelper.shared.getBudget(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), of: incomeCategory!)
+            
+            let _ = DatabaseHelper.shared.createBudget(monthlyAllocation: prevIncomeBudget?.monthlyAllocation ?? 0.0, period: Date(), category: incomeCategory!)
             
             income = prevIncomeBudget?.monthlyAllocation ?? 0.0
         } else {
