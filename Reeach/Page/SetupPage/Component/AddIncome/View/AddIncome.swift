@@ -43,7 +43,7 @@ class AddIncome: UIView {
     }()
     
     let incomeTextField: TextField = {
-        let textField = TextField(frame: .zero, style: .active)
+        let textField = TextField(frame: .zero, style: .active, prefix: "Rp ")
         textField.textField.keyboardType = .numberPad
         
         return textField
@@ -88,7 +88,9 @@ class AddIncome: UIView {
     
     func setupView() {
         if let income = income {
-            incomeTextField.textField.text = "\(income)"
+            if income > 0.0 {
+                incomeTextField.textField.text = "\(income)"
+            }
         }
         
         headerStack.addArrangedSubview(topTitle)
@@ -105,7 +107,7 @@ class AddIncome: UIView {
     }
     
     func setupTargetsAndActions() {        
-        incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .editingDidEnd)
+        incomeTextField.textField.addTarget(self, action: #selector(saveIncome), for: .allEditingEvents)
         incomeTextField.textField.sendActions(for: .valueChanged)
     }
     
