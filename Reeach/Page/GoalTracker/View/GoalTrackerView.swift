@@ -171,6 +171,7 @@ class GoalTrackerView: UIView {
         goalTermStackView.addArrangedSubview(UIView())
         
         rootStackView.addArrangedSubview(collectionView)
+        rootStackView.addArrangedSubview(UIView())
         rootStackView.addArrangedSubview(bottomBlankContainerView)
         
         
