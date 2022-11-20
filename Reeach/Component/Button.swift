@@ -36,8 +36,10 @@ class Button: UIButton {
     public private(set) var backColor: UIColor?
     public private(set) var title: String?
     public private(set) var image: UIImage?
+    public private(set) var useBorder: Bool?
+    public private(set) var borderColorUseTextColor: Bool?
     
-    init(style: Style, foreground: Foreground, background: Background, title: String? = nil, image: UIImage? = nil, textColor: UIColor? = nil, backColor: UIColor? = nil) {
+    init(style: Style, foreground: Foreground, background: Background, title: String? = nil, image: UIImage? = nil, textColor: UIColor? = nil, backColor: UIColor? = nil, useBorder: Bool? = false, borderColorUseTextColor: Bool? = false) {
         self.style = style
         self.foreground = foreground
         self.background = background
@@ -45,6 +47,8 @@ class Button: UIButton {
         self.image = image
         self.textColor = textColor
         self.backColor = backColor
+        self.useBorder = useBorder
+        self.borderColorUseTextColor = borderColorUseTextColor
         super.init(frame: .zero)
         setup()
     }
@@ -58,6 +62,7 @@ class Button: UIButton {
         handleStyleButton()
         handleForegroundButton()
         handleBackgroundButton()
+        handleButtonBorder()
     }
     
     private func buttonSetup() {
@@ -123,6 +128,15 @@ class Button: UIButton {
                 backgroundColor = .darkSlateGrey
             case.ghostWhite:
                 backgroundColor = .ghostWhite
+            }
+        }
+    }
+    
+    func handleButtonBorder() {
+        if let useBorder = useBorder {
+            layer.borderWidth = useBorder ? 2 : 0
+            if let _ = borderColorUseTextColor {
+                layer.borderColor = textColor?.cgColor
             }
         }
     }
