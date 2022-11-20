@@ -8,10 +8,34 @@
 import CoreData
 
 extension DatabaseHelper {
+    
+    func filterInvalidBudgets(_ budgets: [Budget]) -> [Budget] {
+        var result: [Budget] = []
+        for budget in budgets {
+            if let goal = budget.category as? Goal,
+               let period = budget.period,
+               let createdAt = goal.createdAt,
+               period < DateFormatHelper.getStartDateOfMonth(of: createdAt) {
+                    continue
+            }
+            result.append(budget)
+        }
+        
+        return budgets
+    }
+    
+    func copyBudgets(_ budgets: [Budget], to period: Date) -> [Budget] {
+        var result: [Budget] = []
+        for budget in budgets {
+            result.append(createBudget(monthlyAllocation: budget.monthlyAllocation, period: period, category: budget.category!))
+        }
+        return result
+    }
+    
     func getBudgets() -> [Budget] {
         do {
             let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
-            return try context.fetch(fetchRequest)
+            return filterInvalidBudgets(try context.fetch(fetchRequest))
         }
         catch let error {
             let nsError = error as NSError
@@ -24,7 +48,7 @@ extension DatabaseHelper {
         let date = DateFormatHelper.getStartDateOfMonth(of: month)
         do {
             let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(on: date)
-            return try context.fetch(fetchRequest)
+            return filterInvalidBudgets(try context.fetch(fetchRequest))
         }
         catch let error {
             let nsError = error as NSError
@@ -37,7 +61,7 @@ extension DatabaseHelper {
         let date = DateFormatHelper.getStartDateOfMonth(of: month)
         do {
             let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(on: date, with: type)
-            return try context.fetch(fetchRequest)
+            return filterInvalidBudgets(try context.fetch(fetchRequest))
         }
         catch let error {
             let nsError = error as NSError
@@ -49,7 +73,7 @@ extension DatabaseHelper {
     func getBudgets(of category: Category) -> [Budget] {
         do {
             let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(of: category.name ?? "")
-            return try context.fetch(fetchRequest)
+            return filterInvalidBudgets(try context.fetch(fetchRequest))
         }
         catch let error {
             let nsError = error as NSError
