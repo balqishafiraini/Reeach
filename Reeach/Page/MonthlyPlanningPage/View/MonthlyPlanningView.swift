@@ -316,8 +316,8 @@ class MonthlyPlanningView: UIView {
         wantStack.isHidden = !hasBudget!
         
         if selectedDateString == currentDateString {
-            contentStackWithPaddingTop.isActive = false
-            contentStackWithoutPaddingTop.isActive = true
+            contentStackWithPaddingTop.isActive = hasBudget! ? false : true
+            contentStackWithoutPaddingTop.isActive = hasBudget! ? true : false
         } else {
             contentStackWithoutPaddingTop.isActive = false
             contentStackWithPaddingTop.isActive = true

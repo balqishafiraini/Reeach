@@ -43,6 +43,7 @@ class AddGoal: UIView {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(openGoalSheet))
         
+        button.addTarget(self, action: #selector(openGoalSheet), for: .touchUpInside)
         view.addGestureRecognizer(tap)
         
         return view
