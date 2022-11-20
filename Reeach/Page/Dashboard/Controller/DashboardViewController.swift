@@ -22,8 +22,7 @@ class DashboardViewController: UIViewController {
     }
     
     func loadData() {
-        let isSet = UserDefaults.standard.bool(forKey:  DateFormatHelper.getShortMonthAndYearString(from: Date()))
-        print(isSet)
+        let isSet = UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: Date()))
         
         goals = DatabaseHelper.shared.getAllocatedGoals(on: Date())
         
@@ -37,6 +36,8 @@ class DashboardViewController: UIViewController {
             contentView.emptyGoalButton.isHidden = true
             contentView.emptyGoalLabel.isHidden = true
         }
+        
+        contentView.collectionView.reloadData()
     }
     
     override func loadView() {
