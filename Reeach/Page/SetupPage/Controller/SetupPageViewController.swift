@@ -51,9 +51,24 @@ class SetupPageViewController: UIViewController {
             contentView.bottomView.backButton.isHidden = false
             contentView.bottomView.backButton.setTitle("Balik ke Goal-Setting", for: .normal)
         case 2.0:
+            var total = 0.0
+            var goal = 0.0
+            for goalBudget in goalBudgets {
+                goal += goalBudget.monthlyAllocation
+            }
+            for needBudget in needBudgets {
+                total += needBudget.monthlyAllocation
+            }
+            for wantBudget in wantBudgets {
+                total += wantBudget.monthlyAllocation
+            }
+            total += goal
+            
             var isEnabled = false
-            isEnabled = goalBudgets.count == 3 || goalBudgets.count == goals.count
+            isEnabled = goalBudgets.count <= 3 || goalBudgets.count <= goals.count
             isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
+            isEnabled = isEnabled ? goal >= 0.2 * income : isEnabled
+            isEnabled = isEnabled ? total == income : isEnabled
             
             contentView.bottomView.shouldDisableNextButton(isEnabled: isEnabled)
             contentView.bottomView.backButton.isHidden = false
@@ -71,10 +86,10 @@ class SetupPageViewController: UIViewController {
                                       handler: nil
         ))
         
-        alert.addAction(UIAlertAction(title: "Lanjut", style: UIAlertAction.Style.default, handler: { _ in
-            self.dismiss(animated: true)
-            
+        alert.addAction(UIAlertAction(title: "Lanjut", style: UIAlertAction.Style.default, handler: {
+            [weak self] _ in
             UserDefaults.standard.setValue(true, forKey: DateFormatHelper.getShortMonthAndYearString(from: Date()))
+            self?.dismiss(animated: true)
         }))
         
         self.present(alert, animated: true, completion: nil)

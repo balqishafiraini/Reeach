@@ -23,6 +23,7 @@ class BudgetView: UIView {
     var allocated: Double = 0.0
     var allocationCount = 0
     var shouldDisableButton: Bool
+    let limit = 3
     
     weak var delegate: SetupPageViewController?
     weak var budgetDelegate: BudgetDelegate?
@@ -105,6 +106,8 @@ class BudgetView: UIView {
     
     func setupView() {
         allocated = 0.0
+        allocationCount = 0
+        
         label.text = labelText
         
         self.addSubview(stack)
@@ -119,7 +122,7 @@ class BudgetView: UIView {
             allocated += budget.monthlyAllocation
         }
         
-        if allocated > 0.0 {
+        if allocated > 0.0 && type != "Income" {
             totalAllocationLabel.text = CurrencyHelper.getCurrency(from: allocated)
         }
         
@@ -135,7 +138,7 @@ class BudgetView: UIView {
         }
         
         if type == "Goal" && !shouldDisableButton {
-            label.text = "Goals (\(allocationCount)/\(delegate?.goals.count ?? 0))"
+            label.text = "Goals (\(allocationCount)/\((delegate?.goals.count)! < limit ? (delegate?.goals.count)! : limit))"
         }
         
         stack.setCustomSpacing(shouldDisableButton ? 12 : 4, after: labelStack)
@@ -167,43 +170,41 @@ class BudgetView: UIView {
         let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: incomeCategory!)
         let income = incomeBudget?.monthlyAllocation ?? 0.0
         
-        var target = 0.0
-        var percentage = ""
+        let goals = DatabaseHelper().getGoals()
+        
+        var lowTarget = 0.0
+        var highTarget = 0.0
         
         switch type {
         case "Goal":
-            print("Get status label if Goal")
-            target = income * 0.2
-            percentage = "20%"
+            lowTarget = income * 0.2
+            highTarget = income
             
-            if allocationCount == budgets?.count {
+            if allocationCount >= limit || allocationCount >= (goals.count) {
                 addButton.isHidden = true
             } else {
                 addButton.isHidden = false
             }
-            
         case "Need":
-            print("Get status label if Need")
-            target = income * 0.5
-            percentage = "50%"
+            lowTarget = income * 0.4
+            highTarget = income * 0.6
         case "Want":
-            print("Get status label if Want")
-            target = income * 0.3
-            percentage = "30%"
+            lowTarget = income * 0.2
+            highTarget = income * 0.4
         default :
             print("Something when wrong in \(#function). Cannot get status label for type \(type)")
         }
         
         statusLabel.textColor = .accentGreen7
-        if allocated < target {
-            statusLabel.text = "WADUH! Alokasi ini udah belum mencapai \(percentage)"
+        if allocated < lowTarget {
+            statusLabel.text = "WADUH! Alokasi ini belum mencapai \(Int(lowTarget*100/income))%"
             statusLabel.textColor = .red7
-        } else if allocated == target {
-            statusLabel.text = "COOL! Alokasi ini udah mencapai \(percentage)"
-//            addButton.isHidden = true
-//        } else {
-//            statusLabel.text = "COOL! Alokasi ini udah mencapai \(allocated/income * 100)%"
-//            addButton.isHidden = true
+        } else if allocated > highTarget {
+            statusLabel.text = "WADUH! Alokasi ini udah melebihi \(Int(highTarget*100/income))%"
+            statusLabel.textColor = .red7
+        } else {
+            statusLabel.text = "COOL! Alokasi ini udah cocok"
+            statusLabel.textColor = .accentGreen7
         }
     }
     
