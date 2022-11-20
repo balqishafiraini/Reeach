@@ -108,6 +108,7 @@ class AddBudget: UIView {
     }
     
     func setupView() {
+        self.backgroundColor = .ghostWhite
         setupContentStack()
         
         headerStack.addArrangedSubview(topTitle)

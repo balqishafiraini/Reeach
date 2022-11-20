@@ -46,6 +46,7 @@ class SetupProgressHeader: UIView {
     
     func setupView() {
         self.setDimensions(width: UIScreen.main.bounds.width - 32, height: 50)
+        self.backgroundColor = .ghostWhite
         
         self.addSubview(progressBar)
         self.addSubview(firstStep)
