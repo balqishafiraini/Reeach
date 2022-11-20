@@ -57,6 +57,13 @@ class AddBudget: UIView {
         return buttonLabel
     }()
     
+    lazy var allocationBar: AllocationBar = {
+        let bar = AllocationBar()
+        bar.configureView()
+        
+        return bar
+    }()
+    
     let headerStack: UIStackView = {
         let stack = UIStackView()
         
@@ -114,6 +121,7 @@ class AddBudget: UIView {
         headerStack.addArrangedSubview(topTitle)
         headerStack.addArrangedSubview(viewDescription)
         headerStack.addArrangedSubview(explanationButton)
+        headerStack.addArrangedSubview(allocationBar)
         headerStack.addArrangedSubview(goalStack)
         headerStack.addArrangedSubview(needStack)
         headerStack.addArrangedSubview(wantStack)
@@ -132,11 +140,41 @@ class AddBudget: UIView {
         
         contentView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 16, paddingRight: 16)
         
+        setAllocationBar()
         
         NSLayoutConstraint.activate([
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32)
         ])
         
+    }
+    
+    func setAllocationBar() {
+        let incomeCategory = DatabaseHelper().getCategory(name: "Income")
+        let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: incomeCategory!)
+        let income = incomeBudget?.monthlyAllocation ?? 0.0
+        
+        var goal = 0.0
+        var need = 0.0
+        var want = 0.0
+        
+        for budget in goalBudgets! {
+            goal += budget.monthlyAllocation
+        }
+        
+        for budget in needBudgets! {
+            need += budget.monthlyAllocation
+        }
+        
+        for budget in wantBudgets! {
+            want += budget.monthlyAllocation
+        }
+        
+        print("income: \(income)")
+        print("goal: \(goal)")
+        print("need: \(need)")
+        print("want: \(want)")
+
+        allocationBar.adjustWidth(goal: goal, need: need, want: want, income: income)
     }
     
     @objc func showExplanation() {
