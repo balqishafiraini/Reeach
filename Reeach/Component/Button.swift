@@ -30,8 +30,8 @@ class Button: UIButton {
     }
     
     public private(set) var style: Style
-    public private(set) var foreground: Foreground
-    public private(set) var background: Background
+    public private(set) var foreground: Foreground?
+    public private(set) var background: Background?
     public private(set) var textColor: UIColor?
     public private(set) var backColor: UIColor?
     public private(set) var title: String?
@@ -39,7 +39,7 @@ class Button: UIButton {
     public private(set) var useBorder: Bool?
     public private(set) var borderColorUseTextColor: Bool?
     
-    init(style: Style, foreground: Foreground, background: Background, title: String? = nil, image: UIImage? = nil, textColor: UIColor? = nil, backColor: UIColor? = nil, useBorder: Bool? = false, borderColorUseTextColor: Bool? = false) {
+    init(style: Style, foreground: Foreground? = .none, background: Background? = .none, title: String? = nil, image: UIImage? = nil, textColor: UIColor? = nil, backColor: UIColor? = nil, useBorder: Bool? = false, borderColorUseTextColor: Bool? = false) {
         self.style = style
         self.foreground = foreground
         self.background = background
@@ -107,6 +107,9 @@ class Button: UIButton {
                 case .destructive:
                     setTitleColor(UIColor.ghostWhite, for: .normal)
                     titleLabel?.font = .headline
+                case .none:
+                    setTitleColor(UIColor.ghostWhite, for: .normal)
+                    titleLabel?.font = .headline
             }
         }
     }
@@ -127,6 +130,8 @@ class Button: UIButton {
             case.darkSlateGrey:
                 backgroundColor = .darkSlateGrey
             case.ghostWhite:
+                backgroundColor = .ghostWhite
+            case .none:
                 backgroundColor = .ghostWhite
             }
         }
