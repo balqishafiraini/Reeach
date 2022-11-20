@@ -32,7 +32,7 @@ class TrackerEmptyStateView: UIView {
     }()
     
     func configureAutoLayout() {
-        self.backgroundColor = .whiteSmoke
+        self.backgroundColor = .ghostWhite
         
         addSubview(titleLabel)
         titleLabel.centerX(inView: self)

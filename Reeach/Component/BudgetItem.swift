@@ -9,6 +9,9 @@ import UIKit
 
 class BudgetItem: UIView {
 
+    var budget: Budget?
+    weak var delegate: SetupDelegate?
+    
     lazy var iconLabel: UILabel = {
         let label = UILabel()
         label.text = "Tambah icon"
@@ -53,11 +56,12 @@ class BudgetItem: UIView {
         return view
     }()
     
-    init(frame: CGRect, icon: String, title: String, amount: Double) {
+    init(frame: CGRect, budget: Budget) {
         super.init(frame: frame)
-        iconLabel.text = icon
-        titleLabel.text = title
-        amountLabel.text = CurrencyHelper.getCurrency(from: amount)
+        iconLabel.text = budget.category?.icon
+        titleLabel.text = budget.category?.name
+        amountLabel.text = CurrencyHelper.getCurrency(from: budget.monthlyAllocation)
+        self.budget = budget
         
         setupView()
     }
@@ -84,6 +88,13 @@ class BudgetItem: UIView {
         container.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
         iconLabel.anchor(width: 44, height: 44)
         stackView.anchor(top: container.topAnchor, left: container.leftAnchor, bottom: container.bottomAnchor, right: container.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 8, paddingRight: 12)
+        
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openDetail)))
     }
     
+    @objc func openDetail() {
+        if let budget {
+            delegate?.openBudgetDetail(budget: budget)
+        }
+    }
 }

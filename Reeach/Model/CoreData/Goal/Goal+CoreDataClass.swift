@@ -105,14 +105,14 @@ public class Goal: Category {
     func recommendedDeadline(of budget: Budget) -> Date? {
         // TODO: Change this one with Lambert's Function
         
-        let expectedSaving = expectedSaving(of: budget) ?? 0
+        let expectedAllocation = budget.monthlyAllocation
         let month = budget.period ?? Date()
         let initialSaving = initialSaving(before: month)
         let inflationRate = UserDefaults.standard.double(forKey: UserDefaultEnum().inflationRate)/1200
         
         for ad in 0...1200 {
-            let saving = expectedSaving * Double(ad) + initialSaving
-            let increasedValue = targetAmount * pow((1+inflationRate), Double(ad))
+            let saving = expectedAllocation * Double(ad+1) + initialSaving
+            let increasedValue = targetAmount * pow((1+inflationRate), Double(ad+1))
             
             if saving >= increasedValue {
                 let currentMonth = DateFormatHelper.getStartDateOfMonth(of: month)
@@ -175,4 +175,29 @@ extension Goal {
         Recommendation(icon: "⛑", name: "Asuransi", term: "Medium", description: "Cicil asuransi untuk jaga-jaga hal yang gak terduga."),
         Recommendation(icon: "🧓", name: "Dana Pensiun", term: "Long", description: "Yuk, siapkan dana pensiunmu. Atau malah retiring early? Leggoooo!")
     ]
+    
+    static func categorizeRecommendations(_ recommendations: [Goal.Recommendation]) -> [[Goal.Recommendation]] {
+        var result: [[Goal.Recommendation]] = []
+        var shortRecommendations: [Goal.Recommendation] = []
+        var mediumRecommendations: [Goal.Recommendation] = []
+        var longRecommendations: [Goal.Recommendation] = []
+        
+        for recommendation in recommendations {
+            if recommendation.term == "Short" {
+                shortRecommendations.append(recommendation)
+            }
+            else if recommendation.term == "Medium" {
+                mediumRecommendations.append(recommendation)
+            }
+            else if recommendation.term == "Long" {
+                longRecommendations.append(recommendation)
+            }
+        }
+        
+        if shortRecommendations.isEmpty == false { result.append(shortRecommendations) }
+        if mediumRecommendations.isEmpty == false { result.append(mediumRecommendations) }
+        if longRecommendations.isEmpty == false { result.append(longRecommendations) }
+        
+        return result
+    }
 }

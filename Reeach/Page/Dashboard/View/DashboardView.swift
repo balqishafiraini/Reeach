@@ -256,7 +256,7 @@ class DashboardView: UIView {
         viewDelegate?.addGoal()
     }
     
-    @objc func goToTipDetail(gestureRecognizer: UITapGestureRecognizer) {
+    @objc func goToTipDetail(_ gestureRecognizer: UITapGestureRecognizer) {
         if let card = gestureRecognizer.view as? TipCardView {
             viewDelegate?.goToTipDetail(tip: card.tip ?? Tip.allTips[0])
         }

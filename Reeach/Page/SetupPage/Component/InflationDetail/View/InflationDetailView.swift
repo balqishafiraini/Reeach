@@ -94,7 +94,7 @@ class InflationDetailView: UIView {
     lazy var whereDetailLabel = {
         let label = UILabel()
         label.text = """
-            Reeach menggunakan data dari World Bank untuk tahu angka ajaib ini. Angka ini diperbarui setiap tahunnya. Nah, 4% yang kita liat ini tuh data inflasi tahun 2022, bestie.
+            Reeach menggunakan data dari World Bank untuk tahu angka ajaib ini. Angka ini diperbarui setiap tahunnya. Nah, 4% yang kita liat ini tuh data inflasi tahun 2022, Bestie.
             
             """
         label.numberOfLines = 0

@@ -10,11 +10,9 @@ import UIKit
 extension GoalAllocationModalViewController: NavigationBarDelegate {
     func cancel() {
         let databaseHelper = DatabaseHelper.shared
+        databaseHelper.rollbackContext()
         if let budget, mode == .add {
             let _ = databaseHelper.delete(budget)
-        }
-        else if mode == .edit {
-            databaseHelper.rollbackContext()
         }
         dismissView()
     }
@@ -40,6 +38,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             budget.monthlyAllocation = montlyAllocation
             databaseHelper.saveContext()
         }
+        dismissView()
     }
     
     func delete() {
@@ -91,12 +90,16 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             .font: UIFont.caption1Medium as Any
         ]
         
-        let inflationAttributedString: NSMutableAttributedString = NSMutableAttributedString(string: "WATCH OUT! Nilai setelah inflasi: ", attributes: blueBoldAttributes)
-        inflationAttributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: Date())), attributes: blackBoldAttributes))
+        let inflationAttributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Nilai setelah inflasi: ", attributes: blueBoldAttributes)
+        inflationAttributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: DateFormatHelper.getStartDateOfMonth(of: Date()))), attributes: blackBoldAttributes))
         goalAllocationModalView.inflationButton.setAttributedTitle(inflationAttributedString, for: .normal)
         
+        var remaining = maximumAllocation - monthlyAllocation
+        if remaining < 0 {
+            remaining = 0
+        }
         let remainingAttributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Sisa anggaran yang harus dialokasikan: ", attributes: blackMediumAttributes)
-        remainingAttributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: maximumAllocation - monthlyAllocation), attributes: blackBoldAttributes))
+        remainingAttributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: remaining), attributes: blackBoldAttributes))
         goalAllocationModalView.remainingLabel.attributedText = remainingAttributedString
         
         if monthlyAllocation > unallocatedIncome {
@@ -139,7 +142,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             Pake strategi ini goalsnya akan sulit kamu capai nih.
             """
             
-            var recommendedDeadlineString = "selamanya. Gak mungkin nih :(("
+            var recommendedDeadlineString = "selamanya"
             if let recommendedDeadline = goal.recommendedDeadline(of: budget) {
                 recommendedDeadlineString = DateFormatHelper.getShortMonthAndYearString(from: recommendedDeadline)
             }

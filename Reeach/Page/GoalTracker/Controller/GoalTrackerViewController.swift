@@ -37,7 +37,7 @@ class GoalTrackerViewController: UIViewController {
             contentView.emptyStateContainerView.isHidden = false
             contentView.emptyGoalButton.isHidden = false
             contentView.emptyDescriptionLabel.text = "Tahu gak sih, bikin goals itu langkah pertama untuk financial planning lho."
-            contentView.centerYEmptyContainerViewConstraint.constant = 0
+            contentView.centerYEmptyContainerViewConstraint.constant = 20
         }
         else {
             contentView.goalTermContainerView.isHidden = false
@@ -47,7 +47,7 @@ class GoalTrackerViewController: UIViewController {
             contentView.emptyStateContainerView.isHidden = true
             contentView.emptyGoalButton.isHidden = true
             contentView.emptyDescriptionLabel.text = "Kamu belum memiliki goals tidak aktif"
-            contentView.centerYEmptyContainerViewConstraint.constant = 100
+            contentView.centerYEmptyContainerViewConstraint.constant = 120
         }
         contentView.activeButton.setIsActive(.active)
         contentView.inActiveButton.setIsActive(.inactive)

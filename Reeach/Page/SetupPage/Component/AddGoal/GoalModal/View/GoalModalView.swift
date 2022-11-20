@@ -49,7 +49,7 @@ class GoalModalView: UIView {
         button.imageView?.heightAnchor.constraint(equalTo: button.titleLabel?.heightAnchor ?? button.heightAnchor).isActive = true
         button.imageView?.widthAnchor.constraint(equalTo: button.imageView!.heightAnchor).isActive = true
         button.tintColor = .royalHunterBlue
-        button.setTitle("WATCH OUT! Nilai setelah inflasi: ", for: .normal)
+        button.setTitle("Nilai setelah inflasi: ", for: .normal)
         button.contentHorizontalAlignment = .left
         button.backgroundColor = .clear
         button.setTitleColor(.royalHunterBlue, for: .normal)
@@ -64,6 +64,7 @@ class GoalModalView: UIView {
     let goalType = {
         let tf = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(named: "ChevronRight"))
         tf.tintColor = .clear
+        tf.textField.isUserInteractionEnabled = false
         tf.textField.placeholder = "Pilih Tipe Goal"
         return tf
     }()
@@ -102,6 +103,7 @@ class GoalModalView: UIView {
         total.textField.keyboardType = .numberPad
         switchView.tf.textField.keyboardType = .numberPad
         
+        goalType.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToTermPicker)))
         recommendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         inflationButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveGoalToCoreData), for: .touchUpInside)
@@ -202,12 +204,18 @@ class GoalModalView: UIView {
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
+        dismissKeyboard()
         if sender == recommendButton {
             viewDelegate?.goToGoalRecommendation()
         }
         else if sender == inflationButton {
             viewDelegate?.goToInflationDetail()
         }
+    }
+    
+    @objc func goToTermPicker(_ gestureRecognizer: UITapGestureRecognizer) {
+        dismissKeyboard()
+        viewDelegate?.goToTermPicker()
     }
     
     @objc func dismissView() {

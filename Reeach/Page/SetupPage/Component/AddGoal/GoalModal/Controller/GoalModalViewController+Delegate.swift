@@ -10,11 +10,9 @@ import UIKit
 extension GoalModalViewController: NavigationBarDelegate {
     func cancel() {
         let databaseHelper = DatabaseHelper.shared
+        databaseHelper.rollbackContext()
         if let goal, mode == .add {
             let _ = databaseHelper.delete(goal)
-        }
-        else if mode == .edit {
-            databaseHelper.rollbackContext()
         }
         dismissView()
     }
@@ -65,8 +63,8 @@ extension GoalModalViewController: GoalModalViewDelegate {
             .font: UIFont.caption1Bold as Any
         ]
         
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "WATCH OUT! Nilai setelah inflasi: ", attributes: blueAttributes)
-        attributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: Date())), attributes: blackAttributes))
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Nilai setelah inflasi: ", attributes: blueAttributes)
+        attributedString.append(NSAttributedString(string: CurrencyHelper.getCurrency(from: goal.valueAfterInflation(from: DateFormatHelper.getStartDateOfMonth(of: Date()))), attributes: blackAttributes))
         
         goalModalView.inflationButton.setAttributedTitle(attributedString, for: .normal)
         DatabaseHelper.shared.rollbackContext()

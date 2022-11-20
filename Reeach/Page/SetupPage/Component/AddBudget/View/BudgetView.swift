@@ -92,7 +92,8 @@ class BudgetView: UIView {
         self.addSubview(stack)
         
         for budget in budgets! {
-            let newItem = BudgetItem(frame: .zero, icon: budget.category?.icon ?? "❓", title: budget.category?.name ?? "Title", amount: budget.monthlyAllocation)
+            let newItem = BudgetItem(frame: .zero, budget: budget)
+            newItem.delegate = delegate
             budgetStack.addArrangedSubview(newItem)
             allocationCount+=1
             
@@ -180,7 +181,11 @@ class BudgetView: UIView {
     }
     
     @objc func openGoalSelection() {
-        // TODO: Coba tambahin goal ke controller disini
-//        print("\(#function) for \(type)")
+        if type == "Goal" {
+            delegate?.openGoalAllocationSheet()
+        }
+        else {
+            delegate?.openCategoryAllocationSheet(type: type)
+        }
     }
 }
