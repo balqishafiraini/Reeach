@@ -24,9 +24,17 @@ class AddIncomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        var income: Double = 0.0
         let incomeCategory = DatabaseHelper().getCategory(name: "Income")
         let incomeBudget = DatabaseHelper().getBudget(on: Date(), of: incomeCategory!)
-        let income = incomeBudget?.monthlyAllocation ?? 0.0
+        
+        if incomeBudget == nil {
+            let prevIncomeBudget = DatabaseHelper.shared.getBudget(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), of: incomeCategory!)
+            
+            income = prevIncomeBudget?.monthlyAllocation ?? 0.0
+        } else {
+            income = incomeBudget?.monthlyAllocation ?? 0.0
+        }
         
         addIncomeView.income = income
         addIncomeView.delegate = delegate
