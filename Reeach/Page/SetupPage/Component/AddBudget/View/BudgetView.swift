@@ -56,6 +56,23 @@ class BudgetView: UIView {
         return label
     }()
     
+    lazy var totalAllocationLabel: UILabel = {
+        let label = UILabel()
+        label.font = .bodyBold
+        
+        return label
+    }()
+    
+    lazy var labelStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.addArrangedSubview(label)
+        stack.addArrangedSubview(totalAllocationLabel)
+        
+        return stack
+    }()
+    
     lazy var statusLabel: UILabel = {
         let label = UILabel()
             
@@ -102,9 +119,13 @@ class BudgetView: UIView {
             allocated += budget.monthlyAllocation
         }
         
+        if allocated > 0.0 {
+            totalAllocationLabel.text = CurrencyHelper.getCurrency(from: allocated)
+        }
+        
         setupStatusLabel()
         
-        stack.addArrangedSubview(label)
+        stack.addArrangedSubview(labelStack)
         if !shouldDisableButton {
             stack.addArrangedSubview(statusLabel)
         }
@@ -117,7 +138,7 @@ class BudgetView: UIView {
             label.text = "Goals (\(allocationCount)/\(delegate?.goals.count ?? 0))"
         }
         
-        stack.setCustomSpacing(shouldDisableButton ? 12 : 4, after: label)
+        stack.setCustomSpacing(shouldDisableButton ? 12 : 4, after: labelStack)
         stack.setCustomSpacing(12, after: statusLabel)
         stack.setCustomSpacing(12, after: budgetStack)
         
@@ -180,8 +201,8 @@ class BudgetView: UIView {
         } else if allocated == target {
             statusLabel.text = "COOL! Alokasi ini udah mencapai \(percentage)"
 //            addButton.isHidden = true
-        } else {
-            statusLabel.text = "COOL! Alokasi ini udah mencapai lebih dari \(percentage)"
+//        } else {
+//            statusLabel.text = "COOL! Alokasi ini udah mencapai \(allocated/income * 100)%"
 //            addButton.isHidden = true
         }
     }

@@ -40,27 +40,23 @@ class AddBudgetViewController: UIViewController {
         needBudgets = DatabaseHelper().getBudgets(on: Date(), type: "Need")
         wantBudgets = DatabaseHelper().getBudgets(on: Date(), type: "Want")
         
-        print(goalBudgets)
-        print(needBudgets)
-        print(wantBudgets)
-        
         if goalBudgets.isEmpty {
             print("Goal is empty, using previous month data")
             let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Goal")
             
-            goalBudgets = oldBudget
+            self.goalBudgets = oldBudget
             DatabaseHelper.shared.saveContext()
         }
         if needBudgets.isEmpty {
             print("Need is empty, using previous month data")
             let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Need")
-            goalBudgets = oldBudget
+            self.needBudgets = oldBudget
             DatabaseHelper.shared.saveContext()
         }
         if wantBudgets.isEmpty {
             print("Want is empty, using previous month data")
             let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Want")
-            goalBudgets = oldBudget
+            self.wantBudgets = oldBudget
             DatabaseHelper.shared.saveContext()
         }
 
@@ -86,14 +82,8 @@ class AddBudgetViewController: UIViewController {
     }
     
     func shouldDisableAddButton(enable: Bool? = false) {
-        print(#function)
-        
-        if let enable = enable {
-            isEnabled = enable
-        } else {
-            isEnabled = !goalBudgets.isEmpty
-        }
-        
+        isEnabled = !goalBudgets.isEmpty
+    
         addBudgetView.needStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
         addBudgetView.wantStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
         
