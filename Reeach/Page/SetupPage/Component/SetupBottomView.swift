@@ -12,7 +12,7 @@ class SetupBottomView: UIView {
     weak var delegate: SetupDelegate?
     
     let backButton: Button = {
-        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Kembali ke income")
+        let button = Button(style: .rounded, foreground: .primary, background: .tangelo, title: "Kembali ke income", textColor: .primary7, backColor: .ghostWhite, useBorder: true, borderColorUseTextColor: true)
         
         return button
     }()
