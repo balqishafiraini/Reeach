@@ -93,12 +93,8 @@ class BudgetView: UIView {
         self.addSubview(stack)
         
         for budget in budgets! {
-<<<<<<< HEAD:Reeach/Page/SetupPage/Component/AddBudget/View/BudgetView.swift
             let newItem = BudgetItem(frame: .zero, budget: budget)
             newItem.delegate = delegate
-=======
-            let newItem = BudgetItem(frame: .zero, icon: budget.category?.icon ?? "❓", title: budget.category?.name ?? "Title", amount: budget.monthlyAllocation, type: budget.category?.type ?? "Type")
->>>>>>> f6d3203 (Fix: Budget layout):Reeach/Page/SetupPage/Component/AddGoal/View/BudgetView.swift
             budgetStack.addArrangedSubview(newItem)
             
             allocationCount+=1
@@ -191,18 +187,11 @@ class BudgetView: UIView {
     }
     
     @objc func openGoalSelection() {
-<<<<<<< HEAD:Reeach/Page/SetupPage/Component/AddBudget/View/BudgetView.swift
         if type == "Goal" {
             delegate?.openGoalAllocationSheet()
         }
         else {
             delegate?.openCategoryAllocationSheet(type: type)
         }
-=======
-        // TODO: Coba tambahin goal ke controller disini
-        print("\(#function) for \(type)")
-        budgetDelegate?.addBudget()
-        
->>>>>>> 91b79da (Feat: Add temporary function to disable addBudget button):Reeach/Page/SetupPage/Component/AddGoal/View/BudgetView.swift
     }
 }
