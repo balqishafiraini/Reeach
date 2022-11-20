@@ -29,12 +29,14 @@ class TabBarController: UITabBarController {
         
         self.tabBar.tintColor = UIColor.ghostWhite
         self.tabBar.isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.royalHunterBlue
+        UITabBar.appearance().unselectedItemTintColor = .secondary4
+        UITabBar.appearance().barTintColor = .royalHunterBlue
         
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = .royalHunterBlue
+            appearance.stackedLayoutAppearance.normal.iconColor = .secondary4
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         }
