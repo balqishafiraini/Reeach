@@ -112,21 +112,21 @@ class GoalsOverviewView: UIView {
         headerView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor)
 
         containerView.addSubview(messageLabel)
-        messageLabel.anchor(top: headerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: UIScreen.main.bounds.height*0.35, paddingLeft: 20, paddingRight: 20)
+        messageLabel.anchor(top: headerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 275, paddingLeft: 20, paddingRight: 20)
 
         containerView.addSubview(deadline)
-        deadline.anchor(top: messageLabel.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
+        deadline.anchor(top: messageLabel.bottomAnchor, left: containerView.leftAnchor, paddingTop: 24, paddingLeft: 20)
 
         containerView.addSubview(deadlineView)
         deadlineView.setUp()
         deadlineView.anchor(top: deadline.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
 
         containerView.addSubview(status)
-        status.anchor(top: deadlineView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 24, paddingLeft: 20, paddingRight: 20)
+        status.anchor(top: deadlineView.bottomAnchor, left: containerView.leftAnchor, paddingTop: 24, paddingLeft: 20)
 
         containerView.addSubview(statusView)
         statusView.setUp()
-        statusView.anchor(top: status.bottomAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
+        statusView.anchor(top: status.bottomAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
 
     }
     
@@ -215,39 +215,31 @@ class HeaderView: UIView {
     let editButton: UIButton = {
         let button = UIButton()
         button.tintColor = .tangerineYellow
-        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .black)
-        let symbol = UIImage(systemName: "square.and.pencil", withConfiguration: config)
-        button.setImage(symbol, for: .normal)
+        button.setImage(UIImage(named: "Edit"), for: .normal)
         return button
     }()
     
-//    let containerView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .clear
-//        return view
-//    }()
-    
     func setUp() {
-        //auto-layout
-                
+        
         addSubview(background)
-        background.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4)
+        background.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, width: UIScreen.main.bounds.width, height: 320)
         
         addSubview(backButton)
         backButton.anchor(top: background.topAnchor, left: background.leftAnchor, paddingTop: 20, paddingLeft: 20)
         
         addSubview(iconLabel)
-        iconLabel.anchor(top: backButton.bottomAnchor, paddingTop: 8)
+        iconLabel.centerX(inView: background)
+        iconLabel.anchor(top: backButton.bottomAnchor, paddingTop: 5)
         
         addSubview(goalName)
-        goalName.centerX(inView: background)
-        goalName.anchor(top: background.topAnchor, left: iconLabel.rightAnchor, paddingTop: UIScreen.main.bounds.height*0.1, paddingLeft: 10)
+        goalName.centerX(inView: iconLabel)
+        goalName.anchor(top: iconLabel.bottomAnchor, paddingTop: 5)
         
         addSubview(editButton)
-        editButton.anchor(top: background.topAnchor, left: goalName.rightAnchor, paddingTop: UIScreen.main.bounds.height*0.1, paddingLeft: 10)
-
+        editButton.anchor(top: iconLabel.bottomAnchor, left: goalName.rightAnchor, paddingTop: 10, paddingLeft: 5)
+        
         addSubview(termLabel)
-        termLabel.centerX(inView: goalName)
+        termLabel.centerX(inView: iconLabel)
         termLabel.anchor(top: goalName.bottomAnchor, paddingTop: 8)
         
         addSubview(totalTitle)
