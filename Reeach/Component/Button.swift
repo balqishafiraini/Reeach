@@ -95,7 +95,7 @@ class Button: UIButton {
     private func handleForegroundButton() {
         if let color = textColor {
             setTitleColor(color, for: .normal)
-            titleLabel?.font = .headline
+            titleLabel?.font = .bodyBold
         } else {
             switch foreground {
                 case .primary:
