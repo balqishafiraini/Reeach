@@ -89,16 +89,10 @@ class AddBudgetViewController: UIViewController {
     }
     
     func showExplanation(){
-        let navigationController = UINavigationController()
-        navigationController.navigationItem.largeTitleDisplayMode = .never
-        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
-        
-        let modalViewController = TipDetailViewController()
-        modalViewController.tip = Tip.allTips[0]
-        modalViewController.modalPresentationStyle = .popover
+        let modalViewController = BudgetingTechniqueExplanationViewController()
+        modalViewController.modalPresentationStyle = .pageSheet
         modalViewController.modalTransitionStyle = .coverVertical
-        
-        navigationController.pushViewController(modalViewController, animated: true)
-        delegate?.present(navigationController, animated: true)
+
+        delegate?.present(modalViewController, animated: true)
     }
 }
