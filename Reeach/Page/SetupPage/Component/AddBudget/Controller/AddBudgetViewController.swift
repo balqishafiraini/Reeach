@@ -45,16 +45,23 @@ class AddBudgetViewController: UIViewController {
         print(wantBudgets)
         
         if goalBudgets.isEmpty {
-            print("here")
-            goalBudgets = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Goal")
+            print("Goal is empty, using previous month data")
+            let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Goal")
+            
+            goalBudgets = oldBudget
+            DatabaseHelper.shared.saveContext()
         }
         if needBudgets.isEmpty {
-            print("here")
-            needBudgets = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Need")
+            print("Need is empty, using previous month data")
+            let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Need")
+            goalBudgets = oldBudget
+            DatabaseHelper.shared.saveContext()
         }
         if wantBudgets.isEmpty {
-            print("here")
-            wantBudgets = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Want")
+            print("Want is empty, using previous month data")
+            let oldBudget = DatabaseHelper().getBudgets(on: DateFormatHelper.getStartDateOfPreviousMonth(of: Date()), type: "Want")
+            goalBudgets = oldBudget
+            DatabaseHelper.shared.saveContext()
         }
 
         addBudgetView.goalBudgets = self.goalBudgets
