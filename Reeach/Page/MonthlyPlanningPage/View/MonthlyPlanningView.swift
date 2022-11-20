@@ -393,7 +393,7 @@ class MonthlyPlanningView: UIView {
     }
     
     @objc func createMonthlyPlan() {
-        print(#function)
+        delegate?.goToBudgetPlanner()
     }
     
 }

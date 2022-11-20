@@ -11,4 +11,10 @@ extension MonthlyPlanningViewController: PlannerDelegate {
     func getPlanner(forDate: Date) {
         setupInitialState(date: forDate)
     }
+    
+    func goToBudgetPlanner() {
+        let targetViewController = SetupPageViewController()
+        targetViewController.modalPresentationStyle = .fullScreen
+        present(targetViewController, animated: true)
+    }
 }

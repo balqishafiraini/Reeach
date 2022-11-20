@@ -9,4 +9,5 @@ import Foundation
 
 protocol PlannerDelegate: AnyObject {
     func getPlanner(forDate: Date)
+    func goToBudgetPlanner()
 }
