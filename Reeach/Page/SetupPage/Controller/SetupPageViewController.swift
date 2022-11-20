@@ -64,7 +64,7 @@ class SetupPageViewController: UIViewController {
     }
     
     func showPopUpConfirm() {
-        let alert = UIAlertController(title: "Yakin udah selesai?", message: "Coba cek deh. Ada yang kureng gak?", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Yakin udah selesai?", message: "Kamu gak bisa alokasiin buat goal lagi sampai bulan depan.", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Batal",
                                       style: UIAlertAction.Style.destructive,
