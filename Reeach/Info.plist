@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
-	<string>10.0.0</string>
+	<string>NO</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>13.0</string>
 	<key>NSAppTransportSecurity</key>
