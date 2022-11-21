@@ -26,9 +26,7 @@ class GoalItemCollectionViewCell: UICollectionViewCell {
     
     lazy var iconContainer: UIView = {
         let view = UIView()
-        if #available(iOS 15, *){
-            view.setDimensions(width: size, height: size)
-        }
+        view.setDimensions(width: size, height: size)
         view.layer.cornerRadius = size / 2
         view.backgroundColor = .secondary2
         

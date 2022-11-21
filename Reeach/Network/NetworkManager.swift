@@ -21,11 +21,11 @@ class NetworkManager: NSObject {
         components.path = endPoint.path
                 
         var url: String?
-        if #available(iOS 16, *){
-            url = components.url?.formatted()
-        } else {
+//        if #available(iOS 16, *){
+//            url = components.url?.formatted()
+//        } else {
             url = "https://\(endPoint.baseUrl)\(endPoint.path)"
-        }
+//        }
 
         guard let url = url else {
             networkDelegate?.onResponse(from: nil, result: .failure(.missingUrl))

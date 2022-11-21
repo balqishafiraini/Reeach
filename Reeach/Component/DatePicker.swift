@@ -15,10 +15,8 @@ class DatePicker: UIView, UITextFieldDelegate {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.locale = .current
-        if #available(iOS 14, *) {
-            datePicker.preferredDatePickerStyle = .wheels
-            datePicker.sizeToFit()
-        }
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.sizeToFit()
         
         datePicker.addTarget(self, action: #selector(openDatePicker), for: .valueChanged)
         
