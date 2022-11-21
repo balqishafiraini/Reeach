@@ -203,8 +203,8 @@ class GoalModalView: UIView {
         let dueDate = dueDate.date ?? Date()
         let termExtended = goalType.textField.text ?? "Unknown-term"
         let term = String(termExtended[..<(termExtended.firstIndex(of: "-") ?? termExtended.endIndex)])
-        let amount = Double(total.textField.text ?? "0.0") ?? 0
-        let initSaving = Double(switchView.tf.textField.text ?? "0.0") ?? 0
+        let amount = Double(total.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0
+        let initSaving = Double(switchView.tf.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0
         
         viewDelegate?.save(name: name, icon: icon, dueDate: dueDate, targetAmount: amount, timeTerm: term, initialSaving: initSaving)
     }
