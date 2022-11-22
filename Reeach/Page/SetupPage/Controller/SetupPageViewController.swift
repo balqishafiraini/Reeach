@@ -66,7 +66,6 @@ class SetupPageViewController: UIViewController {
                 
                 var isEnabled = false
                 isEnabled = goalBudgets.count <= 3 || goalBudgets.count <= goals.count
-                isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
                 isEnabled = isEnabled ? goal >= 0.2 * income : isEnabled
                 
                 contentView.budgetView.addBudgetView.needStack.addButton.isEnabled = isEnabled
@@ -74,6 +73,7 @@ class SetupPageViewController: UIViewController {
                 contentView.budgetView.addBudgetView.needStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
                 contentView.budgetView.addBudgetView.wantStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
                 
+                isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
                 isEnabled = isEnabled ? total == income : isEnabled
                 
                 contentView.bottomView.shouldDisableNextButton(isEnabled: isEnabled)

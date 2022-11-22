@@ -168,17 +168,11 @@ class AddBudget: UIView {
         for budget in wantBudgets! {
             want += budget.monthlyAllocation
         }
-        
-        print("income: \(income)")
-        print("goal: \(goal)")
-        print("need: \(need)")
-        print("want: \(want)")
 
         allocationBar.adjustWidth(goal: goal, need: need, want: want, income: income)
     }
     
     @objc func showExplanation() {
-        print(#function)
         budgetDelegate?.showTip()
     }
 

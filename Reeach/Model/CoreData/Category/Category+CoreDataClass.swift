@@ -26,7 +26,6 @@ public class Category: NSManagedObject {
                    let createdAt = goal.createdAt,
                    budgetMonth < DateFormatHelper.getStartDateOfMonth(of: createdAt)
                 {
-                    print(#function)
                     return false
                 }
                 return true

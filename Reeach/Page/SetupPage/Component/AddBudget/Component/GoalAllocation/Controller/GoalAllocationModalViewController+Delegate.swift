@@ -41,6 +41,8 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
     func delete() {
         let databaseHelper = DatabaseHelper.shared
         databaseHelper.rollbackContext()
+        budget?.monthlyAllocation = 0
+        databaseHelper.saveContext()
         dismissView()
     }
     

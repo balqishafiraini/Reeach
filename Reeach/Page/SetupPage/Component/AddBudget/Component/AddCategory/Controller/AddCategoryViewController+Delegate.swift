@@ -18,7 +18,6 @@ extension AddCategoryViewController: NavigationBarDelegate {
 
 extension AddCategoryViewController: AddCategoryViewDelegate {
     func save(icon: String, name: String) {
-        print(#function)
         category?.icon = icon
         category?.name = name
         DatabaseHelper.shared.saveContext()
@@ -26,7 +25,6 @@ extension AddCategoryViewController: AddCategoryViewDelegate {
     }
     
     func edit() {
-        print(#function)
     }
 }
 
