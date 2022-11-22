@@ -96,7 +96,7 @@ extension GoalModalViewController: GoalModalViewDelegate {
         
         if mode == .add {
             let date = DateFormatHelper.getStartDateOfPreviousMonth(of: Date())
-            let budget = databaseHelper.createBudget(monthlyAllocation: initialSaving, period: date, category: goal)
+            let budget = databaseHelper.createBudget(monthlyAllocation: 0, period: date, category: goal)
             let _ = databaseHelper.createTransaction(name: "Initial Saving", date: date, budget: budget, amount: initialSaving, notes: "")
         }
         else if mode == .edit {
@@ -104,13 +104,13 @@ extension GoalModalViewController: GoalModalViewDelegate {
             let difference = initialSaving - previousInitialSaving
             if difference != 0 {
                 let date = goal.updatedAt ?? Date()
-                let budget = databaseHelper.createBudget(monthlyAllocation: initialSaving, period: date, category: goal)
+                let budget = databaseHelper.createBudget(monthlyAllocation: 0, period: date, category: goal)
                 let _ = databaseHelper.createTransaction(
                     name: "Edit Initial Saving",
                     date: date,
                     budget: budget,
                     amount: difference,
-                    notes: "Previous Initial Saving: \(previousInitialSaving).\nCNew Initial Saving: \(initialSaving)"
+                    notes: "Previous Initial Saving: \(previousInitialSaving).\nNew Initial Saving: \(initialSaving)"
                 )
             }
         }

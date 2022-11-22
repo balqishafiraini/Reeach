@@ -13,7 +13,6 @@ extension AddBudgetViewController: DismissViewDelegate {
 
 extension AddBudgetViewController: BudgetDelegate {
     func addBudget() {
-        shouldDisableAddButton(enable: true)
     }
     
     func showTip() {

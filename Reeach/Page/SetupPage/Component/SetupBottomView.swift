@@ -79,6 +79,6 @@ class SetupBottomView: UIView {
     func shouldDisableNextButton(isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
         
-        nextButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
+        nextButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .primary! : .black4!, textColor: isEnabled ? .black13! : .black7!)
     }
 }

@@ -12,14 +12,17 @@ import CoreData
 @objc(Category)
 public class Category: NSManagedObject {
     
-    func isActive(on month: Date) -> Bool {
-        let month = DateFormatHelper.getStartDateOfMonth(of: month)
+    func isActive(on date: Date) -> Bool {
+        let month = DateFormatHelper.getStartDateOfMonth(of: date)
         let budgets = budgets?.allObjects as! [Budget]
         
         for budget in budgets {
             if let budgetMonth = budget.period,
                budgetMonth == month {
-                if let goal = self as? Goal,
+                if budget.monthlyAllocation <= 0 {
+                    return false
+                }
+                else if let goal = self as? Goal,
                    let createdAt = goal.createdAt,
                    budgetMonth < DateFormatHelper.getStartDateOfMonth(of: createdAt)
                 {

@@ -68,7 +68,7 @@ class GoalAllocationModalView: UIView {
         return datePicker
     }()
     
-    lazy var targetAmountTextField = TextField(frame: .zero, title: "Target Terkumpul", style: .template, prefix: "Rp")
+    lazy var targetAmountTextField = TextField(frame: .zero, title: "Target Goal", style: .template, prefix: "Rp")
     
     lazy var inflationButton: UIButton = {
         let button = UIButton()

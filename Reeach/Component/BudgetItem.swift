@@ -36,7 +36,7 @@ class BudgetItem: UIView {
         let label = UILabel()
         label.font = .bodyMedium
         label.textAlignment = .right
-        
+        label.setContentHuggingPriority(UILayoutPriority(251), for: .horizontal)
         return label
     }()
     
@@ -94,6 +94,7 @@ class BudgetItem: UIView {
         
         stackView.addArrangedSubview(iconLabel)
         stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(UIView())
         stackView.addArrangedSubview(amountLabel)
         
         stackView.setCustomSpacing(12, after: iconLabel)

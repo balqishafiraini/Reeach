@@ -32,7 +32,6 @@ class DashboardView: UIView {
     
     lazy var greetingLabel = {
         let label = UILabel()
-        label.text = DateFormatHelper.getGreeting(from: Date())
         label.font = UIFont.largeTitle
         label.textColor = .ghostWhite
         label.translatesAutoresizingMaskIntoConstraints = false

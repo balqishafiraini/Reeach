@@ -353,6 +353,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B0D8995292CC95A0006BC6B /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				CAFC302C29269EC900D21274 /* CategoryAllocation */,
+				CAFC302129269EBF00D21274 /* GoalAllocation */,
+				3B4AE5712922767A000EA6C1 /* AddCategory */,
+				3B4AE573292276BE000EA6C1 /* SelectBudgetCategory */,
+				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
+				3B8197DD29187A450065C01E /* SelectGoal */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		3B0D8996292CC9780006BC6B /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197CF291862B60065C01E /* TermPicker */,
+				3B8197E62918F85F0065C01E /* GoalRecommendation */,
+				FADF89EC2918C42C00E590C0 /* GoalModal */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		3B1AF1DE2926F5020063DFDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1080,14 +1103,9 @@
 		CA91B82C29194A4600627257 /* AddBudget */ = {
 			isa = PBXGroup;
 			children = (
+				3B0D8995292CC95A0006BC6B /* Component */,
 				CA0CB2CD2926A43500D8AAB0 /* View */,
 				CAFC30372926A30000D21274 /* Controller */,
-				CAFC302C29269EC900D21274 /* CategoryAllocation */,
-				CAFC302129269EBF00D21274 /* GoalAllocation */,
-				3B4AE5712922767A000EA6C1 /* AddCategory */,
-				3B4AE573292276BE000EA6C1 /* SelectBudgetCategory */,
-				3B8197F12919CBB10065C01E /* BudgetingTechniqueExplanation */,
-				3B8197DD29187A450065C01E /* SelectGoal */,
 			);
 			path = AddBudget;
 			sourceTree = "<group>";
@@ -1120,11 +1138,9 @@
 		CAEFBE44291D87A70037F1AE /* AddGoal */ = {
 			isa = PBXGroup;
 			children = (
+				3B0D8996292CC9780006BC6B /* Component */,
 				CA84896C2923BB6700CF6CB0 /* Controller */,
 				CA84896B2923BB6100CF6CB0 /* View */,
-				3B8197CF291862B60065C01E /* TermPicker */,
-				3B8197E62918F85F0065C01E /* GoalRecommendation */,
-				FADF89EC2918C42C00E590C0 /* GoalModal */,
 			);
 			path = AddGoal;
 			sourceTree = "<group>";

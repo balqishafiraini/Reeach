@@ -283,8 +283,9 @@ class MonthlyPlanningView: UIView {
         stack.addArrangedSubview(tipViewContainerView)
         stack.addArrangedSubview(contentView)
         
-        stack.setCustomSpacing(10, after: monthStackContainerView)
-    
+        stack.setCustomSpacing(4, after: titleLabel)
+        stack.setCustomSpacing(20, after: monthStackContainerView)
+        
         scrollView.addSubview(stack)
         
         self.addSubview(blankView2)

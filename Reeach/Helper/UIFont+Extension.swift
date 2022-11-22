@@ -22,7 +22,8 @@ extension UIFont {
     static let bodyBold = UIFont(name: "GeneralSans-Bold", size: 16)
     static let bodyMedium = UIFont(name: "GeneralSans-Medium", size: 16)
     static let caption1Bold = UIFont(name: "GeneralSans-Bold", size: 12)
+    static let caption1SemiBold = UIFont(name: "GeneralSans-Semibold", size: 12)
     static let caption1Medium = UIFont(name: "GeneralSans-Medium", size: 12)
-    static let caption2SemiBold = UIFont(name: "GeneralSans-Bold", size: 11)
+    static let caption2SemiBold = UIFont(name: "GeneralSans-Semibold", size: 11)
     static let caption2Medium = UIFont(name: "GeneralSans-Medium", size: 11)
 }

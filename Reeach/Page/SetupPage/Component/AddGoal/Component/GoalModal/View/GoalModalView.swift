@@ -59,7 +59,7 @@ class GoalModalView: UIView {
         return button
     }()
     
-    let total = TextField(frame: .zero, title: "Jumlah", style: .template, prefix: "Rp")
+    let total = TextField(frame: .zero, title: "Target Goal", style: .template, prefix: "Rp")
     
     let goalType = {
         let tf = TextField(frame: .zero, title: "Tipe Goal", style: .template, icon: UIImage(named: "ChevronRight"))
@@ -204,7 +204,7 @@ class GoalModalView: UIView {
         let termExtended = goalType.textField.text ?? "Unknown-term"
         let term = String(termExtended[..<(termExtended.firstIndex(of: "-") ?? termExtended.endIndex)])
         let amount = Double(total.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0
-        let initSaving = Double(switchView.tf.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0
+        let initSaving = switchView.toggleSwitch.isOn ?  Double(switchView.tf.textField.text?.replacingOccurrences(of: ".", with: "") ?? "0.0") ?? 0 : 0
         
         viewDelegate?.save(name: name, icon: icon, dueDate: dueDate, targetAmount: amount, timeTerm: term, initialSaving: initSaving)
     }

@@ -18,6 +18,7 @@ class DashboardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        contentView.greetingLabel.text = DateFormatHelper.getGreeting(from: Date())
         loadData()
     }
     
