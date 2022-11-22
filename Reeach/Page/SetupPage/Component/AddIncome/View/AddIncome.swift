@@ -44,7 +44,7 @@ class AddIncome: UIView {
     }()
     
     let incomeTextField: TextField = {
-        let textField = TextField(frame: .zero, style: .active, prefix: "Rp ")
+        let textField = TextField(frame: .zero, style: .template, prefix: "Rp ")
         textField.textField.keyboardType = .numberPad
         
         return textField

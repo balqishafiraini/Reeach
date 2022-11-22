@@ -30,7 +30,7 @@ class TipCardView: UIView {
     
     lazy var imageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.anchor(width: 125, height: 125)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -48,7 +48,7 @@ class TipCardView: UIView {
     func configureView() {
         backgroundColor = .cardColor
         layer.cornerRadius = 20
-        
+        clipsToBounds = true
         configureAutoLayout()
     }
     

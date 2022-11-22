@@ -12,16 +12,19 @@ extension DatabaseHelper {
     func filterInvalidBudgets(_ budgets: [Budget]) -> [Budget] {
         var result: [Budget] = []
         for budget in budgets {
-            if let goal = budget.category as? Goal,
-               let period = budget.period,
-               let createdAt = goal.createdAt,
-               period < DateFormatHelper.getStartDateOfMonth(of: createdAt) {
-                    continue
+            if budget.monthlyAllocation <= 0 {
+                continue
+            }
+            else if let goal = budget.category as? Goal,
+                    let period = budget.period,
+                    let createdAt = goal.createdAt,
+                    period < DateFormatHelper.getStartDateOfMonth(of: createdAt) {
+                continue
             }
             result.append(budget)
         }
         
-        return budgets
+        return result
     }
     
     func copyBudgets(_ budgets: [Budget], to period: Date) -> [Budget] {

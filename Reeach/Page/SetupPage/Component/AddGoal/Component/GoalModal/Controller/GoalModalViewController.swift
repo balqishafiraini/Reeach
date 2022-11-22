@@ -30,9 +30,13 @@ class GoalModalViewController: UIViewController {
             goalModalView.goalName.textField.text = goal.name
             goalModalView.dueDate.date = goal.dueDate
             goalModalView.dueDate.textField.textField.text = DateFormatHelper.getShortMonthAndYearString(from: goal.dueDate ?? Date())
-            goalModalView.total.textField.text = DoubleToStringHelper.getString(from: goal.targetAmount)
+            goalModalView.total.textField.text = CurrencyHelper.getFormattedNumber(from: goal.targetAmount)
             goalModalView.goalType.textField.text = "\(goal.timeTerm ?? "Unknown")-term"
-            goalModalView.switchView.tf.textField.text = DoubleToStringHelper.getString(from: goal.initialSaving(before: Date()))
+            
+            let initialSaving = goal.initialSaving(before: Date())
+            goalModalView.switchView.toggleSwitch.isOn  = initialSaving > 0
+            goalModalView.switchView.tf.isHidden = initialSaving <= 0
+            goalModalView.switchView.tf.textField.text = CurrencyHelper.getFormattedNumber(from: initialSaving)
         }
         goalModalView.textFieldsIsNotEmpty(goalModalView.total.textField)
     }

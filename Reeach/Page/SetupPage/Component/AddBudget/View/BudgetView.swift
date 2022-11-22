@@ -69,8 +69,8 @@ class BudgetView: UIView {
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.addArrangedSubview(label)
+        stack.addArrangedSubview(UIView())
         stack.addArrangedSubview(totalAllocationLabel)
-        
         return stack
     }()
     
@@ -78,7 +78,7 @@ class BudgetView: UIView {
         let label = UILabel()
             
         label.textColor = .accentGreen7
-        label.font = .caption1Bold
+        label.font = .caption1SemiBold
         
         return label
     }()
@@ -195,15 +195,14 @@ class BudgetView: UIView {
             print("Something when wrong in \(#function). Cannot get status label for type \(type)")
         }
         
-        statusLabel.textColor = .accentGreen7
         if allocated < lowTarget {
-            statusLabel.text = "WADUH! Alokasi ini belum mencapai \(Int(lowTarget*100/income))%"
-            statusLabel.textColor = .red7
+            statusLabel.text = type == "Goal" ? "Waduh! Budget tabunganmu belum cukup." : "Kamu masih bisa tambah budget kamu."
+            statusLabel.textColor = .accentRed
         } else if allocated > highTarget {
-            statusLabel.text = "WADUH! Alokasi ini udah melebihi \(Int(highTarget*100/income))%"
-            statusLabel.textColor = .red7
+            statusLabel.text = "Budget kamu udah kelebihan. Yuk, kurangi."
+            statusLabel.textColor = .accentRed
         } else {
-            statusLabel.text = "COOL! Alokasi ini udah cocok"
+            statusLabel.text = type == "Goal" ? "Budget tabungan kamu udah aman, nih." : "Budget kamu udah aman, nih."
             statusLabel.textColor = .accentGreen7
         }
     }

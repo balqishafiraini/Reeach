@@ -43,38 +43,44 @@ class SetupPageViewController: UIViewController {
         let index: Float = progressIndex ?? self.currentProgressIndex
         
         switch index {
-        case 0.0:
-            contentView.bottomView.backButton.isHidden = true
-            contentView.bottomView.shouldDisableNextButton(isEnabled: !goals.isEmpty)
-        case 1.0:
-            contentView.bottomView.shouldDisableNextButton(isEnabled: income > 0.0)
-            contentView.bottomView.backButton.isHidden = false
-            contentView.bottomView.backButton.setTitle("Balik ke Goal-Setting", for: .normal)
-        case 2.0:
-            var total = 0.0
-            var goal = 0.0
-            for goalBudget in goalBudgets {
-                goal += goalBudget.monthlyAllocation
-            }
-            for needBudget in needBudgets {
-                total += needBudget.monthlyAllocation
-            }
-            for wantBudget in wantBudgets {
-                total += wantBudget.monthlyAllocation
-            }
-            total += goal
-            
-            var isEnabled = false
-            isEnabled = goalBudgets.count <= 3 || goalBudgets.count <= goals.count
-            isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
-            isEnabled = isEnabled ? goal >= 0.2 * income : isEnabled
-            isEnabled = isEnabled ? total == income : isEnabled
-            
-            contentView.bottomView.shouldDisableNextButton(isEnabled: isEnabled)
-            contentView.bottomView.backButton.isHidden = false
-            contentView.bottomView.backButton.setTitle("Kembali ke Pemasukan", for: .normal)
-        default:
-            contentView.bottomView.nextButton.isEnabled = true
+            case 0.0:
+                contentView.bottomView.backButton.isHidden = true
+                contentView.bottomView.shouldDisableNextButton(isEnabled: !goals.isEmpty)
+            case 1.0:
+                contentView.bottomView.shouldDisableNextButton(isEnabled: income > 0.0)
+                contentView.bottomView.backButton.isHidden = false
+                contentView.bottomView.backButton.setTitle("Balik ke Goal-Setting", for: .normal)
+            case 2.0:
+                var total = 0.0
+                var goal = 0.0
+                for goalBudget in goalBudgets {
+                    goal += goalBudget.monthlyAllocation
+                }
+                for needBudget in needBudgets {
+                    total += needBudget.monthlyAllocation
+                }
+                for wantBudget in wantBudgets {
+                    total += wantBudget.monthlyAllocation
+                }
+                total += goal
+                
+                var isEnabled = false
+                isEnabled = goalBudgets.count <= 3 || goalBudgets.count <= goals.count
+                isEnabled = isEnabled ? needBudgets.count > 0 : isEnabled
+                isEnabled = isEnabled ? goal >= 0.2 * income : isEnabled
+                
+                contentView.budgetView.addBudgetView.needStack.addButton.isEnabled = isEnabled
+                contentView.budgetView.addBudgetView.wantStack.addButton.isEnabled = isEnabled
+                contentView.budgetView.addBudgetView.needStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
+                contentView.budgetView.addBudgetView.wantStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
+                
+                isEnabled = isEnabled ? total == income : isEnabled
+                
+                contentView.bottomView.shouldDisableNextButton(isEnabled: isEnabled)
+                contentView.bottomView.backButton.isHidden = false
+                contentView.bottomView.backButton.setTitle("Kembali ke Pemasukan", for: .normal)
+            default:
+                contentView.bottomView.nextButton.isEnabled = true
         }
     }
     

@@ -11,9 +11,6 @@ extension GoalAllocationModalViewController: NavigationBarDelegate {
     func cancel() {
         let databaseHelper = DatabaseHelper.shared
         databaseHelper.rollbackContext()
-        if let budget, mode == .add {
-            let _ = databaseHelper.delete(budget)
-        }
         dismissView()
     }
 }
@@ -44,9 +41,6 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
     func delete() {
         let databaseHelper = DatabaseHelper.shared
         databaseHelper.rollbackContext()
-        if let budget {
-            let _ = databaseHelper.delete(budget)
-        }
         dismissView()
     }
     
@@ -127,7 +121,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             3. Ubah alokasi bulanan goal ini.
             """
         }
-        else if goal.isAchievable(of: budget) == false {
+        else if goal.isAchievable(of: budget, from: Date()) == false {
             goalAllocationModalView.recommendationVerticalStackViewContainerView.backgroundColor = .red1
             goalAllocationModalView.recommendationHeaderLabel.textColor = .red7
             goalAllocationModalView.recommendationDetailLabel.textColor = .red7
@@ -143,17 +137,17 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             """
             
             var recommendedDeadlineString = "1. Butuh lebih dari 100 tahun nih, bestie, buat capai goal kamu,"
-            if let recommendedDeadline = goal.recommendedDeadline(of: budget) {
+            if let recommendedDeadline = goal.recommendedDeadline(of: budget, from: Date()) {
                 recommendedDeadlineString = "1. Ubah deadline menjadi \(DateFormatHelper.getShortMonthAndYearString(from: recommendedDeadline)), atau"
             }
             
             var recommendedTargetAmountString = "infinity :(("
-            if let recommendedTargetAmount = goal.targetAmount(of: budget) {
+            if let recommendedTargetAmount = goal.targetAmount(of: budget, from: Date()) {
                 recommendedTargetAmountString = CurrencyHelper.getCurrency(from: recommendedTargetAmount)
             }
             
             var recommendedMonthlyAllocationString = "infinity :(("
-            if let recommendedMonthlyAllocation = goal.recommendedMonthlyAllocation(of: budget) {
+            if let recommendedMonthlyAllocation = goal.recommendedMonthlyAllocation(of: budget, from: Date()) {
                 recommendedMonthlyAllocationString = CurrencyHelper.getCurrency(from: recommendedMonthlyAllocation)
             }
             
@@ -205,7 +199,7 @@ extension GoalAllocationModalViewController: GoalAllocationModalViewDelegate {
             return
         }
         
-        guard goal.isAchievable(of: budget)
+        guard goal.isAchievable(of: budget, from: Date())
         else {
             goalAllocationModalView.saveButton.backgroundColor = .black4
             goalAllocationModalView.saveButton.setTitleColor(UIColor.black7, for: .normal)

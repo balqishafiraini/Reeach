@@ -76,16 +76,7 @@ class AddBudgetViewController: UIViewController {
         delegate?.setDisableButton()
 
         addBudgetView.setupView()
-
-        shouldDisableAddButton()
-    }
-    
-    func shouldDisableAddButton(enable: Bool? = false) {
-        isEnabled = !goalBudgets.isEmpty
-    
-        addBudgetView.needStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
-        addBudgetView.wantStack.addButton.setButtonByStatus(isEnabled: isEnabled, backColor: isEnabled ? .secondary1! : .black4!, textColor: isEnabled ? .secondary8! : .black7!)
-        
+        delegate?.shouldDisableButton()
     }
     
     func showExplanation(){

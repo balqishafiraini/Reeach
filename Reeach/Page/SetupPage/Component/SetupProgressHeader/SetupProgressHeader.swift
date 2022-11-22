@@ -54,7 +54,7 @@ class SetupProgressHeader: UIView {
         self.addSubview(thirdStep)
         
         progressBar.setProgress(progressValue, animated: true)
-        progressBar.center(inView: self, yConstant: -8)
+        progressBar.center(inView: self, yConstant: -14)
         
         firstStep.anchor(left: self.leftAnchor)
         secondStep.centerX(inView: progressBar)
