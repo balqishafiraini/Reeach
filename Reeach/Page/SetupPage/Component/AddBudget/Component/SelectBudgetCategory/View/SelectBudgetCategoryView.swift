@@ -11,6 +11,7 @@ class SelectBudgetCategoryView: UIView {
     weak var viewDelegate: SelectBudgetCategoryViewDelegate?
     weak var viewController: SelectBudgetCategoryViewController?
     weak var navigationBarDelegate: NavigationBarDelegate?
+    var isShown: Bool = false
     
     private lazy var stackView = {
         var stackView = UIStackView()
@@ -51,13 +52,18 @@ class SelectBudgetCategoryView: UIView {
         return barButtonItem
     }()
     
-    func configureView(viewController: SelectBudgetCategoryViewController) {
+    func configureView(viewController: SelectBudgetCategoryViewController, isShown: Bool? = true) {
         self.viewController = viewController
         backgroundColor = .ghostWhite
         
         viewDelegate = viewController
         collectionView.delegate = viewController
         collectionView.dataSource = viewController
+        
+        if let isShown = isShown {
+            print(isShown)
+            self.isShown = isShown
+        }
         
         configureNavigationControllerView()
         configureAutoLayout()
@@ -70,14 +76,17 @@ class SelectBudgetCategoryView: UIView {
     }
     
     func configureAutoLayout() {
+        print((#function))
         let viewMargins = safeAreaLayoutGuide
         
         addSubview(stackView)
         stackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor)
         
         stackView.addArrangedSubview(containerView)
-        containerView.addSubview(addCategoryButton)
-        addCategoryButton.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingLeft: 20, paddingBottom: 16, paddingRight: 20)
+        if isShown {
+            containerView.addSubview(addCategoryButton)
+            addCategoryButton.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingLeft: 20, paddingBottom: 16, paddingRight: 20)
+        }
         
         stackView.addArrangedSubview(collectionView)
     }
