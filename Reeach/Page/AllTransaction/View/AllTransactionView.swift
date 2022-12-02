@@ -53,9 +53,9 @@ class AllTransactionView: UIView {
         let searchBar = UISearchBar()
         searchBar.backgroundImage = UIImage()
         searchBar.searchTextField.textColor = .white
-        searchBar.searchTextField.placeholder = "Cari Transaksi"
         searchBar.searchTextField.leftView?.tintColor = .white
         searchBar.searchTextField.backgroundColor = .white.withAlphaComponent(0.2)
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Cari Transaksi", attributes: [NSAttributedString.Key.font: UIFont.bodyMedium!, NSAttributedString.Key.foregroundColor: UIColor.ghostWhite!])
         
         return searchBar
     }()
@@ -72,7 +72,9 @@ class AllTransactionView: UIView {
         return button
     }()
     
-    lazy var searchFilterStack: UIStackView = {
+    lazy var searchFilterStack: UIView = {
+        let view = UIView()
+        
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fill
@@ -80,9 +82,10 @@ class AllTransactionView: UIView {
         stack.addArrangedSubview(searchBar)
         stack.addArrangedSubview(filterButton)
         
-//        searchBar.leftAnchor.constraint(equalTo: stack.leftAnchor, constant: -8).isActive = true
+        view.addSubview(stack)
+        stack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: -8)
         
-        return stack
+        return view
     }()
     
     lazy var headerStack: UIStackView = {
@@ -142,7 +145,7 @@ class AllTransactionView: UIView {
         label.text = "Kamu belum memiliki transaksi, nih. Jangan lupa catat transaksi kamu, ya!"
         label.textColor = .black7
         label.textAlignment = .center
-        label.numberOfLines = 5
+        label.numberOfLines = 0
         
         return label
     }()
