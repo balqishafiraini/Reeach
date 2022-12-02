@@ -20,6 +20,8 @@ class AllTransactionViewController: UIViewController {
     var sortedKeys: [Date] = []
     var searchText: String = ""
     
+    weak var dismissDelegate: DismissViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -133,7 +135,8 @@ extension AllTransactionViewController: TransactionDelegate{
     }
     
     func dismiss() {
-        self.navigationController?.popViewController(animated: true)
+        dismissDelegate?.viewDismissed()
+        self.dismiss(animated: true)
     }
     
     func filterTransaction(startMonth: Date?, endMonth: Date?, type: String?, budgetCategory: Category?) {

@@ -49,6 +49,7 @@ class TransactionFilterView: UIView {
     lazy var endMonthPicker = {
         let datePicker = DatePicker(frame: .zero, title: "Sampai")
         datePicker.datePicker.minimumDate = Date()
+        datePicker.titleLabel.font = .bodyMedium
         return datePicker
     }()
     

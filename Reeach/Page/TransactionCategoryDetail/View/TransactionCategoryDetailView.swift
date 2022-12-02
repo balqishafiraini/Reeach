@@ -10,6 +10,7 @@ import UIKit
 class TransactionCategoryDetailView: UIView {
     
     var category: Category?
+    var budget: Budget?
     var formattedTransactions: [Date: [Transaction]] = [:]
     var sortedKeys: [Date] = []
     weak var delegate: TransactionDelegate?
@@ -57,23 +58,29 @@ class TransactionCategoryDetailView: UIView {
         return label
     }()
     
-    lazy var categoryTypeView: UIView = {
+    lazy var categoryTypeView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        
         let view = UIView()
         view.backgroundColor = .ghostWhite
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = 12
         view.sizeToFit()
         
         view.addSubview(categoryTypeLabel)
-        categoryTypeLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 8, paddingRight: 12)
+        categoryTypeLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 4, paddingRight: 8)
         
-        return view
+        stack.addArrangedSubview(view)
+        stack.addArrangedSubview(UIView())
+        
+        return stack
     }()
     
     lazy var categoryTitleStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fill
-        stack.spacing = 8
+        stack.spacing = 4
         
         stack.addArrangedSubview(categoryTitleLabel)
         stack.addArrangedSubview(categoryTypeView)
@@ -85,6 +92,7 @@ class TransactionCategoryDetailView: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fill
+        stack.spacing = 8
         
         stack.addArrangedSubview(categoryIconLabel)
         stack.addArrangedSubview(categoryTitleStack)
@@ -102,7 +110,7 @@ class TransactionCategoryDetailView: UIView {
         return label
     }()
     
-    lazy var remaingingAmountLabel: UILabel = {
+    lazy var remainingAmountLabel: UILabel = {
         let label = UILabel()
         label.font = .largeTitle
         label.textColor = .ghostWhite
@@ -110,7 +118,6 @@ class TransactionCategoryDetailView: UIView {
         return label
     }()
     
-    // TODO: Mungkin diganti sama ky william punya
     lazy var remainingBudgetProgress: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .bar)
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -253,8 +260,6 @@ class TransactionCategoryDetailView: UIView {
         searchBar.backgroundImage = UIImage()
         searchBar.searchTextField.placeholder = "Cari Transaksi"
         
-//        searchBar.searchTextField.anchor(left: searchBar.leftAnchor, right: searchBar.rightAnchor)
-        
         return searchBar
     }()
     
@@ -282,8 +287,6 @@ class TransactionCategoryDetailView: UIView {
         
         view.addSubview(stack)
         stack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 12, paddingRight: 20)
-        
-//        searchBar.leftAnchor.constraint(equalTo: stack.leftAnchor, constant: -8).isActive = true
         
         return view
     }()
@@ -397,9 +400,11 @@ class TransactionCategoryDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupData(category: Category?, transactions: [Date: [Transaction]]? = [:], sortedKeys: [Date]? = []) {
+    func setupData(category: Category?, budget: Budget?, transactions: [Date: [Transaction]]? = [:], sortedKeys: [Date]? = []) {
         formattedTransactions.removeAll()
         self.sortedKeys.removeAll()
+        
+        self.budget = budget
         
         categoryIconLabel.text = category!.icon
         categoryTitleLabel.text = category!.name
@@ -431,8 +436,8 @@ class TransactionCategoryDetailView: UIView {
         headerStack.addArrangedSubview(categoryHeaderStack)
         headerStack.setCustomSpacing(16, after: categoryHeaderStack)
         headerStack.addArrangedSubview(remainingLabel)
-        headerStack.addArrangedSubview(remaingingAmountLabel)
-        headerStack.setCustomSpacing(12, after: remaingingAmountLabel)
+        headerStack.addArrangedSubview(remainingAmountLabel)
+        headerStack.setCustomSpacing(12, after: remainingAmountLabel)
         headerStack.addArrangedSubview(remainingBudgetProgress)
         headerStack.addArrangedSubview(expenseStack)
         headerStack.setCustomSpacing(4, after: expenseStack)
@@ -458,6 +463,11 @@ class TransactionCategoryDetailView: UIView {
             
             emptyStack.anchor(top: emptyView.topAnchor, left: emptyView.leftAnchor, bottom: emptyView.bottomAnchor, right: emptyView.rightAnchor, paddingLeft: 20, paddingRight: 20)
             emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor).isActive = true
+            
+            budgetAmountLabel.text = CurrencyHelper.getCurrency(from: budget!.monthlyAllocation)
+            expenseAmountLabel.text = CurrencyHelper.getCurrency(from: 0.0)
+            remainingAmountLabel.text = CurrencyHelper.getCurrency(from: budget!.monthlyAllocation)
+            remainingBudgetProgress.setProgress(1.0, animated: false)
         } else {
             transactionStackList.isHidden = false
             emptyView.isHidden = true
@@ -507,7 +517,7 @@ class TransactionCategoryDetailView: UIView {
     
     func setupTransactionList() {
         var totalExpense = 0.0
-        var totalBudget = 0.0
+        let totalBudget = budget!.monthlyAllocation
         
         for key in sortedKeys {
             let newHeader = HeaderGoalDetailCollectionReusableView()
@@ -522,8 +532,6 @@ class TransactionCategoryDetailView: UIView {
                 
                 totalExpense += transaction.amount
                 
-                totalBudget = transaction.budget!.monthlyAllocation
-                
                 transactionStackList.addArrangedSubview(newItem)
                 transactionStackList.setCustomSpacing(8, after: newItem)
             }
@@ -532,7 +540,8 @@ class TransactionCategoryDetailView: UIView {
         budgetAmountLabel.text = CurrencyHelper.getCurrency(from: totalBudget)
         expenseAmountLabel.text = CurrencyHelper.getCurrency(from: totalExpense)
         
-        remainingBudgetProgress.setProgress(Float(totalExpense / totalBudget), animated: false)
+        remainingAmountLabel.text = CurrencyHelper.getCurrency(from: (totalBudget - totalExpense))
+        remainingBudgetProgress.setProgress(Float((totalBudget - totalExpense) / totalBudget), animated: false)
     }
     
     func setupTargets() {
@@ -548,11 +557,10 @@ class TransactionCategoryDetailView: UIView {
     }
     
     @objc func back() {
-        print(#function)
+        delegate?.dismiss()
     }
     
     @objc func openFilter() {
-        print(#function)
         delegate?.openSheet()
     }
     

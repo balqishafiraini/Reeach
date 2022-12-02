@@ -15,7 +15,11 @@ extension CashflowTrackerViewController: CashflowTrackerViewDelegate {
     }
     
     func goToAllTransaction() {
-        // TODO: goToAllTransaction
+        let targetViewController = AllTransactionViewController()
+        targetViewController.dismissDelegate = self
+        targetViewController.modalPresentationStyle = .fullScreen
+        targetViewController.modalTransitionStyle = .coverVertical
+        present(targetViewController, animated: true)
     }
     
     func changeMonth(next: Bool) {
@@ -82,12 +86,15 @@ extension CashflowTrackerViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath)! as? CategoryCardCollectionViewCell {
             cell.isSelected = false
-            // TODO: TO DETAIL
-//            let targetViewController = GoalsOverviewViewController()
-//            targetViewController.goal = goals[indexPath.section][indexPath.item]
-//            targetViewController.modalPresentationStyle = .fullScreen
-//            targetViewController.modalTransitionStyle = .crossDissolve
-//            present(targetViewController, animated: true)
+            
+            if indexPath.section == 1 {
+                let targetViewController = TransactionCategoryDetailViewController()
+                targetViewController.budget = budgets[indexPath.item]
+                targetViewController.dismissDelegate = self
+                targetViewController.modalPresentationStyle = .fullScreen
+                targetViewController.modalTransitionStyle = .crossDissolve
+                present(targetViewController, animated: true)
+            }
         }
     }
 }

@@ -11,7 +11,8 @@ class TransactionCategoryDetailViewController: UIViewController {
 
     var transactionDetailView = TransactionCategoryDetailView()
     
-    var category: Category? // TODO: To be passed from previous page
+    var category: Category?
+    var budget: Budget?
     var transactions: [Transaction] = []
     var searchedTransaction: [Transaction] = []
     var searchText: String = ""
@@ -20,6 +21,8 @@ class TransactionCategoryDetailViewController: UIViewController {
     var sortedKeys: [Date] = []
     
     let dbHelper = DatabaseHelper.shared
+    
+    weak var dismissDelegate: DismissViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +39,9 @@ class TransactionCategoryDetailViewController: UIViewController {
     }
     
     func configureData() {
-        // TODO: Remove category when merged with previous page
-        category = dbHelper.getCategory(name: "Makanan")
-        
         separatedTransactions = [:]
         
-        let budget = dbHelper.getBudget(on: Date(), of: category!)
+        category = budget?.category
         
         transactions = dbHelper.getTransactions(of: budget!)
         
@@ -76,7 +76,7 @@ class TransactionCategoryDetailViewController: UIViewController {
     
     func updateView() {
         transactionDetailView.removeStack()
-        transactionDetailView.setupData(category: category, transactions: separatedTransactions, sortedKeys: sortedKeys)
+        transactionDetailView.setupData(category: category, budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys)
         transactionDetailView.setupView()
     }
     
@@ -117,12 +117,10 @@ class TransactionCategoryDetailViewController: UIViewController {
 
 extension TransactionCategoryDetailViewController: TransactionDelegate {
     func openSheet() {
-        print(#function)
         openFilterSheet()
     }
     
     func search(searchText: String) {
-        print(#function)
         self.searchText = searchText
         
         if searchText.isEmpty {
@@ -133,7 +131,8 @@ extension TransactionCategoryDetailViewController: TransactionDelegate {
     }
     
     func dismiss() {
-        print(#function)
+        dismissDelegate?.viewDismissed()
+        dismiss(animated: true)
     }
     
     func filterTransaction(startMonth: Date?, endMonth: Date?, type: String?, budgetCategory: Category?) {

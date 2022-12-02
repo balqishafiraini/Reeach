@@ -296,11 +296,10 @@ class AllTransactionView: UIView {
     }
     
     @objc func back() {
-        print(#function)
+        delegate?.dismiss()
     }
     
     @objc func openFilter() {
-        print(#function)
         delegate?.openSheet()
     }
     
@@ -309,8 +308,6 @@ class AllTransactionView: UIView {
     }
     
     @objc func populateDummyData() {
-        print(#function)
-        
         let secondsInDay = 86400.0
         var days: [Date] = []
         for i in 0...60 {
