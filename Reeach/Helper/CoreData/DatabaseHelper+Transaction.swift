@@ -60,6 +60,36 @@ extension DatabaseHelper {
         
     }
     
+    func getTransactions(since: Date = Date(timeIntervalSince1970: 0), upTo: Date = Date(), type: String? = nil, category: Category? = nil) -> [Transaction] {
+        let startDate = DateFormatHelper.getStartDateOfMonth(of: since)
+        let endDate = DateFormatHelper.getStartDateOfNextMonth(of: upTo)
+        
+        var result: [Transaction] = []
+        
+        do {
+            let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest(since: startDate, upTo: endDate)
+            result = try context.fetch(fetchRequest)
+        }
+        catch let error {
+            let nsError = error as NSError
+            print("Unresolved error \(nsError), \(nsError.userInfo), \(nsError.localizedDescription)")
+            return []
+        }
+        
+        if let category {
+            return result.filter { $0.budget?.category == category }
+        }
+        else if let type {
+            if type == "Expense" {
+                return result.filter { $0.budget?.category?.type == "Need" || $0.budget?.category?.type == "Want" }
+            }
+            else {
+                return result.filter { $0.budget?.category?.type == type }
+            }
+        }
+        return result
+    }
+    
     func createTransaction(name: String, date: Date, budget: Budget, amount: Double, notes: String) -> Transaction {
         let transaction = Transaction(context: context)
         transaction.name = name

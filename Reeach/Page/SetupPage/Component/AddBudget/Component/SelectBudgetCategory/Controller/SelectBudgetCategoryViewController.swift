@@ -13,6 +13,8 @@ class SelectBudgetCategoryViewController: UIViewController {
     weak var delegate: SelectBudgetCategoryViewControllerDelegate?
     var contentView = SelectBudgetCategoryView()
     
+    var isShown: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,6 +28,6 @@ class SelectBudgetCategoryViewController: UIViewController {
         super.loadView()
         title = "Pilih Kategori"
         view = contentView
-        contentView.configureView(viewController: self)
+        contentView.configureView(viewController: self, isShown: self.isShown)
     }
 }
