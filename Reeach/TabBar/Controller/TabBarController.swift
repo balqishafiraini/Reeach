@@ -56,10 +56,10 @@ class TabBarController: UITabBarController {
         
         if UIDevice.current.hasNotch {
             tabBar.frame.size.height = 120
-            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         } else {
             tabBar.frame.size.height = 100
-            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 36, right: 0)
         }
         
     }
