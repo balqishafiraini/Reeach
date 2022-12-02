@@ -102,6 +102,8 @@
 		CA2EEB0A29392EE10080B06C /* TransactionFilterViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2EEB0929392EE10080B06C /* TransactionFilterViewController+Delegate.swift */; };
 		CA2EEB0C293933C80080B06C /* FilterItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2EEB0B293933C80080B06C /* FilterItemCollectionViewCell.swift */; };
 		CA2EEB1029393A1B0080B06C /* TransactionFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2EEB0F29393A1B0080B06C /* TransactionFilterView.swift */; };
+		CA2EEB152939A94A0080B06C /* TransactionCategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2EEB142939A94A0080B06C /* TransactionCategoryDetailView.swift */; };
+		CA2EEB172939A9570080B06C /* TransactionCategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2EEB162939A9570080B06C /* TransactionCategoryDetailViewController.swift */; };
 		CA4D14452910069F00C35094 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143C2910069F00C35094 /* AddIncome.swift */; };
 		CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143E2910069F00C35094 /* SetupBottomView.swift */; };
 		CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D14422910069F00C35094 /* SetupPageViewController.swift */; };
@@ -284,6 +286,8 @@
 		CA2EEB0929392EE10080B06C /* TransactionFilterViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionFilterViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CA2EEB0B293933C80080B06C /* FilterItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA2EEB0F29393A1B0080B06C /* TransactionFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterView.swift; sourceTree = "<group>"; };
+		CA2EEB142939A94A0080B06C /* TransactionCategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryDetailView.swift; sourceTree = "<group>"; };
+		CA2EEB162939A9570080B06C /* TransactionCategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryDetailViewController.swift; sourceTree = "<group>"; };
 		CA4D143B2910069F00C35094 /* AddGoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		CA4D143C2910069F00C35094 /* AddIncome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIncome.swift; sourceTree = "<group>"; };
 		CA4D143D2910069F00C35094 /* AddBudget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBudget.swift; sourceTree = "<group>"; };
@@ -1097,9 +1101,35 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		CA2EEB112939A90F0080B06C /* TransactionCategoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CA2EEB132939A9320080B06C /* View */,
+				CA2EEB122939A92D0080B06C /* Controller */,
+			);
+			path = TransactionCategoryDetail;
+			sourceTree = "<group>";
+		};
+		CA2EEB122939A92D0080B06C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA2EEB162939A9570080B06C /* TransactionCategoryDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA2EEB132939A9320080B06C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA2EEB142939A94A0080B06C /* TransactionCategoryDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA4D14372910069F00C35094 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				CA2EEB112939A90F0080B06C /* TransactionCategoryDetail */,
 				CAB12E78293767F1008551F2 /* AllTransaction */,
 				FA10B0D32922B4B3005D856C /* GoalsOverview */,
 				FAA37BF5291D508300F2C87A /* TrackerEmptyState */,
@@ -1687,6 +1717,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2EEB152939A94A0080B06C /* TransactionCategoryDetailView.swift in Sources */,
 				3B4AE5A829258599000EA6C1 /* AddGoalView.swift in Sources */,
 				3B26887129272B3E00E22410 /* AddCategoryView+Delegate.swift in Sources */,
 				3B26887929273FC700E22410 /* GoalModalDelegate.swift in Sources */,
@@ -1728,6 +1759,7 @@
 				3B1AF1E5292703BC0063DFDC /* DismissViewDelegate.swift in Sources */,
 				CA91B837291969FF00627257 /* BudgetView.swift in Sources */,
 				3B4AE59029231AF6000EA6C1 /* ChipCollectionViewCell.swift in Sources */,
+				CA2EEB172939A9570080B06C /* TransactionCategoryDetailViewController.swift in Sources */,
 				FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */,
 				3B1AF1E32926F5730063DFDC /* GoalsOverviewViewController+Delegate.swift in Sources */,
 				CA2EEAEA293871C40080B06C /* TransactionItemViewCell.swift in Sources */,
