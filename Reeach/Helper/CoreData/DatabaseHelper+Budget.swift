@@ -60,6 +60,12 @@ extension DatabaseHelper {
         }
     }
     
+    func getExpenseBudgets(on month: Date) -> [Budget] {
+        var result: [Budget] = getBudgets(on: month, type: "Need")
+        result.append(contentsOf: getBudgets(on: month, type: "Want"))
+        return result.sorted { $0.allocatedRatio > $1.allocatedRatio }
+    }
+    
     func getBudgets(on month: Date, type: String) -> [Budget] {
         let date = DateFormatHelper.getStartDateOfMonth(of: month)
         do {

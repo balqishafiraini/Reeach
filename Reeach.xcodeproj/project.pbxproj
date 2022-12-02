@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0A577C293A05DD00918C10 /* CashflowTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0A577B293A05DD00918C10 /* CashflowTrackerDelegate.swift */; };
+		3B0A577E293A05ED00918C10 /* CashflowTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0A577D293A05ED00918C10 /* CashflowTrackerView.swift */; };
+		3B0A5780293A05FC00918C10 /* CashflowTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0A577F293A05FC00918C10 /* CashflowTrackerViewController.swift */; };
+		3B0A5782293A060E00918C10 /* CashflowTrackerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0A5781293A060E00918C10 /* CashflowTrackerViewController+Delegate.swift */; };
+		3B0A5784293A46C000918C10 /* IncomeCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0A5783293A46C000918C10 /* IncomeCardCollectionViewCell.swift */; };
 		3B0CA95628EFDA2D0065D5B5 /* DateFormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */; };
 		3B1AF1D529258D510063DFDC /* TipDetailViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */; };
 		3B1AF1E12926F5180063DFDC /* GoalsOverviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AF1E02926F5180063DFDC /* GoalsOverviewDelegate.swift */; };
@@ -190,6 +195,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B0A577B293A05DD00918C10 /* CashflowTrackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashflowTrackerDelegate.swift; sourceTree = "<group>"; };
+		3B0A577D293A05ED00918C10 /* CashflowTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashflowTrackerView.swift; sourceTree = "<group>"; };
+		3B0A577F293A05FC00918C10 /* CashflowTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashflowTrackerViewController.swift; sourceTree = "<group>"; };
+		3B0A5781293A060E00918C10 /* CashflowTrackerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CashflowTrackerViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3B0A5783293A46C000918C10 /* IncomeCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B0CA95528EFDA2D0065D5B5 /* DateFormatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatHelper.swift; sourceTree = "<group>"; };
 		3B1AF1D429258D510063DFDC /* TipDetailViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TipDetailViewController+Delegate.swift"; sourceTree = "<group>"; };
 		3B1AF1E02926F5180063DFDC /* GoalsOverviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsOverviewDelegate.swift; sourceTree = "<group>"; };
@@ -385,6 +395,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B0A5775293A054100918C10 /* CashflowTracker */ = {
+			isa = PBXGroup;
+			children = (
+				3B0A5778293A059800918C10 /* Model */,
+				3B0A5777293A058F00918C10 /* Controller */,
+				3B0A5776293A057B00918C10 /* View */,
+			);
+			path = CashflowTracker;
+			sourceTree = "<group>";
+		};
+		3B0A5776293A057B00918C10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B0A577D293A05ED00918C10 /* CashflowTrackerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B0A5777293A058F00918C10 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B0A577F293A05FC00918C10 /* CashflowTrackerViewController.swift */,
+				3B0A5781293A060E00918C10 /* CashflowTrackerViewController+Delegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B0A5778293A059800918C10 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B0A577A293A05CB00918C10 /* Protocol */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B0A577A293A05CB00918C10 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3B0A577B293A05DD00918C10 /* CashflowTrackerDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		3B0D8995292CC95A0006BC6B /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,6 +800,7 @@
 				CA8489692923B5B200CF6CB0 /* GoalItemCollectionViewCell.swift */,
 				3B4AE58F29231AF6000EA6C1 /* ChipCollectionViewCell.swift */,
 				3B4AE597292322BD000EA6C1 /* CategoryCardCollectionViewCell.swift */,
+				3B0A5783293A46C000918C10 /* IncomeCardCollectionViewCell.swift */,
 				CA2EEAE9293871C40080B06C /* TransactionItemViewCell.swift */,
 				CA2EEB0B293933C80080B06C /* FilterItemCollectionViewCell.swift */,
 			);
@@ -1137,6 +1191,7 @@
 				CA4D14382910069F00C35094 /* SetupPage */,
 				3B8197FA291A597D0065C01E /* Dashboard */,
 				3B4AE588292319DC000EA6C1 /* GoalTracker */,
+				3B0A5775293A054100918C10 /* CashflowTracker */,
 				CAFADA792912E1DB00172D04 /* ViewController.swift */,
 			);
 			path = Page;
@@ -1766,6 +1821,7 @@
 				CA4DF4042927F465004E6067 /* AddIncomeViewController.swift in Sources */,
 				FA2E29DE29039AA50083587D /* TextField.swift in Sources */,
 				CA4D14492910069F00C35094 /* SetupPageViewController.swift in Sources */,
+				3B0A5784293A46C000918C10 /* IncomeCardCollectionViewCell.swift in Sources */,
 				3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */,
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
 				3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */,
@@ -1799,6 +1855,7 @@
 				3B26F7E728F7BDCF00FAC837 /* DatabaseHelper+Constants.swift in Sources */,
 				3B268889292866CC00E22410 /* GoalAllocationModalViewController+Delegate.swift in Sources */,
 				3B8197DC291867AB0065C01E /* TermPickerViewController+Delegate.swift in Sources */,
+				3B0A577E293A05ED00918C10 /* CashflowTrackerView.swift in Sources */,
 				3B4AE5AD292585E3000EA6C1 /* TipDetailView.swift in Sources */,
 				FA9B12C128EBCF44001203F5 /* AppDelegate.swift in Sources */,
 				3B819802291A59EF0065C01E /* DashboardView.swift in Sources */,
@@ -1845,12 +1902,14 @@
 				CA84896429236BAC00CF6CB0 /* SetupDelegate.swift in Sources */,
 				3B1AF1E12926F5180063DFDC /* GoalsOverviewDelegate.swift in Sources */,
 				3BBF30462911BB7A00F8373A /* NavigationBarDelegate.swift in Sources */,
+				3B0A5780293A05FC00918C10 /* CashflowTrackerViewController.swift in Sources */,
 				CA2EEB0029392DFB0080B06C /* TypePickerViewController.swift in Sources */,
 				3B8197EA2918F88E0065C01E /* GoalRecommendationView.swift in Sources */,
 				3B4AE59429231F74000EA6C1 /* GoalTrackerDelegate.swift in Sources */,
 				CAB12E7A29376809008551F2 /* AllTransactionViewController.swift in Sources */,
 				3B8197EE2918F9D20065C01E /* GoalRecommendationViewController+Delegate.swift in Sources */,
 				FA5C969828F2696200BF3B9F /* UIColor+Extension.swift in Sources */,
+				3B0A577C293A05DD00918C10 /* CashflowTrackerDelegate.swift in Sources */,
 				CA848961292369FE00CF6CB0 /* AddGoalViewController.swift in Sources */,
 				FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */,
 				FA5C969628F2695800BF3B9F /* UIView+Extension.swift in Sources */,
@@ -1863,6 +1922,7 @@
 				3B4AE58329227F02000EA6C1 /* SelectBudgetCategory+Delegate.swift in Sources */,
 				3B4AE5A729258548000EA6C1 /* IconWithoutEditView.swift in Sources */,
 				FA2E29DC29039A8B0083587D /* Button.swift in Sources */,
+				3B0A5782293A060E00918C10 /* CashflowTrackerViewController+Delegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

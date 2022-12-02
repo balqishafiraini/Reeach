@@ -10,6 +10,7 @@ import UIKit
 class GoalTrackerViewController: UIViewController {
     var terms: [String] = []
     var goals: [[Goal]] = []
+    var cellHeight: Double = 188
     
     var contentView = GoalTrackerView()
     

@@ -22,7 +22,7 @@ class CurrencyHelper {
     }
     
     static func getCurrency(from number: Double) -> String {
-        return "Rp" + getFormattedNumber(from: number)
+        return number >= 0 ? "Rp" + getFormattedNumber(from: number) : "-Rp" + getFormattedNumber(from: number * -1)
     }
     
     static func roundUp(_ double: Double) -> Double {
