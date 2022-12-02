@@ -34,7 +34,7 @@ extension TransactionFilterViewController: FilterDelegate {
     }
     
     func filterTransaction() {
-        startDate = filter.startMonthPicker.date ?? Date()
+        startDate = filter.startMonthPicker.date ?? Date(timeIntervalSince1970: 0)
         endDate = filter.endMonthPicker.date ?? Date()
         
         delegate?.filterTransaction(startMonth: startDate, endMonth: endDate, type: self.transactionType, budgetCategory: self.budgetCategory ?? nil)
