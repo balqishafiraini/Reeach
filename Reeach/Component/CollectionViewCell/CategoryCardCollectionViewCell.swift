@@ -232,6 +232,7 @@ class CategoryCardCollectionViewCell: UICollectionViewCell {
         
         upperHorizontalStackView.addArrangedSubview(iconContainerView)
         upperHorizontalStackView.addArrangedSubview(upperVerticalStackView)
+        upperHorizontalStackView.addArrangedSubview(UIView())
         upperHorizontalStackView.addArrangedSubview(statusContainerView)
         
         iconContainerView.addSubview(iconLabel)
