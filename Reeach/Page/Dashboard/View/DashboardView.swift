@@ -264,6 +264,9 @@ class DashboardView: UIView {
 
 extension DashboardView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        backgroundColor = scrollView.bounds.contains(markerView.frame) ? .secondary : .ghostWhite
+        UIView.animate(withDuration: 0.3) {
+            [unowned self] in
+            backgroundColor = scrollView.bounds.contains(markerView.frame) ? .secondary : .ghostWhite
+        }
     }
 }

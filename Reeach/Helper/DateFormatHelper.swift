@@ -82,6 +82,7 @@ class DateFormatHelper {
     
     static func getNameOfDay(from date: Date) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "id")
         dateFormatter.dateFormat = "EEEE"
         return dateFormatter.string(from:date)
     }
@@ -106,6 +107,7 @@ class DateFormatHelper {
     
     static func getDayAndMonthString(from date: Date) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "id")
         dateFormatter.dateFormat = "MMMM dd"
         return dateFormatter.string(from:date)
     }
@@ -118,22 +120,25 @@ class DateFormatHelper {
     
     static func getMonthAndYearString(from date: Date) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "id")
         dateFormatter.dateFormat = "MMMM yyyy"
         return dateFormatter.string(from:date)
     }
     
     static func getLongString(from date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter.string(from: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "id")
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: date)
     }
     
     static func getFullString(from date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .short
-        return formatter.string(from: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "id")
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
     }
     
     static func getyyyyMMdd(from date: Date) -> String {

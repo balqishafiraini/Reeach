@@ -32,10 +32,12 @@ extension GoalTrackerViewController: GoalTrackerViewDelegate {
         if status == "Active" {
             goals = Goal.categorizeGoals(goals: DatabaseHelper.shared.getAllocatedGoals(on: Date()))
             contentView.titleExplanationLabel.text = "Semua goals yang kamu budget bulan ini."
+            cellHeight = 188
         }
         else if status == "Inactive" {
             goals = Goal.categorizeGoals(goals: DatabaseHelper.shared.getUnallocatedGoals(on: Date()))
             contentView.titleExplanationLabel.text = "Semua goals yang tidak kamu budget bulan ini."
+            cellHeight = 136
         }
         
         terms.removeAll()
@@ -66,7 +68,7 @@ extension GoalTrackerViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: collectionView.frame.width, height: 124)
+        return CGSize(width: collectionView.frame.width, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,10 +76,10 @@ extension GoalTrackerViewController: UICollectionViewDelegate, UICollectionViewD
         
         let goal = goals[indexPath.section][indexPath.item]
         
-        cell.contentView.heightAnchor.constraint(equalToConstant: 124).isActive = true
-        cell.category = goal
+        cell.goal = goal
         cell.configureContent()
         
+        cell.heightConstraint.constant = cellHeight
         return cell
     }
     
