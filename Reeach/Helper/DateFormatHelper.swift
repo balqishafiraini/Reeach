@@ -144,7 +144,7 @@ class DateFormatHelper {
     
     static func getDDddMMyyy(from date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale.current
+        dateFormatter.locale = Locale(identifier: "id")
         dateFormatter.dateFormat = "EEEE, dd MMMM yyy"
         return dateFormatter.string(from: date)
     }
