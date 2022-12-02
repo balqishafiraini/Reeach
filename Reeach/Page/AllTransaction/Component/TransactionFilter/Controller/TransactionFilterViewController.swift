@@ -46,11 +46,4 @@ class TransactionFilterViewController: UIViewController {
     @objc func dismissView() {
         dismiss(animated: true)
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
-        filter.dismissKeyboard()
-        super.touchesBegan(touches, with: event)
-        
-    }
 }

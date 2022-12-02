@@ -133,6 +133,9 @@ class TransactionFilterView: UIView {
         categoryBudgetSelector.addGestureRecognizer(tapCategordyBudgetPicker)
         
         filterButton.addTarget(self, action: #selector(filterTransaction), for: .touchUpInside)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        scrollView.addGestureRecognizer(tap)
     }
     
     @objc func filterTransaction() {
