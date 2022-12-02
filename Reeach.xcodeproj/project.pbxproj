@@ -154,6 +154,7 @@
 		FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA37BFA291D50EF00F2C87A /* TrackerEmptyStateView.swift */; };
 		FAA857CE2924A438007B4A83 /* EmojiKeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */; };
 		FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E7F2910E45A008EA682 /* GoalModalView.swift */; };
+		FAD2BBDC2939E2DA006069BC /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +327,7 @@
 		FAA37BFA291D50EF00F2C87A /* TrackerEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerEmptyStateView.swift; sourceTree = "<group>"; };
 		FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiKeyboardTextField.swift; sourceTree = "<group>"; };
 		FABD7E7F2910E45A008EA682 /* GoalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalView.swift; sourceTree = "<group>"; };
+		FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1333,6 +1335,7 @@
 		FAA37BEA291A1F9B00F2C87A /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				FAD2BBDA2939E2C7006069BC /* Model */,
 				FAA37BEB291A1FA400F2C87A /* Controller */,
 			);
 			path = TabBar;
@@ -1369,6 +1372,14 @@
 				FAA37BF8291D50D900F2C87A /* TrackerEmptyStateViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		FAD2BBDA2939E2C7006069BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FADF89EC2918C42C00E590C0 /* GoalModal */ = {
@@ -1572,6 +1583,7 @@
 				3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */,
 				3B26888B2928C18E00E22410 /* AllocationBar.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
+				FAD2BBDC2939E2DA006069BC /* CustomTabBar.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */,
 				3B26886F2927232200E22410 /* Character+Extension.swift in Sources */,

@@ -303,7 +303,7 @@ class MonthlyPlanningView: UIView {
         blankView.anchor(top: tipView.centerYAnchor, left: tipViewContainerView.leftAnchor, bottom: tipViewContainerView.bottomAnchor, right: tipViewContainerView.rightAnchor)
         blankView.backgroundColor = .ghostWhite
         
-        blankView2.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, paddingTop: 300)
+        blankView2.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, paddingTop: 300)
         blankView2.backgroundColor = .ghostWhite
         
         

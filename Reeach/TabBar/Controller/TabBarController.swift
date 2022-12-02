@@ -13,35 +13,27 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let dashboardVC = DashboardViewController()
         let goalsVC = GoalTrackerViewController()
+        let addVC = AddVC()
         let cashflowVC = TrackerEmptyStateViewController()
         let plannerVC = MonthlyPlanningViewController()
         
-        setViewControllers([dashboardVC, goalsVC, cashflowVC, plannerVC], animated: false)
+        setViewControllers([dashboardVC, goalsVC, addVC, cashflowVC, plannerVC], animated: false)
         
         guard let items = self.tabBar.items else { return }
-        let images = ["Dashboard", "Goals", "Cashflow", "Planning"]
-        for x in 0...3 {
+        let images = ["Dashboard", "Goals", "","Cashflow", "Planning"]
+        for x in 0...4 {
             items[x].image = UIImage(named: images[x])
         }
-        
-        self.tabBar.tintColor = UIColor.ghostWhite
-        self.tabBar.isTranslucent = false
         UITabBar.appearance().unselectedItemTintColor = .secondary4
-        UITabBar.appearance().barTintColor = .royalHunterBlue
-        
-        if #available(iOS 15.0, *) {
-            let appearance = UITabBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .royalHunterBlue
-            appearance.stackedLayoutAppearance.normal.iconColor = .secondary4
-            tabBar.standardAppearance = appearance
-            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
-        }
+        UITabBar.appearance().tintColor = .ghostWhite
         
         setupInflationData()
+        
+        setupMiddleButton()
+        
+        setValue(AppTabBar(frame: tabBar.frame), forKey: "tabBar")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,13 +52,14 @@ class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tabBar.frame.size.height = UIScreen.main.bounds.height*0.135
         tabBar.frame.origin.y = view.frame.height - 85
         
         if UIDevice.current.hasNotch {
-            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            tabBar.frame.size.height = 120
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         } else {
-            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+            tabBar.frame.size.height = 100
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 36, right: 0)
         }
         
     }
@@ -113,4 +106,34 @@ extension TabBarController {
         networkManager.createRequest(with: inflationEndPoint)
         return
     }
+    
+    func setupMiddleButton() {
+        let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 78, height: 78))
+        var menuButtonFrame = menuButton.frame
+        menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 50
+        menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
+        menuButton.frame = menuButtonFrame
+        
+        menuButton.backgroundColor = UIColor.tangerineYellow
+        menuButton.layer.cornerRadius = menuButtonFrame.height/2
+        view.addSubview(menuButton)
+        
+        menuButton.setImage(UIImage(named: "Add"), for: .normal)
+        menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
+        
+        view.layoutIfNeeded()
+    }
+    
+    @objc private func menuButtonAction(sender: UIButton) {
+        selectedIndex = 2
+    }
+    
 }
+
+class AddVC: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .red
+    }
+}
+
