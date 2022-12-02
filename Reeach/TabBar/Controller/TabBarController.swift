@@ -26,21 +26,8 @@ class TabBarController: UITabBarController {
         for x in 0...4 {
             items[x].image = UIImage(named: images[x])
         }
-        
-        self.tabBar.tintColor = UIColor.ghostWhite
-        self.tabBar.isTranslucent = false
         UITabBar.appearance().unselectedItemTintColor = .secondary4
         UITabBar.appearance().tintColor = .ghostWhite
-        UITabBar.appearance().barTintColor = .ghostWhite
-        
-        if #available(iOS 15.0, *) {
-            let appearance = UITabBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .royalHunterBlue
-            appearance.stackedLayoutAppearance.normal.iconColor = .secondary4
-            tabBar.standardAppearance = appearance
-            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
-        }
         
         setupInflationData()
         
