@@ -112,9 +112,17 @@ class TransactionCategoryDetailView: UIView {
     
     // TODO: Mungkin diganti sama ky william punya
     lazy var remainingBudgetProgress: UIProgressView = {
-        let progress = UIProgressView()
+        let progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.trackTintColor = .black5
+        progressView.layer.cornerRadius = 7
+        progressView.clipsToBounds = true
+        progressView.layer.sublayers![1].cornerRadius = 7
+        progressView.subviews[1].clipsToBounds = true
+        progressView.anchor(height: 12)
+        progressView.progressTintColor = .accentGreen
         
-        return progress
+        return progressView
     }()
     
     lazy var expenseLabel: UILabel = {
@@ -395,15 +403,27 @@ class TransactionCategoryDetailView: UIView {
         
         categoryIconLabel.text = category!.icon
         categoryTitleLabel.text = category!.name
-        categoryTypeLabel.text = category!.type
-        
-        expenseAmountLabel.text = CurrencyHelper.getCurrency(from: 1000000)
-        budgetAmountLabel.text = CurrencyHelper.getCurrency(from: 2000000)
+        categoryTypeLabel.text = getCategoryLabel(type: category!.type!)
         
         addTransactionButton.setTitle("Catat Pengeluaran \(category!.name!)", for: .normal)
         
         self.formattedTransactions = transactions ?? [:]
         self.sortedKeys = sortedKeys ?? []
+    }
+    
+    func getCategoryLabel(type: String) -> String {
+        switch type {
+            case "Goal":
+                return "Goal"
+            case "Need":
+                return "Kebutuhan Pokok"
+            case "Want":
+                return "Kebutuhan Non-Pokok"
+            case "Income":
+                return "Pemasukan"
+            default:
+                return "Huh? Something's wrong here"
+        }
     }
     
     func setupHeaderLayout() {
@@ -486,6 +506,9 @@ class TransactionCategoryDetailView: UIView {
     }
     
     func setupTransactionList() {
+        var totalExpense = 0.0
+        var totalBudget = 0.0
+        
         for key in sortedKeys {
             let newHeader = HeaderGoalDetailCollectionReusableView()
             newHeader.titleLabel.text = DateFormatHelper.getDDddMMyyy(from: key)
@@ -497,10 +520,19 @@ class TransactionCategoryDetailView: UIView {
                 newItem.setupData(transaction: transaction)
                 newItem.setupView()
                 
+                totalExpense += transaction.amount
+                
+                totalBudget = transaction.budget!.monthlyAllocation
+                
                 transactionStackList.addArrangedSubview(newItem)
                 transactionStackList.setCustomSpacing(8, after: newItem)
             }
         }
+        
+        budgetAmountLabel.text = CurrencyHelper.getCurrency(from: totalBudget)
+        expenseAmountLabel.text = CurrencyHelper.getCurrency(from: totalExpense)
+        
+        remainingBudgetProgress.setProgress(Float(totalExpense / totalBudget), animated: false)
     }
     
     func setupTargets() {
