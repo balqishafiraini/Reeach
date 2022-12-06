@@ -9,7 +9,7 @@ import UIKit
 
 class DatePicker: UIView, UITextFieldDelegate {
     
-    var date: Date?
+    var date: Date? = Date()
     
     lazy var datePicker = {
         let datePicker = UIDatePicker()
