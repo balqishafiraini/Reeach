@@ -151,7 +151,7 @@ class CashflowTrackerView: UIView {
     
     lazy var transactionHeaderLabel = {
         let label = UILabel()
-        label.text = "Transaksi Terakhir"
+        label.text = "Transaksi Hari Ini"
         label.font = UIFont.title
         label.textColor = .ghostWhite
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -340,15 +340,15 @@ class CashflowTrackerView: UIView {
         emptyGoalButton.addTarget(self, action: #selector(goToBudgetPlanner), for: .touchUpInside)
         leftButton.addTarget(self, action: #selector(changeMonth), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(changeMonth), for: .touchUpInside)
-        transactionHeaderButton.addTarget(self, action: #selector(goToAllTransaction), for: .touchUpInside)
+        transactionHeaderButton.addTarget(self, action: #selector(goToAllTransactions), for: .touchUpInside)
     }
     
     @objc func goToBudgetPlanner(_ sender: UIButton) {
         viewDelegate?.goToBudgetPlanner()
     }
     
-    @objc func goToAllTransaction(_ sender: UIButton) {
-        viewDelegate?.goToAllTransaction()
+    @objc func goToAllTransactions(_ sender: UIButton) {
+        viewDelegate?.goToAllTransactions()
     }
     
     @objc func changeMonth(_ sender: UIButton) {

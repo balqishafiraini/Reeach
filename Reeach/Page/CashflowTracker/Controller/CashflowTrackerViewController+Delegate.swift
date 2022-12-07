@@ -16,7 +16,7 @@ extension CashflowTrackerViewController: CashflowTrackerViewDelegate {
         present(targetViewController, animated: true)
     }
     
-    func goToAllTransaction() {
+    func goToAllTransactions() {
         let targetViewController = AllTransactionViewController()
         targetViewController.dismissDelegate = self
         targetViewController.modalPresentationStyle = .fullScreen
