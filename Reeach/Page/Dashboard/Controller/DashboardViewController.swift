@@ -18,11 +18,12 @@ class DashboardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        contentView.greetingLabel.text = DateFormatHelper.getGreeting(from: Date())
         loadData()
     }
     
     func loadData() {
+        contentView.greetingLabel.text = DateFormatHelper.getGreeting(from: Date())
+        
         let isSet = UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: Date()))
         
         goals = DatabaseHelper.shared.getAllocatedGoals(on: Date())
