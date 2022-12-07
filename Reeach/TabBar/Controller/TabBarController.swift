@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         let dashboardVC = DashboardViewController()
         let goalsVC = GoalTrackerViewController()
-        let addVC = AddVC()
+        let addVC = EmptyViewController()
         let cashflowVC = CashflowTrackerViewController()
         let plannerVC = MonthlyPlanningViewController()
         
@@ -113,11 +113,9 @@ extension TabBarController {
         menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 50
         menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
         menuButton.frame = menuButtonFrame
-        
         menuButton.backgroundColor = UIColor.tangerineYellow
         menuButton.layer.cornerRadius = menuButtonFrame.height/2
         view.addSubview(menuButton)
-        
         menuButton.setImage(UIImage(named: "Add"), for: .normal)
         menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
         
@@ -125,15 +123,31 @@ extension TabBarController {
     }
     
     @objc private func menuButtonAction(sender: UIButton) {
+        presentModal()
         selectedIndex = 2
+    }
+    
+    private func presentModal() {
+        let addButtonViewController = AddButtonViewController()
+        let nav = UINavigationController(rootViewController: addButtonViewController)
+        nav.modalPresentationStyle = .pageSheet
+        
+        if #available(iOS 15.0, *) {
+            if let sheet = nav.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 15
+            }
+        } else {}
+        present(nav, animated: true, completion: nil)
+        
     }
     
 }
 
-class AddVC: UIViewController {
+class EmptyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .ghostWhite
     }
 }
 
