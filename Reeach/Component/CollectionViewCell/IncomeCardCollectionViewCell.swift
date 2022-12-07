@@ -39,7 +39,7 @@ class IncomeCardCollectionViewCell: UICollectionViewCell {
     
     lazy var expectedTitleLabel = {
         let label = UILabel()
-        label.text = "Expected Income"
+        label.text = "Estimasi Pemasukan"
         label.font = .caption1Medium
         label.textColor = .black10
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ class IncomeCardCollectionViewCell: UICollectionViewCell {
     
     lazy var totalTitleLabel = {
         let label = UILabel()
-        label.text = "Total Income"
+        label.text = "Total Pemasukan"
         label.font = .caption1Medium
         label.textColor = .black10
         label.translatesAutoresizingMaskIntoConstraints = false

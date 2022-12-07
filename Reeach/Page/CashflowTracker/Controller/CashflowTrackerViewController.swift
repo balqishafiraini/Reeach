@@ -8,6 +8,7 @@
 import UIKit
 
 class CashflowTrackerViewController: UIViewController {
+    var todayTransactions: [Transaction] = []
     var incomeBudget: Budget?
     var budgets: [Budget] = []
     var currentMonth = DateFormatHelper.getStartDateOfMonth(of: Date())
@@ -30,6 +31,28 @@ class CashflowTrackerViewController: UIViewController {
         let isSet = UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: currentMonth))
         
         let databaseHelper = DatabaseHelper.shared
+        
+        contentView.todayDateLabel.text = DateFormatHelper.getDDddMMyyy(from: Date())
+        
+        todayTransactions = databaseHelper.getTodayTransactions()
+        
+        if todayTransactions.isEmpty {
+            contentView.emptyTransactionLabelContainerView.isHidden = false
+            contentView.transactionBlankView.isHidden = true
+            contentView.transactionCollectionView.isHidden = true
+        }
+        else {
+            contentView.emptyTransactionLabelContainerView.isHidden = true
+            contentView.transactionBlankView.isHidden = false
+            contentView.transactionCollectionView.isHidden = false
+        }
+        
+        contentView.transactionCollectionViewHeightConstraint.constant = CGFloat(todayTransactions.count * 60)
+        if todayTransactions.count >= 2 {
+            contentView.transactionCollectionViewHeightConstraint.constant += 8.0
+        }
+        contentView.transactionCollectionView.reloadData()
+        
         budgets = databaseHelper.getExpenseBudgets(on: currentMonth)
         
         let incomeCategory = databaseHelper.getCategory(name: "Income")!
@@ -46,8 +69,8 @@ class CashflowTrackerViewController: UIViewController {
             contentView.emptyDescriptionLabel.text = isCurrentMonth ? "Kamu belum memiliki rencana budget nih. Yuk buat sekarang!" : "Kamu tidak memiliki rencana budget pada bulan ini."
             contentView.emptyGoalButton.isHidden = !isCurrentMonth
         }
-        contentView.collectionViewHeightConstraint.constant = CGFloat(224 + budgets.count * 200)
-        contentView.collectionView.reloadData()
+        contentView.budgetCollectionViewHeightConstraint.constant = CGFloat(224 + budgets.count * 200)
+        contentView.budgetCollectionView.reloadData()
     }
     
     override func loadView() {

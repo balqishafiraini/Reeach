@@ -60,6 +60,21 @@ extension DatabaseHelper {
         
     }
     
+    func getTodayTransactions() -> [Transaction] {
+        let startDate = DateFormatHelper.getStartDate(of: Date())
+        let endDate = DateFormatHelper.getStartDateOfNextMonth(of: startDate.addingTimeInterval(86400))
+        do {
+            let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest(since: startDate, upTo: endDate)
+            fetchRequest.fetchLimit = 2
+            return try context.fetch(fetchRequest)
+        }
+        catch let error {
+            let nsError = error as NSError
+            print("Unresolved error \(nsError), \(nsError.userInfo), \(nsError.localizedDescription)")
+            return []
+        }
+    }
+    
     func getTransactions(since: Date = Date(timeIntervalSince1970: 0), upTo: Date = Date(), type: String? = nil, category: Category? = nil) -> [Transaction] {
         let startDate = DateFormatHelper.getStartDateOfMonth(of: since)
         let endDate = DateFormatHelper.getStartDateOfNextMonth(of: upTo)

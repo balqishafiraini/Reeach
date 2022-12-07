@@ -171,7 +171,17 @@ class CashflowTrackerView: UIView {
         return button
     }()
     
-    private lazy var emptyTransactionLabelContainerView = UIView()
+    lazy var todayDateLabel = {
+        let label = UILabel()
+        label.text = "Current Date"
+        label.font = UIFont.bodyMedium
+        label.textAlignment = .left
+        label.textColor = .ghostWhite
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var emptyTransactionLabelContainerView = UIView()
     
     lazy var emptyTransactionLabel = {
         let label = UILabel()
@@ -183,15 +193,37 @@ class CashflowTrackerView: UIView {
         return label
     }()
     
-    private lazy var collectionViewFlowLayout = {
+    lazy var transactionBlankView = {
+        let view = UIView()
+        view.anchor(height: 12)
+        return view
+    }()
+    
+    private lazy var transactionCollectionViewFlowLayout = {
+        var collectionViewFlowLayout = UICollectionViewFlowLayout()
+        collectionViewFlowLayout.scrollDirection = .vertical
+        collectionViewFlowLayout.minimumLineSpacing = 8
+        return collectionViewFlowLayout
+    }()
+    
+    lazy var transactionCollectionView = {
+        var collectionView = UICollectionView(frame: self.frame, collectionViewLayout: transactionCollectionViewFlowLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = false
+        collectionView.register(TransactionItemViewCell.self, forCellWithReuseIdentifier: TransactionItemViewCell.identifier)
+        return collectionView
+    }()
+    
+    private lazy var budgetCollectionViewFlowLayout = {
         var collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.scrollDirection = .vertical
         collectionViewFlowLayout.minimumLineSpacing = 12
         return collectionViewFlowLayout
     }()
     
-    lazy var collectionView = {
-        var collectionView = UICollectionView(frame: self.frame, collectionViewLayout: collectionViewFlowLayout)
+    lazy var budgetCollectionView = {
+        var collectionView = UICollectionView(frame: self.frame, collectionViewLayout: budgetCollectionViewFlowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.isScrollEnabled = false
@@ -207,15 +239,18 @@ class CashflowTrackerView: UIView {
         return view
     }()
     
-    lazy var collectionViewHeightConstraint = collectionView.heightAnchor.constraint(equalToConstant: 500)
+    lazy var transactionCollectionViewHeightConstraint = transactionCollectionView.heightAnchor.constraint(equalToConstant: 200)
+    lazy var budgetCollectionViewHeightConstraint = budgetCollectionView.heightAnchor.constraint(equalToConstant: 500)
     
     func configureView(viewController: CashflowTrackerViewController) {
         self.viewController = viewController
         backgroundColor = .ghostWhite
         
         viewDelegate = viewController
-        collectionView.delegate = viewController
-        collectionView.dataSource = viewController
+        transactionCollectionView.delegate = viewController
+        transactionCollectionView.dataSource = viewController
+        budgetCollectionView.delegate = viewController
+        budgetCollectionView.dataSource = viewController
         
         configureAutoLayout()
         configureClickableTarget()
@@ -225,7 +260,7 @@ class CashflowTrackerView: UIView {
         let viewMargins = safeAreaLayoutGuide
         
         addSubview(rootStackView)
-        rootStackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor)
+        rootStackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: bottomAnchor, right: viewMargins.rightAnchor)
         
         rootStackView.addArrangedSubview(headerContainerView)
         rootStackView.addArrangedSubview(scrollViewContainerView)
@@ -254,7 +289,7 @@ class CashflowTrackerView: UIView {
         scrollAreaStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
         scrollAreaStackView.addArrangedSubview(transactionContainerView)
-        scrollAreaStackView.addArrangedSubview(collectionView)
+        scrollAreaStackView.addArrangedSubview(budgetCollectionView)
         scrollAreaStackView.addArrangedSubview(UIView())
         scrollAreaStackView.addArrangedSubview(bottomBlankContainerView)
         
@@ -265,16 +300,20 @@ class CashflowTrackerView: UIView {
         transactionVerticalStackView.anchor(top: transactionVerticalStackViewContainerView.topAnchor, left: transactionVerticalStackViewContainerView.leftAnchor, bottom: transactionVerticalStackViewContainerView.bottomAnchor, right: transactionVerticalStackViewContainerView.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
         
         transactionVerticalStackView.addArrangedSubview(transactionHeaderStackView)
+        transactionVerticalStackView.addArrangedSubview(todayDateLabel)
+        transactionVerticalStackView.addArrangedSubview(transactionBlankView)
         transactionVerticalStackView.addArrangedSubview(emptyTransactionLabelContainerView)
+        
+        transactionVerticalStackView.addArrangedSubview(transactionCollectionView)
         
         transactionHeaderStackView.addArrangedSubview(transactionHeaderLabel)
         transactionHeaderStackView.addArrangedSubview(transactionHeaderButton)
         
-        
         emptyTransactionLabelContainerView.addSubview(emptyTransactionLabel)
         emptyTransactionLabel.anchor(top: emptyTransactionLabelContainerView.topAnchor, left: emptyTransactionLabelContainerView.leftAnchor, bottom: emptyTransactionLabelContainerView.bottomAnchor, right: emptyTransactionLabelContainerView.rightAnchor, paddingTop: 20, paddingBottom: 20)
         
-        collectionViewHeightConstraint.isActive = true
+        transactionCollectionViewHeightConstraint.isActive = true
+        budgetCollectionViewHeightConstraint.isActive = true
         
         
         addSubview(emptyStateContainerView)

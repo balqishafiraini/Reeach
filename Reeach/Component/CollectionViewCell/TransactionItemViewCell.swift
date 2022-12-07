@@ -130,6 +130,9 @@ class TransactionItemViewCell: UICollectionViewCell {
         }
     }
     
+    lazy var containerLeftConstraint = container.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20)
+    lazy var containerRightConstraint = container.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20)
+    
     func setupView() {
         self.addSubview(container)
         
@@ -145,7 +148,10 @@ class TransactionItemViewCell: UICollectionViewCell {
         
         stackView.setCustomSpacing(12, after: iconView)
         
-        container.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 20, paddingRight: 20)
+        container.anchor(top: self.topAnchor, bottom: self.bottomAnchor)
+        containerLeftConstraint.isActive = true
+        containerRightConstraint.isActive = true
+        
         stackView.anchor(top: container.topAnchor, left: container.leftAnchor, bottom: container.bottomAnchor, right: container.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 8, paddingRight: 12)
         
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openDetail)))
