@@ -26,8 +26,16 @@ extension SetupPageViewController: SetupDelegate {
     
     func previousProgress() {
         currentProgressIndex -= 1.0
-        currentProgress = currentProgressIndex / totalProgress
-        updateView()
+        
+        if currentProgressIndex < 0 {
+            (delegate as? UIViewController)?.title = nil
+            delegate?.viewDismissed()
+            dismiss(animated: true)
+        }
+        else {
+            currentProgress = currentProgressIndex / totalProgress
+            updateView()
+        }
     }
     
     func openGoalSheet(forGoalIndex: Int) {
