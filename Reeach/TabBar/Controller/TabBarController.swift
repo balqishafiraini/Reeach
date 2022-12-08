@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         let dashboardVC = DashboardViewController()
         let goalsVC = GoalTrackerViewController()
-        let addVC = EmptyViewController()
+        let addVC = UIViewController()
         let cashflowVC = CashflowTrackerViewController()
         let plannerVC = MonthlyPlanningViewController()
         
@@ -137,18 +137,10 @@ extension TabBarController {
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 15
             }
-        } else {}
+        }
         nav.navigationBar.isHidden = true
         present(nav, animated: true, completion: nil)
         
     }
     
 }
-
-class EmptyViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .ghostWhite
-    }
-}
-
