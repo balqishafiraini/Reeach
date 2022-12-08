@@ -9,6 +9,8 @@ import Foundation
 
 protocol DashboardViewDelegate: AnyObject {
     func goToAllGoals()
+    func goToAllTransactions()
+    func goToAllBudgets()
     func addGoal()
     func goToTipDetail(tip: Tip)
 }

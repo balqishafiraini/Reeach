@@ -9,6 +9,6 @@ import Foundation
 
 protocol CashflowTrackerViewDelegate: AnyObject {
     func goToBudgetPlanner()
-    func goToAllTransaction()
+    func goToAllTransactions()
     func changeMonth(next: Bool)
 }

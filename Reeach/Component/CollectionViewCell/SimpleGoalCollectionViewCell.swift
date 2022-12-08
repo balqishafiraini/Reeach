@@ -85,6 +85,19 @@ class SimpleGoalCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.tintColor = .secondary
+        progressView.trackTintColor = .black5
+        progressView.layer.cornerRadius = 7
+        progressView.clipsToBounds = true
+        progressView.layer.sublayers![1].cornerRadius = 7
+        progressView.subviews[1].clipsToBounds = true
+        progressView.anchor(height: 12)
+        return progressView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -118,5 +131,8 @@ class SimpleGoalCollectionViewCell: UICollectionViewCell {
         rootVerticalStackView.addArrangedSubview(lowerVerticalStackView)
         lowerVerticalStackView.addArrangedSubview(tujuanLabel)
         lowerVerticalStackView.addArrangedSubview(targetAmountLabel)
+        
+        rootVerticalStackView.addArrangedSubview(progressView)
+        rootVerticalStackView.setCustomSpacing(8, after: lowerVerticalStackView)
     }
 }

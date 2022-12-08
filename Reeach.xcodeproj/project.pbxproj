@@ -91,6 +91,7 @@
 		3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBEFC82921CA16005A1062 /* SimpleGoalCollectionViewCell.swift */; };
 		3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBEFCB2921D590005A1062 /* TipDetailViewController.swift */; };
 		3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEE733128EFE2A600D05267 /* CurrencyHelper.swift */; };
+		3BFB55822940D23A0032BEC6 /* SimpleBudgetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFB55812940D23A0032BEC6 /* SimpleBudgetCollectionViewCell.swift */; };
 		CA0CB2CF2926A51800D8AAB0 /* BudgetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB2CE2926A51800D8AAB0 /* BudgetItem.swift */; };
 		CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */; };
 		CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */; };
@@ -282,6 +283,7 @@
 		3BF624B128FFC0BC00923D57 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BF624B228FFC0BC00923D57 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BF624B328FFC0BC00923D57 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BFB55812940D23A0032BEC6 /* SimpleBudgetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBudgetCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA0CB2CE2926A51800D8AAB0 /* BudgetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItem.swift; sourceTree = "<group>"; };
 		CA20EFD8291AB89D00248477 /* MonthlyPlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningView.swift; sourceTree = "<group>"; };
 		CA20EFDA291AB8AB00248477 /* MonthlyPlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlanningViewController.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 				3B8197D32918631B0065C01E /* BlankCollectionViewCell.swift */,
 				3B8197EF2919119D0065C01E /* HeaderGoalDetailCollectionReusableView.swift */,
 				3BEBEFC82921CA16005A1062 /* SimpleGoalCollectionViewCell.swift */,
+				3BFB55812940D23A0032BEC6 /* SimpleBudgetCollectionViewCell.swift */,
 				CA8489692923B5B200CF6CB0 /* GoalItemCollectionViewCell.swift */,
 				3B4AE58F29231AF6000EA6C1 /* ChipCollectionViewCell.swift */,
 				3B4AE597292322BD000EA6C1 /* CategoryCardCollectionViewCell.swift */,
@@ -1861,6 +1864,7 @@
 				CA91B837291969FF00627257 /* BudgetView.swift in Sources */,
 				3B4AE59029231AF6000EA6C1 /* ChipCollectionViewCell.swift in Sources */,
 				CA2EEB172939A9570080B06C /* TransactionCategoryDetailViewController.swift in Sources */,
+				3BFB55822940D23A0032BEC6 /* SimpleBudgetCollectionViewCell.swift in Sources */,
 				FAA37BFB291D50EF00F2C87A /* TrackerEmptyStateView.swift in Sources */,
 				3B1AF1E32926F5730063DFDC /* GoalsOverviewViewController+Delegate.swift in Sources */,
 				CA2EEAEA293871C40080B06C /* TransactionItemViewCell.swift in Sources */,
