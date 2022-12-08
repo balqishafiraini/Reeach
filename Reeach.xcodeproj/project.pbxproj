@@ -175,6 +175,8 @@
 		FAA857CE2924A438007B4A83 /* EmojiKeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */; };
 		FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E7F2910E45A008EA682 /* GoalModalView.swift */; };
 		FAD2BBDC2939E2DA006069BC /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */; };
+		FAD2BBDE293DD57F006069BC /* AddButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2BBDD293DD57F006069BC /* AddButtonViewController.swift */; };
+		FAD2BBE3293DE2C0006069BC /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2BBE2293DE2C0006069BC /* AddButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -368,6 +370,8 @@
 		FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiKeyboardTextField.swift; sourceTree = "<group>"; };
 		FABD7E7F2910E45A008EA682 /* GoalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalView.swift; sourceTree = "<group>"; };
 		FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		FAD2BBDD293DD57F006069BC /* AddButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonViewController.swift; sourceTree = "<group>"; };
+		FAD2BBE2293DE2C0006069BC /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1555,6 +1559,7 @@
 		FAA37BEA291A1F9B00F2C87A /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				FAD2BBE1293DE27E006069BC /* View */,
 				FAD2BBDA2939E2C7006069BC /* Model */,
 				FAA37BEB291A1FA400F2C87A /* Controller */,
 			);
@@ -1565,6 +1570,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA37BED291A1FD300F2C87A /* TabBarController.swift */,
+				FAD2BBDD293DD57F006069BC /* AddButtonViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1600,6 +1606,14 @@
 				FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FAD2BBE1293DE27E006069BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FAD2BBE2293DE2C0006069BC /* AddButtonView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FADF89EC2918C42C00E590C0 /* GoalModal */ = {
@@ -1864,10 +1878,12 @@
 				3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */,
 				CA4D14452910069F00C35094 /* AddIncome.swift in Sources */,
 				CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */,
+				FAD2BBDE293DD57F006069BC /* AddButtonViewController.swift in Sources */,
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				CA2EEAF82939274B0080B06C /* CustomModalViewController.swift in Sources */,
 				3B4AE59629231FBD000EA6C1 /* GoalTrackerViewController+Delegate.swift in Sources */,
 				3B1AF1D529258D510063DFDC /* TipDetailViewController+Delegate.swift in Sources */,
+				FAD2BBE3293DE2C0006069BC /* AddButtonView.swift in Sources */,
 				CA2EEB0829392EA70080B06C /* FilterDelegate.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
 				CAFC303429269EC900D21274 /* CategoryAllocationModalViewController.swift in Sources */,
