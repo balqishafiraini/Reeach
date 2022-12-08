@@ -26,20 +26,24 @@ class AddButtonView: UIView {
     let newGoal: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "IllustrationNewGoal"), for: .normal)
-        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: -32)
         btn.setTitle("Goal Baru", for: .normal)
         btn.titleLabel?.font = .bodyBold
+        btn.titleLabel?.textAlignment = .left
         btn.setTitleColor(.black13, for: .normal)
+        btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 100)
+        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: -32)
         return btn
     }()
     
     let newTransaction: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "IllustrationNewTransaction"), for: .normal)
-        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: -32)
         btn.setTitle("Transaksi Baru", for: .normal)
         btn.titleLabel?.font = .bodyBold
+        btn.titleLabel?.textAlignment = .left
         btn.setTitleColor(.black13, for: .normal)
+        btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 80)
+        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: -32)
         return btn
     }()
     

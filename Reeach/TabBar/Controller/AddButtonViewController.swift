@@ -15,12 +15,21 @@ class AddButtonViewController: UIViewController {
         super.viewDidLoad()
         view = addButtonView
         addButtonView.configureAutoLayout()
-        addButtonView.closeButton.addTarget(self, action: #selector(doneButton), for: .touchCancel)
-        
+        addButtonView.closeButton.addTarget(self, action: #selector(doneButton), for: .touchUpInside)
+        addButtonView.newTransaction.addTarget(self, action: #selector(goToNewTransaction), for: .touchUpInside)
+        addButtonView.newGoal.addTarget(self, action: #selector(goToNewGoal), for: .touchUpInside)
     }
     
     @objc private func doneButton(sender: UIButton) {
-        print("close")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func goToNewGoal(sender: UIButton) {
+        print("go to new goal")
+    }
+    
+    @objc private func goToNewTransaction(sender: UIButton) {
+        print("go to new transaction")
     }
 
 }

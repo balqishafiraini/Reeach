@@ -34,6 +34,8 @@ class TabBarController: UITabBarController {
         setupMiddleButton()
         
         setValue(AppTabBar(frame: tabBar.frame), forKey: "tabBar")
+        
+//        viewControllers?.remove(at: 2)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +63,7 @@ class TabBarController: UITabBarController {
             tabBar.frame.size.height = 100
             self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 36, right: 0)
         }
-        
+                
     }
 }
 
@@ -118,15 +120,12 @@ extension TabBarController {
         view.addSubview(menuButton)
         menuButton.setImage(UIImage(named: "Add"), for: .normal)
         menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
-        
         view.layoutIfNeeded()
     }
     
     @objc private func menuButtonAction(sender: UIButton) {
         presentModal()
-        selectedIndex = 2
     }
-    
     private func presentModal() {
         let addButtonViewController = AddButtonViewController()
         let nav = UINavigationController(rootViewController: addButtonViewController)
@@ -138,6 +137,7 @@ extension TabBarController {
                 sheet.preferredCornerRadius = 15
             }
         } else {}
+        nav.navigationBar.isHidden = true
         present(nav, animated: true, completion: nil)
         
     }
