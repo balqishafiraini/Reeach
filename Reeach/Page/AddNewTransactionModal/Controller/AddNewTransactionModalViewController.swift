@@ -31,6 +31,7 @@ class AddNewTransactionModalViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view = addTransactionModalView
+        addTransactionModalView.delegate = self
         
         setNavigationBar()
     }

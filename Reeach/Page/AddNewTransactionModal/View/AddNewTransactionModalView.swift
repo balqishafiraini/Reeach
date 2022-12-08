@@ -9,6 +9,8 @@ import UIKit
 
 class AddNewTransactionModalView: UIView {
 
+    weak var delegate: AddTransactionDelegate?
+    
     var transaction: Transaction?
     var budget: Budget?
     
@@ -35,6 +37,7 @@ class AddNewTransactionModalView: UIView {
     lazy var transactionBudgetCategory: TextField = {
         let textField = TextField(frame: .zero, title: "Kategori Budget", style: .template)
         textField.textField.placeholder = "Hayoo abis buat apa?"
+        textField.textField.isEnabled = false
         
         return textField
     }()
@@ -116,6 +119,15 @@ class AddNewTransactionModalView: UIView {
         transactionDate.textField.textField.text = DateFormatHelper.getDDMMyyyy(from: transactionDate.date ?? Date())
         
         iconPicker.editButton.addTarget(self, action: #selector(editIconTapped), for: .touchUpInside)
+        
+        if budget != nil {
+            let tapOpenSelector = UITapGestureRecognizer(target: self, action: #selector(openSelector))
+            transactionBudgetCategory.addGestureRecognizer(tapOpenSelector)
+        }
+    }
+    
+    @objc func openSelector() {
+        delegate?.openCategoryBudgetSelector()
     }
     
     @objc func editIconTapped(_ sender: UIButton!) {
