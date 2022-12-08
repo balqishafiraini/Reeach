@@ -45,7 +45,7 @@ class SetupPageViewController: UIViewController {
         
         switch index {
             case 0.0:
-                contentView.bottomView.backButton.setTitle("Balik ke \((delegate as? UIViewController)?.title ?? "Halaman Sebelumnya")", for: .normal)
+                contentView.bottomView.backButton.setTitle("Balik ke \(delegate?.viewControllerTitle ?? "Halaman Sebelumnya")", for: .normal)
                 contentView.bottomView.shouldDisableNextButton(isEnabled: !goals.isEmpty)
             case 1.0:
                 contentView.bottomView.shouldDisableNextButton(isEnabled: income > 0.0)

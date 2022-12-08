@@ -14,7 +14,6 @@ extension DashboardViewController: DashboardViewDelegate {
     
     func addGoal() {
         let targetViewController = SetupPageViewController()
-        title = "Dashboard"
         targetViewController.delegate = self
         targetViewController.modalPresentationStyle = .fullScreen
         present(targetViewController, animated: true)
@@ -35,6 +34,8 @@ extension DashboardViewController: DashboardViewDelegate {
 }
 
 extension DashboardViewController: DismissViewDelegate {
+    var viewControllerTitle: String { "Dashboard" }
+    
     func viewDismissed() {
         loadData()
     }
