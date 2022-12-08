@@ -138,4 +138,27 @@ extension TransactionCategoryDetailViewController: TransactionDelegate {
     func filterTransaction(startMonth: Date?, endMonth: Date?, type: String?, budgetCategory: Category?) {
         configureFilteredData(startMonth: startMonth, endMonth: endMonth, type: type, categoryBudget: budgetCategory)
     }
+    
+    func openTransactionModal() {
+        let navigationController = UINavigationController()
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        let vc = AddNewTransactionModalViewController()
+        if let budget = budget {
+            vc.budget = budget
+        }
+        vc.dismissDelegate = self
+        vc.modalPresentationStyle = .pageSheet
+        
+        navigationController.pushViewController(vc, animated: true)
+        
+        self.present(navigationController, animated: true)
+    }
+}
+
+extension TransactionCategoryDetailViewController: DismissViewDelegate {
+    func viewDismissed() {
+        self.configureData()
+    }
 }

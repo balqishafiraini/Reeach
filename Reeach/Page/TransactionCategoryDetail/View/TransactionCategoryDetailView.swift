@@ -550,6 +550,8 @@ class TransactionCategoryDetailView: UIView {
         
         searchBar.searchTextField.addTarget(self, action: #selector(search), for: .editingChanged)
         searchBar.searchTextField.sendActions(for: .valueChanged)
+        
+        addTransactionButton.addTarget(self, action: #selector(openTransactionModal), for: .touchUpInside)
     }
     
     func removeStack() {
@@ -566,5 +568,9 @@ class TransactionCategoryDetailView: UIView {
     
     @objc func search() {
         delegate?.search(searchText: searchBar.searchTextField.text ?? "")
+    }
+    
+    @objc func openTransactionModal() {
+        delegate?.openTransactionModal()
     }
 }

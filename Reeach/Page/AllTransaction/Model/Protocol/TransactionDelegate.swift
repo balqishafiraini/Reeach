@@ -15,4 +15,6 @@ protocol TransactionDelegate: AnyObject {
     func dismiss()
     
     func filterTransaction(startMonth: Date?, endMonth: Date?, type: String?, budgetCategory: Category?)
+    
+    func openTransactionModal()
 }

@@ -142,6 +142,10 @@ extension AllTransactionViewController: TransactionDelegate{
     func filterTransaction(startMonth: Date?, endMonth: Date?, type: String?, budgetCategory: Category?) {
         configureFilteredData(startMonth: startMonth, endMonth: endMonth, type: type, categoryBudget: budgetCategory)
     }
+    
+    func openTransactionModal() {
+        print("Nothing to do here")
+    }
 }
 
 
