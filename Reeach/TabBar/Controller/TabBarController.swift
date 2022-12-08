@@ -25,6 +25,9 @@ class TabBarController: UITabBarController {
         let images = ["Dashboard", "Goals", "","Cashflow", "Planning"]
         for x in 0...4 {
             items[x].image = UIImage(named: images[x])
+            if x == 2 {
+                items[x].isEnabled = false
+            }
         }
         UITabBar.appearance().unselectedItemTintColor = .secondary4
         UITabBar.appearance().tintColor = .ghostWhite
@@ -34,8 +37,6 @@ class TabBarController: UITabBarController {
         setupMiddleButton()
         
         setValue(AppTabBar(frame: tabBar.frame), forKey: "tabBar")
-        
-//        viewControllers?.remove(at: 2)
     }
     
     override func viewDidAppear(_ animated: Bool) {
