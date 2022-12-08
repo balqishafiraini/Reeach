@@ -10,6 +10,7 @@ import UIKit
 class SetupPageViewController: UIViewController {
     
     let contentView = SetupPageView()
+    weak var delegate: DismissViewDelegate?
     
     var currentProgress: Float = 0.0
     var currentProgressIndex: Float = 0.0
@@ -44,11 +45,10 @@ class SetupPageViewController: UIViewController {
         
         switch index {
             case 0.0:
-                contentView.bottomView.backButton.isHidden = true
+                contentView.bottomView.backButton.setTitle("Balik ke \(delegate?.viewControllerTitle ?? "Halaman Sebelumnya")", for: .normal)
                 contentView.bottomView.shouldDisableNextButton(isEnabled: !goals.isEmpty)
             case 1.0:
                 contentView.bottomView.shouldDisableNextButton(isEnabled: income > 0.0)
-                contentView.bottomView.backButton.isHidden = false
                 contentView.bottomView.backButton.setTitle("Balik ke Goal-Setting", for: .normal)
             case 2.0:
                 var total = 0.0
@@ -78,7 +78,7 @@ class SetupPageViewController: UIViewController {
                 
                 contentView.bottomView.shouldDisableNextButton(isEnabled: isEnabled)
                 contentView.bottomView.backButton.isHidden = false
-                contentView.bottomView.backButton.setTitle("Kembali ke Pemasukan", for: .normal)
+                contentView.bottomView.backButton.setTitle("Balik ke Pemasukan", for: .normal)
             default:
                 contentView.bottomView.nextButton.isEnabled = true
         }

@@ -10,6 +10,7 @@ import UIKit
 extension CashflowTrackerViewController: CashflowTrackerViewDelegate {
     func goToBudgetPlanner() {
         let targetViewController = SetupPageViewController()
+        targetViewController.delegate = self
         targetViewController.modalPresentationStyle = .fullScreen
         present(targetViewController, animated: true)
     }
@@ -29,6 +30,8 @@ extension CashflowTrackerViewController: CashflowTrackerViewDelegate {
 }
 
 extension CashflowTrackerViewController: DismissViewDelegate {
+    var viewControllerTitle: String { "Cashflow Tracker" }
+    
     func viewDismissed() {
         loadData()
     }

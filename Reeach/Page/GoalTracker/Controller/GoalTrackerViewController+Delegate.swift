@@ -10,6 +10,7 @@ import UIKit
 extension GoalTrackerViewController: GoalTrackerViewDelegate {
     func goToBudgetPlanner() {
         let targetViewController = SetupPageViewController()
+        targetViewController.delegate = self
         targetViewController.modalPresentationStyle = .fullScreen
         present(targetViewController, animated: true)
     }
@@ -51,6 +52,8 @@ extension GoalTrackerViewController: GoalTrackerViewDelegate {
 }
 
 extension GoalTrackerViewController: DismissViewDelegate {
+    var viewControllerTitle: String { "Goal Tracker" }
+    
     func viewDismissed() {
         loadData()
     }

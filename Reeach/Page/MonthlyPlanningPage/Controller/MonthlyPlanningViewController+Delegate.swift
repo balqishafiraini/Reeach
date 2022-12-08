@@ -14,7 +14,17 @@ extension MonthlyPlanningViewController: PlannerDelegate {
     
     func goToBudgetPlanner() {
         let targetViewController = SetupPageViewController()
+        targetViewController.delegate = self
         targetViewController.modalPresentationStyle = .fullScreen
         present(targetViewController, animated: true)
+    }
+}
+
+extension MonthlyPlanningViewController: DismissViewDelegate {
+    var viewControllerTitle: String { "Monthly Planning" }
+    
+    func viewDismissed() {
+        planningView.setupDate(currentDate: currentDate)
+        setupInitialState()
     }
 }
