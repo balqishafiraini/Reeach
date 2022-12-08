@@ -114,15 +114,15 @@ class DashboardView: UIView {
     
     lazy var emptyGoalButton = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Ayo buat goals!")
     
-    private lazy var collectionViewFlowLayout = {
+    private lazy var goalCollectionViewFlowLayout = {
         var collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.scrollDirection = .horizontal
         collectionViewFlowLayout.minimumInteritemSpacing = 12
         return collectionViewFlowLayout
     }()
     
-    lazy var collectionView = {
-        var collectionView = UICollectionView(frame: self.frame, collectionViewLayout: collectionViewFlowLayout)
+    lazy var goalCollectionView = {
+        var collectionView = UICollectionView(frame: self.frame, collectionViewLayout: goalCollectionViewFlowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
@@ -172,8 +172,8 @@ class DashboardView: UIView {
         backgroundColor = .secondary
         
         viewDelegate = viewController
-        collectionView.delegate = viewController
-        collectionView.dataSource = viewController
+        goalCollectionView.delegate = viewController
+        goalCollectionView.dataSource = viewController
         scrollView.delegate = self
         
         configureAutoLayout()
@@ -185,7 +185,7 @@ class DashboardView: UIView {
         blankView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: bottomAnchor, right: safeAreaLayoutGuide.rightAnchor, paddingTop: 128)
         
         addSubview(scrollView)
-        scrollView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: safeAreaLayoutGuide.rightAnchor)
+        scrollView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: bottomAnchor, right: safeAreaLayoutGuide.rightAnchor)
         
         scrollView.addSubview(stackView)
         stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor)
@@ -213,8 +213,8 @@ class DashboardView: UIView {
         goalDetailContainerView.addSubview(goalDetailStackView)
         goalDetailStackView.anchor(top: goalDetailContainerView.topAnchor, left: goalDetailContainerView.leftAnchor, bottom: goalDetailContainerView.bottomAnchor, right: goalDetailContainerView.rightAnchor, paddingLeft: 20, paddingRight: 20)
         
-        goalDetailContainerView.addSubview(collectionView)
-        collectionView.anchor(top: goalDetailContainerView.topAnchor, left: goalDetailContainerView.leftAnchor, bottom: goalDetailContainerView.bottomAnchor, right: goalDetailContainerView.rightAnchor, paddingLeft: 20, paddingRight: 20)
+        goalDetailContainerView.addSubview(goalCollectionView)
+        goalCollectionView.anchor(top: goalDetailContainerView.topAnchor, left: goalDetailContainerView.leftAnchor, bottom: goalDetailContainerView.bottomAnchor, right: goalDetailContainerView.rightAnchor, paddingLeft: 20, paddingRight: 20)
         
         goalDetailStackView.addArrangedSubview(UIView())
         goalDetailStackView.addArrangedSubview(emptyGoalLabel)

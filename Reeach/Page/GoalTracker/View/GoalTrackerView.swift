@@ -149,7 +149,7 @@ class GoalTrackerView: UIView {
         let viewMargins = safeAreaLayoutGuide
         
         addSubview(rootStackView)
-        rootStackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor)
+        rootStackView.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: bottomAnchor, right: viewMargins.rightAnchor)
         
         rootStackView.addArrangedSubview(headerContainerView)
         rootStackView.setCustomSpacing(12, after: headerContainerView)

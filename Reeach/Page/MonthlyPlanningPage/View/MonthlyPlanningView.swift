@@ -294,7 +294,7 @@ class MonthlyPlanningView: UIView {
         stack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, paddingTop: 8)
         stack.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
-        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, width: UIScreen.main.bounds.maxX)
+        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, width: UIScreen.main.bounds.maxX)
         
         contentStack.anchor(left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 16, paddingBottom: 20, paddingRight: 16)
     

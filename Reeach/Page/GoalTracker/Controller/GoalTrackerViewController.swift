@@ -19,6 +19,7 @@ class GoalTrackerViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        cellHeight = 188
         loadData()
     }
     

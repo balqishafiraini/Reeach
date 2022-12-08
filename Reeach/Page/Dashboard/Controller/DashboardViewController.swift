@@ -28,17 +28,17 @@ class DashboardViewController: UIViewController {
         goals = DatabaseHelper.shared.getAllocatedGoals(on: Date())
         
         if !isSet {
-            contentView.collectionView.isHidden = true
+            contentView.goalCollectionView.isHidden = true
             contentView.emptyGoalButton.isHidden = false
             contentView.emptyGoalLabel.isHidden = false
         }
         else {
-            contentView.collectionView.isHidden = false
+            contentView.goalCollectionView.isHidden = false
             contentView.emptyGoalButton.isHidden = true
             contentView.emptyGoalLabel.isHidden = true
         }
         
-        contentView.collectionView.reloadData()
+        contentView.goalCollectionView.reloadData()
     }
     
     override func loadView() {
