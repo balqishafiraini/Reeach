@@ -26,11 +26,10 @@ class AppTabBar: UITabBar {
         shapeLayer.shadowColor = UIColor.gray.cgColor
         shapeLayer.shadowOpacity = 0.3
 
-        if let oldShapeLayer = self.shapeLayer {
-//            self.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
-        } else {
+        if self.shapeLayer == nil {
             self.layer.insertSublayer(shapeLayer, at: 0)
         }
+        
         self.shapeLayer = shapeLayer
     }
 
