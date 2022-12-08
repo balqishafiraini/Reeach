@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol DismissViewDelegate: AnyObject {
+@objc protocol DismissViewDelegate: AnyObject {
+    @objc optional var viewControllerTitle: String { get }
     func viewDismissed()
 }

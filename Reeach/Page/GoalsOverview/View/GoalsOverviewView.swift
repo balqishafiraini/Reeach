@@ -11,76 +11,151 @@ class GoalsOverviewView: UIView {
     weak var viewDelegate: GoalsOverviewViewDelegate?
     weak var viewController: GoalsOverviewViewController?
     
-    let headerView = HeaderView()
-    
-    let totalTitle: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Total"
-        lbl.font = .caption1Medium
-        lbl.textColor = .ghostWhite
-        lbl.textAlignment = .center
-        return lbl
+    //scrollView
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
     }()
     
-    let amount: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Rp66.000.000"
-        lbl.font = .largeTitle
-        lbl.textColor = .ghostWhite
-        lbl.textAlignment = .center
-        return lbl
+    private lazy var stackView = {
+        var stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        return stackView
     }()
     
-    let messageLabel: PaddingLabel = {
+    lazy var headerView = {
+        let view = HeaderView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.configureAutoLayout()
+        return view
+    }()
+    
+    lazy var messageLabelContainerView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .secondary
+        return view
+    }()
+    
+    lazy var messageLabelBlankView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .ghostWhite
+        return view
+    }()
+    
+    lazy var messageLabel: PaddingLabel = {
         let label = PaddingLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Slaaay. Kalau kamu konsisten fix bisa tercapai nih goalsnya, bestie. 🥳"
-        label.numberOfLines = 3
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .darkSlateGray
         label.font = .headline
         label.backgroundColor = .secondary2
         label.layer.cornerRadius = 16
         label.layer.masksToBounds = true
-        label.paddingRight = 23.5
-        label.paddingLeft = 23.5
+        label.paddingRight = 24
+        label.paddingLeft = 24
         label.paddingTop = 20
         label.paddingBottom = 20
         return label
     }()
     
-    let deadline: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Deadline"
-        lbl.font = .bodyBold
-        lbl.textColor = .darkSlateGray
-        return lbl
-    }()
-    
-    let deadlineView = DeadlineView()
-    
-    let status: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Status Saat Ini"
-        lbl.font = .bodyBold
-        lbl.textColor = .darkSlateGray
-        return lbl
-    }()
-    
-    let containerView: UIView = {
+    lazy var progressViewContainerView = {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .ghostWhite
         return view
     }()
     
-    let statusView = StatusView()
-    
-    //scrollView
-    lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
+    lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.tintColor = .secondary
+        progressView.trackTintColor = .black5
+        progressView.layer.cornerRadius = 10
+        progressView.clipsToBounds = true
+        progressView.layer.sublayers![1].cornerRadius = 10
+        progressView.subviews[1].clipsToBounds = true
+        progressView.anchor(height: 20)
+        return progressView
     }()
     
+    lazy var percentageLabelContainerView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .ghostWhite
+        return view
+    }()
+    
+    lazy var percentageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "30% tercapai"
+        label.font = .bodyMedium
+        label.textAlignment = .center
+        label.textColor = .black13
+        return label
+    }()
+    
+    lazy var deadlineHeaderContainerView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .ghostWhite
+        return view
+    }()
+    
+    lazy var deadlineHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Deadline"
+        label.font = .bodyBold
+        label.textColor = .black13
+        return label
+    }()
+    
+    lazy var deadlineView = {
+        let view = DeadlineView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.configureAutoLayout()
+        return view
+    }()
+    
+    lazy var statusHeaderContainerView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .ghostWhite
+        return view
+    }()
+    
+    lazy var statusHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Status Saat Ini"
+        label.font = .bodyBold
+        label.textColor = .black13
+        return label
+    }()
+    
+    lazy var statusView = {
+        let view = StatusView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.configureAutoLayout()
+        return view
+    }()
+
     private lazy var blankView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .ghostWhite
+        view.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
+        return view
+    }()
+    
+    private lazy var rootBlankView = {
         let view = UIView()
         view.backgroundColor = .ghostWhite
         return view
@@ -97,37 +172,51 @@ class GoalsOverviewView: UIView {
     }
     
     func configureAutoLayout() {
+        addSubview(rootBlankView)
+        rootBlankView.anchor(left: safeAreaLayoutGuide.leftAnchor, bottom: bottomAnchor, right: safeAreaLayoutGuide.rightAnchor)
+        rootBlankView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         
-        addSubview(blankView)
-        blankView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, height: 300)
+        addSubview(scrollView)
+        scrollView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: safeAreaLayoutGuide.rightAnchor)
         
-        self.addSubview(scrollView)
-        scrollView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, width: UIScreen.main.bounds.width)
+        scrollView.addSubview(stackView)
+        stackView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor)
+        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        stackView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor).isActive = true
         
-        scrollView.addSubview(containerView)
-        containerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor)
+        stackView.addArrangedSubview(headerView)
+        stackView.addArrangedSubview(messageLabelContainerView)
+        stackView.addArrangedSubview(progressViewContainerView)
+        stackView.addArrangedSubview(percentageLabelContainerView)
+        stackView.addArrangedSubview(deadlineHeaderContainerView)
+        stackView.addArrangedSubview(deadlineView)
+        stackView.addArrangedSubview(statusHeaderContainerView)
+        stackView.addArrangedSubview(statusView)
+        stackView.addArrangedSubview(blankView)
         
-        containerView.addSubview(headerView)
-        headerView.setUp()
-        headerView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor)
-
-        containerView.addSubview(messageLabel)
-        messageLabel.anchor(top: headerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 275, paddingLeft: 20, paddingRight: 20)
-
-        containerView.addSubview(deadline)
-        deadline.anchor(top: messageLabel.bottomAnchor, left: containerView.leftAnchor, paddingTop: 24, paddingLeft: 20)
-
-        containerView.addSubview(deadlineView)
-        deadlineView.setUp()
-        deadlineView.anchor(top: deadline.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
-
-        containerView.addSubview(status)
-        status.anchor(top: deadlineView.bottomAnchor, left: containerView.leftAnchor, paddingTop: 24, paddingLeft: 20)
-
-        containerView.addSubview(statusView)
-        statusView.setUp()
-        statusView.anchor(top: status.bottomAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
-
+        messageLabelContainerView.addSubview(messageLabelBlankView)
+        messageLabelContainerView.addSubview(messageLabel)
+        
+        messageLabelBlankView.anchor(top: messageLabelContainerView.centerYAnchor, left: messageLabelContainerView.leftAnchor, bottom: messageLabelContainerView.bottomAnchor, right: messageLabelContainerView.rightAnchor)
+        
+        messageLabel.anchor(top: messageLabelContainerView.topAnchor, left: messageLabelContainerView.leftAnchor, bottom: messageLabelContainerView.bottomAnchor, right: messageLabelContainerView.rightAnchor, paddingTop: 4, paddingLeft: 20, paddingBottom: 4, paddingRight: 20)
+        
+        
+        progressViewContainerView.addSubview(progressView)
+        progressView.anchor(top: progressViewContainerView.topAnchor, left: progressViewContainerView.leftAnchor, bottom: progressViewContainerView.bottomAnchor, right: progressViewContainerView.rightAnchor, paddingTop: 24, paddingLeft: 20, paddingRight: 20)
+        
+        
+        percentageLabelContainerView.addSubview(percentageLabel)
+        percentageLabel.anchor(top: percentageLabelContainerView.topAnchor, left: percentageLabelContainerView.leftAnchor, bottom: percentageLabelContainerView.bottomAnchor, right: percentageLabelContainerView.rightAnchor, paddingTop: 10, paddingLeft: 20, paddingRight: 20)
+        
+        
+        deadlineHeaderContainerView.addSubview(deadlineHeaderLabel)
+        deadlineHeaderLabel.anchor(top: deadlineHeaderContainerView.topAnchor, left: deadlineHeaderContainerView.leftAnchor, bottom: deadlineHeaderContainerView.bottomAnchor, right: deadlineHeaderContainerView.rightAnchor, paddingTop: 24, paddingLeft: 20, paddingBottom: 12, paddingRight: 20)
+        
+        
+        statusHeaderContainerView.addSubview(statusHeaderLabel)
+        statusHeaderLabel.anchor(top: statusHeaderContainerView.topAnchor, left: statusHeaderContainerView.leftAnchor, bottom: statusHeaderContainerView.bottomAnchor, right: statusHeaderContainerView.rightAnchor, paddingTop: 24, paddingLeft: 20, paddingBottom: 12, paddingRight: 20)
+        
     }
     
     func configureClickableTarget() {
@@ -143,207 +232,268 @@ class GoalsOverviewView: UIView {
         viewDelegate?.goToEditMode()
     }
 }
+
 class HeaderView: UIView {
-    
-    let background: UIView = {
-        let bg = UIView()
-        bg.backgroundColor = .royalHunterBlue
-        return bg
+    private lazy var verticalStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.backgroundColor = .secondary
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
-    let backButton = {
+    private lazy var backButtonHorizontalStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var backButtonBlankView = {
+        let view = UIView()
+        view.anchor(width: 20)
+        return view
+    }()
+    
+    lazy var backButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Back"), for: .normal)
         button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
         button.anchor(width: 28)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let iconLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "🤡"
-        lbl.font = lbl.font.withSize(50)
-        lbl.textAlignment = .center
-        return lbl
+    lazy var iconLabel: UILabel = {
+        let label = UILabel()
+        label.text = "🤡"
+        label.font = .systemFont(ofSize: 40)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
-    let goalName: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Asuransi"
-        lbl.font = .title
-        lbl.textColor = .ghostWhite
-        lbl.textAlignment = .center
-        return lbl
+    private lazy var goalNameContainerView = UIView()
+    
+    private lazy var goalNameHorizontalStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
-    let termLabel: PaddingLabel = {
-        let lbl = PaddingLabel()
-        lbl.text = "Medium-term"
-        lbl.font = .caption2Medium
-        lbl.textColor = .royalHunterBlue
-        lbl.textAlignment = .center
-        lbl.backgroundColor = .ghostWhite
-        lbl.layer.cornerRadius = 10
-        lbl.layer.masksToBounds = true
-        lbl.paddingRight = 8
-        lbl.paddingLeft = 8
-        lbl.paddingTop = 4
-        lbl.paddingBottom = 4
-        return lbl
-    }()
-
-
-    let totalTitle: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Total"
-        lbl.font = .caption1Medium
-        lbl.textColor = .ghostWhite
-        lbl.textAlignment = .center
-        return lbl
+    lazy var goalNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Asuransi"
+        label.font = .title
+        label.textColor = .ghostWhite
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    let amount: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Rp66.000.000"
-        lbl.font = .largeTitle
-        lbl.textColor = .ghostWhite
-        lbl.textAlignment = .center
-        return lbl
+    lazy var termLabel: PaddingLabel = {
+        let label = PaddingLabel()
+        label.text = "Medium-term"
+        label.font = .caption2Medium
+        label.textColor = .royalHunterBlue
+        label.textAlignment = .center
+        label.backgroundColor = .ghostWhite
+        label.layer.cornerRadius = 10
+        label.layer.masksToBounds = true
+        label.paddingRight = 8
+        label.paddingLeft = 8
+        label.paddingTop = 4
+        label.paddingBottom = 4
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var initialSavingTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Sudah Terkumpul"
+        label.font = .caption1Medium
+        label.textColor = .ghostWhite
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var initialSavingValueLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Rp66.000.000"
+        label.font = .largeTitle
+        label.textColor = .ghostWhite
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    lazy var targetAmountTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Dari"
+        label.font = .caption1Medium
+        label.textColor = .ghostWhite
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var targetAmountValueLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Rp66.000.000"
+        label.font = .largeTitle
+        label.textColor = .ghostWhite
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
 
-    let editButton: UIButton = {
+    lazy var editButton: UIButton = {
         let button = UIButton()
         button.tintColor = .tangerineYellow
         button.setImage(UIImage(named: "Edit"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    func setUp() {
+    func configureAutoLayout() {
+        backgroundColor = .secondary
         
-        addSubview(background)
-        background.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, width: UIScreen.main.bounds.width, height: 320)
+        addSubview(verticalStackView)
+        verticalStackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 20, paddingBottom: 24)
         
-        addSubview(backButton)
-        backButton.anchor(top: background.topAnchor, left: background.leftAnchor, paddingTop: 20, paddingLeft: 20)
+        verticalStackView.addArrangedSubview(backButtonHorizontalStackView)
+        verticalStackView.setCustomSpacing(10, after: backButtonHorizontalStackView)
+        verticalStackView.addArrangedSubview(iconLabel)
+        verticalStackView.setCustomSpacing(10, after: iconLabel)
+        verticalStackView.addArrangedSubview(goalNameContainerView)
+        verticalStackView.setCustomSpacing(8, after: goalNameContainerView)
+        verticalStackView.addArrangedSubview(termLabel)
+        verticalStackView.setCustomSpacing(20, after: termLabel)
+        verticalStackView.addArrangedSubview(initialSavingTitleLabel)
+        verticalStackView.addArrangedSubview(initialSavingValueLabel)
+        verticalStackView.setCustomSpacing(8, after: initialSavingValueLabel)
+        verticalStackView.addArrangedSubview(targetAmountTitleLabel)
+        verticalStackView.addArrangedSubview(targetAmountValueLabel)
         
-        addSubview(iconLabel)
-        iconLabel.centerX(inView: background)
-        iconLabel.anchor(top: backButton.bottomAnchor, paddingTop: 5)
+        backButtonHorizontalStackView.widthAnchor.constraint(equalTo: verticalStackView.widthAnchor).isActive = true
+        backButtonHorizontalStackView.addArrangedSubview(backButtonBlankView)
+        backButtonHorizontalStackView.addArrangedSubview(backButton)
+        backButtonHorizontalStackView.addArrangedSubview(UIView())
         
-        addSubview(goalName)
-        goalName.centerX(inView: iconLabel)
-        goalName.anchor(top: iconLabel.bottomAnchor, paddingTop: 5)
+        goalNameContainerView.addSubview(goalNameHorizontalStackView)
+        goalNameContainerView.widthAnchor.constraint(equalTo: verticalStackView.widthAnchor).isActive = true
+        goalNameHorizontalStackView.anchor(top: goalNameContainerView.topAnchor, bottom: goalNameContainerView.bottomAnchor)
+        goalNameHorizontalStackView.centerX(inView: goalNameContainerView)
         
-        addSubview(editButton)
-        editButton.anchor(top: iconLabel.bottomAnchor, left: goalName.rightAnchor, paddingTop: 6, paddingLeft: 5)
-        
-        addSubview(termLabel)
-        termLabel.centerX(inView: iconLabel)
-        termLabel.anchor(top: goalName.bottomAnchor, paddingTop: 8)
-        
-        addSubview(totalTitle)
-        totalTitle.anchor(top: termLabel.bottomAnchor, left: background.leftAnchor, right: background.rightAnchor, paddingTop:20)
-        
-        addSubview(amount)
-        amount.anchor(top: totalTitle.bottomAnchor, left: background.leftAnchor, right: background.rightAnchor)
-        
-        bringSubviewToFront(totalTitle)
-        bringSubviewToFront(amount)
-        bringSubviewToFront(iconLabel)
-        bringSubviewToFront(termLabel)
-        bringSubviewToFront(goalName)
+        goalNameHorizontalStackView.addArrangedSubview(goalNameLabel)
+        goalNameHorizontalStackView.addArrangedSubview(editButton)
     }
     
 }
 
 class DeadlineView: UIView {
-    let background: UIView = {
-        let bg = UIView()
-        bg.backgroundColor = .cardColor
-        bg.layer.cornerRadius = 16
-        bg.layer.masksToBounds = true
-        return bg
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .cardColor
+        view.layer.cornerRadius = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    let image: UIImageView = {
-        let img = UIImageView()
-        img.frame.size = CGSize(width: 66, height: 66)
-        img.image = UIImage(named: "IllustrationDeadline")
-        img.contentMode = .scaleAspectFit
-        return img
+    private lazy var horizontalStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 32
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
-    let date: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "02/2026"
-        lbl.font = .bodyBold
-        lbl.textColor = .darkSlateGray
-        return lbl
+    lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.anchor(width: 66, height: 66)
+        imageView.image = UIImage(named: "IllustrationDeadline")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
+    let dueDateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "02/2026"
+        label.font = .bodyBold
+        label.textColor = .darkSlateGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
-    func setUp() {
-        //auto-layout
+    func configureAutoLayout() {
+        backgroundColor = .ghostWhite
         
-        addSubview(background)
-        background.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.2)
+        addSubview(backgroundView)
+        backgroundView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingRight: 20)
         
-        bringSubviewToFront(image)
-        bringSubviewToFront(date)
+        backgroundView.addSubview(horizontalStackView)
+        horizontalStackView.anchor(top: backgroundView.topAnchor, left: backgroundView.leftAnchor, bottom: backgroundView.bottomAnchor, right: backgroundView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
-        addSubview(image)
-        image.centerY(inView: background)
-        image.anchor(top: background.topAnchor, left: background.leftAnchor, paddingTop: 16, paddingLeft: 16, width: 66, height: 66)
-        
-        addSubview(date)
-        date.centerY(inView: background)
-        date.anchor(top: background.topAnchor, left: image.leftAnchor, paddingTop: 30, paddingLeft: 100)
+        horizontalStackView.addArrangedSubview(imageView)
+        horizontalStackView.addArrangedSubview(dueDateLabel)
+        horizontalStackView.addArrangedSubview(UIView())
+        horizontalStackView.setCustomSpacing(0, after: dueDateLabel)
     }
-    
 }
 
 class StatusView: UIView {
-    let background: UIView = {
-        let bg = UIView()
-        bg.backgroundColor = .cardColor
-        bg.layer.cornerRadius = 16
-        bg.layer.masksToBounds = true
-        return bg
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .cardColor
+        view.layer.cornerRadius = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    let image: UIImageView = {
-        let img = UIImageView()
-        img.frame.size = CGSize(width: 66, height: 66)
-        img.image = UIImage(named: "IllustrationActive")
-        img.contentMode = .scaleAspectFit
-        return img
+    private lazy var horizontalStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 32
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
-    let date: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Goal Aktif"
-        lbl.font = .bodyBold
-        lbl.textColor = .darkSlateGray
-        return lbl
+    lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.anchor(width: 66, height: 66)
+        imageView.image = UIImage(named: "IllustrationActive")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
+    let statusLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Goal Aktif"
+        label.font = .bodyBold
+        label.textColor = .darkSlateGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
-    func setUp() {
-        //auto-layout
+    func configureAutoLayout() {
+        backgroundColor = .ghostWhite
         
-        addSubview(background)
-        background.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.2)
+        addSubview(backgroundView)
+        backgroundView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingRight: 20)
         
-        bringSubviewToFront(image)
-        bringSubviewToFront(date)
+        backgroundView.addSubview(horizontalStackView)
+        horizontalStackView.anchor(top: backgroundView.topAnchor, left: backgroundView.leftAnchor, bottom: backgroundView.bottomAnchor, right: backgroundView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
-        addSubview(image)
-        image.centerY(inView: background)
-        image.anchor(top: background.topAnchor, left: background.leftAnchor, paddingTop: 16, paddingLeft: 16, width: 66, height: 66)
-        
-        addSubview(date)
-        date.centerY(inView: background)
-        date.anchor(top: background.topAnchor, left: image.leftAnchor, paddingTop: 30, paddingLeft: 100)
+        horizontalStackView.addArrangedSubview(imageView)
+        horizontalStackView.addArrangedSubview(statusLabel)
+        horizontalStackView.addArrangedSubview(UIView())
+        horizontalStackView.setCustomSpacing(0, after: statusLabel)
     }
 }

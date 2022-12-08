@@ -28,7 +28,6 @@ extension SetupPageViewController: SetupDelegate {
         currentProgressIndex -= 1.0
         
         if currentProgressIndex < 0 {
-            (delegate as? UIViewController)?.title = nil
             delegate?.viewDismissed()
             dismiss(animated: true)
         }

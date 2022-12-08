@@ -71,7 +71,7 @@ class DashboardViewController: UIViewController {
         
         
         budgets = Array(databaseHelper.getExpenseBudgets(on: Date()).prefix(3))
-        
+
         if budgets.isEmpty {
             contentView.budgetHeaderContainerView.isHidden = true
             contentView.budgetCollectionView.isHidden = true

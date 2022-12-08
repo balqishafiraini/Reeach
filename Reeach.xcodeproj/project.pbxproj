@@ -116,6 +116,8 @@
 		CA4DF4042927F465004E6067 /* AddIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */; };
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
+		CA69867D293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69867C293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift */; };
+		CA69867F293FA20F00B21C44 /* AddNewTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69867E293FA20F00B21C44 /* AddNewTransactionModalView.swift */; };
 		CA6EBC8629235EE400A33A2E /* SetupPageViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */; };
 		CA848961292369FE00CF6CB0 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA848960292369FE00CF6CB0 /* AddGoalViewController.swift */; };
 		CA84896429236BAC00CF6CB0 /* SetupDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84896329236BAC00CF6CB0 /* SetupDelegate.swift */; };
@@ -176,6 +178,8 @@
 		FAA857CE2924A438007B4A83 /* EmojiKeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */; };
 		FABD7E802910E45A008EA682 /* GoalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD7E7F2910E45A008EA682 /* GoalModalView.swift */; };
 		FAD2BBDC2939E2DA006069BC /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */; };
+		FAD2BBDE293DD57F006069BC /* AddButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2BBDD293DD57F006069BC /* AddButtonViewController.swift */; };
+		FAD2BBE3293DE2C0006069BC /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2BBE2293DE2C0006069BC /* AddButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +312,8 @@
 		CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewController.swift; sourceTree = "<group>"; };
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/NetworkModel/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
+		CA69867C293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTransactionModalViewController.swift; sourceTree = "<group>"; };
+		CA69867E293FA20F00B21C44 /* AddNewTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTransactionModalView.swift; sourceTree = "<group>"; };
 		CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupPageViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CA848960292369FE00CF6CB0 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		CA84896329236BAC00CF6CB0 /* SetupDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupDelegate.swift; sourceTree = "<group>"; };
@@ -370,6 +376,8 @@
 		FAA857CD2924A438007B4A83 /* EmojiKeyboardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiKeyboardTextField.swift; sourceTree = "<group>"; };
 		FABD7E7F2910E45A008EA682 /* GoalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalView.swift; sourceTree = "<group>"; };
 		FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		FAD2BBDD293DD57F006069BC /* AddButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonViewController.swift; sourceTree = "<group>"; };
+		FAD2BBE2293DE2C0006069BC /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1186,6 +1194,7 @@
 		CA4D14372910069F00C35094 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				CA698679293FA1AB00B21C44 /* AddNewTransactionModal */,
 				CA2EEB112939A90F0080B06C /* TransactionCategoryDetail */,
 				CAB12E78293767F1008551F2 /* AllTransaction */,
 				FA10B0D32922B4B3005D856C /* GoalsOverview */,
@@ -1272,6 +1281,31 @@
 				CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		CA698679293FA1AB00B21C44 /* AddNewTransactionModal */ = {
+			isa = PBXGroup;
+			children = (
+				CA69867B293FA1CE00B21C44 /* Controller */,
+				CA69867A293FA1C900B21C44 /* View */,
+			);
+			path = AddNewTransactionModal;
+			sourceTree = "<group>";
+		};
+		CA69867A293FA1C900B21C44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA69867E293FA20F00B21C44 /* AddNewTransactionModalView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA69867B293FA1CE00B21C44 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA69867C293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		CA84896229236B9700CF6CB0 /* Protocol */ = {
@@ -1558,6 +1592,7 @@
 		FAA37BEA291A1F9B00F2C87A /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				FAD2BBE1293DE27E006069BC /* View */,
 				FAD2BBDA2939E2C7006069BC /* Model */,
 				FAA37BEB291A1FA400F2C87A /* Controller */,
 			);
@@ -1568,6 +1603,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA37BED291A1FD300F2C87A /* TabBarController.swift */,
+				FAD2BBDD293DD57F006069BC /* AddButtonViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1603,6 +1639,14 @@
 				FAD2BBDB2939E2DA006069BC /* CustomTabBar.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FAD2BBE1293DE27E006069BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FAD2BBE2293DE2C0006069BC /* AddButtonView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FADF89EC2918C42C00E590C0 /* GoalModal */ = {
@@ -1805,6 +1849,8 @@
 				CA0CB2CF2926A51800D8AAB0 /* BudgetItem.swift in Sources */,
 				3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */,
 				3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */,
+				CA69867F293FA20F00B21C44 /* AddNewTransactionModalView.swift in Sources */,
+				CA69867D293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift in Sources */,
 				CA2EEB0C293933C80080B06C /* FilterItemCollectionViewCell.swift in Sources */,
 				3B26888B2928C18E00E22410 /* AllocationBar.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
@@ -1868,10 +1914,12 @@
 				3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */,
 				CA4D14452910069F00C35094 /* AddIncome.swift in Sources */,
 				CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */,
+				FAD2BBDE293DD57F006069BC /* AddButtonViewController.swift in Sources */,
 				3B26F7EB28F7BF0600FAC837 /* DatabaseHelper+Transaction.swift in Sources */,
 				CA2EEAF82939274B0080B06C /* CustomModalViewController.swift in Sources */,
 				3B4AE59629231FBD000EA6C1 /* GoalTrackerViewController+Delegate.swift in Sources */,
 				3B1AF1D529258D510063DFDC /* TipDetailViewController+Delegate.swift in Sources */,
+				FAD2BBE3293DE2C0006069BC /* AddButtonView.swift in Sources */,
 				CA2EEB0829392EA70080B06C /* FilterDelegate.swift in Sources */,
 				FA9B12C328EBCF44001203F5 /* SceneDelegate.swift in Sources */,
 				CAFC303429269EC900D21274 /* CategoryAllocationModalViewController.swift in Sources */,

@@ -154,6 +154,13 @@ class DateFormatHelper {
         return dateFormatter.string(from: date)
     }
     
+    static func getDDMMyyyy(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "id")
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: date)
+    }
+    
     static func getStartDate(of date: Date) -> Date {
         let calendar = Calendar.current
         return calendar.startOfDay(for: date)

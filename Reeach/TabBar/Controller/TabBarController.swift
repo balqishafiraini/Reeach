@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         let dashboardVC = DashboardViewController()
         let goalsVC = GoalTrackerViewController()
-        let addVC = AddVC()
+        let addVC = UIViewController()
         let cashflowVC = CashflowTrackerViewController()
         let plannerVC = MonthlyPlanningViewController()
         
@@ -25,6 +25,9 @@ class TabBarController: UITabBarController {
         let images = ["Dashboard", "Goals", "","Cashflow", "Planning"]
         for x in 0...4 {
             items[x].image = UIImage(named: images[x])
+            if x == 2 {
+                items[x].isEnabled = false
+            }
         }
         UITabBar.appearance().unselectedItemTintColor = .secondary4
         UITabBar.appearance().tintColor = .ghostWhite
@@ -61,7 +64,7 @@ class TabBarController: UITabBarController {
             tabBar.frame.size.height = 100
             self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 36, right: 0)
         }
-        
+                
     }
 }
 
@@ -113,27 +116,31 @@ extension TabBarController {
         menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 50
         menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
         menuButton.frame = menuButtonFrame
-        
         menuButton.backgroundColor = UIColor.tangerineYellow
         menuButton.layer.cornerRadius = menuButtonFrame.height/2
         view.addSubview(menuButton)
-        
         menuButton.setImage(UIImage(named: "Add"), for: .normal)
         menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
-        
         view.layoutIfNeeded()
     }
     
     @objc private func menuButtonAction(sender: UIButton) {
-        selectedIndex = 2
+        presentModal()
+    }
+    private func presentModal() {
+        let addButtonViewController = AddButtonViewController()
+        let nav = UINavigationController(rootViewController: addButtonViewController)
+        nav.modalPresentationStyle = .pageSheet
+        
+        if #available(iOS 15.0, *) {
+            if let sheet = nav.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 15
+            }
+        }
+        nav.navigationBar.isHidden = true
+        present(nav, animated: true, completion: nil)
+        
     }
     
 }
-
-class AddVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .red
-    }
-}
-
