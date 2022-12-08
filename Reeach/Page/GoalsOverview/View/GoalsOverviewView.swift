@@ -155,6 +155,12 @@ class GoalsOverviewView: UIView {
         return view
     }()
     
+    private lazy var rootBlankView = {
+        let view = UIView()
+        view.backgroundColor = .ghostWhite
+        return view
+    }()
+    
     func configureView(viewController: GoalsOverviewViewController) {
         self.viewController = viewController
         backgroundColor = .royalHunterBlue
@@ -166,6 +172,10 @@ class GoalsOverviewView: UIView {
     }
     
     func configureAutoLayout() {
+        addSubview(rootBlankView)
+        rootBlankView.anchor(left: safeAreaLayoutGuide.leftAnchor, bottom: bottomAnchor, right: safeAreaLayoutGuide.rightAnchor)
+        rootBlankView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        
         addSubview(scrollView)
         scrollView.anchor(top: safeAreaLayoutGuide.topAnchor, left: safeAreaLayoutGuide.leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: safeAreaLayoutGuide.rightAnchor)
         
