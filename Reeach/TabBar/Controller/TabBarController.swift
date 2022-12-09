@@ -103,7 +103,6 @@ extension TabBarController {
     }
     
     func setupInflationData() {
-        print("Get current inflation rate")
         let networkManager = NetworkManager()
         networkManager.networkDelegate = self
         networkManager.createRequest(with: inflationEndPoint)
@@ -129,7 +128,14 @@ extension TabBarController {
     }
     private func presentModal() {
         let addButtonViewController = AddButtonViewController()
+        
+        if let viewController = selectedViewController as? DismissViewDelegate {
+            addButtonViewController.dismissDelegate = viewController
+        }
+        
         let nav = UINavigationController(rootViewController: addButtonViewController)
+        nav.navigationItem.largeTitleDisplayMode = .never
+        nav.navigationBar.setValue(true, forKey: "hidesShadow")
         nav.modalPresentationStyle = .pageSheet
         
         if #available(iOS 15.0, *) {
