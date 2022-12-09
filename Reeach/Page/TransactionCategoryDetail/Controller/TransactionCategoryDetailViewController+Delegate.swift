@@ -36,7 +36,7 @@ extension TransactionCategoryDetailViewController: TransactionDelegate {
         navigationController.navigationItem.largeTitleDisplayMode = .never
         navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
         
-        let vc = AddNewTransactionModalViewController()
+        let vc = TransactionModalViewController()
         if let transaction = transaction {
             vc.budget = transaction.budget
             vc.transaction = transaction

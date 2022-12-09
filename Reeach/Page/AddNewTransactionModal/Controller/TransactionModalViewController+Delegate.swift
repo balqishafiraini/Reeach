@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension AddNewTransactionModalViewController: AddTransactionDelegate {
+extension TransactionModalViewController: AddTransactionDelegate {
     func openCategoryBudgetSelector() {
         let targetViewController = CategoryBudgetSelectionViewController()
         targetViewController.selectedDelegate = self
@@ -26,7 +26,7 @@ extension AddNewTransactionModalViewController: AddTransactionDelegate {
     }
 }
 
-extension AddNewTransactionModalViewController: FilterDelegate {
+extension TransactionModalViewController: FilterDelegate {
     func selected(selectedItem: String) {
         self.transactionType = selectedItem
         addTransactionModalView.transactionType.textField.text = selectedItem
@@ -43,7 +43,7 @@ extension AddNewTransactionModalViewController: FilterDelegate {
     }
 }
 
-extension AddNewTransactionModalViewController: SelectCategoryBudgetDelegate {
+extension TransactionModalViewController: SelectCategoryBudgetDelegate {
     func selectedItem(budget: Budget?) {
         self.budget = budget
         self.addTransactionModalView.transactionBudgetCategory.textField.text = budget?.category?.name ?? "Lainnya"

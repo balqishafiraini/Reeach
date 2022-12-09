@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddNewTransactionModalViewController: UIViewController {
+class TransactionModalViewController: UIViewController {
 
     lazy var addTransactionModalView = AddNewTransactionModalView()
     
