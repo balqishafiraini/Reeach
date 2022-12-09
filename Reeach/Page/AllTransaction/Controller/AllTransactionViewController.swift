@@ -42,7 +42,6 @@ class AllTransactionViewController: UIViewController {
     }
     
     func configureData() {
-        print(#function)
         transactions = []
         separatedTransactions = [:]
         sortedKeys = []
@@ -68,8 +67,18 @@ class AllTransactionViewController: UIViewController {
     }
     
     func configureFilteredData(startMonth: Date? = Date(), endMonth: Date? = Date(), type: String? = nil, categoryBudget: Category? = nil) {
-        // TODO: get transaction based on params
-        filteredTransaction = databaseHelper.getTransactions(since: startMonth!, upTo: endMonth!, type: type, category: categoryBudget)
+        var transactionType = ""
+        if let type = type {
+            switch type {
+                case "Pengeluaran":
+                    transactionType = "Expense"
+                case "Pemasukan":
+                    transactionType = "Income"
+                default:
+                    transactionType = "Goal"
+            }
+        }
+        filteredTransaction = databaseHelper.getTransactions(since: startMonth!, upTo: endMonth!, type: transactionType, category: categoryBudget)
         
         separatedTransactions = getSeparatedTransactions(transactions: filteredTransaction)
         
@@ -119,7 +128,7 @@ class AllTransactionViewController: UIViewController {
     }
 }
 
-extension AllTransactionViewController: TransactionDelegate{
+extension AllTransactionViewController: TransactionDelegate {
     func openSheet() {
         openFilterSheet()
     }
@@ -143,7 +152,7 @@ extension AllTransactionViewController: TransactionDelegate{
         configureFilteredData(startMonth: startMonth, endMonth: endMonth, type: type, categoryBudget: budgetCategory)
     }
     
-    func openTransactionModal() {
+    func openTransactionModal(transaction: Transaction?) {
         print("Nothing to do here")
     }
 }
