@@ -32,9 +32,14 @@ class HeaderGoalDetailCollectionReusableView: UICollectionReusableView {
         configureAutoLayout()
     }
     
+    lazy var titleLabelLeftAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20)
+    lazy var titleLabelRightAnchorConstraint = titleLabel.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: 20)
+    
     func configureAutoLayout() {
         let viewMargins = safeAreaLayoutGuide
         addSubview(titleLabel)
-        titleLabel.anchor(top: viewMargins.topAnchor, left: viewMargins.leftAnchor, bottom: viewMargins.bottomAnchor, right: viewMargins.rightAnchor, paddingTop: 16, paddingLeft: 20, paddingBottom: 12, paddingRight: 20)
+        titleLabel.anchor(top: viewMargins.topAnchor, bottom: viewMargins.bottomAnchor, paddingTop: 16, paddingBottom: 12)
+        titleLabelLeftAnchorConstraint.isActive = true
+        titleLabelRightAnchorConstraint.isActive = true
     }
 }
