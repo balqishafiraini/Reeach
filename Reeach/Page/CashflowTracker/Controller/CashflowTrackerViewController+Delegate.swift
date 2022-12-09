@@ -122,7 +122,20 @@ extension CashflowTrackerViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == contentView.transactionCollectionView {
-            // TODO: YOK PINDAH PAGE YOK
+            let navigationController = UINavigationController()
+            navigationController.navigationItem.largeTitleDisplayMode = .never
+            navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+            
+            let targetViewController = TransactionModalViewController()
+            targetViewController.budget = todayTransactions[indexPath.item].budget
+            targetViewController.transaction = todayTransactions[indexPath.item]
+            targetViewController.mode = .edit
+            targetViewController.dismissDelegate = self
+            targetViewController.modalPresentationStyle = .pageSheet
+            
+            navigationController.pushViewController(targetViewController, animated: true)
+            
+            self.present(navigationController, animated: true)
         }
         else if collectionView == contentView.budgetCollectionView {
             if let cell = collectionView.cellForItem(at: indexPath)! as? CategoryCardCollectionViewCell {

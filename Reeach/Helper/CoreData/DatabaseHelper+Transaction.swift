@@ -92,7 +92,7 @@ extension DatabaseHelper {
         }
         
         if let category {
-            return result.filter { category.name == nil ? $0.budget == nil : $0.budget?.category == category }
+            return result.filter { category.managedObjectContext == nil ? $0.budget == nil : $0.budget?.category == category }
         }
         else if let type {
             if type == "Expense" {

@@ -119,11 +119,10 @@ class TransactionItemViewCell: UICollectionViewCell {
     }
     
     lazy var containerLeftConstraint = container.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20)
-    lazy var containerRightConstraint = container.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20)
+    lazy var containerRightConstraint = container.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20)
     
     func setupView() {
         self.addSubview(container)
-        
         container.addSubview(stackView)
         
         detailStack.addArrangedSubview(titleLabel)
@@ -142,10 +141,5 @@ class TransactionItemViewCell: UICollectionViewCell {
         
         stackView.anchor(top: container.topAnchor, left: container.leftAnchor, bottom: container.bottomAnchor, right: container.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 8, paddingRight: 12)
         
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openDetail)))
     }
-    
-    @objc func openDetail() {
-    }
-
 }

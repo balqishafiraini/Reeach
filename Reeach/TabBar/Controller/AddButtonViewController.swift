@@ -10,6 +10,7 @@ import UIKit
 class AddButtonViewController: UIViewController {
     
     let addButtonView = AddButtonView()
+    weak var dismissDelegate: DismissViewDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +22,30 @@ class AddButtonViewController: UIViewController {
     }
     
     @objc private func doneButton(sender: UIButton) {
+        dismissDelegate?.viewDismissed()
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc private func goToNewGoal(sender: UIButton) {
-        print("go to new goal")
+        let targetViewController = GoalModalViewController()
+        targetViewController.delegate = dismissDelegate
+        targetViewController.modalPresentationStyle = .pageSheet
+        targetViewController.mode = .add
+        
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.popViewController(animated: false)
+        navigationController?.pushViewController(targetViewController, animated: false)
     }
     
     @objc private func goToNewTransaction(sender: UIButton) {
-        print("go to new transaction")
+        let targetViewController = TransactionModalViewController()
+        targetViewController.dismissDelegate = dismissDelegate
+        targetViewController.modalPresentationStyle = .pageSheet
+        targetViewController.mode = .add
+        
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.popViewController(animated: false)
+        navigationController?.pushViewController(targetViewController, animated: false)
     }
 
 }

@@ -113,7 +113,7 @@ class AllTransactionView: UIView {
 //        cv.isScrollEnabled = false
         cv.register(TransactionItemViewCell.self, forCellWithReuseIdentifier: TransactionItemViewCell.identifier)
         cv.register(HeaderGoalDetailCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderGoalDetailCollectionReusableView.reuseIdentifier)
-        
+        cv.keyboardDismissMode = .onDrag
         return cv
     }()
     
@@ -250,8 +250,8 @@ class AllTransactionView: UIView {
         filterButton.addTarget(self, action: #selector(openFilter), for: .touchUpInside)
         testButton.addTarget(self, action: #selector(populateDummyData), for: .touchUpInside)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        transactionList.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        transactionList.addGestureRecognizer(tap)
     }
     
     @objc func back() {

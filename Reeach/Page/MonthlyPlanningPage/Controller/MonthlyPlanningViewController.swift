@@ -33,8 +33,6 @@ class MonthlyPlanningViewController: UIViewController {
     }
     
     func setupInitialState(date: Date? = Date()) {
-        print("Get Planner for \(DateFormatHelper.getShortMonthAndYearString(from: date!))")
-        
         let isInitialized = UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: date!))
         
         let budgets = DatabaseHelper().getBudgets(on: date!)

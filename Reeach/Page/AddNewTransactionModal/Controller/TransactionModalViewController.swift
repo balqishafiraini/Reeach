@@ -110,11 +110,9 @@ class TransactionModalViewController: UIViewController {
         
         if mode == .add {
             if let _ = icon, let name = name, let budget = budget {
-                print("Transaksi normal")
-                let _ = dbHelper.createTransaction(name: name, date: date, budget: budget, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
+                let _ = dbHelper.createTransaction(name: name, date: date, budget: budget, amount: amount, notes: "")
             } else {
-                print("Transaksi lainnya")
-                let _ = dbHelper.createTransaction(name: name ?? "Name", date: date, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
+                let _ = dbHelper.createTransaction(name: name ?? "Name", date: date, amount: amount, notes: "")
             }
         } else {
             transaction?.name = name

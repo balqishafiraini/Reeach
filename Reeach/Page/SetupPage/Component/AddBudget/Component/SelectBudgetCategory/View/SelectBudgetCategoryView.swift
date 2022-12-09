@@ -61,7 +61,6 @@ class SelectBudgetCategoryView: UIView {
         collectionView.dataSource = viewController
         
         if let isShown = isShown {
-            print(isShown)
             self.isShown = isShown
         }
         
@@ -76,7 +75,6 @@ class SelectBudgetCategoryView: UIView {
     }
     
     func configureAutoLayout() {
-        print((#function))
         let viewMargins = safeAreaLayoutGuide
         
         addSubview(stackView)
