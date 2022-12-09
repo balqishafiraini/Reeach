@@ -96,10 +96,11 @@ class TransactionCategoryDetailViewController: UIViewController {
         var newTransaction: [Date: [Transaction]] = [:]
         
         for transaction in transactions {
-            if newTransaction[transaction.date!] != nil {
-                newTransaction[transaction.date!]?.append(transaction)
+            let key = DateFormatHelper.getStartDate(of: transaction.date!)
+            if newTransaction[key] != nil {
+                newTransaction[key]?.append(transaction)
             } else {
-                newTransaction[transaction.date!] = [transaction]
+                newTransaction[key] = [transaction]
             }
         }
         
