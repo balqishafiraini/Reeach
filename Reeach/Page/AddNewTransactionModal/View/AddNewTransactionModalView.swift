@@ -16,6 +16,7 @@ class AddNewTransactionModalView: UIView {
     var budget: Budget?
     
     var income: Double = 0.0
+    var date: Date = Date()
     
     lazy var iconPicker = IconView()
     
@@ -79,11 +80,13 @@ class AddNewTransactionModalView: UIView {
         
         if let transaction = transaction {
             print(transaction.date!)
+            iconPicker.iconTextField.text = transaction.budget?.category?.icon
             transactionName.textField.text = transaction.name
             transactionAmount.textField.text = CurrencyHelper.getFormattedNumber(from: transaction.amount)
             transactionDate.textField.textField.text = DateFormatHelper.getDDMMyyyy(from: transaction.date!)
             transactionBudgetCategory.textField.text = transaction.budget?.category?.name ?? "Lainnya"
             income = transaction.amount
+            date = transaction.date!
         }
     }
     
@@ -127,11 +130,13 @@ class AddNewTransactionModalView: UIView {
         transactionDate.textField.textField.placeholder = "DD/MM/YYYY"
         
         iconPicker.editButton.addTarget(self, action: #selector(editIconTapped), for: .touchUpInside)
-        
-        let tapOpenTypeSelector = UITapGestureRecognizer(target: self, action: #selector(openTypeSelector))
-        transactionType.addGestureRecognizer(tapOpenTypeSelector)
-        
-        if transaction != nil {
+    }
+    
+    func setSelectorPressable(isPressable: Bool = true) {
+        if isPressable {
+            let tapOpenTypeSelector = UITapGestureRecognizer(target: self, action: #selector(openTypeSelector))
+            transactionType.addGestureRecognizer(tapOpenTypeSelector)
+            
             let tapOpenSelector = UITapGestureRecognizer(target: self, action: #selector(openSelector))
             transactionBudgetCategory.addGestureRecognizer(tapOpenSelector)
         }
@@ -161,8 +166,8 @@ class AddNewTransactionModalView: UIView {
     }
     
     @objc func updateDate() {
-        print(#function)
         let textField = transactionDate.textField.textField
+        date = transactionDate.date!
         textField.text = DateFormatHelper.getDDMMyyyy(from: transactionDate.date ?? Date())
     }
     

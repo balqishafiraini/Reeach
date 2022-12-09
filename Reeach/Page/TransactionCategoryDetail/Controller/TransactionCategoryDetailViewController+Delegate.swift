@@ -9,7 +9,18 @@ import UIKit
 
 extension TransactionCategoryDetailViewController: TransactionDelegate {
     func openSheet() {
-        openFilterSheet()
+        let navigationController = UINavigationController()
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        let vc = TransactionFilterViewController()
+        vc.delegate = self
+        vc.budgetCategory = category
+        vc.modalPresentationStyle = .pageSheet
+        
+        navigationController.pushViewController(vc, animated: true)
+        
+        self.present(navigationController, animated: true)
     }
     
     func search(searchText: String) {
@@ -44,6 +55,7 @@ extension TransactionCategoryDetailViewController: TransactionDelegate {
         } else {
             vc.budget = self.budget
             vc.mode = .add
+            vc.pressableSelector = false
         }
         vc.dismissDelegate = self
         vc.modalPresentationStyle = .pageSheet

@@ -109,20 +109,4 @@ class TransactionCategoryDetailViewController: UIViewController {
         
         return newTransaction
     }
-    
-    func openFilterSheet() {
-        
-        let navigationController = UINavigationController()
-        navigationController.navigationItem.largeTitleDisplayMode = .never
-        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
-        
-        let vc = TransactionFilterViewController()
-        vc.delegate = self
-        vc.budgetCategory = category
-        vc.modalPresentationStyle = .pageSheet
-        
-        navigationController.pushViewController(vc, animated: true)
-        
-        self.present(navigationController, animated: true)
-    }
 }

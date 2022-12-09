@@ -12,6 +12,7 @@ class TransactionModalViewController: UIViewController {
     lazy var addTransactionModalView = AddNewTransactionModalView()
     
     weak var dismissDelegate: DismissViewDelegate?
+    weak var delegate: TransactionDelegate?
     
     let dbHelper = DatabaseHelper.shared
     
@@ -24,7 +25,7 @@ class TransactionModalViewController: UIViewController {
     
     var transaction: Transaction? = nil
     var mode: Mode = .add
-    var delegate: TransactionDelegate?
+    var pressableSelector = true
     var transactionType: String = ""
     
     override func viewDidLoad() {
@@ -78,8 +79,8 @@ class TransactionModalViewController: UIViewController {
     func configureView() {
         addTransactionModalView.setupData()
         addTransactionModalView.setupView()
-        addTransactionModalView.transactionBudgetCategory.isHidden = transactionType.isEmpty
         shouldHideCategoryBudget()
+        addTransactionModalView.setSelectorPressable(isPressable: pressableSelector)
     }
     
     func shouldHideCategoryBudget() {
@@ -92,7 +93,6 @@ class TransactionModalViewController: UIViewController {
                 
             default:
                 addTransactionModalView.transactionBudgetCategory.isHidden = true
-                
         }
     }
     
@@ -106,15 +106,15 @@ class TransactionModalViewController: UIViewController {
         let icon = view.iconPicker.iconTextField.text
         let name = view.transactionName.textField.text
         let amount = view.income
-        let date = view.transactionDate.date
+        let date = view.date
         
         if mode == .add {
-            if let _ = icon, let name = name, let date = date, let budget = budget {
+            if let _ = icon, let name = name, let budget = budget {
                 print("Transaksi normal")
                 let _ = dbHelper.createTransaction(name: name, date: date, budget: budget, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
             } else {
                 print("Transaksi lainnya")
-                let _ = dbHelper.createTransaction(name: name ?? "Name", date: date ?? Date(), amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
+                let _ = dbHelper.createTransaction(name: name ?? "Name", date: date, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
             }
         } else {
             transaction?.name = name
