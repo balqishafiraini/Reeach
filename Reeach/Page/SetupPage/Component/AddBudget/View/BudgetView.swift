@@ -196,13 +196,13 @@ class BudgetView: UIView {
         }
         
         if allocated < lowTarget {
-            statusLabel.text = type == "Goal" ? "Waduh! Budget tabunganmu belum cukup." : "Kamu masih bisa tambah budget kamu."
+            statusLabel.text = "Kamu masih \(type == "Goal" ? "harus" : "bisa") budget \(CurrencyHelper.getCurrency(from: lowTarget - allocated))"
             statusLabel.textColor = .accentRed
         } else if allocated > highTarget {
-            statusLabel.text = "Budget kamu udah kelebihan. Yuk, kurangi."
+            statusLabel.text = "Kamu udah kelebihan budget \(CurrencyHelper.getCurrency(from: allocated - highTarget))"
             statusLabel.textColor = .accentRed
         } else {
-            statusLabel.text = type == "Goal" ? "Budget tabungan kamu udah aman, nih." : "Budget kamu udah aman, nih."
+            statusLabel.text = "Budget kamu udah \(CurrencyHelper.getCurrency(from: allocated))"
             statusLabel.textColor = .accentGreen7
         }
     }
