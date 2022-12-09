@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SelectCategoryBudgetDelegate: AnyObject {
-    func selectedItem(budget: Budget)
+    func selectedItem(budget: Budget?)
 }

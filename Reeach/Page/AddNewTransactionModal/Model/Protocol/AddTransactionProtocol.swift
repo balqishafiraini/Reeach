@@ -8,5 +8,6 @@
 import Foundation
 
 protocol AddTransactionDelegate: AnyObject {
-    func openCategoryBudgetSelector() 
+    func openCategoryBudgetSelector()
+    func openTypeSelector()
 }

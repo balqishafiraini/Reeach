@@ -10,6 +10,7 @@ import UIKit
 class AddNewTransactionModalView: UIView {
 
     weak var delegate: AddTransactionDelegate?
+    weak var filterDelegate: FilterDelegate?
     
     var transaction: Transaction?
     var budget: Budget?
@@ -26,7 +27,7 @@ class AddNewTransactionModalView: UIView {
     }()
 
     lazy var transactionAmount: TextField = {
-        let textField = TextField(frame: .zero, title: "Nominal Transaksi", style: .template, prefix: "Rp. ")
+        let textField = TextField(frame: .zero, title: "Nominal Transaksi", style: .template, prefix: "Rp ")
         textField.textField.keyboardType = .numberPad
         
         return textField
@@ -34,9 +35,17 @@ class AddNewTransactionModalView: UIView {
     
     lazy var transactionDate = DatePicker(frame: .zero, title: "Tanggal Transaksi")
     
+    lazy var transactionType: TextField = {
+        let textField = TextField(frame: .zero, title: "Jenis Transaksi", style: .template)
+        textField.textField.placeholder = "Pilih jenis transaksi"
+        textField.textField.isEnabled = false
+        
+        return textField
+    }()
+    
     lazy var transactionBudgetCategory: TextField = {
         let textField = TextField(frame: .zero, title: "Kategori Budget", style: .template)
-        textField.textField.placeholder = "Hayoo abis buat apa?"
+        textField.textField.placeholder = "Pilih kategori budget"
         textField.textField.isEnabled = false
         
         return textField
@@ -66,16 +75,15 @@ class AddNewTransactionModalView: UIView {
     }
     
     func setupData() {
-        if let budget = budget {
-            transactionBudgetCategory.textField.text = budget.category?.name
-            transactionBudgetCategory.textField.isEnabled = false
-        }
+        transactionBudgetCategory.textField.text = budget?.category?.name ?? "Lainnya"
         
         if let transaction = transaction {
+            print(transaction.date!)
             transactionName.textField.text = transaction.name
             transactionAmount.textField.text = CurrencyHelper.getFormattedNumber(from: transaction.amount)
             transactionDate.textField.textField.text = DateFormatHelper.getDDMMyyyy(from: transaction.date!)
-            transactionBudgetCategory.textField.text = transaction.budget?.category?.name
+            transactionBudgetCategory.textField.text = transaction.budget?.category?.name ?? "Lainnya"
+            income = transaction.amount
         }
     }
     
@@ -90,6 +98,7 @@ class AddNewTransactionModalView: UIView {
         formStack.addArrangedSubview(transactionName)
         formStack.addArrangedSubview(transactionAmount)
         formStack.addArrangedSubview(transactionDate)
+        formStack.addArrangedSubview(transactionType)
         formStack.addArrangedSubview(transactionBudgetCategory)
         
         scrollView.addSubview(formStack)
@@ -116,11 +125,13 @@ class AddNewTransactionModalView: UIView {
         transactionDate.textField.textField.sendActions(for: .valueChanged)
         
         transactionDate.textField.textField.placeholder = "DD/MM/YYYY"
-        transactionDate.textField.textField.text = DateFormatHelper.getDDMMyyyy(from: transactionDate.date ?? Date())
         
         iconPicker.editButton.addTarget(self, action: #selector(editIconTapped), for: .touchUpInside)
         
-        if budget != nil {
+        let tapOpenTypeSelector = UITapGestureRecognizer(target: self, action: #selector(openTypeSelector))
+        transactionType.addGestureRecognizer(tapOpenTypeSelector)
+        
+        if transaction != nil {
             let tapOpenSelector = UITapGestureRecognizer(target: self, action: #selector(openSelector))
             transactionBudgetCategory.addGestureRecognizer(tapOpenSelector)
         }
@@ -128,6 +139,10 @@ class AddNewTransactionModalView: UIView {
     
     @objc func openSelector() {
         delegate?.openCategoryBudgetSelector()
+    }
+    
+    @objc func openTypeSelector() {
+        delegate?.openTypeSelector()
     }
     
     @objc func editIconTapped(_ sender: UIButton!) {
