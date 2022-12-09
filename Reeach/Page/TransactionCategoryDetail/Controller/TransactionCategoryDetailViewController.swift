@@ -84,7 +84,7 @@ class TransactionCategoryDetailViewController: UIViewController {
         separatedTransactions = getSeparatedTransactions(transactions: filteredTransaction)
         
         updateView()
-    }
+    }   
     
     func updateView() {
         transactionDetailView.removeStack()

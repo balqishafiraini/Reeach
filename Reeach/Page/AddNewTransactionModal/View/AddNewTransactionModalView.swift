@@ -37,7 +37,7 @@ class AddNewTransactionModalView: UIView {
     lazy var transactionDate = DatePicker(frame: .zero, title: "Tanggal Transaksi")
     
     lazy var transactionType: TextField = {
-        let textField = TextField(frame: .zero, title: "Jenis Transaksi", style: .template)
+        let textField = TextField(frame: .zero, title: "Jenis Transaksi", style: .template, icon: UIImage(named: "ChevronRight"))
         textField.textField.placeholder = "Pilih jenis transaksi"
         textField.textField.isEnabled = false
         
@@ -45,7 +45,7 @@ class AddNewTransactionModalView: UIView {
     }()
     
     lazy var transactionBudgetCategory: TextField = {
-        let textField = TextField(frame: .zero, title: "Kategori Budget", style: .template)
+        let textField = TextField(frame: .zero, title: "Kategori Budget", style: .template, icon: UIImage(named: "ChevronRight"))
         textField.textField.placeholder = "Pilih kategori budget"
         textField.textField.isEnabled = false
         
