@@ -88,7 +88,7 @@ class TransactionCategoryDetailViewController: UIViewController {
     
     func updateView() {
         transactionDetailView.removeStack()
-        transactionDetailView.setupData(budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys, remainingAmount: totalExpense - budget!.monthlyAllocation, expenseAmount: totalExpense)
+        transactionDetailView.setupData(budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys, remainingAmount: budget!.monthlyAllocation - totalExpense, expenseAmount: totalExpense)
         transactionDetailView.setupView()
     }
     
