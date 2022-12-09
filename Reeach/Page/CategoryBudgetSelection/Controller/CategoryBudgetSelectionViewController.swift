@@ -18,6 +18,7 @@ class CategoryBudgetSelectionViewController: UIViewController {
     var keys: [String] = []
     
     var forBudget: TransactionType = .expense
+    var showOnlyCurrentMonth = true
     
     weak var selectedDelegate: SelectCategoryBudgetDelegate?
     
@@ -41,7 +42,7 @@ class CategoryBudgetSelectionViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
 
-    func configureData() {
+    func configureData() {        
         if forBudget == .expense {
             keys = [
                 "Kebutuhan Pokok",
@@ -49,14 +50,14 @@ class CategoryBudgetSelectionViewController: UIViewController {
                 "Lainnya"
             ]
             budgets = [
-                "Kebutuhan Pokok": dbHelper.getBudgets(on: Date(), type: "Need"),
-                "Kebutuhan Non-Pokok": dbHelper.getBudgets(on: Date(), type: "Want"),
+                "Kebutuhan Pokok": showOnlyCurrentMonth ? dbHelper.getBudgets(on: Date(), type: "Need") : dbHelper.getBudgets(type: "Need"),
+                "Kebutuhan Non-Pokok": showOnlyCurrentMonth ? dbHelper.getBudgets(on: Date(), type: "Want") : dbHelper.getBudgets(type: "Want"),
                 "Lainnya": [],
             ]
         } else {
             keys = ["Goal"]
             budgets = [
-                "Goal": dbHelper.getBudgets(on: Date(), type: "Goal")
+                "Goal": showOnlyCurrentMonth ? dbHelper.getBudgets(on: Date(), type: "Goal") : dbHelper.getBudgets(type: "Goal")
             ]
         }
         

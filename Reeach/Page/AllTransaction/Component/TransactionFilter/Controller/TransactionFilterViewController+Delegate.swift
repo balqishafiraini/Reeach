@@ -25,6 +25,7 @@ extension TransactionFilterViewController: FilterDelegate {
                 print("Open picker for category budget")
                 let targetViewController = CategoryBudgetSelectionViewController()
                 targetViewController.selectedDelegate = self
+                targetViewController.showOnlyCurrentMonth = false
                 navigationController?.pushViewController(targetViewController, animated: true)
                 
             default:
