@@ -282,10 +282,9 @@ class TransactionCategoryDetailView: UIView {
         stack.distribution = .fill
         
         stack.addArrangedSubview(searchBar)
-        stack.addArrangedSubview(filterButton)
         
         view.addSubview(stack)
-        stack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 12, paddingRight: 20)
+        stack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 12, paddingRight: 12)
         
         return view
     }()
@@ -415,6 +414,27 @@ class TransactionCategoryDetailView: UIView {
         self.sortedKeys = sortedKeys ?? []
     }
     
+    func setupData(budget: Budget?, transactions: [Date: [Transaction]]? = [:], sortedKeys: [Date]? = [], remainingAmount: Double, expenseAmount: Double) {
+        formattedTransactions.removeAll()
+        self.sortedKeys.removeAll()
+        
+        self.budget = budget
+        
+        categoryIconLabel.text = budget!.category!.icon
+        categoryTitleLabel.text = budget!.category!.name
+        categoryTypeLabel.text = getCategoryLabel(type: budget!.category!.type!)
+        
+        addTransactionButton.setTitle("Catat Pengeluaran \(budget!.category!.name!)", for: .normal)
+        
+        self.formattedTransactions = transactions ?? [:]
+        self.sortedKeys = sortedKeys ?? []
+        
+        remainingAmountLabel.text = CurrencyHelper.getCurrency(from: remainingAmount)
+        expenseAmountLabel.text = CurrencyHelper.getCurrency(from: expenseAmount)
+        budgetAmountLabel.text = CurrencyHelper.getCurrency(from: budget!.monthlyAllocation)
+        remainingBudgetProgress.setProgress(Float((budget!.monthlyAllocation - expenseAmount) / budget!.monthlyAllocation), animated: false)
+    }
+    
     func getCategoryLabel(type: String) -> String {
         switch type {
             case "Goal":
@@ -515,8 +535,8 @@ class TransactionCategoryDetailView: UIView {
     }
     
     func setupTransactionList() {
-        var totalExpense = 0.0
-        let totalBudget = budget!.monthlyAllocation
+//        var totalExpense = 0.0
+//        let totalBudget = budget!.monthlyAllocation
         
         for key in sortedKeys {
             let newHeader = HeaderGoalDetailCollectionReusableView()
@@ -532,18 +552,18 @@ class TransactionCategoryDetailView: UIView {
                 let tap = UITapGestureRecognizer(target: self, action: #selector(tapTransaction))
                 newItem.addGestureRecognizer(tap)
                 
-                totalExpense += transaction.amount
+//                totalExpense += transaction.amount
                 
                 transactionStackList.addArrangedSubview(newItem)
                 transactionStackList.setCustomSpacing(8, after: newItem)
             }
         }
         
-        budgetAmountLabel.text = CurrencyHelper.getCurrency(from: totalBudget)
-        expenseAmountLabel.text = CurrencyHelper.getCurrency(from: totalExpense)
-        
-        remainingAmountLabel.text = CurrencyHelper.getCurrency(from: (totalBudget - totalExpense))
-        remainingBudgetProgress.setProgress(Float((totalBudget - totalExpense) / totalBudget), animated: false)
+//        budgetAmountLabel.text = CurrencyHelper.getCurrency(from: totalBudget)
+//        expenseAmountLabel.text = CurrencyHelper.getCurrency(from: totalExpense)
+//
+//        remainingAmountLabel.text = CurrencyHelper.getCurrency(from: (totalBudget - totalExpense))
+//        remainingBudgetProgress.setProgress(Float((totalBudget - totalExpense) / totalBudget), animated: false)
     }
     
     func setupTargets() {
@@ -554,6 +574,9 @@ class TransactionCategoryDetailView: UIView {
         searchBar.searchTextField.sendActions(for: .valueChanged)
         
         addTransactionButton.addTarget(self, action: #selector(openTransactionModal), for: .touchUpInside)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        scrollView.addGestureRecognizer(tap)
     }
     
     func removeStack() {

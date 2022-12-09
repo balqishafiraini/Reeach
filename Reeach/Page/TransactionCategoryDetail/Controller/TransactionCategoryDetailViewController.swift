@@ -20,6 +20,8 @@ class TransactionCategoryDetailViewController: UIViewController {
     var separatedTransactions: [Date: [Transaction]] = [:]
     var sortedKeys: [Date] = []
     
+    var totalExpense = 0.0
+    
     let dbHelper = DatabaseHelper.shared
     
     weak var dismissDelegate: DismissViewDelegate?
@@ -47,7 +49,19 @@ class TransactionCategoryDetailViewController: UIViewController {
         
         separatedTransactions = getSeparatedTransactions(transactions: transactions)
                 
+        calculateData()
+        
         updateView()
+    }
+    
+    func calculateData() {
+        totalExpense = 0.0
+        
+        for key in sortedKeys {
+            for transaction in separatedTransactions[key]! {
+              totalExpense += transaction.amount
+            }
+        }
     }
     
     func configureSearchData() {
@@ -59,8 +73,6 @@ class TransactionCategoryDetailViewController: UIViewController {
         })
         
         separatedTransactions = getSeparatedTransactions(transactions: searchedTransaction)
-        
-        print(separatedTransactions)
         
         updateView()
     }
@@ -76,7 +88,7 @@ class TransactionCategoryDetailViewController: UIViewController {
     
     func updateView() {
         transactionDetailView.removeStack()
-        transactionDetailView.setupData(budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys)
+        transactionDetailView.setupData(budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys, remainingAmount: totalExpense - budget!.monthlyAllocation, expenseAmount: totalExpense)
         transactionDetailView.setupView()
     }
     
