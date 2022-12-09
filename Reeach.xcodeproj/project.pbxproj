@@ -132,6 +132,7 @@
 		CAB12E7E29376829008551F2 /* AllTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB12E7D29376829008551F2 /* AllTransactionView.swift */; };
 		CAD6C4442925274E00755DF9 /* PlannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6C4432925274E00755DF9 /* PlannerDelegate.swift */; };
 		CAD6C4462925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6C4452925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift */; };
+		CADF4D0D29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF4D0C29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift */; };
 		CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA872922055400974168 /* SetupProgressHeader.swift */; };
 		CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA882922055400974168 /* ProgressSection.swift */; };
 		CAEDFA8B29220F2A00974168 /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143D2910069F00C35094 /* AddBudget.swift */; };
@@ -331,6 +332,7 @@
 		CAB12E7D29376829008551F2 /* AllTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionView.swift; sourceTree = "<group>"; };
 		CAD6C4432925274E00755DF9 /* PlannerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerDelegate.swift; sourceTree = "<group>"; };
 		CAD6C4452925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyPlanningViewController+Delegate.swift"; sourceTree = "<group>"; };
+		CADF4D0C29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionCategoryDetailViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CAEDFA872922055400974168 /* SetupProgressHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProgressHeader.swift; sourceTree = "<group>"; };
 		CAEDFA882922055400974168 /* ProgressSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSection.swift; sourceTree = "<group>"; };
 		CAFADA792912E1DB00172D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1185,6 +1187,7 @@
 			isa = PBXGroup;
 			children = (
 				CA2EEB162939A9570080B06C /* TransactionCategoryDetailViewController.swift */,
+				CADF4D0C29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1873,6 +1876,7 @@
 				CAFC303629269EC900D21274 /* CategoryAllocationModalView.swift in Sources */,
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
 				3B8197FE291A59D20065C01E /* DashboardViewController.swift in Sources */,
+				CADF4D0D29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift in Sources */,
 				3B26887F2927AE2D00E22410 /* CategoryAllocationDelegate.swift in Sources */,
 				3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryDelegate.swift in Sources */,
 				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
