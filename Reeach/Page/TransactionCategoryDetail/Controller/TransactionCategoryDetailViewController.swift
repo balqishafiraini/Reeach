@@ -76,7 +76,7 @@ class TransactionCategoryDetailViewController: UIViewController {
     
     func updateView() {
         transactionDetailView.removeStack()
-        transactionDetailView.setupData(category: category, budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys)
+        transactionDetailView.setupData(budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys)
         transactionDetailView.setupView()
     }
     
@@ -139,14 +139,19 @@ extension TransactionCategoryDetailViewController: TransactionDelegate {
         configureFilteredData(startMonth: startMonth, endMonth: endMonth, type: type, categoryBudget: budgetCategory)
     }
     
-    func openTransactionModal() {
+    func openTransactionModal(transaction: Transaction? = nil) {
         let navigationController = UINavigationController()
         navigationController.navigationItem.largeTitleDisplayMode = .never
         navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
         
         let vc = AddNewTransactionModalViewController()
-        if let budget = budget {
-            vc.budget = budget
+        if let transaction = transaction {
+            vc.budget = transaction.budget
+            vc.transaction = transaction
+            vc.mode = .edit
+        } else {
+            vc.budget = self.budget
+            vc.mode = .add
         }
         vc.dismissDelegate = self
         vc.modalPresentationStyle = .pageSheet

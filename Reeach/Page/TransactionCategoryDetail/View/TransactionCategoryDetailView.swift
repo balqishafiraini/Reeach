@@ -9,7 +9,6 @@ import UIKit
 
 class TransactionCategoryDetailView: UIView {
     
-    var category: Category?
     var budget: Budget?
     var formattedTransactions: [Date: [Transaction]] = [:]
     var sortedKeys: [Date] = []
@@ -400,17 +399,17 @@ class TransactionCategoryDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupData(category: Category?, budget: Budget?, transactions: [Date: [Transaction]]? = [:], sortedKeys: [Date]? = []) {
+    func setupData(budget: Budget?, transactions: [Date: [Transaction]]? = [:], sortedKeys: [Date]? = []) {
         formattedTransactions.removeAll()
         self.sortedKeys.removeAll()
         
         self.budget = budget
         
-        categoryIconLabel.text = category!.icon
-        categoryTitleLabel.text = category!.name
-        categoryTypeLabel.text = getCategoryLabel(type: category!.type!)
+        categoryIconLabel.text = budget!.category!.icon
+        categoryTitleLabel.text = budget!.category!.name
+        categoryTypeLabel.text = getCategoryLabel(type: budget!.category!.type!)
         
-        addTransactionButton.setTitle("Catat Pengeluaran \(category!.name!)", for: .normal)
+        addTransactionButton.setTitle("Catat Pengeluaran \(budget!.category!.name!)", for: .normal)
         
         self.formattedTransactions = transactions ?? [:]
         self.sortedKeys = sortedKeys ?? []
@@ -530,6 +529,9 @@ class TransactionCategoryDetailView: UIView {
                 newItem.setupData(transaction: transaction)
                 newItem.setupView()
                 
+                let tap = UITapGestureRecognizer(target: self, action: #selector(tapTransaction))
+                newItem.addGestureRecognizer(tap)
+                
                 totalExpense += transaction.amount
                 
                 transactionStackList.addArrangedSubview(newItem)
@@ -558,6 +560,11 @@ class TransactionCategoryDetailView: UIView {
         transactionStackList.removeFromSuperview()
     }
     
+    @objc func tapTransaction(_ gestureRecognizer: UITapGestureRecognizer) {
+        let view = gestureRecognizer.view as! TransactionItemViewCell
+        delegate?.openTransactionModal(transaction: view.transaction)
+    }
+    
     @objc func back() {
         delegate?.dismiss()
     }
@@ -571,6 +578,6 @@ class TransactionCategoryDetailView: UIView {
     }
     
     @objc func openTransactionModal() {
-        delegate?.openTransactionModal()
+        delegate?.openTransactionModal(transaction: nil)
     }
 }
