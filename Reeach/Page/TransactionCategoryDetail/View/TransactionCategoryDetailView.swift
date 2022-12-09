@@ -420,6 +420,8 @@ class TransactionCategoryDetailView: UIView {
         self.formattedTransactions = transactions ?? [:]
         self.sortedKeys = sortedKeys ?? []
         
+        remainingLabel.text = "Sisa budget bulan \(DateFormatHelper.getMonthAndYearString(from: budget!.period!))"
+        
         remainingAmountLabel.text = CurrencyHelper.getCurrency(from: remainingAmount)
         expenseAmountLabel.text = CurrencyHelper.getCurrency(from: expenseAmount)
         budgetAmountLabel.text = CurrencyHelper.getCurrency(from: budget!.monthlyAllocation)
