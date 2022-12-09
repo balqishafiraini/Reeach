@@ -24,10 +24,12 @@ class CategoryAllocationModalView: UIView {
     let monthlyAllocation = TextField(frame: .zero, title: "Alokasi Bulanan", style: .template, prefix: "Rp")
     
     let deleteButton = {
-        let btn = Button(style: .rounded, foreground: .destructive, background: .darkSlateGrey, title: "Hapus Kebutuhan")
-        btn.backgroundColor = .red6
-        btn.setTitleColor(UIColor.ghostWhite, for: .normal)
-        return btn
+        let button = Button(style: .rounded, foreground: .destructive, background: .darkSlateGrey, title: "Hapus Kebutuhan")
+        button.backgroundColor = .ghostWhite
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.red6?.cgColor
+        button.setTitleColor(UIColor.red6, for: .normal)
+        return button
     }()
     
     let saveButton = {

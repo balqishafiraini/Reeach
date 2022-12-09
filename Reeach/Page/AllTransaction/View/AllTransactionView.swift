@@ -9,7 +9,7 @@ import UIKit
 
 class AllTransactionView: UIView {
 
-    var transactions: [Date:[Transaction]] = [:]
+    var transactions: [Date: [Transaction]] = [:]
     weak var delegate: TransactionDelegate?
     
     lazy var backButton: UIButton = {
@@ -215,9 +215,13 @@ class AllTransactionView: UIView {
         
         emptyView.addSubview(emptyStack)
         
+        self.addSubview(background)
         self.addSubview(headerView)
         self.addSubview(transactionList)
         self.addSubview(emptyView)
+        
+        background.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        background.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
         
         headerView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, right: self.rightAnchor)
         headerStack.anchor(top: headerView.topAnchor, left: headerView.leftAnchor, bottom: headerView.bottomAnchor, right: headerView.rightAnchor, paddingTop: 16, paddingLeft: 20, paddingRight: 20)
@@ -241,58 +245,13 @@ class AllTransactionView: UIView {
         setButtonTarget()
     }
     
-    func setupViewInitial() {
-        self.backgroundColor = .secondary
-        
-        headerStack.addArrangedSubview(buttonView)
-        headerStack.addArrangedSubview(titleLabel)
-        headerStack.setCustomSpacing(-2, after: titleLabel)
-        headerStack.addArrangedSubview(searchFilterStack)
-        headerView.addSubview(headerStack)
-        
-        if transactions.count <= 0 {
-            print("here first")
-            contentStack.addArrangedSubview(emptyStack)
-        } else {
-            print("here second")
-            contentStack.addArrangedSubview(transactionList)
-            transactionList.anchor(top: contentStack.topAnchor, left: contentStack.leftAnchor, bottom: contentStack.bottomAnchor, right: contentStack.rightAnchor)
-        }
-        
-        contentView.addSubview(contentStack)
-        
-        mainStack.addArrangedSubview(headerView)
-        mainStack.addArrangedSubview(contentView)
-        
-        scrollView.addSubview(mainStack)
-        
-        self.addSubview(background)
-        self.addSubview(scrollView)
-        
-        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor)
-        scrollView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        
-        mainStack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor)
-        mainStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        
-        headerStack.anchor(top: headerView.topAnchor, left: headerView.leftAnchor, bottom: headerView.bottomAnchor, right: headerView.rightAnchor, paddingTop: 16, paddingLeft: 20, paddingRight: 20)
-        
-        contentStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 20, paddingRight: 20)
-        
-        
-        background.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
-        background.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
-        
-        setButtonTarget()
-    }
-    
     func setButtonTarget() {
         backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
         filterButton.addTarget(self, action: #selector(openFilter), for: .touchUpInside)
         testButton.addTarget(self, action: #selector(populateDummyData), for: .touchUpInside)
         
-        searchBar.searchTextField.addTarget(self, action: #selector(search), for: .editingChanged)
-        searchBar.searchTextField.sendActions(for: .valueChanged)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        transactionList.addGestureRecognizer(tap)
     }
     
     @objc func back() {
@@ -316,10 +275,10 @@ class AllTransactionView: UIView {
         
         let dbHelper = DatabaseHelper.shared
         
-        var transactions = dbHelper.getTransactions()
+        let transactions = dbHelper.getTransactions()
         
         for transaction in transactions {
-            dbHelper.delete(transaction)
+            let _ = dbHelper.delete(transaction)
         }
 
         let foodCategory = dbHelper.getCategory(name: "Makanan")

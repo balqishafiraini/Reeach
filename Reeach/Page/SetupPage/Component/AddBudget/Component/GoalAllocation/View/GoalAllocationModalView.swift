@@ -168,10 +168,12 @@ class GoalAllocationModalView: UIView {
     lazy var blankViewHeightConstraint = blankView.heightAnchor.constraint(equalToConstant: 0)
     
     lazy var deleteButton = {
-        let btn = Button(style: .rounded, foreground: .destructive, background: .darkSlateGrey, title: "Hapus Alokasi")
-        btn.backgroundColor = .red6
-        btn.setTitleColor(UIColor.ghostWhite, for: .normal)
-        return btn
+        let button = Button(style: .rounded, foreground: .destructive, background: .darkSlateGrey, title: "Hapus Alokasi")
+        button.backgroundColor = .ghostWhite
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.red6?.cgColor
+        button.setTitleColor(UIColor.red6, for: .normal)
+        return button
     }()
     
     lazy var saveButton = {
