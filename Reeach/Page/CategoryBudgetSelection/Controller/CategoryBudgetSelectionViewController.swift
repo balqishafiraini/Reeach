@@ -15,11 +15,9 @@ class CategoryBudgetSelectionViewController: UIViewController {
     
     var budgets: [String: [Budget]] = [:]
     
-    let keys = [
-        "Kebutuhan Pokok",
-        "Kebutuhan Non-Pokok",
-        "Lainnya"
-    ]
+    var keys: [String] = []
+    
+    var forBudget: TransactionType = .expense
     
     weak var selectedDelegate: SelectCategoryBudgetDelegate?
     
@@ -44,12 +42,23 @@ class CategoryBudgetSelectionViewController: UIViewController {
     }
 
     func configureData() {
-//        budgets = dbHelper.getExpenseBudgets(on: Date())
-        budgets = [
-            "Kebutuhan Pokok": dbHelper.getBudgets(on: Date(), type: "Need"),
-            "Kebutuhan Non-Pokok": dbHelper.getBudgets(on: Date(), type: "Want"),
-            "Lainnya": [],
-        ]
+        if forBudget == .expense {
+            keys = [
+                "Kebutuhan Pokok",
+                "Kebutuhan Non-Pokok",
+                "Lainnya"
+            ]
+            budgets = [
+                "Kebutuhan Pokok": dbHelper.getBudgets(on: Date(), type: "Need"),
+                "Kebutuhan Non-Pokok": dbHelper.getBudgets(on: Date(), type: "Want"),
+                "Lainnya": [],
+            ]
+        } else {
+            keys = ["Goal"]
+            budgets = [
+                "Goal": dbHelper.getBudgets(on: Date(), type: "Goal")
+            ]
+        }
         
         configureView()
     }
@@ -66,7 +75,7 @@ extension CategoryBudgetSelectionViewController: UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == keys.count - 1 {
+        if section == keys.count - 1 && forBudget == .expense {
             return 1
         }
         return budgets[keys[section]]!.count
@@ -76,7 +85,7 @@ extension CategoryBudgetSelectionViewController: UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChipCollectionViewCell.reuseIdentifier, for: indexPath) as! ChipCollectionViewCell
         
         var label = ""
-        if indexPath.section == keys.count - 1 {
+        if indexPath.section == keys.count - 1 && forBudget == .expense {
             label = "Lainnya"
         } else {
             label = (budgets[keys[indexPath.section]]![indexPath.item].category?.name)!
@@ -106,7 +115,7 @@ extension CategoryBudgetSelectionViewController: UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == keys.count - 1 {
+        if indexPath.section == keys.count - 1 && forBudget == .expense {
             selectedDelegate?.selectedItem(budget: nil)
         } else {
             selectedDelegate?.selectedItem(budget: budgets[keys[indexPath.section]]![indexPath.item])

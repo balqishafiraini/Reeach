@@ -11,6 +11,11 @@ extension AddNewTransactionModalViewController: AddTransactionDelegate {
     func openCategoryBudgetSelector() {
         let targetViewController = CategoryBudgetSelectionViewController()
         targetViewController.selectedDelegate = self
+        if transactionType == TransactionType.expense.rawValue {
+            targetViewController.forBudget = TransactionType.expense
+        } else {
+            targetViewController.forBudget = TransactionType.goal
+        }
         navigationController?.pushViewController(targetViewController, animated: true)
     }
     
