@@ -22,12 +22,6 @@ class AddNewTransactionModalViewController: UIViewController {
         case edit
     }
     
-    enum TransactionType: String {
-        case goal = "Goal"
-        case expense = "Pengeluaran"
-        case income = "Pemasukan"
-    }
-    
     var transaction: Transaction? = nil
     var mode: Mode = .add
     var delegate: TransactionDelegate?
