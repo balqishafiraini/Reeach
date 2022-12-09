@@ -16,13 +16,11 @@ extension TransactionFilterViewController: FilterDelegate {
     func openPicker(type: String) {        
         switch type {
             case TypePickerViewController.identifier:
-                print("Open picker for type")
                 let targetViewController = TypePickerViewController()
                 targetViewController.delegate = self
                 navigationController?.pushViewController(targetViewController, animated: true)
                 
             case "BudgetCategory":
-                print("Open picker for category budget")
                 let targetViewController = CategoryBudgetSelectionViewController()
                 targetViewController.selectedDelegate = self
                 targetViewController.showOnlyCurrentMonth = false
@@ -37,7 +35,8 @@ extension TransactionFilterViewController: FilterDelegate {
         startDate = filter.startMonthPicker.date ?? Date(timeIntervalSince1970: 0)
         endDate = filter.endMonthPicker.date ?? Date()
         
-        delegate?.filterTransaction(startMonth: startDate, endMonth: endDate, type: self.transactionType, budgetCategory: self.budgetCategory ?? nil)
+        let category = Category()
+        delegate?.filterTransaction(startMonth: startDate, endMonth: endDate, type: self.transactionType, budgetCategory: self.budgetCategory ?? category)
         dismissView()
     }
 }
