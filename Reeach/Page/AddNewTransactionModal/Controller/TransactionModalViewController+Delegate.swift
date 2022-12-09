@@ -59,7 +59,7 @@ extension TransactionModalViewController: AddTransactionDelegate {
 }
 
 extension TransactionModalViewController: DismissViewDelegate {
-    var viewControllerTitle: String { title ?? "Transaksi" }
+    var viewControllerTitle: String { title ?? "Tambah Transaksi" }
     
     func viewDismissed() {
         viewDidLoad()

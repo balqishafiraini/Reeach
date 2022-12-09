@@ -37,7 +37,7 @@ class TransactionModalViewController: UIViewController {
         
         setNavigationBar()
         
-        if UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: Date())) {
+        if mode == .edit || UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: Date())) {
             addTransactionModalView.emptyStateContainerView.isHidden = true
             addTransactionModalView.scrollView.isHidden = false
         }
