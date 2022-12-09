@@ -8,22 +8,16 @@
 import UIKit
 
 class CategoryBudgetSelectionView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
     lazy var budgetList: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = CustomViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .ghostWhite
         cv.register(ChipCollectionViewCell.self, forCellWithReuseIdentifier: ChipCollectionViewCell.reuseIdentifier)
+        cv.register(HeaderGoalDetailCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderGoalDetailCollectionReusableView.reuseIdentifier)
         
         return cv
     }()

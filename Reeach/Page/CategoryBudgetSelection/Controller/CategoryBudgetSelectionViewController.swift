@@ -13,7 +13,13 @@ class CategoryBudgetSelectionViewController: UIViewController {
     
     let dbHelper = DatabaseHelper.shared
     
-    var budgets: [Budget] = []
+    var budgets: [String: [Budget]] = [:]
+    
+    let keys = [
+        "Kebutuhan Pokok",
+        "Kebutuhan Non-Pokok",
+        "Lainnya"
+    ]
     
     weak var selectedDelegate: SelectCategoryBudgetDelegate?
     
@@ -32,10 +38,18 @@ class CategoryBudgetSelectionViewController: UIViewController {
         
         configureData()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
 
     func configureData() {
-        budgets = dbHelper.getExpenseBudgets(on: Date())
-//        budgets = dbHelper.getBudgets()
+//        budgets = dbHelper.getExpenseBudgets(on: Date())
+        budgets = [
+            "Kebutuhan Pokok": dbHelper.getBudgets(on: Date(), type: "Need"),
+            "Kebutuhan Non-Pokok": dbHelper.getBudgets(on: Date(), type: "Want"),
+            "Lainnya": [],
+        ]
         
         configureView()
     }
@@ -47,44 +61,70 @@ class CategoryBudgetSelectionViewController: UIViewController {
 }
 
 extension CategoryBudgetSelectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        keys.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return budgets.count
+        if section == keys.count - 1 {
+            return 1
+        }
+        return budgets[keys[section]]!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChipCollectionViewCell.reuseIdentifier, for: indexPath) as! ChipCollectionViewCell
         
-        cell.titleLabel.text = budgets[indexPath.item].category?.name
+        var label = ""
+        if indexPath.section == keys.count - 1 {
+            label = "Lainnya"
+        } else {
+            label = (budgets[keys[indexPath.section]]![indexPath.item].category?.name)!
+        }
+        cell.titleLabel.text = label
         cell.configureActiveView()
-        cell.sizeToFit()
         
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedDelegate?.selectedItem(budget: budgets[indexPath.item])
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                let cell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderGoalDetailCollectionReusableView.reuseIdentifier, for: indexPath) as! HeaderGoalDetailCollectionReusableView
+                
+                cell.titleLabel.text = keys[indexPath.section]
+                cell.titleLabelLeftAnchorConstraint.constant = 0
+                cell.titleLabelRightAnchorConstraint.constant = 0
+                cell.widthAnchor.constraint(equalTo: collectionView.widthAnchor).isActive = true
+                
+                return cell
+            default:
+                print("Nothing here")
+        }
+        
+        return UICollectionReusableView()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-//        let width = self.estimatedFrame(text: (budgets[indexPath.item].category?.name)!, font: .bodyMedium!.withSize(16)).width
-        let width = collectionView.bounds.width
-        return CGSize(width: width, height: 40.0)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == keys.count - 1 {
+            selectedDelegate?.selectedItem(budget: nil)
+        } else {
+            selectedDelegate?.selectedItem(budget: budgets[keys[indexPath.section]]![indexPath.item])
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
-}
-
-extension CategoryBudgetSelectionViewController {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let text = "Title"
-//        let width = self.estimatedFrame(text: text, font: UIFont.systemFont(ofSize: 14)).width
-//        return CGSize(width: width, height: 50.0)
-//    }
-
-    func estimatedFrame(text: String, font: UIFont) -> CGRect {
-        let size = CGSize(width: 200, height: 1000) // temporary size
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size,
-                                                   options: options,
-                                                   attributes: [NSAttributedString.Key.font: font],
-                                                   context: nil)
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, heightForFooterInSection section: Int) -> CGFloat {
+        return 20
+    }
+
 }
