@@ -79,7 +79,6 @@ class AddNewTransactionModalView: UIView {
         transactionBudgetCategory.textField.text = budget?.category?.name ?? "Lainnya"
         
         if let transaction = transaction {
-            print(transaction.date!)
             iconPicker.iconTextField.text = transaction.budget?.category?.icon
             transactionName.textField.text = transaction.name
             transactionAmount.textField.text = CurrencyHelper.getFormattedNumber(from: transaction.amount)
