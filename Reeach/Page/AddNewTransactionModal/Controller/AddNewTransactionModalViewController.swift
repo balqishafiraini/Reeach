@@ -22,6 +22,12 @@ class AddNewTransactionModalViewController: UIViewController {
         case edit
     }
     
+    enum TransactionType: String {
+        case goal = "Goal"
+        case expense = "Pengeluaran"
+        case income = "Pemasukan"
+    }
+    
     var transaction: Transaction? = nil
     var mode: Mode = .add
     var delegate: TransactionDelegate?
@@ -65,7 +71,12 @@ class AddNewTransactionModalViewController: UIViewController {
             addTransactionModalView.transaction = transaction
         }
         
-        addTransactionModalView.budget = budget
+        if let _ = budget {
+            addTransactionModalView.budget = budget
+            transactionType = TransactionType.expense.rawValue
+            addTransactionModalView.transactionType.textField.text = transactionType
+            addTransactionModalView.transactionType.textField.isEnabled = false
+        }
         
         configureView()
     }
@@ -74,6 +85,21 @@ class AddNewTransactionModalViewController: UIViewController {
         addTransactionModalView.setupData()
         addTransactionModalView.setupView()
         addTransactionModalView.transactionBudgetCategory.isHidden = transactionType.isEmpty
+        shouldHideCategoryBudget()
+    }
+    
+    func shouldHideCategoryBudget() {
+        switch transactionType {
+            case TransactionType.expense.rawValue:
+                addTransactionModalView.transactionBudgetCategory.isHidden = false
+                
+            case TransactionType.goal.rawValue:
+                addTransactionModalView.transactionBudgetCategory.isHidden = false
+                
+            default:
+                addTransactionModalView.transactionBudgetCategory.isHidden = true
+                
+        }
     }
     
     @objc func dismissView() {

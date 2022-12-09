@@ -23,7 +23,6 @@ extension AddNewTransactionModalViewController: AddTransactionDelegate {
 
 extension AddNewTransactionModalViewController: FilterDelegate {
     func selected(selectedItem: String) {
-        print(selectedItem)
         self.transactionType = selectedItem
         addTransactionModalView.transactionType.textField.text = selectedItem
         
