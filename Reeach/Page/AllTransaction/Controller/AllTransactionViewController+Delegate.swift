@@ -42,11 +42,29 @@ extension AllTransactionViewController: UISearchBarDelegate {
     }
 }
 
+extension AllTransactionViewController: DismissViewDelegate {
+    func viewDismissed() {
+        configureData()
+    }
+}
 
 extension AllTransactionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print(#function)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let navigationController = UINavigationController()
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        let targetViewController = TransactionModalViewController()
+        targetViewController.budget = separatedTransactions[sortedKeys[indexPath.section]]![indexPath.item].budget
+        targetViewController.transaction = separatedTransactions[sortedKeys[indexPath.section]]![indexPath.item]
+        targetViewController.mode = .edit
+        targetViewController.dismissDelegate = self
+        targetViewController.modalPresentationStyle = .pageSheet
+        
+        navigationController.pushViewController(targetViewController, animated: true)
+        
+        self.present(navigationController, animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

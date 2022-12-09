@@ -44,6 +44,7 @@ class AllTransactionViewController: UIViewController {
         super.touchesBegan(touches, with: event)
         
         view.dismissKeyboard()
+        allTransactionView.dismissKeyboard()
     }
     
     func configureData() {
