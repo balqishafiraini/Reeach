@@ -92,11 +92,11 @@ extension DatabaseHelper {
         }
         
         if let category {
-            return result.filter { $0.budget?.category == category }
+            return result.filter { category.name == nil ? $0.budget == nil : $0.budget?.category == category }
         }
         else if let type {
             if type == "Expense" {
-                return result.filter { $0.budget?.category?.type == "Need" || $0.budget?.category?.type == "Want" }
+                return result.filter { $0.budget?.category?.type == "Need" || $0.budget?.category?.type == "Want" || $0.budget == nil }
             }
             else {
                 return result.filter { $0.budget?.category?.type == type }
@@ -105,7 +105,7 @@ extension DatabaseHelper {
         return result
     }
     
-    func createTransaction(name: String, date: Date, budget: Budget, amount: Double, notes: String) -> Transaction {
+    func createTransaction(name: String, date: Date, budget: Budget? = nil, amount: Double, notes: String) -> Transaction {
         let transaction = Transaction(context: context)
         transaction.name = name
         transaction.date = date

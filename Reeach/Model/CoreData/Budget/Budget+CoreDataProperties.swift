@@ -35,6 +35,14 @@ extension Budget {
         return fetchRequest
     }
     
+    @nonobjc public class func fetchRequest(with type: String) -> NSFetchRequest<Budget>
+    {
+        let fetchRequest = NSFetchRequest<Budget>(entityName: "Budget")
+        fetchRequest.predicate = NSPredicate(format: "category.type like [c] %@", type)
+        fetchRequest.sortDescriptors = sortDescriptors
+        return fetchRequest
+    }
+    
     @nonobjc public class func fetchRequest(on month: Date, of category: String) -> NSFetchRequest<Budget>
     {
         let fetchRequest = NSFetchRequest<Budget>(entityName: "Budget")

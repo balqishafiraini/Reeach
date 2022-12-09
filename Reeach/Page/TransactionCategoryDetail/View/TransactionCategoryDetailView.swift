@@ -9,7 +9,6 @@ import UIKit
 
 class TransactionCategoryDetailView: UIView {
     
-    var category: Category?
     var budget: Budget?
     var formattedTransactions: [Date: [Transaction]] = [:]
     var sortedKeys: [Date] = []
@@ -283,10 +282,9 @@ class TransactionCategoryDetailView: UIView {
         stack.distribution = .fill
         
         stack.addArrangedSubview(searchBar)
-        stack.addArrangedSubview(filterButton)
         
         view.addSubview(stack)
-        stack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 12, paddingRight: 20)
+        stack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 12, paddingRight: 12)
         
         return view
     }()
@@ -390,6 +388,13 @@ class TransactionCategoryDetailView: UIView {
         
         return sv
     }()
+    
+    lazy var blankView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .ghostWhite
+        
+        return view
+    }()
     // MARK: End Main View
     
     override init(frame: CGRect) {
@@ -400,20 +405,27 @@ class TransactionCategoryDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupData(category: Category?, budget: Budget?, transactions: [Date: [Transaction]]? = [:], sortedKeys: [Date]? = []) {
+    func setupData(budget: Budget?, transactions: [Date: [Transaction]]? = [:], sortedKeys: [Date]? = [], remainingAmount: Double, expenseAmount: Double) {
         formattedTransactions.removeAll()
         self.sortedKeys.removeAll()
         
         self.budget = budget
         
-        categoryIconLabel.text = category!.icon
-        categoryTitleLabel.text = category!.name
-        categoryTypeLabel.text = getCategoryLabel(type: category!.type!)
+        categoryIconLabel.text = budget!.category!.icon
+        categoryTitleLabel.text = budget!.category!.name
+        categoryTypeLabel.text = getCategoryLabel(type: budget!.category!.type!)
         
-        addTransactionButton.setTitle("Catat Pengeluaran \(category!.name!)", for: .normal)
+        addTransactionButton.setTitle("Catat Pengeluaran \(budget!.category!.name!)", for: .normal)
         
         self.formattedTransactions = transactions ?? [:]
         self.sortedKeys = sortedKeys ?? []
+        
+        remainingLabel.text = "Sisa budget bulan \(DateFormatHelper.getMonthAndYearString(from: budget!.period!))"
+        
+        remainingAmountLabel.text = CurrencyHelper.getCurrency(from: remainingAmount)
+        expenseAmountLabel.text = CurrencyHelper.getCurrency(from: expenseAmount)
+        budgetAmountLabel.text = CurrencyHelper.getCurrency(from: budget!.monthlyAllocation)
+        remainingBudgetProgress.setProgress(Float((budget!.monthlyAllocation - expenseAmount) / budget!.monthlyAllocation), animated: false)
     }
     
     func getCategoryLabel(type: String) -> String {
@@ -463,11 +475,6 @@ class TransactionCategoryDetailView: UIView {
             
             emptyStack.anchor(top: emptyView.topAnchor, left: emptyView.leftAnchor, bottom: emptyView.bottomAnchor, right: emptyView.rightAnchor, paddingLeft: 20, paddingRight: 20)
             emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor).isActive = true
-            
-            budgetAmountLabel.text = CurrencyHelper.getCurrency(from: budget!.monthlyAllocation)
-            expenseAmountLabel.text = CurrencyHelper.getCurrency(from: 0.0)
-            remainingAmountLabel.text = CurrencyHelper.getCurrency(from: budget!.monthlyAllocation)
-            remainingBudgetProgress.setProgress(1.0, animated: false)
         } else {
             transactionStackList.isHidden = false
             emptyView.isHidden = true
@@ -500,12 +507,16 @@ class TransactionCategoryDetailView: UIView {
         
         containerView.addSubview(containerStack)
         
+        scrollView.addSubview(blankView)
         scrollView.addSubview(containerView)
        
         self.addSubview(scrollView)
         
-        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor)
+        scrollView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor)
         scrollView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        
+        blankView.anchor(left: scrollView.leftAnchor, bottom: self.bottomAnchor, right: scrollView.rightAnchor)
+        blankView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.5).isActive = true
         
         containerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor)
         containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
@@ -516,9 +527,6 @@ class TransactionCategoryDetailView: UIView {
     }
     
     func setupTransactionList() {
-        var totalExpense = 0.0
-        let totalBudget = budget!.monthlyAllocation
-        
         for key in sortedKeys {
             let newHeader = HeaderGoalDetailCollectionReusableView()
             newHeader.titleLabel.text = DateFormatHelper.getDDddMMyyy(from: key)
@@ -530,18 +538,13 @@ class TransactionCategoryDetailView: UIView {
                 newItem.setupData(transaction: transaction)
                 newItem.setupView()
                 
-                totalExpense += transaction.amount
+                let tap = UITapGestureRecognizer(target: self, action: #selector(tapTransaction))
+                newItem.addGestureRecognizer(tap)
                 
                 transactionStackList.addArrangedSubview(newItem)
                 transactionStackList.setCustomSpacing(8, after: newItem)
             }
         }
-        
-        budgetAmountLabel.text = CurrencyHelper.getCurrency(from: totalBudget)
-        expenseAmountLabel.text = CurrencyHelper.getCurrency(from: totalExpense)
-        
-        remainingAmountLabel.text = CurrencyHelper.getCurrency(from: (totalBudget - totalExpense))
-        remainingBudgetProgress.setProgress(Float((totalBudget - totalExpense) / totalBudget), animated: false)
     }
     
     func setupTargets() {
@@ -552,10 +555,18 @@ class TransactionCategoryDetailView: UIView {
         searchBar.searchTextField.sendActions(for: .valueChanged)
         
         addTransactionButton.addTarget(self, action: #selector(openTransactionModal), for: .touchUpInside)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        scrollView.addGestureRecognizer(tap)
     }
     
     func removeStack() {
         transactionStackList.removeFromSuperview()
+    }
+    
+    @objc func tapTransaction(_ gestureRecognizer: UITapGestureRecognizer) {
+        let view = gestureRecognizer.view as! TransactionItemViewCell
+        delegate?.openTransactionModal(transaction: view.transaction)
     }
     
     @objc func back() {
@@ -571,6 +582,6 @@ class TransactionCategoryDetailView: UIView {
     }
     
     @objc func openTransactionModal() {
-        delegate?.openTransactionModal()
+        delegate?.openTransactionModal(transaction: nil)
     }
 }

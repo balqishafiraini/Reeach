@@ -116,8 +116,14 @@
 		CA4DF4042927F465004E6067 /* AddIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */; };
 		CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */; };
 		CA634A742900EE1C001A08D2 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */; };
-		CA69867D293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69867C293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift */; };
+		CA69867D293FA1ED00B21C44 /* TransactionModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69867C293FA1ED00B21C44 /* TransactionModalViewController.swift */; };
 		CA69867F293FA20F00B21C44 /* AddNewTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69867E293FA20F00B21C44 /* AddNewTransactionModalView.swift */; };
+		CA6986862942273F00B21C44 /* CategoryBudgetSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6986852942273F00B21C44 /* CategoryBudgetSelectionView.swift */; };
+		CA6986882942274D00B21C44 /* CategoryBudgetSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6986872942274D00B21C44 /* CategoryBudgetSelectionViewController.swift */; };
+		CA69868D294227ED00B21C44 /* AddTransactionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69868C294227ED00B21C44 /* AddTransactionProtocol.swift */; };
+		CA69868F2942281E00B21C44 /* TransactionModalViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69868E2942281E00B21C44 /* TransactionModalViewController+Delegate.swift */; };
+		CA6986912942358A00B21C44 /* SelectCategoryBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6986902942358A00B21C44 /* SelectCategoryBudget.swift */; };
+		CA6986932942580800B21C44 /* LeftCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6986922942580800B21C44 /* LeftCollectionViewLayout.swift */; };
 		CA6EBC8629235EE400A33A2E /* SetupPageViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */; };
 		CA848961292369FE00CF6CB0 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA848960292369FE00CF6CB0 /* AddGoalViewController.swift */; };
 		CA84896429236BAC00CF6CB0 /* SetupDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84896329236BAC00CF6CB0 /* SetupDelegate.swift */; };
@@ -127,6 +133,10 @@
 		CAB12E7E29376829008551F2 /* AllTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB12E7D29376829008551F2 /* AllTransactionView.swift */; };
 		CAD6C4442925274E00755DF9 /* PlannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6C4432925274E00755DF9 /* PlannerDelegate.swift */; };
 		CAD6C4462925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6C4452925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift */; };
+		CADF4D0D29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF4D0C29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift */; };
+		CADF4D0F294354540059B292 /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF4D0E294354540059B292 /* TransactionType.swift */; };
+		CADF4D1129436E6D0059B292 /* AllTransactionViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF4D1029436E6D0059B292 /* AllTransactionViewController+Delegate.swift */; };
+		CADF4D132943766F0059B292 /* Sequence+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF4D122943766F0059B292 /* Sequence+Extension.swift */; };
 		CAEDFA892922055400974168 /* SetupProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA872922055400974168 /* SetupProgressHeader.swift */; };
 		CAEDFA8A2922055400974168 /* ProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFA882922055400974168 /* ProgressSection.swift */; };
 		CAEDFA8B29220F2A00974168 /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D143D2910069F00C35094 /* AddBudget.swift */; };
@@ -312,8 +322,14 @@
 		CA4DF4032927F465004E6067 /* AddIncomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewController.swift; sourceTree = "<group>"; };
 		CA634A6E28FD1FF2001A08D2 /* InflationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InflationNetworkModel.swift; path = Reeach/Model/NetworkModel/InflationNetworkModel.swift; sourceTree = SOURCE_ROOT; };
 		CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
-		CA69867C293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTransactionModalViewController.swift; sourceTree = "<group>"; };
+		CA69867C293FA1ED00B21C44 /* TransactionModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModalViewController.swift; sourceTree = "<group>"; };
 		CA69867E293FA20F00B21C44 /* AddNewTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTransactionModalView.swift; sourceTree = "<group>"; };
+		CA6986852942273F00B21C44 /* CategoryBudgetSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBudgetSelectionView.swift; sourceTree = "<group>"; };
+		CA6986872942274D00B21C44 /* CategoryBudgetSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBudgetSelectionViewController.swift; sourceTree = "<group>"; };
+		CA69868C294227ED00B21C44 /* AddTransactionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionProtocol.swift; sourceTree = "<group>"; };
+		CA69868E2942281E00B21C44 /* TransactionModalViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionModalViewController+Delegate.swift"; sourceTree = "<group>"; };
+		CA6986902942358A00B21C44 /* SelectCategoryBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryBudget.swift; sourceTree = "<group>"; };
+		CA6986922942580800B21C44 /* LeftCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftCollectionViewLayout.swift; sourceTree = "<group>"; };
 		CA6EBC8529235EE400A33A2E /* SetupPageViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupPageViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CA848960292369FE00CF6CB0 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		CA84896329236BAC00CF6CB0 /* SetupDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupDelegate.swift; sourceTree = "<group>"; };
@@ -323,6 +339,10 @@
 		CAB12E7D29376829008551F2 /* AllTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionView.swift; sourceTree = "<group>"; };
 		CAD6C4432925274E00755DF9 /* PlannerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerDelegate.swift; sourceTree = "<group>"; };
 		CAD6C4452925277B00755DF9 /* MonthlyPlanningViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyPlanningViewController+Delegate.swift"; sourceTree = "<group>"; };
+		CADF4D0C29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionCategoryDetailViewController+Delegate.swift"; sourceTree = "<group>"; };
+		CADF4D0E294354540059B292 /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
+		CADF4D1029436E6D0059B292 /* AllTransactionViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllTransactionViewController+Delegate.swift"; sourceTree = "<group>"; };
+		CADF4D122943766F0059B292 /* Sequence+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extension.swift"; sourceTree = "<group>"; };
 		CAEDFA872922055400974168 /* SetupProgressHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProgressHeader.swift; sourceTree = "<group>"; };
 		CAEDFA882922055400974168 /* ProgressSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSection.swift; sourceTree = "<group>"; };
 		CAFADA792912E1DB00172D04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1065,6 +1085,7 @@
 				3B4AE5A629258548000EA6C1 /* IconWithoutEditView.swift */,
 				CA0CB2CE2926A51800D8AAB0 /* BudgetItem.swift */,
 				3B26888A2928C18E00E22410 /* AllocationBar.swift */,
+				CA6986922942580800B21C44 /* LeftCollectionViewLayout.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1179,6 +1200,7 @@
 			isa = PBXGroup;
 			children = (
 				CA2EEB162939A9570080B06C /* TransactionCategoryDetailViewController.swift */,
+				CADF4D0C29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1194,6 +1216,7 @@
 		CA4D14372910069F00C35094 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				CA6986822942271900B21C44 /* CategoryBudgetSelection */,
 				CA698679293FA1AB00B21C44 /* AddNewTransactionModal */,
 				CA2EEB112939A90F0080B06C /* TransactionCategoryDetail */,
 				CAB12E78293767F1008551F2 /* AllTransaction */,
@@ -1279,6 +1302,7 @@
 			isa = PBXGroup;
 			children = (
 				CA634A732900EE1C001A08D2 /* UserDefaultEnum.swift */,
+				CADF4D0E294354540059B292 /* TransactionType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1286,6 +1310,7 @@
 		CA698679293FA1AB00B21C44 /* AddNewTransactionModal */ = {
 			isa = PBXGroup;
 			children = (
+				CA698689294227C800B21C44 /* Model */,
 				CA69867B293FA1CE00B21C44 /* Controller */,
 				CA69867A293FA1C900B21C44 /* View */,
 			);
@@ -1303,9 +1328,52 @@
 		CA69867B293FA1CE00B21C44 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CA69867C293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift */,
+				CA69867C293FA1ED00B21C44 /* TransactionModalViewController.swift */,
+				CA69868E2942281E00B21C44 /* TransactionModalViewController+Delegate.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA6986822942271900B21C44 /* CategoryBudgetSelection */ = {
+			isa = PBXGroup;
+			children = (
+				CA6986842942272B00B21C44 /* View */,
+				CA6986832942272600B21C44 /* Controller */,
+			);
+			path = CategoryBudgetSelection;
+			sourceTree = "<group>";
+		};
+		CA6986832942272600B21C44 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA6986872942274D00B21C44 /* CategoryBudgetSelectionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA6986842942272B00B21C44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA6986852942273F00B21C44 /* CategoryBudgetSelectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA698689294227C800B21C44 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA69868B294227DB00B21C44 /* Protocol */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA69868B294227DB00B21C44 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				CA69868C294227ED00B21C44 /* AddTransactionProtocol.swift */,
+				CA6986902942358A00B21C44 /* SelectCategoryBudget.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		CA84896229236B9700CF6CB0 /* Protocol */ = {
@@ -1365,6 +1433,7 @@
 			isa = PBXGroup;
 			children = (
 				CAB12E7929376809008551F2 /* AllTransactionViewController.swift */,
+				CADF4D1029436E6D0059B292 /* AllTransactionViewController+Delegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1585,6 +1654,7 @@
 				3B26886C2927230500E22410 /* String+Extension.swift */,
 				3B26886E2927232200E22410 /* Character+Extension.swift */,
 				FA668E0A29277FCE002CBF04 /* UIDevice+Extension.swift */,
+				CADF4D122943766F0059B292 /* Sequence+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1832,6 +1902,7 @@
 				CAFC303629269EC900D21274 /* CategoryAllocationModalView.swift in Sources */,
 				3BAA29D02907790E008D3C5B /* Goal+CoreDataProperties.swift in Sources */,
 				3B8197FE291A59D20065C01E /* DashboardViewController.swift in Sources */,
+				CADF4D0D29434FCD0059B292 /* TransactionCategoryDetailViewController+Delegate.swift in Sources */,
 				3B26887F2927AE2D00E22410 /* CategoryAllocationDelegate.swift in Sources */,
 				3B4AE58729228FFC000EA6C1 /* SelectBudgetCategoryDelegate.swift in Sources */,
 				3BAA29D12907790E008D3C5B /* Category+CoreDataClass.swift in Sources */,
@@ -1844,16 +1915,19 @@
 				3BAA29D32907790E008D3C5B /* Budget+CoreDataClass.swift in Sources */,
 				3BAA29D42907790E008D3C5B /* Budget+CoreDataProperties.swift in Sources */,
 				3BBF30432911BB3B00F8373A /* InflationDetailView.swift in Sources */,
+				CA6986932942580800B21C44 /* LeftCollectionViewLayout.swift in Sources */,
+				CADF4D0F294354540059B292 /* TransactionType.swift in Sources */,
 				3B2688812927AE3A00E22410 /* CategoryAllocationModalView+Delegate.swift in Sources */,
 				3BAA29D52907790E008D3C5B /* Transaction+CoreDataClass.swift in Sources */,
 				CA0CB2CF2926A51800D8AAB0 /* BudgetItem.swift in Sources */,
 				3BEBEFC92921CA16005A1062 /* SimpleGoalCollectionViewCell.swift in Sources */,
 				3BAA29D62907790E008D3C5B /* Transaction+CoreDataProperties.swift in Sources */,
 				CA69867F293FA20F00B21C44 /* AddNewTransactionModalView.swift in Sources */,
-				CA69867D293FA1ED00B21C44 /* AddNewTransactionModalViewController.swift in Sources */,
+				CA69867D293FA1ED00B21C44 /* TransactionModalViewController.swift in Sources */,
 				CA2EEB0C293933C80080B06C /* FilterItemCollectionViewCell.swift in Sources */,
 				3B26888B2928C18E00E22410 /* AllocationBar.swift in Sources */,
 				3B9A749328EFD78E00AA2725 /* DoubleToStringHelper.swift in Sources */,
+				CA6986882942274D00B21C44 /* CategoryBudgetSelectionViewController.swift in Sources */,
 				FAD2BBDC2939E2DA006069BC /* CustomTabBar.swift in Sources */,
 				CA634A6F28FD1FF2001A08D2 /* InflationNetworkModel.swift in Sources */,
 				CAFADA7C2912E2B700172D04 /* SetupPageView.swift in Sources */,
@@ -1875,10 +1949,12 @@
 				3BEBEFCC2921D590005A1062 /* TipDetailViewController.swift in Sources */,
 				3B26F7E528F7BDC000FAC837 /* DatabaseHelper+Budget.swift in Sources */,
 				3B8197F52919CC070065C01E /* BudgetingTechniqueExplanationView.swift in Sources */,
+				CA69868F2942281E00B21C44 /* TransactionModalViewController+Delegate.swift in Sources */,
 				3BEE733228EFE2A600D05267 /* CurrencyHelper.swift in Sources */,
 				3B4AE59C29246B5C000EA6C1 /* GoalRecommendationDelegate.swift in Sources */,
 				3B4AE58E29231A24000EA6C1 /* GoalTrackerViewController.swift in Sources */,
 				CA2EEAF6293916120080B06C /* TransactionFilterViewController.swift in Sources */,
+				CA69868D294227ED00B21C44 /* AddTransactionProtocol.swift in Sources */,
 				CA20EFD9291AB89D00248477 /* MonthlyPlanningView.swift in Sources */,
 				CAFC302929269EC000D21274 /* GoalAllocationModalViewController.swift in Sources */,
 				3B26886B292714F100E22410 /* AddCategoryDelegate.swift in Sources */,
@@ -1911,6 +1987,7 @@
 				3B819802291A59EF0065C01E /* DashboardView.swift in Sources */,
 				FA2E2A042903DBE40083587D /* Checkbox.swift in Sources */,
 				3B8197E529187A990065C01E /* SelectGoalViewController+Delegate.swift in Sources */,
+				CADF4D132943766F0059B292 /* Sequence+Extension.swift in Sources */,
 				3B26F7E928F7BEF000FAC837 /* DatabaseHelper+Goal.swift in Sources */,
 				CA4D14452910069F00C35094 /* AddIncome.swift in Sources */,
 				CA4D14472910069F00C35094 /* SetupBottomView.swift in Sources */,
@@ -1944,6 +2021,9 @@
 				3B26887B2927ADED00E22410 /* GoalAllocationModalView+Delegate.swift in Sources */,
 				CA20EFDB291AB8AB00248477 /* MonthlyPlanningViewController.swift in Sources */,
 				FAA37BF9291D50D900F2C87A /* TrackerEmptyStateViewController.swift in Sources */,
+				CADF4D1129436E6D0059B292 /* AllTransactionViewController+Delegate.swift in Sources */,
+				CA6986862942273F00B21C44 /* CategoryBudgetSelectionView.swift in Sources */,
+				CA6986912942358A00B21C44 /* SelectCategoryBudget.swift in Sources */,
 				CA2EEB1029393A1B0080B06C /* TransactionFilterView.swift in Sources */,
 				FA9B12CB28EBCF44001203F5 /* Reeach.xcdatamodeld in Sources */,
 				CA2EEB0629392E2A0080B06C /* TypePickerView.swift in Sources */,

@@ -20,6 +20,8 @@ class TransactionCategoryDetailViewController: UIViewController {
     var separatedTransactions: [Date: [Transaction]] = [:]
     var sortedKeys: [Date] = []
     
+    var totalExpense = 0.0
+    
     let dbHelper = DatabaseHelper.shared
     
     weak var dismissDelegate: DismissViewDelegate?
@@ -47,7 +49,19 @@ class TransactionCategoryDetailViewController: UIViewController {
         
         separatedTransactions = getSeparatedTransactions(transactions: transactions)
                 
+        calculateData()
+        
         updateView()
+    }
+    
+    func calculateData() {
+        totalExpense = 0.0
+        
+        for key in sortedKeys {
+            for transaction in separatedTransactions[key]! {
+              totalExpense += transaction.amount
+            }
+        }
     }
     
     func configureSearchData() {
@@ -60,8 +74,6 @@ class TransactionCategoryDetailViewController: UIViewController {
         
         separatedTransactions = getSeparatedTransactions(transactions: searchedTransaction)
         
-        print(separatedTransactions)
-        
         updateView()
     }
     
@@ -72,11 +84,11 @@ class TransactionCategoryDetailViewController: UIViewController {
         separatedTransactions = getSeparatedTransactions(transactions: filteredTransaction)
         
         updateView()
-    }
+    }   
     
     func updateView() {
         transactionDetailView.removeStack()
-        transactionDetailView.setupData(category: category, budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys)
+        transactionDetailView.setupData(budget: budget, transactions: separatedTransactions, sortedKeys: sortedKeys, remainingAmount: budget!.monthlyAllocation - totalExpense, expenseAmount: totalExpense)
         transactionDetailView.setupView()
     }
     
@@ -84,10 +96,11 @@ class TransactionCategoryDetailViewController: UIViewController {
         var newTransaction: [Date: [Transaction]] = [:]
         
         for transaction in transactions {
-            if newTransaction[transaction.date!] != nil {
-                newTransaction[transaction.date!]?.append(transaction)
+            let key = DateFormatHelper.getStartDate(of: transaction.date!)
+            if newTransaction[key] != nil {
+                newTransaction[key]?.append(transaction)
             } else {
-                newTransaction[transaction.date!] = [transaction]
+                newTransaction[key] = [transaction]
             }
         }
         
@@ -96,69 +109,5 @@ class TransactionCategoryDetailViewController: UIViewController {
         }
         
         return newTransaction
-    }
-    
-    func openFilterSheet() {
-        
-        let navigationController = UINavigationController()
-        navigationController.navigationItem.largeTitleDisplayMode = .never
-        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
-        
-        let vc = TransactionFilterViewController()
-        vc.delegate = self
-        vc.budgetCategory = category
-        vc.modalPresentationStyle = .pageSheet
-        
-        navigationController.pushViewController(vc, animated: true)
-        
-        self.present(navigationController, animated: true)
-    }
-}
-
-extension TransactionCategoryDetailViewController: TransactionDelegate {
-    func openSheet() {
-        openFilterSheet()
-    }
-    
-    func search(searchText: String) {
-        self.searchText = searchText
-        
-        if searchText.isEmpty {
-            configureData()
-        } else {
-            configureSearchData()
-        }
-    }
-    
-    func dismiss() {
-        dismissDelegate?.viewDismissed()
-        dismiss(animated: true)
-    }
-    
-    func filterTransaction(startMonth: Date?, endMonth: Date?, type: String?, budgetCategory: Category?) {
-        configureFilteredData(startMonth: startMonth, endMonth: endMonth, type: type, categoryBudget: budgetCategory)
-    }
-    
-    func openTransactionModal() {
-        let navigationController = UINavigationController()
-        navigationController.navigationItem.largeTitleDisplayMode = .never
-        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
-        
-        let vc = AddNewTransactionModalViewController()
-        if let budget = budget {
-            vc.budget = budget
-        }
-        vc.dismissDelegate = self
-        vc.modalPresentationStyle = .pageSheet
-        
-        navigationController.pushViewController(vc, animated: true)
-        
-        self.present(navigationController, animated: true)
-    }
-}
-
-extension TransactionCategoryDetailViewController: DismissViewDelegate {
-    func viewDismissed() {
-        self.configureData()
     }
 }

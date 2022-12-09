@@ -9,10 +9,14 @@ import UIKit
 
 class AddNewTransactionModalView: UIView {
 
+    weak var delegate: AddTransactionDelegate?
+    weak var filterDelegate: FilterDelegate?
+    
     var transaction: Transaction?
     var budget: Budget?
     
     var income: Double = 0.0
+    var date: Date = Date()
     
     lazy var iconPicker = IconView()
     
@@ -24,7 +28,7 @@ class AddNewTransactionModalView: UIView {
     }()
 
     lazy var transactionAmount: TextField = {
-        let textField = TextField(frame: .zero, title: "Nominal Transaksi", style: .template, prefix: "Rp. ")
+        let textField = TextField(frame: .zero, title: "Nominal Transaksi", style: .template, prefix: "Rp ")
         textField.textField.keyboardType = .numberPad
         
         return textField
@@ -32,9 +36,18 @@ class AddNewTransactionModalView: UIView {
     
     lazy var transactionDate = DatePicker(frame: .zero, title: "Tanggal Transaksi")
     
+    lazy var transactionType: TextField = {
+        let textField = TextField(frame: .zero, title: "Jenis Transaksi", style: .template, icon: UIImage(named: "ChevronRight"))
+        textField.textField.placeholder = "Pilih jenis transaksi"
+        textField.textField.isEnabled = false
+        
+        return textField
+    }()
+    
     lazy var transactionBudgetCategory: TextField = {
-        let textField = TextField(frame: .zero, title: "Kategori Budget", style: .template)
-        textField.textField.placeholder = "Hayoo abis buat apa?"
+        let textField = TextField(frame: .zero, title: "Kategori Budget", style: .template, icon: UIImage(named: "ChevronRight"))
+        textField.textField.placeholder = "Pilih kategori budget"
+        textField.textField.isEnabled = false
         
         return textField
     }()
@@ -63,16 +76,16 @@ class AddNewTransactionModalView: UIView {
     }
     
     func setupData() {
-        if let budget = budget {
-            transactionBudgetCategory.textField.text = budget.category?.name
-            transactionBudgetCategory.textField.isEnabled = false
-        }
+        transactionBudgetCategory.textField.text = budget?.category?.name ?? "Lainnya"
         
         if let transaction = transaction {
+            iconPicker.iconTextField.text = transaction.budget?.category?.icon
             transactionName.textField.text = transaction.name
             transactionAmount.textField.text = CurrencyHelper.getFormattedNumber(from: transaction.amount)
             transactionDate.textField.textField.text = DateFormatHelper.getDDMMyyyy(from: transaction.date!)
-            transactionBudgetCategory.textField.text = transaction.budget?.category?.name
+            transactionBudgetCategory.textField.text = transaction.budget?.category?.name ?? "Lainnya"
+            income = transaction.amount
+            date = transaction.date!
         }
     }
     
@@ -87,6 +100,7 @@ class AddNewTransactionModalView: UIView {
         formStack.addArrangedSubview(transactionName)
         formStack.addArrangedSubview(transactionAmount)
         formStack.addArrangedSubview(transactionDate)
+        formStack.addArrangedSubview(transactionType)
         formStack.addArrangedSubview(transactionBudgetCategory)
         
         scrollView.addSubview(formStack)
@@ -113,9 +127,26 @@ class AddNewTransactionModalView: UIView {
         transactionDate.textField.textField.sendActions(for: .valueChanged)
         
         transactionDate.textField.textField.placeholder = "DD/MM/YYYY"
-        transactionDate.textField.textField.text = DateFormatHelper.getDDMMyyyy(from: transactionDate.date ?? Date())
         
         iconPicker.editButton.addTarget(self, action: #selector(editIconTapped), for: .touchUpInside)
+    }
+    
+    func setSelectorPressable(isPressable: Bool = true) {
+        if isPressable {
+            let tapOpenTypeSelector = UITapGestureRecognizer(target: self, action: #selector(openTypeSelector))
+            transactionType.addGestureRecognizer(tapOpenTypeSelector)
+            
+            let tapOpenSelector = UITapGestureRecognizer(target: self, action: #selector(openSelector))
+            transactionBudgetCategory.addGestureRecognizer(tapOpenSelector)
+        }
+    }
+    
+    @objc func openSelector() {
+        delegate?.openCategoryBudgetSelector()
+    }
+    
+    @objc func openTypeSelector() {
+        delegate?.openTypeSelector()
     }
     
     @objc func editIconTapped(_ sender: UIButton!) {
@@ -134,8 +165,8 @@ class AddNewTransactionModalView: UIView {
     }
     
     @objc func updateDate() {
-        print(#function)
         let textField = transactionDate.textField.textField
+        date = transactionDate.date!
         textField.text = DateFormatHelper.getDDMMyyyy(from: transactionDate.date ?? Date())
     }
     

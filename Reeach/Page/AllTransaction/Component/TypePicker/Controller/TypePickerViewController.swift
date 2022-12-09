@@ -15,7 +15,7 @@ class TypePickerViewController: UIViewController {
     
     static let identifier = "typePickerViewControllerIdentifier"
     
-    let types = ["Goal", "Want", "Need", "Expense", "Income"]
+    let types = ["Goal", "Pengeluaran", "Pemasukan"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

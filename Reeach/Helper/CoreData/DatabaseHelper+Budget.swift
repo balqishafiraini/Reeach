@@ -66,6 +66,18 @@ extension DatabaseHelper {
         return result.sorted { $0.allocatedRatio > $1.allocatedRatio }
     }
     
+    func getBudgets(type: String) -> [Budget] {
+        do {
+            let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest(with: type)
+            return filterInvalidBudgets(try context.fetch(fetchRequest))
+        }
+        catch let error {
+            let nsError = error as NSError
+            print("Unresolved error \(nsError), \(nsError.userInfo), \(nsError.localizedDescription)")
+            return []
+        }
+    }
+    
     func getBudgets(on month: Date, type: String) -> [Budget] {
         let date = DateFormatHelper.getStartDateOfMonth(of: month)
         do {

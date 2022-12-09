@@ -7,11 +7,12 @@
 
 import UIKit
 
-class AddNewTransactionModalViewController: UIViewController {
+class TransactionModalViewController: UIViewController {
 
     lazy var addTransactionModalView = AddNewTransactionModalView()
     
     weak var dismissDelegate: DismissViewDelegate?
+    weak var delegate: TransactionDelegate?
     
     let dbHelper = DatabaseHelper.shared
     
@@ -24,25 +25,27 @@ class AddNewTransactionModalViewController: UIViewController {
     
     var transaction: Transaction? = nil
     var mode: Mode = .add
-    var delegate: TransactionDelegate?
+    var pressableSelector = true
+    var transactionType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.view = addTransactionModalView
+        addTransactionModalView.delegate = self
+        addTransactionModalView.filterDelegate = self
         
         setNavigationBar()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         configureData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func setNavigationBar() {
-        self.title = mode == .add ? "Tambah Transaksi" : "Ubah Transaski"
+        self.title = mode == .add ? "Tambah Transaksi" : "Ubah Transaksi"
         let cancelButton = UIBarButtonItem(title: "Batal", style: .plain, target: self, action: #selector(dismissView))
         let saveButton = UIBarButtonItem(title: "Simpan", style: .plain, target: self, action: #selector(saveTransaction))
         
@@ -63,15 +66,34 @@ class AddNewTransactionModalViewController: UIViewController {
             addTransactionModalView.transaction = transaction
         }
         
-        if let budget = budget {
+        if let _ = budget {
             addTransactionModalView.budget = budget
+            transactionType = TransactionType.expense.rawValue
+            addTransactionModalView.transactionType.textField.text = transactionType
+            addTransactionModalView.transactionType.textField.isEnabled = false
         }
         
         configureView()
     }
     
     func configureView() {
+        addTransactionModalView.setupData()
         addTransactionModalView.setupView()
+        shouldHideCategoryBudget()
+        addTransactionModalView.setSelectorPressable(isPressable: pressableSelector)
+    }
+    
+    func shouldHideCategoryBudget() {
+        switch transactionType {
+            case TransactionType.expense.rawValue:
+                addTransactionModalView.transactionBudgetCategory.isHidden = false
+                
+            case TransactionType.goal.rawValue:
+                addTransactionModalView.transactionBudgetCategory.isHidden = false
+                
+            default:
+                addTransactionModalView.transactionBudgetCategory.isHidden = true
+        }
     }
     
     @objc func dismissView() {
@@ -84,18 +106,25 @@ class AddNewTransactionModalViewController: UIViewController {
         let icon = view.iconPicker.iconTextField.text
         let name = view.transactionName.textField.text
         let amount = view.income
-        let date = view.transactionDate.date
-        let budgetCategory = view.transactionBudgetCategory.textField.text ?? "Makanan"
+        let date = view.date
         
-        if let _ = icon, let name = name, let date = date, let budget = budget {
-            let _ = dbHelper.createTransaction(name: name, date: date, budget: budget, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
+        if mode == .add {
+            if let _ = icon, let name = name, let budget = budget {
+                print("Transaksi normal")
+                let _ = dbHelper.createTransaction(name: name, date: date, budget: budget, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
+            } else {
+                print("Transaksi lainnya")
+                let _ = dbHelper.createTransaction(name: name ?? "Name", date: date, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
+            }
         } else {
-            let category = dbHelper.getCategory(name: budgetCategory)
-            let budget = dbHelper.getBudget(on: date ?? Date(), of: category!)
-            
-            let _ = dbHelper.createTransaction(name: name ?? "Name", date: date ?? Date(), budget: budget!, amount: amount, notes: "Hmm kok ga ada buat masukkin notes ya")
+            transaction?.name = name
+            transaction?.amount = amount
+            transaction?.date = date
+            transaction?.budget = self.budget
+
+            dbHelper.saveContext()
         }
-        
+
         dismissDelegate?.viewDismissed()
         dismiss(animated: true)
     }
