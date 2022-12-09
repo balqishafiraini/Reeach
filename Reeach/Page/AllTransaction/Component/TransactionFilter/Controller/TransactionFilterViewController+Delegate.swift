@@ -23,9 +23,8 @@ extension TransactionFilterViewController: FilterDelegate {
                 
             case "BudgetCategory":
                 print("Open picker for category budget")
-                let targetViewController = SelectBudgetCategoryViewController()
-                targetViewController.delegate = self
-                targetViewController.isShown = false
+                let targetViewController = CategoryBudgetSelectionViewController()
+                targetViewController.selectedDelegate = self
                 navigationController?.pushViewController(targetViewController, animated: true)
                 
             default:
@@ -47,4 +46,13 @@ extension TransactionFilterViewController: SelectBudgetCategoryViewControllerDel
         budgetCategory = category
         filter.categoryBudgetSelector.textField.text = category.name
     }
+}
+
+extension TransactionFilterViewController: SelectCategoryBudgetDelegate {
+    func selectedItem(budget: Budget?) {
+        filter.categoryBudgetSelector.textField.text = budget?.category?.name ?? "Lainnya"
+        self.budgetCategory = budget?.category
+    }
+    
+    
 }
