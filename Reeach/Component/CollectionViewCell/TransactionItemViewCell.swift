@@ -11,6 +11,8 @@ class TransactionItemViewCell: UICollectionViewCell {
 
     static let identifier = "transactionItemViewCell"
     
+    var transaction: Transaction?
+    
     lazy var iconLabel: UILabel = {
         let label = UILabel()
         label.font = .bodyMedium
@@ -81,23 +83,8 @@ class TransactionItemViewCell: UICollectionViewCell {
     
     init(frame: CGRect, transaction: Transaction) {
         super.init(frame: frame)
-        iconLabel.text = transaction.budget?.category?.icon
-        titleLabel.text = transaction.name
-        subtitleLabel.text = transaction.budget?.category?.name
-        amountLabel.text = CurrencyHelper.getCurrency(from: transaction.amount)
         
-        switch transaction.budget?.category?.type {
-        case "Goal":
-            iconLabel.backgroundColor = .secondary2
-        case "Need":
-            iconLabel.backgroundColor = .primary4
-        case "Want":
-            iconLabel.backgroundColor = .accentRed4
-        case "Income":
-            iconLabel.backgroundColor = .secondary2
-        default:
-            iconLabel.backgroundColor = .black3
-        }
+        setupData(transaction: transaction)
         
         setupView()
     }
@@ -111,6 +98,7 @@ class TransactionItemViewCell: UICollectionViewCell {
     }
     
     func setupData(transaction: Transaction) {
+        self.transaction = transaction
         iconLabel.text = transaction.budget?.category?.icon
         titleLabel.text = transaction.name
         subtitleLabel.text = transaction.budget?.category?.name
