@@ -283,7 +283,7 @@ class TransactionCategoryDetailView: UIView {
         stack.distribution = .fill
         
         stack.addArrangedSubview(searchBar)
-        stack.addArrangedSubview(filterButton)
+//        stack.addArrangedSubview(filterButton)
         
         view.addSubview(stack)
         stack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 12, paddingRight: 20)
