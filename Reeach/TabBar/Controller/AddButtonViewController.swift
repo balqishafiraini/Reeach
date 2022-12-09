@@ -32,6 +32,10 @@ class AddButtonViewController: UIViewController {
         targetViewController.modalPresentationStyle = .pageSheet
         targetViewController.mode = .add
         
+        if #available(iOS 15.0, *) {
+            sheetPresentationController?.detents = [.large()]
+        }
+        
         navigationController?.navigationBar.isHidden = false
         navigationController?.popViewController(animated: false)
         navigationController?.pushViewController(targetViewController, animated: false)
@@ -42,6 +46,10 @@ class AddButtonViewController: UIViewController {
         targetViewController.dismissDelegate = dismissDelegate
         targetViewController.modalPresentationStyle = .pageSheet
         targetViewController.mode = .add
+        
+        if #available(iOS 15.0, *) {
+            sheetPresentationController?.detents = [.large()]
+        }
         
         navigationController?.navigationBar.isHidden = false
         navigationController?.popViewController(animated: false)

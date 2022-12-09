@@ -128,6 +128,7 @@ extension TabBarController {
     }
     private func presentModal() {
         let addButtonViewController = AddButtonViewController()
+        addButtonViewController.modalPresentationStyle = .pageSheet
         
         if let viewController = selectedViewController as? DismissViewDelegate {
             addButtonViewController.dismissDelegate = viewController
@@ -136,13 +137,10 @@ extension TabBarController {
         let nav = UINavigationController(rootViewController: addButtonViewController)
         nav.navigationItem.largeTitleDisplayMode = .never
         nav.navigationBar.setValue(true, forKey: "hidesShadow")
-        nav.modalPresentationStyle = .pageSheet
         
         if #available(iOS 15.0, *) {
-            if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.preferredCornerRadius = 15
-            }
+            nav.sheetPresentationController?.detents = [.medium(), .large()]
+            nav.sheetPresentationController?.preferredCornerRadius = 15
         }
         nav.navigationBar.isHidden = true
         present(nav, animated: true, completion: nil)

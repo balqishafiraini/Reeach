@@ -10,4 +10,6 @@ import Foundation
 protocol AddTransactionDelegate: AnyObject {
     func openCategoryBudgetSelector()
     func openTypeSelector()
+    func goToBudgetPlanner()
+    func shouldEnableSaveButton()
 }
