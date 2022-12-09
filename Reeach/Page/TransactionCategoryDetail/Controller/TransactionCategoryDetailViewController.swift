@@ -30,6 +30,8 @@ class TransactionCategoryDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.view = transactionDetailView
+        
+        transactionDetailView.addTransactionButtonView.isHidden = budget?.period != DateFormatHelper.getStartDateOfMonth(of: Date())
     }
     
     override func viewWillAppear(_ animated: Bool) {
