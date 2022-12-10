@@ -26,6 +26,7 @@ class TransactionFilterViewController: UIViewController {
         filter.controller = self
         filter.delegate = self
         filter.setupView()
+        shouldHideCategoryBudget()
     }
     
     func setNavigationBar() {
@@ -41,6 +42,19 @@ class TransactionFilterViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = doneItem
         navigationController?.navigationBar.backgroundColor = .ghostWhite
+    }
+    
+    func shouldHideCategoryBudget() {
+        switch transactionType {
+            case TransactionType.expense.rawValue:
+                filter.categoryBudgetSelector.isHidden = false
+                
+            case TransactionType.goal.rawValue:
+                filter.categoryBudgetSelector.isHidden = false
+                
+            default:
+                filter.categoryBudgetSelector.isHidden = true
+        }
     }
     
     @objc func dismissView() {
