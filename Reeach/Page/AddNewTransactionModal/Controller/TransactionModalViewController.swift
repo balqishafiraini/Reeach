@@ -37,7 +37,17 @@ class TransactionModalViewController: UIViewController {
         
         setNavigationBar()
         
+        if mode == .edit || UserDefaults.standard.bool(forKey: DateFormatHelper.getShortMonthAndYearString(from: Date())) {
+            addTransactionModalView.emptyStateContainerView.isHidden = true
+            addTransactionModalView.scrollView.isHidden = false
+        }
+        else {
+            addTransactionModalView.emptyStateContainerView.isHidden = false
+            addTransactionModalView.scrollView.isHidden = true
+            navigationItem.rightBarButtonItem = nil
+        }
         configureData()
+        shouldEnableSaveButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {

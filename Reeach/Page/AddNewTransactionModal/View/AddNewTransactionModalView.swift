@@ -18,6 +18,42 @@ class AddNewTransactionModalView: UIView {
     var income: Double = 0.0
     var date: Date = Date()
     
+    lazy var emptyStateContainerView = UIView()
+    
+    private lazy var emptyStateStackView = {
+        var stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private lazy var imageViewContainerView = UIView()
+    
+    lazy var imageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 5/6).isActive = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "EmptyMonthlyPlan")
+        return imageView
+    }()
+    
+    private lazy var emptyDescriptionContainerView = UIView()
+    
+    lazy var emptyDescriptionLabel = {
+        let label = UILabel()
+        label.text = "Sepertinya kamu belum memiliki monthly budget plan. Untuk menambahkan transaksi, kamu perlu merencanakan budget-mu dulu."
+        label.numberOfLines = 0
+        label.font = UIFont.bodyMedium
+        label.textColor = .black7
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var emptyGoalButton = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Ayo buat budget!")
+    
     lazy var iconPicker = IconView()
     
     lazy var transactionName: TextField = {
@@ -50,6 +86,14 @@ class AddNewTransactionModalView: UIView {
         textField.textField.isEnabled = false
         
         return textField
+    }()
+    
+    lazy var blankView = {
+        let view = UIView()
+        view.anchor(height: 20)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .ghostWhite
+        return view
     }()
 
     lazy var formStack: UIStackView = {
@@ -102,6 +146,7 @@ class AddNewTransactionModalView: UIView {
         formStack.addArrangedSubview(transactionDate)
         formStack.addArrangedSubview(transactionType)
         formStack.addArrangedSubview(transactionBudgetCategory)
+        formStack.addArrangedSubview(blankView)
         
         scrollView.addSubview(formStack)
         
@@ -113,12 +158,32 @@ class AddNewTransactionModalView: UIView {
         formStack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingLeft: 20, paddingRight: 20)
         formStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40).isActive = true
         
+        addSubview(emptyStateContainerView)
+        emptyStateContainerView.anchor(left: safeAreaLayoutGuide.leftAnchor, right: safeAreaLayoutGuide.rightAnchor, paddingLeft: 20, paddingRight: 20)
+        emptyStateContainerView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: -20).isActive = true
+        
+        emptyStateContainerView.addSubview(emptyStateStackView)
+        emptyStateStackView.anchor(top: emptyStateContainerView.topAnchor, left: emptyStateContainerView.leftAnchor, bottom: emptyStateContainerView.bottomAnchor, right: emptyStateContainerView.rightAnchor, paddingLeft: 20, paddingRight: 20)
+        emptyStateStackView.addArrangedSubview(imageViewContainerView)
+        emptyStateStackView.addArrangedSubview(emptyDescriptionContainerView)
+        emptyStateStackView.addArrangedSubview(emptyGoalButton)
+        
+        imageViewContainerView.addSubview(imageView)
+        imageView.center(inView: imageViewContainerView)
+        imageViewContainerView.heightAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        imageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.75).isActive = true
+        
+        emptyDescriptionContainerView.addSubview(emptyDescriptionLabel)
+        emptyDescriptionLabel.anchor(top: emptyDescriptionContainerView.topAnchor, left: emptyDescriptionContainerView.leftAnchor, bottom: emptyDescriptionContainerView.bottomAnchor, right: emptyDescriptionContainerView.rightAnchor, paddingBottom: 28)
+        
         setupTargets()
     }
     
     func setupTargets(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         scrollView.addGestureRecognizer(tap)
+        
+        transactionName.textField.addTarget(self, action: #selector(textFieldDidEnd), for: .editingDidEnd)
         
         transactionAmount.textField.addTarget(self, action: #selector(updateTextField), for: .allEditingEvents)
         transactionAmount.textField.sendActions(for: .valueChanged)
@@ -129,6 +194,8 @@ class AddNewTransactionModalView: UIView {
         transactionDate.textField.textField.placeholder = "DD/MM/YYYY"
         
         iconPicker.editButton.addTarget(self, action: #selector(editIconTapped), for: .touchUpInside)
+        
+        emptyGoalButton.addTarget(self, action: #selector(goToBudgetPlanner), for: .touchUpInside)
     }
     
     func setSelectorPressable(isPressable: Bool = true) {
@@ -139,6 +206,10 @@ class AddNewTransactionModalView: UIView {
             let tapOpenSelector = UITapGestureRecognizer(target: self, action: #selector(openSelector))
             transactionBudgetCategory.addGestureRecognizer(tapOpenSelector)
         }
+    }
+    
+    @objc func goToBudgetPlanner(_ sender: UIButton) {
+        delegate?.goToBudgetPlanner()
     }
     
     @objc func openSelector() {
@@ -154,6 +225,9 @@ class AddNewTransactionModalView: UIView {
         iconPicker.iconTextField.becomeFirstResponder()
     }
     
+    @objc func textFieldDidEnd() {
+        delegate?.shouldEnableSaveButton()
+    }
     
     @objc func updateTextField() {
         let textField = transactionAmount.textField
@@ -162,12 +236,14 @@ class AddNewTransactionModalView: UIView {
         income = incomeDouble
         
         textField.text = CurrencyHelper.getFormattedNumber(from: incomeDouble)
+        delegate?.shouldEnableSaveButton()
     }
     
     @objc func updateDate() {
         let textField = transactionDate.textField.textField
         date = transactionDate.date!
         textField.text = DateFormatHelper.getDDMMyyyy(from: transactionDate.date ?? Date())
+        delegate?.shouldEnableSaveButton()
     }
     
     class IconView: UIView {
