@@ -24,7 +24,7 @@ class CategoryBudgetSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "Kategori Budget"
         // Do any additional setup after loading the view.
         
         self.view = categoryBudgetView
@@ -35,6 +35,7 @@ class CategoryBudgetSelectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setNavigationBar()
         configureData()
     }
     
@@ -67,6 +68,24 @@ class CategoryBudgetSelectionViewController: UIViewController {
     func configureView() {
         categoryBudgetView.setupView()
         categoryBudgetView.budgetList.reloadData()
+    }
+    
+    func setNavigationBar() {
+        let cancelButton = UIBarButtonItem(title: "Kembali", style: .plain, target: self, action: #selector(dismissView))
+        
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.secondary as Any,
+            NSAttributedString.Key.font: UIFont.bodyMedium as Any
+        ]
+        
+        cancelButton.setTitleTextAttributes(attributes, for: .normal)
+        
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationController?.navigationBar.backgroundColor = .ghostWhite
+    }
+    
+    @objc func dismissView() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

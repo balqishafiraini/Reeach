@@ -43,7 +43,7 @@ class AddNewTransactionModalView: UIView {
     
     lazy var emptyDescriptionLabel = {
         let label = UILabel()
-        label.text = "Sepertinya kamu belum memiliki monthly budget plan. Untuk menambahkan transaksi, kamu perlu merencanakan budget-mu dulu."
+        label.text = "Buat monthly budget plan untuk bisa menambahkan transaksi di bulan ini."
         label.numberOfLines = 0
         label.font = UIFont.bodyMedium
         label.textColor = .black7
@@ -54,7 +54,33 @@ class AddNewTransactionModalView: UIView {
     
     lazy var emptyGoalButton = Button(style: .rounded, foreground: .primary, background: .tangerineYellow, title: "Ayo buat budget!")
     
-    lazy var iconPicker = IconView()
+    private lazy var iconContainerView = UIView()
+    
+    private lazy var backgroundView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.anchor(width: 120, height: 120)
+        view.layer.cornerRadius = 60
+        view.backgroundColor = .secondary2
+        return view
+    }()
+    
+    lazy var iconTextField: UIEmojiTextField = {
+        let emojiTextField = UIEmojiTextField()
+        emojiTextField.font = UIFont.systemFont(ofSize: 56)
+        emojiTextField.attributedPlaceholder = NSAttributedString(
+            string: "No Icon",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.bodyMedium as Any,
+                NSAttributedString.Key.foregroundColor: UIColor.secondary7 as Any
+            ]
+        )
+        emojiTextField.tintColor = .clear
+        emojiTextField.textAlignment = .center
+        emojiTextField.isUserInteractionEnabled = false
+        emojiTextField.translatesAutoresizingMaskIntoConstraints = false
+        return emojiTextField
+    }()
     
     lazy var transactionName: TextField = {
         let textField = TextField(frame: .zero, title: "Nama Transaksi", style: .template)
@@ -70,7 +96,12 @@ class AddNewTransactionModalView: UIView {
         return textField
     }()
     
-    lazy var transactionDate = DatePicker(frame: .zero, title: "Tanggal Transaksi")
+    lazy var transactionDate = {
+        let datePicker = DatePicker(frame: .zero, title: "Tanggal Transaksi")
+        datePicker.datePicker.minimumDate = DateFormatHelper.getStartDateOfMonth(of: Date())
+        datePicker.datePicker.maximumDate = DateFormatHelper.getStartDateOfNextMonth(of: Date()).addingTimeInterval(-1)
+        return datePicker
+    }()
     
     lazy var transactionType: TextField = {
         let textField = TextField(frame: .zero, title: "Jenis Transaksi", style: .template, icon: UIImage(named: "ChevronRight"))
@@ -123,7 +154,7 @@ class AddNewTransactionModalView: UIView {
         transactionBudgetCategory.textField.text = budget?.category?.name ?? "Lainnya"
         
         if let transaction = transaction {
-            iconPicker.iconTextField.text = transaction.budget?.category?.icon
+            iconTextField.text = transaction.budget?.category?.icon
             transactionName.textField.text = transaction.name
             transactionAmount.textField.text = CurrencyHelper.getFormattedNumber(from: transaction.amount)
             transactionDate.textField.textField.text = DateFormatHelper.getDDMMyyyy(from: transaction.date!)
@@ -137,10 +168,14 @@ class AddNewTransactionModalView: UIView {
         setupData()
         self.backgroundColor = .ghostWhite
         
-        iconPicker.setUp()
-        iconPicker.heightAnchor.constraint(equalTo: iconPicker.iconTextField.heightAnchor).isActive = true
+        iconContainerView.addSubview(backgroundView)
+        backgroundView.centerX(inView: iconContainerView)
+        backgroundView.anchor(top: iconContainerView.topAnchor, bottom: iconContainerView.bottomAnchor)
         
-        formStack.addArrangedSubview(iconPicker)
+        iconContainerView.addSubview(iconTextField)
+        iconTextField.anchor(top: backgroundView.topAnchor, left: backgroundView.leftAnchor, bottom: backgroundView.bottomAnchor, right: backgroundView.rightAnchor)
+        
+        formStack.addArrangedSubview(iconContainerView)
         formStack.addArrangedSubview(transactionName)
         formStack.addArrangedSubview(transactionAmount)
         formStack.addArrangedSubview(transactionDate)
@@ -193,8 +228,6 @@ class AddNewTransactionModalView: UIView {
         
         transactionDate.textField.textField.placeholder = "DD/MM/YYYY"
         
-        iconPicker.editButton.addTarget(self, action: #selector(editIconTapped), for: .touchUpInside)
-        
         emptyGoalButton.addTarget(self, action: #selector(goToBudgetPlanner), for: .touchUpInside)
     }
     
@@ -218,11 +251,6 @@ class AddNewTransactionModalView: UIView {
     
     @objc func openTypeSelector() {
         delegate?.openTypeSelector()
-    }
-    
-    @objc func editIconTapped(_ sender: UIButton!) {
-        iconPicker.iconTextField.isUserInteractionEnabled = true
-        iconPicker.iconTextField.becomeFirstResponder()
     }
     
     @objc func textFieldDidEnd() {

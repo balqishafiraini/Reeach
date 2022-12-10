@@ -76,7 +76,7 @@ class TransactionModalViewController: UIViewController {
             addTransactionModalView.transaction = transaction
         }
         
-        if let _ = budget {
+        if let budget {
             addTransactionModalView.budget = budget
             transactionType = TransactionType.expense.rawValue
             addTransactionModalView.transactionType.textField.text = transactionType
@@ -113,13 +113,12 @@ class TransactionModalViewController: UIViewController {
     @objc func saveTransaction() {
         let view = addTransactionModalView
         
-        let icon = view.iconPicker.iconTextField.text
         let name = view.transactionName.textField.text
         let amount = view.income
         let date = view.date
         
         if mode == .add {
-            if let _ = icon, let name = name, let budget = budget {
+            if let name = name, let budget = budget {
                 let _ = dbHelper.createTransaction(name: name, date: date, budget: budget, amount: amount, notes: "")
             } else {
                 let _ = dbHelper.createTransaction(name: name ?? "Name", date: date, amount: amount, notes: "")

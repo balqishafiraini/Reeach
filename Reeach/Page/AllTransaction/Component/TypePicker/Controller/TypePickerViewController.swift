@@ -25,12 +25,32 @@ class TypePickerViewController: UIViewController {
         
         typePickerView.collectionView.delegate = self
         typePickerView.collectionView.dataSource = self
+        
+        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         typePickerView.setupView()
+    }
+    
+    func setNavigationBar() {
+        let cancelButton = UIBarButtonItem(title: "Kembali", style: .plain, target: self, action: #selector(dismissView))
+        
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.secondary as Any,
+            NSAttributedString.Key.font: UIFont.bodyMedium as Any
+        ]
+        
+        cancelButton.setTitleTextAttributes(attributes, for: .normal)
+        
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationController?.navigationBar.backgroundColor = .ghostWhite
+    }
+    
+    @objc func dismissView() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -49,7 +69,7 @@ extension TypePickerViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: collectionView.frame.width, height: 60)
+        return CGSize(width: collectionView.frame.width, height: 46)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

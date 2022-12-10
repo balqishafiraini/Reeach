@@ -9,18 +9,20 @@ import UIKit
 
 extension TransactionCategoryDetailViewController: TransactionDelegate {
     func openSheet() {
-        let navigationController = UINavigationController()
-        navigationController.navigationItem.largeTitleDisplayMode = .never
-        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
-        
-        let vc = TransactionFilterViewController()
-        vc.delegate = self
-        vc.budgetCategory = category
-        vc.modalPresentationStyle = .pageSheet
-        
-        navigationController.pushViewController(vc, animated: true)
-        
-        self.present(navigationController, animated: true)
+        if budget?.period == DateFormatHelper.getStartDateOfMonth(of: Date()) {
+            let navigationController = UINavigationController()
+            navigationController.navigationItem.largeTitleDisplayMode = .never
+            navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+            
+            let vc = TransactionFilterViewController()
+            vc.delegate = self
+            vc.budgetCategory = category
+            vc.modalPresentationStyle = .pageSheet
+            
+            navigationController.pushViewController(vc, animated: true)
+            
+            self.present(navigationController, animated: true)
+        }
     }
     
     func search(searchText: String) {

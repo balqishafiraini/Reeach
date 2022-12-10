@@ -51,20 +51,23 @@ extension AllTransactionViewController: DismissViewDelegate {
 extension AllTransactionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let navigationController = UINavigationController()
-        navigationController.navigationItem.largeTitleDisplayMode = .never
-        navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
-        
-        let targetViewController = TransactionModalViewController()
-        targetViewController.budget = separatedTransactions[sortedKeys[indexPath.section]]![indexPath.item].budget
-        targetViewController.transaction = separatedTransactions[sortedKeys[indexPath.section]]![indexPath.item]
-        targetViewController.mode = .edit
-        targetViewController.dismissDelegate = self
-        targetViewController.modalPresentationStyle = .pageSheet
-        
-        navigationController.pushViewController(targetViewController, animated: true)
-        
-        self.present(navigationController, animated: true)
+        let transaction = separatedTransactions[sortedKeys[indexPath.section]]![indexPath.item]
+        if transaction.budget?.period == DateFormatHelper.getStartDateOfMonth(of: Date()) {
+            let navigationController = UINavigationController()
+            navigationController.navigationItem.largeTitleDisplayMode = .never
+            navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+            
+            let targetViewController = TransactionModalViewController()
+            targetViewController.budget = transaction.budget
+            targetViewController.transaction = transaction
+            targetViewController.mode = .edit
+            targetViewController.dismissDelegate = self
+            targetViewController.modalPresentationStyle = .pageSheet
+            
+            navigationController.pushViewController(targetViewController, animated: true)
+            
+            self.present(navigationController, animated: true)
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

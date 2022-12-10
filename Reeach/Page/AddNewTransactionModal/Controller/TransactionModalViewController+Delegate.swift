@@ -70,7 +70,10 @@ extension TransactionModalViewController: FilterDelegate {
     func selected(selectedItem: String) {
         self.transactionType = selectedItem
         addTransactionModalView.transactionType.textField.text = selectedItem
-        
+        if transactionType == TransactionType.income.rawValue {
+            let incomeCategory = DatabaseHelper.shared.getCategory(name: "Income")
+            addTransactionModalView.iconTextField.text = incomeCategory?.icon
+        }
         configureView()
         shouldEnableSaveButton()
     }
@@ -88,6 +91,7 @@ extension TransactionModalViewController: SelectCategoryBudgetDelegate {
     func selectedItem(budget: Budget?) {
         self.budget = budget
         self.addTransactionModalView.transactionBudgetCategory.textField.text = budget?.category?.name ?? "Lainnya"
+        addTransactionModalView.iconTextField.text = budget?.category?.icon
         shouldEnableSaveButton()
     }
 }

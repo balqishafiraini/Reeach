@@ -22,7 +22,7 @@ class FilterItemCollectionViewCell: UICollectionViewCell {
     
     lazy var container: UIView = {
         let view = UIView()
-        view.backgroundColor = .cardColor
+        view.backgroundColor = .grey
         view.layer.cornerRadius = 16
         
         return view
@@ -47,7 +47,7 @@ class FilterItemCollectionViewCell: UICollectionViewCell {
         
         container.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 20, paddingRight: 20)
         
-        label.anchor(top: container.topAnchor, left: container.leftAnchor, bottom: container.bottomAnchor, right: container.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 8, paddingRight: 12)
+        label.anchor(top: container.topAnchor, left: container.leftAnchor, bottom: container.bottomAnchor, right: container.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 4, paddingRight: 12)
         
     }
 }
