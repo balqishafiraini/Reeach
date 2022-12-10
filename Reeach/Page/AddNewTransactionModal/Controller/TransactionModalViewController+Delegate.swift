@@ -8,6 +8,13 @@
 import Foundation
 
 extension TransactionModalViewController: AddTransactionDelegate {
+    func goToBudgetPlanner() {
+        let targetViewController = SetupPageViewController()
+        targetViewController.delegate = self
+        targetViewController.modalPresentationStyle = .fullScreen
+        present(targetViewController, animated: true)
+    }
+    
     func openCategoryBudgetSelector() {
         let targetViewController = CategoryBudgetSelectionViewController()
         targetViewController.selectedDelegate = self
@@ -24,6 +31,39 @@ extension TransactionModalViewController: AddTransactionDelegate {
         targetViewController.delegate = self
         navigationController?.pushViewController(targetViewController, animated: true)
     }
+    
+    func shouldEnableSaveButton() {
+        let amountString = (addTransactionModalView.transactionAmount.textField.text ?? "0.0").replacingOccurrences(of: ".", with: "")
+        let category = addTransactionModalView.transactionBudgetCategory.textField.text ?? ""
+        
+        var valid = true
+        valid = valid ? !(addTransactionModalView.transactionName.textField.text ?? "").isEmpty : valid
+        valid = valid ? (Double(amountString) ?? 0.0) > 0 : valid
+        valid = valid ? !(addTransactionModalView.transactionDate.textField.textField.text ?? "").isEmpty : valid
+        
+        if transactionType == TransactionType.goal.rawValue {
+            valid = valid ? category == "Lainnya" ? false : !category.isEmpty : valid
+        }
+        else if transactionType == TransactionType.income.rawValue {
+            valid = valid ? true : valid
+        }
+        else if transactionType == TransactionType.expense.rawValue {
+            valid = valid ? !category.isEmpty : valid
+        }
+        else {
+            valid = false
+        }
+        
+        navigationItem.rightBarButtonItem?.isEnabled = valid
+    }
+}
+
+extension TransactionModalViewController: DismissViewDelegate {
+    var viewControllerTitle: String { title ?? "Tambah Transaksi" }
+    
+    func viewDismissed() {
+        viewDidLoad()
+    }
 }
 
 extension TransactionModalViewController: FilterDelegate {
@@ -32,6 +72,7 @@ extension TransactionModalViewController: FilterDelegate {
         addTransactionModalView.transactionType.textField.text = selectedItem
         
         configureView()
+        shouldEnableSaveButton()
     }
     
     func openPicker(type: String) {
@@ -47,5 +88,6 @@ extension TransactionModalViewController: SelectCategoryBudgetDelegate {
     func selectedItem(budget: Budget?) {
         self.budget = budget
         self.addTransactionModalView.transactionBudgetCategory.textField.text = budget?.category?.name ?? "Lainnya"
+        shouldEnableSaveButton()
     }
 }
