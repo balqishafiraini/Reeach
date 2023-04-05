@@ -11,6 +11,7 @@ extension TransactionFilterViewController: FilterDelegate {
     func selected(selectedItem: String) {
         transactionType = selectedItem
         filter.transactionTypeSelector.textField.text = selectedItem
+        shouldHideCategoryBudget()
     }
     
     func openPicker(type: String) {        
@@ -22,6 +23,11 @@ extension TransactionFilterViewController: FilterDelegate {
                 
             case "BudgetCategory":
                 let targetViewController = CategoryBudgetSelectionViewController()
+                if transactionType == TransactionType.expense.rawValue {
+                    targetViewController.forBudget = TransactionType.expense
+                } else {
+                    targetViewController.forBudget = TransactionType.goal
+                }
                 targetViewController.selectedDelegate = self
                 targetViewController.showOnlyCurrentMonth = false
                 navigationController?.pushViewController(targetViewController, animated: true)
@@ -35,7 +41,7 @@ extension TransactionFilterViewController: FilterDelegate {
         startDate = filter.startMonthPicker.date ?? Date(timeIntervalSince1970: 0)
         endDate = filter.endMonthPicker.date ?? Date()
         
-        let category = Category()
+        let category = self.transactionType == TransactionType.income.rawValue ? nil : Category()
         delegate?.filterTransaction(startMonth: startDate, endMonth: endDate, type: self.transactionType, budgetCategory: self.budgetCategory ?? category)
         dismissView()
     }
